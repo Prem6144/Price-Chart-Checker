@@ -1,0 +1,65 @@
+<fieldset id="telephone-attributes" style="display:none;">
+  <h4>Telephone Deal Attributes</h4>
+  <table class="form-data">
+    <tr>
+      <td>
+      <div>Domestic Call Minutes<span class="mandat">*</span></div>
+      <div><input type='checkbox' id='domestic_unlimited'><span> Unlimited</span></div>
+      <%= f.text_field :domestic_call_minutes, :id=>'telephone-domestic-call-minutes' %>
+      </td>
+      <td valign="bottom">
+      <%= f.label :domestic_receive_minutes %>
+      <%= f.text_field :domestic_receive_minutes %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <%= f.label :domestic_additional_minutes %>
+      <%= f.text_field :domestic_additional_minutes %>
+      </td>
+      <td/>
+    </tr>
+    <tr>
+      <td>
+      <%= f.label :international_call_minutes %>
+      <div><input type='checkbox' id='international_unlimited'><span> Unlimited</span></div>
+      <%= f.text_field :international_call_minutes,:id=>'telephone-international-call-minutes' %>
+      </td>
+      <td valign="bottom">
+      <%= f.label :international_landline_minutes %>
+      <%= f.text_field :international_landline_minutes %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <%= f.label :international_mobile_minutes %>
+      <%= f.text_field :international_mobile_minutes %>
+      </td>
+      <td>
+      <%= f.label :international_additional_minutes %>
+      <%= f.text_field :international_additional_minutes %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <%= f.label :countries %>
+      <%= f.text_field :countries %>
+      </td>
+      <td>
+      <%= f.label :features %>
+      <%= f.text_field :features %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <%= f.fields_for :telephone_equipments do |builder| %>
+          <%= render 'telephone_equipment_fields', f: builder %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+   <!--  <p><td colspan="2"><%#= link_to_add_fields "Add Equipment", f, :telephone_equipments %></td></p> -->
+    </tr>
+  </table>
+  
+</fieldset>

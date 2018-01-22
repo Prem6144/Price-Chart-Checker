@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000">
+    <!--  android:background="@color/backround_color_general"-->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:layout_marginBottom="100dp"
+                android:background="@color/white_color"
+                android:orientation="vertical"
+
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/img_excitement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/excitement" />
+
+                    <TextView
+                        android:id="@+id/txt_wow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img_excitement"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="WOW!!!"
+                        android:textColor="@color/red_color"
+                        android:textSize="@dimen/_25sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_wow1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_wow"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:text="Your Potential $aving are"
+                        android:textColor="@color/black_color"
+                        android:textSize="@dimen/_20sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_wow2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_wow1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#1c7eae"
+                        android:textSize="@dimen/_20sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_wow3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_wow2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:background="@drawable/btn_background_red"
+                        android:text="Review Deals &amp; Switch"
+                        android:textColor="@color/white_color"
+                        android:textSize="@dimen/_20sdp" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_close"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/gtk_close" />
+        </FrameLayout>
+    </RelativeLayout>
+
+</LinearLayout>

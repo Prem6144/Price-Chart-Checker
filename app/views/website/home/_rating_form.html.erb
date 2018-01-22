@@ -1,0 +1,16 @@
+<div class="sd-rating"> 
+  <%rating=deal['average_rating'].to_i%>
+    <%if rating.present?%>
+      <%rating.times do%>
+        <i class="fa fa-star"></i>
+      <%end%>
+      <%rev=5-rating%>
+      <%rev.times do%>
+        <i class="fa fa-star-o"></i>
+      <%end%>
+    <%else%>
+      <%5.times do%>
+        <i class="fa fa-star-o"></i>
+    <%end%>
+  <%end%>
+</div>

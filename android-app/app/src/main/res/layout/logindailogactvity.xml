@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000">
+    <!--  android:background="@color/backround_color_general"-->
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+
+
+                android:orientation="vertical"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/backround_color_general">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/login_bg_pattern">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="40dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:layout_marginTop="30dp">
+
+                                <ImageView
+                                    android:id="@+id/img_logo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="100dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:background="@drawable/logo_icn" />
+
+                                <EditText
+                                    android:id="@+id/etx_email"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_below="@+id/img_logo"
+                                    android:layout_marginTop="20dp"
+                                    android:background="@drawable/edt_background"
+                                    android:drawableLeft="@drawable/email_icon"
+                                    android:drawablePadding="10dp"
+                                    android:gravity="left|center_vertical"
+                                    android:hint="E-mail address"
+                                    android:inputType="textEmailAddress"
+                                    android:paddingLeft="5dp"
+                                    android:singleLine="true" />
+
+                                <EditText
+                                    android:id="@+id/etx_password"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_below="@+id/etx_email"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/edt_background"
+                                    android:drawableLeft="@drawable/password"
+                                    android:drawablePadding="10dp"
+                                    android:gravity="left|center_vertical"
+                                    android:hint="Password"
+                                    android:inputType="textPassword"
+                                    android:maxLength="12"
+                                    android:paddingLeft="5dp"
+                                    android:singleLine="true" />
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_chk"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/etx_password"
+                                    android:layout_marginTop="15dp"
+                                    android:visibility="gone">
+
+                                    <CheckBox
+                                        android:id="@+id/chk_remember"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_toRightOf="@+id/chk_remember"
+                                        android:text="Remember Me" />
+
+                                    <TextView
+                                        android:id="@+id/txt_forget_password"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:text="Forgot Password?" />
+
+                                </RelativeLayout>
+
+                                <Button
+                                    android:id="@+id/btn_sign_in"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="45dp"
+                                    android:layout_below="@+id/rl_chk"
+                                    android:layout_marginTop="20dp"
+                                    android:background="@drawable/btn_background_red"
+                                    android:text="@string/sinin"
+                                    android:textColor="@color/white_color"
+                                    android:textSize="20sp" />
+
+                                <Button
+                                    android:id="@+id/btn_sign_up"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="45dp"
+                                    android:layout_below="@+id/btn_sign_in"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/btn_background"
+                                    android:text="@string/sinup"
+                                    android:textColor="@color/white_color"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/txt_or"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/btn_sign_up"
+                                    android:layout_marginTop="20dp"
+                                    android:background="@drawable/divider"
+                                    android:gravity="center"
+                                    android:text="" />
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_login"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/txt_or"
+                                    android:layout_marginTop="10dp">
+
+                                    <ImageView
+                                        android:id="@+id/img_fb"
+                                        android:layout_width="47dp"
+                                        android:layout_height="47dp"
+                                        android:layout_toLeftOf="@+id/img_tw"
+                                        android:background="@drawable/facebook" />
+
+                                    <ImageView
+                                        android:id="@+id/img_tw"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp" />
+
+                                    <ImageView
+                                        android:id="@+id/img_plus"
+                                        android:layout_width="46dp"
+
+                                        android:layout_height="46dp"
+                                        android:layout_toRightOf="@+id/img_tw"
+                                        android:background="@drawable/google_plus" />
+                                </RelativeLayout>
+
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/img_close"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/gtk_close" />
+        </FrameLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/shadow"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="sans-serif-light"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:text="Address Information"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/_12sdp" />
+
+            <ImageView
+                android:id="@+id/img_address"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/arrowup"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_address_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/compare_line" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Billing Address"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/etx_billingaddressname"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/order_editext_background"
+                    android:capitalize="words"
+                    android:hint="Address Name*"
+                    android:inputType="textAutoComplete|textAutoCorrect|textCapWords"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etx_billingaddress1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/order_editext_background"
+                    android:capitalize="words"
+                    android:hint="Address Line 1*"
+                    android:inputType="textAutoComplete|textAutoCorrect|textCapWords"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etx_billingaddress2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/order_editext_background"
+                    android:capitalize="words"
+                    android:hint="Address Line 2"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black_color"
+
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etx_billingcity"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight=".5"
+                    android:background="@drawable/order_editext_background"
+                    android:hint="Town/City*"
+                    android:singleLine="true"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight=".5">
+
+                        <Spinner
+                            android:id="@+id/spn_billing_state"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/order_editext_background"
+                            android:spinnerMode="dialog"></Spinner>
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/etx_billingzipcode"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight=".5"
+                        android:background="@drawable/order_editext_background"
+                        android:hint="Zipcode*"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:singleLine="true"
+                        android:textColor="@color/black_color"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Shipping Address"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/chk_shipin_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/txt_enddate"
+                android:button="@drawable/custem_checkbox"
+                android:checked="false"
+                android:text="  Same as Billing Address"
+                android:textColor="@color/textviewcolor"
+                android:textSize="@dimen/_7sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/ll_shiping_addresss"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/etx_shippingaddressname"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/order_editext_background"
+                    android:capitalize="words"
+                    android:hint="Address Name*"
+                    android:inputType="textAutoComplete|textAutoCorrect|textCapWords"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etx_shippingaddress1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/order_editext_background"
+                    android:capitalize="words"
+                    android:hint="Address Line 1*"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black_color"
+
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etx_shippingaddress2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/order_editext_background"
+                    android:capitalize="words"
+                    android:hint="Address Line 2"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black_color"
+
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etx_shippingcity"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/order_editext_background"
+                    android:hint="Town/City*"
+                    android:singleLine="true"
+                    android:textColor="@color/black_color"
+
+                    android:textSize="@dimen/_10sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight=".5">
+
+                        <Spinner
+                            android:id="@+id/spn_shipping_state"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/order_editext_background"
+                            android:spinnerMode="dialog"></Spinner>
+                    </LinearLayout>
+
+
+                    <EditText
+                        android:id="@+id/etx_shippingzipcode"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginLeft="5dp"
+
+                        android:layout_weight=".5"
+                        android:background="@drawable/order_editext_background"
+                        android:hint="Zipcode*"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:singleLine="true"
+                        android:textColor="@color/black_color"
+
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Service Address"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/chk_service_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/txt_enddate"
+                android:button="@drawable/custem_checkbox"
+                android:checked="false"
+                android:text="  Same as Billing Address"
+                android:textColor="@color/textviewcolor"
+                android:textSize="@dimen/_7sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/ll_service_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/etx_service_addressname"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/order_editext_background"
+                    android:capitalize="words"
+                    android:hint="Address Name*"
+                    android:inputType="textAutoComplete|textAutoCorrect|textCapWords"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etx_service_address1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/order_editext_background"
+                    android:capitalize="words"
+                    android:hint="Address Line 1*"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etx_service_address2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/order_editext_background"
+                    android:capitalize="words"
+                    android:hint="Address Line 2"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black_color"
+
+                    android:textSize="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etx_service_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/order_editext_background"
+                    android:hint="Town/City*"
+                    android:singleLine="true"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight=".5">
+
+                        <Spinner
+                            android:id="@+id/spn_service_state"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/order_editext_background"
+                            android:spinnerMode="dialog"></Spinner>
+                    </LinearLayout>
+
+
+                    <EditText
+                        android:id="@+id/etx_service_zipcode"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight=".5"
+                        android:background="@drawable/order_editext_background"
+                        android:hint="Zipcode*"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:singleLine="true"
+                        android:textColor="@color/black_color"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_address_next"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:background="#3687c4"
+                android:gravity="center_vertical|right"
+                android:paddingRight="10dp"
+                android:text="Next"
+                android:textColor="@color/white_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

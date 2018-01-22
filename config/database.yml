@@ -1,0 +1,27 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: ror_database_new
+  username: root
+  password: root
+  host: localhost
+  pool: 5
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: ror_database_new
+  username: root
+  password: root
+  host: localhost
+  pool: 5
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: ror_database_new
+  username: root
+  password: root
+  host: localhost
+  pool: 5
+

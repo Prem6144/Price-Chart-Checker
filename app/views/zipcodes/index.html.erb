@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+  <tr>
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+        <% if current_user.is_super_admin? %>
+            <%= link_to 'Add New Zipcode', new_zipcode_path %>
+        <% end %>
+      </div>
+
+      <div class='title'>
+        <span id='title'>Zipcodes</span>
+      </div>
+
+      <div>
+        <h6>Import from CSV</h6>
+        <%= form_tag import_zipcodes_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= submit_tag "Import CSV" %>
+        <% end %><br/>
+      </div>
+
+      <table id="service_deals_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+        <thead>
+        <tr>
+          <th>Code</th>
+          <th>Area</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Country</th>
+          <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div class="digg_pagination">
+          <%= will_paginate @zipcodes %>
+        </div>
+        <% @zipcodes.each do |zipcode| %>
+            <tr>
+              <td class="best_in"><%= zipcode.code %></td>
+              <td class="best_in"><%= zipcode.area %></td>
+              <td><%= zipcode.city %></td>
+              <td><%= zipcode.state %></td>
+              <td><%= zipcode.country %></td>
+              <td>
+                <%= link_to 'Show', zipcode %> |
+                <%= link_to 'Edit', edit_zipcode_path(zipcode) %> |
+                <%= link_to 'Delete', zipcode, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+            </tr>
+        <% end %>
+
+        </tbody>
+      </table>
+      <p>
+        Download:
+        <%= link_to "CSV", zipcodes_path(format: "csv") %>
+        <%#= link_to "Excel", service_categories_path(format: "xls") %>
+      </p>
+    </td>
+  </tr>
+</table>
+
+

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000">
+    <!--  android:background="@color/backround_color_general"-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"
+                    android:layout_marginBottom="100dp"
+                    android:background="@color/white_color"
+                    android:orientation="vertical"
+
+                    >
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical"
+                        android:paddingTop="20dp"
+                        android:visibility="visible"
+
+                        >
+
+                        <ImageView
+                            android:id="@+id/img_logo"
+                            android:layout_width="120dp"
+                            android:layout_height="110dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/welcome1" />
+
+                        <TextView
+                            android:id="@+id/txt_welcome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/img_logo"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:text="Welcome"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/_25sdp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/wv_welcome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_welcome"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp" />
+
+                        <TextView
+                            android:id="@+id/wv_welcome1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/wv_welcome"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_welcome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/wv_welcome1"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.github.siyamed.shapeimageview.CircularImageView
+                                    android:id="@+id/img_user"
+                                    android:layout_width="@dimen/_10sdp"
+                                    android:layout_height="@dimen/_10sdp"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@drawable/list1"
+                                    app:siBorderColor="#ffffff"
+                                    app:siBorderWidth="0dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:textColor="#3f3f3f"
+                                    android:text="Enter your service information" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:orientation="horizontal">
+
+                                <com.github.siyamed.shapeimageview.CircularImageView
+                                    android:layout_width="@dimen/_10sdp"
+                                    android:layout_height="@dimen/_10sdp"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@drawable/list2"
+                                    app:siBorderColor="#ffffff"
+                                    app:siBorderWidth="0dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:textColor="#3f3f3f"
+                                    android:text="Review potential savings" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:orientation="horizontal">
+
+                                <com.github.siyamed.shapeimageview.CircularImageView
+                                    android:layout_width="@dimen/_10sdp"
+                                    android:layout_height="@dimen/_10sdp"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@drawable/list3"
+                                    app:siBorderColor="#ffffff"
+                                    app:siBorderWidth="0dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:textColor="#3f3f3f"
+                                    android:text="Review suggested best deals" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btn_save"
+                            android:layout_width="150dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/ll_welcome"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="@dimen/_20sdp"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginRight="60dp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/btn_back_rounded_red"
+                            android:text="I'M INTRESTED"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white_color" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/img_close"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right|top"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/gtk_close" />
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

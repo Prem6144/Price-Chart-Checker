@@ -1,0 +1,60 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+  <tr>
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+        <% if current_user.is_super_admin? %>
+            <%= link_to "Create New Service Provider Checlist", new_service_provider_checklist_path %>
+        <% end %>
+      </div>
+      <div class='title'>
+        <span id='title'>Service Provider Checklists</span>
+      </div>
+      <div id="users" class="list">
+        <div>
+          <h6>Import from CSV</h6>
+          <%#= form_tag import_service_provider_checklists_path, multipart: true do %>
+              <%#= file_field_tag :file %>
+              <%#= submit_tag "Import CSV" %>
+          <%# end %><br/>
+        </div>
+        <table id="users_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+          <thead>
+          <tr>
+            <th><strong>Service Category</strong></th>
+            <th><strong>Service Provider</strong></th>
+            <th><strong>Checklist</strong></th>
+            <th><strong>Status</strong></th>
+            <th><strong>Is Mandatory</strong></th>
+            
+            <th><strong>Action</strong></th>
+          </tr>
+          </thead>
+          <tbody>
+          <div class="digg_pagination">
+            <%# will_paginate @service_provider_checklists %>
+          </div>
+          <% @service_provider_checklists.each do |service_provider_checklist| %>
+              <% if can? :read, service_provider_checklist %>
+                  <%# if service_provider_checklist.service_category_id.present? %>
+                      <tr>
+                        <td><%= service_provider_checklist.service_category.name if service_provider_checklist.service_category.name.present? %></td>
+                        <td><%= service_provider_checklist.service_provider.name if service_provider_checklist.service_provider.name.present? %></td>
+                        <td><%= service_provider_checklist.checklist.try(:name) if service_provider_checklist.checklist.try(:name).present? %></td>
+                        <td><%= service_provider_checklist.status %></td>
+                        <td><%= service_provider_checklist.is_mandatory %></td>
+                        <td><%= (link_to 'Edit', edit_service_provider_checklist_path(service_provider_checklist)) if can? :manage, service_provider_checklist %> | <%= (link_to "Delete", service_provider_checklist, method: :delete, data: { confirm: "Are you sure?" }) if can? :manage, service_provider_checklist %></td>
+                      </tr>
+                  <%# end %>
+              <% end %>
+          <% end %>
+          </tbody>
+        </table>
+        <p>
+          Download:
+          <%= link_to "CSV", service_provider_checklists_path(format: "csv") %>
+          <%#= link_to "Excel", service_categories_path(format: "xls") %>
+        </p>
+      </div>
+    </td>
+  </tr>
+</table>

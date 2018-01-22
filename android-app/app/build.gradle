@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+repositories {
+    maven {
+        url "https://jitpack.io"
+        mavenCentral()
+    }
+}
+android {
+    signingConfigs {
+        config {
+            keyAlias 'ServiceDealz'
+            keyPassword 'spa@123'
+            storeFile file('F:\\Service-Deals-Android\\Service_Deal\\app\\ServiceDealzkeystire.jks')
+            storePassword 'spa@123'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    productFlavors {
+    }
+}
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.2'
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+
+            shrinkResources false
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    defaultConfig {
+        applicationId "com.spa.servicedealz"
+        minSdkVersion 17
+        versionCode 5
+        versionName "1.1"
+        multiDexEnabled true
+        targetSdkVersion 23
+        signingConfig signingConfigs.config
+    }
+    dexOptions {
+        preDexLibraries = true
+        incremental true
+        javaMaxHeapSize "4g"
+    }
+}
+
+dependencies {
+    configurations {
+        all*.exclude group: 'commons-logging', module: 'commons-logging'
+        all*.exclude group: 'com.nineoldandroids'
+    }
+    compile project(':library')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':linkedin-sdk')
+    compile files('libs/crittercism_v5_3_3_sdkonly.jar')
+    compile files('libs/universal-image-loader-1.9.0.jar')
+    compile files('libs/Branch-1.9.0.jar')
+    compile files('libs/twitter4j-core-4.0.2.jar')
+    compile files('libs/android-async-http-1.4.4.jar')
+    compile 'com.spothero.emailvalidator:EmailValidator:1.0.0@aar'
+    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.github.ozodrukh:CircularReveal:1.0.4'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.google.android.gms:play-services:8.4.0'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.squareup.picasso:picasso:2.3.2'
+    compile 'com.helpshift:android-en-aar:3.12.0'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.0.9'
+    compile 'com.inkapplications.viewpageindicator:library:2.4.3'
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    //noinspection GradleCompatible
+    compile 'com.android.support:design:24.0.0-alpha2'
+    compile 'com.facebook.android:facebook-android-sdk:4.7.0'
+    compile 'uk.co.chrisjenx:calligraphy:2.1.0'
+    compile 'com.google.android.gms:play-services-auth:8.4.0'
+    compile 'com.google.android.gms:play-services-gcm:8.4.0'
+    compile 'com.localytics.android:library:3.5.+'
+    compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
+    compile 'com.intuit.sdp:sdp-android:1.0.3'
+    compile 'com.yahoo.mobile.client.android.util.rangeseekbar:rangeseekbar-library:0.1.0'
+    compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.0.1'
+}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/_3sdp">
+
+    <LinearLayout
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_122sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/click"
+        android:descendantFocusability="blocksDescendants"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/text_device_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:maxLines="1"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Apple"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/equipementcheckbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/CustomCheck"
+                    android:layout_alignParentRight="true" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp">
+
+            <TextView
+                android:id="@+id/text_model_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="iPhone R 6s"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_margin="@dimen/_4sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/select_colorNameList"
+                android:padding="@dimen/_4sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Select Color"/>
+            <!--<Spinner-->
+                <!--android:id="@+id/spinner"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_marginBottom="@dimen/_4sdp"-->
+                <!--android:gravity="center"-->
+                <!--android:padding="@dimen/_5sdp" />-->
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/celphone_price"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_27sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:background="@drawable/rounded_white_background"
+            android:gravity="center"
+            android:text="20rs"
+            android:textColor="#000"
+            android:textSize="@dimen/_12sdp"
+             />
+
+    </LinearLayout>
+</LinearLayout>

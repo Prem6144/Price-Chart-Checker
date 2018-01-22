@@ -1,0 +1,74 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any styles
+* defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+* file per style scope.
+*
+
+//= require foundation_and_overrides
+*= require _settings
+*= require header
+*= require pagination
+*= require jquery-ui
+*= require foundation_and_overrides
+*= require font-awesome
+*= require chosen-compass
+*= require owl.carousel
+*= require owl.theme
+*/
+
+.center{
+  margin: auto;
+  width: 480px;
+}
+.login{
+  background: #F5F5F5;
+  border: 20px #B0C4DE solid;
+  margin: 18px auto 6px auto;
+  padding: 20px;
+  width: 450px;
+  input[type="email"], input[type="password"]{
+    font-size: 16px;
+    padding: 2px;
+    width: 355px;
+  }
+  input[type="submit"]{
+    font-size: 14px;
+  }
+}
+.title{
+  border-bottom: 1px gray solid;
+  color: #342d7e;
+  font-size: 17px;
+  font-weight: bold;
+  padding-bottom: 2px;
+}
+.title_tools{
+  float: right;
+  margin: 4px 0px 0px 0px;
+}
+p.alert {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 95%;
+  border: 2px solid #CC3333;
+  background-color:#FFCCCC;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+table.form-data tr:nth-of-type(even) {
+  background-color: transparent !important;
+}
+.overflow-hidden {
+	overflow:hidden;
+}

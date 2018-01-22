@@ -1,0 +1,6 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/clickable" android:state_pressed="true"/>
+    <item android:drawable="@drawable/clickable" android:state_focused="true"/>
+    <item android:drawable="@drawable/clickable" android:state_selected="true"/>
+    <item android:drawable="@drawable/edit_border2"/>
+</selector>

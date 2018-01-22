@@ -1,0 +1,48 @@
+<%= render :partial => 'website/home/internet_banner' %>
+
+<div class="best_deals">
+  <div class="container serviceCon1">
+    <!-- Example row of columns -->
+    <div class="row">
+      <h1 class="text-center"> Best Deals </h1>
+
+      <% @dashboard_data.each do |data| %>
+          <div class="col-xs-6 col-md-3">
+            <div class="text-center serviceRow1">
+              <div class="img_box" style="overflow: hidden;"><img src="<%= data[:trending_deal]['deal_image_url'] %>" alt="Service Deal Logo"> </div>
+              <p class="para_1"> <%= data[:service_provider_name].present? ? data[:service_provider_name].truncate(25) : ''%> </p>
+              <p class="para_2"> starting at </p>
+              <h2>$<%= data[:trending_deal]['effective_price'] %> <span class="light">/</span><span class="regular">mo</span></h2>
+              <a href="<%= deal_details_website_home_index_path %>?category_id=<%= data[:service_category_id] %>&zip_code=75024">Select &amp; customize</a>
+            </div>
+          </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="inte_ser">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <%= image_tag("website/internet_service.jpg",:class => "img-responsive") %>
+      </div>
+      <div class="col-sm-8">
+        <h1>Save on High-Speed Internet Service</h1>
+        <p>Get these great benefits when you shop Internet service
+          with WhiteFence today:</p>
+        <ul>
+          <li>Discover which electricity companies serve your area</li>
+          <li>Find cable, DSL, fiber-optic, and satellite Internet options</li>
+          <li>Enjoy a reliable and secure connection</li>
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render :partial => "website/home/clients" %>

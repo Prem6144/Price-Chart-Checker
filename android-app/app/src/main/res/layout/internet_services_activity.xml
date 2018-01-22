@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#80000000">
+    <!--  android:background="@color/backround_color_general"-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_25sdp"
+                    android:background="@color/backround_color_general"
+                    android:orientation="vertical"
+
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_12sdp"
+                        android:orientation="vertical"
+                        android:paddingTop="20dp"
+
+                        >
+
+                        <include layout="@layout/activity_service_layout" />
+
+                        <include layout="@layout/downloadupload" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Data (GB)"
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/text_size16" />
+
+                            <EditText
+                                android:id="@+id/etx_data"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/edt_background"
+                                android:inputType="number"
+                                android:paddingLeft="15dp"
+                                android:spinnerMode="dialog"
+                                android:textSize="@dimen/text_size15">
+
+                            </EditText>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_15sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+
+                            <Button
+                                android:id="@+id/btn_update"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_weight="1"
+                                android:background="@drawable/btn_background"
+                                android:text="@string/updte"
+                                android:textColor="@color/white_color" />
+
+                            <Button
+                                android:id="@+id/btn_unsubscribe"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/btn_background"
+                                android:text="Unsubscribe"
+                                android:textColor="@color/white_color"
+                                android:visibility="visible" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/img_close"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right|top"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/gtk_close" />
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

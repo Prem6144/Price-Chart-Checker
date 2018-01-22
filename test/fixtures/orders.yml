@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  deal_id: 1
+  app_user_id: 1
+  status: false
+  effective_price: 1.5
+  deal_price: 1.5
+  start_subscription_date: 2016-05-18 14:29:52
+
+two:
+  deal_id: 1
+  app_user_id: 1
+  status: false
+  effective_price: 1.5
+  deal_price: 1.5
+  start_subscription_date: 2016-05-18 14:29:52

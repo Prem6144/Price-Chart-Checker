@@ -1,0 +1,72 @@
+<fieldset id="additional-offer">
+   <h4>Additional Offer for zip areas</h4>
+   <table class="form-data">
+    <tr>
+      <td valign="top">
+        <%= f.label :title %>
+        <%= f.text_field :title, :id=>'additional-offer-title' %>
+      </td>
+      <td>
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+        <%= f.label :price %>
+        <%= f.text_field :price %>
+      </td>
+      <td>
+        <br/>
+        <div><%= f.check_box :is_nationwide,:class=>'additional-offer-nationwide', :checked=>'checked' %> Is Nationwide? </div>
+        <%= f.label 'Select Allowed Zipcodes:' %>
+        <%= f.select :zipcode_ids, "",{id: "deal-include-zipcode",multiple: true,size: 10 } %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :start_date %>
+        <%= f.text_field :start_date, :class=>'additional-offer-start-date' %>
+      </td>
+      <td>
+        <%= f.label :end_date %>
+        <%= f.text_field :end_date, :class=>'additional-offer-end-date' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :contract_period %>
+        <%= f.select :contract_period , options_for_select([3,6,9,12])%>
+      </td>
+      <td>
+        <div><%= f.check_box :is_active %> Is Active? </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%#= f.hidden_field :_destroy %>
+        <%#= link_to "Remove", '#', class: "remove_fields" %>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+
+<script type="text/javascript">
+  $(".additional-offer-nationwide").click(function(){
+    if($(this).is(':checked')){
+        $(".additional-offer-zipcode").prop("disabled",true);
+      }else{
+        $(".additional-offer-zipcode").prop("disabled",false);
+      }
+  });
+
+$(function() {
+  $('.additional-offer-start-date').each(function() {
+    $(this).datepicker({ dateFormat: 'dd-mm-yy' });
+  });
+  $('.additional-offer-end-date').each(function() {
+    $(this).datepicker({ dateFormat: 'dd-mm-yy' });
+  });
+
+});
+// </script>

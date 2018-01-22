@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_marginRight="@dimen/_3sdp"
+        android:background="@color/compare_line" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/grey_color"
+        android:gravity="center_vertical"
+        android:paddingLeft="7dp"
+        android:text="Channel"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_marginRight="@dimen/_3sdp"
+        android:textColor="@color/black_color"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_marginRight="@dimen/_3sdp"
+        android:background="@color/compare_line" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_marginRight="@dimen/_3sdp"
+        android:weightSum="4.05">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.05"
+            android:paddingLeft="7dp"
+            android:text="General"
+            android:textColor="@color/black_color"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/compare_line" />
+
+        <TextView
+            android:id="@+id/txt_channels_current_provider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="8dp"
+            android:text=""
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/compare_line" />
+
+        <TextView
+            android:id="@+id/txt_channel_compare1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="8dp"
+            android:text=""
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/compare_line" />
+
+        <TextView
+            android:id="@+id/txt_channel_compare2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="8dp"
+            android:text=""
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/compare_line"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:visibility="gone"
+        android:weightSum="4.1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.1"
+            android:gravity="center"
+            android:text=""
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/compare_line" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+
+            android:textColor="@color/black_color"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/compare_line" />
+
+        <TextView
+            android:id="@+id/txt_channel1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:text=""
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/compare_line" />
+
+        <TextView
+            android:id="@+id/txt_channel2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:text=""
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_marginRight="@dimen/_3sdp"
+        android:background="@color/compare_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_marginRight="@dimen/_3sdp"
+        android:weightSum="4.05">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.05"
+            android:paddingLeft="7dp"
+            android:text="Premium"
+            android:textColor="@color/black_color"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/compare_line" />
+
+        <TextView
+            android:id="@+id/txt_premiumchannel_current_provider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="8dp"
+            android:text=""
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/compare_line" />
+
+        <TextView
+            android:id="@+id/txt_premiumchannel_compare1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="8dp"
+            android:text=""
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/compare_line" />
+
+        <TextView
+            android:id="@+id/txt_premiumchannel_compare2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="8dp"
+            android:text=""
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_marginRight="@dimen/_3sdp"
+        android:background="@color/compare_line" />
+
+</LinearLayout>

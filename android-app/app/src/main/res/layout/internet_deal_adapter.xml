@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/backround_color_general"
+    android:descendantFocusability="blocksDescendants">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/offer_level"
+        android:paddingBottom="5dp"
+        android:paddingRight="15dp"
+        android:paddingTop="1dp">
+
+
+        <FrameLayout
+            android:id="@+id/ll_offer"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentLeft="true"
+
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/txt_dollar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="left"
+                    android:paddingLeft="5dp"
+                    android:text="$"
+                    android:textColor="@color/white_color"
+                    android:textSize="@dimen/_8sdp" />
+
+                <TextView
+                    android:id="@+id/txt_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_toRightOf="@+id/txt_dollar"
+                    android:gravity="left"
+                    android:maxLength="9"
+                    android:paddingLeft="2dp"
+                    android:text="99/"
+                    android:textColor="@color/white_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/txt_price"
+                    android:layout_toRightOf="@+id/txt_price"
+                    android:text="month"
+                    android:textColor="@color/white_color"
+                    android:textSize="@dimen/_8sdp" />
+            </RelativeLayout>
+
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/ll_img"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_below="@+id/ll_offer"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+
+            >
+
+            <ImageView
+                android:id="@+id/img_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:layout_toRightOf="@+id/ll_offer"
+            android:orientation="vertical"
+            android:paddingLeft="5dp">
+
+            <TextView
+                android:id="@+id/txt_deal_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="Wi-Fi Lovers Delight"
+                android:textColor="@color/red_color"
+                android:textSize="@dimen/_9sdp" />
+
+            <TextView
+                android:id="@+id/txt_deal_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:maxLines="2"
+                android:textColor="#7f7f7f"
+                android:textSize="@dimen/_7sdp" />
+
+            <TextView
+                android:id="@+id/txt_expiry_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:textColor="#7f7f7f"
+                android:textSize="@dimen/_7sdp" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_effective"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Effective Price  "
+                    android:textColor="#00b551"
+                    android:textSize="@dimen/_8sdp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/txt_effective_deal_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:gravity="left"
+                    android:maxLength="14"
+                    android:text="$99.90"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_8sdp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_noofline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text=""
+                android:textColor="#7f7f7f"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txt_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:textColor="@color/black_color"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/chk_comparedeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:button="@drawable/custem_checkbox"
+            android:text="  Add to compare"
+            android:textColor="#ad7d68"
+            android:textSize="@dimen/_9sdp"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/img_bestdeal"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/bestdeal"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_below="@+id/rl_top"
+        android:layout_marginLeft="@dimen/_2sdp"
+        android:layout_marginTop="-2dp"
+        android:background="@drawable/graybox">
+
+        <TextView
+            android:id="@+id/txt_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text=""
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/_9sdp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/ll_star_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/txt_rate"
+            android:background="@color/grey_color">
+
+            <RatingBar
+                android:id="@+id/ratingBar_deal"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:numStars="5"
+                android:progressTint="#eab615" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/ll_star_rating"
+            android:text="0 reviews"
+
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/_9sdp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/img_share"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/txt_reviews"
+            android:background="@drawable/share_icon"
+            android:text="High-Speed 3G/4G Data" />
+
+        <Button
+            android:id="@+id/txt_activate"
+            android:layout_width="@dimen/_65sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/activate_drawable"
+            android:drawableLeft="@drawable/headphone"
+            android:enabled="true"
+            android:gravity="center"
+            android:paddingLeft="@dimen/_13sdp"
+            android:paddingRight="@dimen/_10sdp"
+            android:text="Order"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/_7sdp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

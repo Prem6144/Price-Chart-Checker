@@ -1,0 +1,43 @@
+<%= form_for(@channel) do |f| %>
+    <% if @channel.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@channel.errors.count, "error") %> prohibited this channel from being saved:</h2>
+
+          <ul>
+            <% @channel.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.label :category_name %>
+    <%= f.select :category_name,options_for_select(Channel::CATEGORIES,@channel.category_name) %>
+
+    <%= f.label :service_provider_name %>
+    <%= f.select :service_provider_id,get_providers_by_category('cable')%>
+
+    <%= f.label :channel_name %>
+    <%= f.text_field :channel_name, :required=>'true' %>
+
+    <%= f.label :channel_code %>
+    <%= f.text_field :channel_code, :required=>'true' %>
+
+    <%= f.label :channel_type %>
+    <%= f.select :channel_type,options_for_select(Channel::CHANNEL_TYPES,@channel.channel_type) %>
+
+    <%= f.label :description %>
+    <%= f.text_area :description, :required=>'true' %>
+
+    <%= f.label :is_hd %>
+    <%= f.check_box :is_hd %>
+
+    <%= f.file_field :image %>
+<br/>
+    <%= f.label :status %>
+    <%= f.check_box :status %>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

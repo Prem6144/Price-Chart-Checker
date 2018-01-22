@@ -1,0 +1,45 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%' >
+  <tr> 
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+		<%= link_to "View All Gifts", gifts_path %>
+      </div>
+      <div class='title'>
+        <span id='title'>Add a New Gift</span>
+      </div>
+
+			<div class="small-6 large-centered columns">
+				<%= form_for(@gift, :url => @gifts) do |f| %>
+					<br/>
+					<% if @gift.errors.any? %>
+  					<div id="error_explanation">
+    					<div class="alert alert-danger">
+      					The form contains <%= pluralize(@gift.errors.count, "error") %>.
+    					</div>
+    					<ul>
+    						<% @gift.errors.full_messages.each do |msg| %>
+      						<li><%= msg %></li>
+    						<% end %>
+    					</ul>
+  					</div>
+					<% end %>
+				  <br/>
+						<div><span style="color:#4285F4"><strong><i>Fields marked * are mandatory</i></strong></span></div><br/>
+					<div><strong>Name: </strong><span id="mandat">*</span><br />
+				  <%= f.text_field :name %></div>
+				  <div><strong>Description: </strong><br />
+				  <%= f.text_field :description %></div>
+				  <div><strong>Amount:</strong><span id="mandat">*</span><br />
+				  <%= f.text_field :amount %></div>
+				  <div><strong>Activation Count Condition:</strong><span id="mandat">*</span><br />
+				  <%= f.text_field :activation_count_condition %></div>
+				  <div><strong>Image:</strong><br />
+			      <%= f.file_field :image %></div>
+				  <div><%= f.check_box :is_active %><strong>Is Active</strong></div>
+				  <div><%= f.submit "Create" %></div>
+				<% end %>
+			</div>
+    </td>
+	</tr>
+</table>
+

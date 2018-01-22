@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/Toolbar_Theme"></android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backround_color_ServiceDealz"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/shadow"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_10">
+
+                    <RelativeLayout
+                        android:id="@+id/ll_order"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_order_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:text="Order No: "
+                            android:textColor="#919090"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_orderid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_toRightOf="@+id/text_order_no"
+                            android:gravity="right"
+                            android:textColor="@color/order_detail_color"
+                            android:textSize="@dimen/_9sdp"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/txt_providername"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/txt_providerid"
+                            android:gravity="right"
+                            android:singleLine="true"
+                            android:text="AT &amp; T Order No: "
+                            android:textColor="#919090"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_providerid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:gravity="right"
+                            android:text="454"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/_9sdp"
+
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/ll_date_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll_order"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txt_datetime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="#919090"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_orderstatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_toLeftOf="@+id/txt_buisnessstatus"
+                            android:paddingBottom="@dimen/_2sdp"
+                            android:paddingLeft="@dimen/_4sdp"
+                            android:paddingRight="@dimen/_4sdp"
+                            android:paddingTop="@dimen/_2sdp"
+                            android:text="AT &amp; T Status"
+                            android:background="@drawable/recontracted_background"
+                            android:textColor="@color/white_color"
+                            android:textSize="@dimen/_8sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_buisnessstatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+
+                            android:paddingBottom="@dimen/_2sdp"
+                            android:paddingLeft="@dimen/_4sdp"
+                            android:paddingRight="@dimen/_4sdp"
+                            android:paddingTop="@dimen/_2sdp"
+                            android:background="@drawable/share_drawable"
+                            android:text="Recontracted "
+                            android:textColor="#fff"
+                            android:textSize="@dimen/_8sdp" />
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/compare_line" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_65sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:paddingLeft="@dimen/_10sdp">
+
+                    <ImageView
+                        android:id="@+id/deal_icon"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_gravity="center"
+                        android:padding="2dp" />
+
+                    <TextView
+                        android:id="@+id/deal_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_toRightOf="@+id/deal_icon"
+                        android:maxLines="2"
+                        android:paddingRight="@dimen/_2sdp"
+                        android:text="Deal Title"
+                        android:textColor="@color/black_color"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_short_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/deal_name"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_toRightOf="@+id/deal_icon"
+                        android:maxLines="2"
+                        android:text=""
+                        android:textColor="#919090"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_activationstatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/inprogress_background"
+                        android:gravity="center"
+                        android:padding="@dimen/_2sdp"
+                        android:text=""
+                        android:textColor="@color/white_color"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_best_deal_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_short_desc"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_toRightOf="@+id/best_deal"
+                        android:paddingRight="@dimen/_5sdp"
+                        android:text=""
+                        android:textColor="#919090"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/best_deal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_short_desc"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_toRightOf="@+id/deal_icon"
+                        android:text="Price "
+                        android:textColor="#919090"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_effetive_deal_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_best_deal_price"
+                        android:layout_toRightOf="@+id/effective_deal"
+                        android:text=""
+                        android:textColor="#25b04f"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/effective_deal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_best_deal_price"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/deal_icon"
+                        android:text="Effective Price "
+                        android:textColor="#25b04f"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/txt_yousave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/effective_deal"
+                        android:layout_toLeftOf="@+id/txt_yousave_price"
+                        android:text="You save "
+                        android:textColor="#B2770F"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+
+                    <TextView
+                        android:id="@+id/txt_yousave_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/effective_deal"
+                        android:paddingRight="@dimen/_5sdp"
+                        android:text=""
+                        android:textColor="@color/black_color"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+
+                </RelativeLayout>
+
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/orderdetail_sumeryequipement_all" />
+
+                <include layout="@layout/customcable_equipements"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_equipments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtinstallation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Equipments &amp; Installation"
+                        android:textColor="@color/black_color"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_offer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp">
+
+                        <TextView
+                            android:id="@+id/txt_equipment_model"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:background="@color/grey_color"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="7dp"
+                            android:text="Internet Modem"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/_9sdp"
+                            android:visibility="visible" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_channel_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_equipment_model"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/txt_memory"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".69"
+                                android:gravity="center_vertical"
+                                android:minHeight="35dp"
+                                android:padding="7dp"
+                                android:text="Installation"
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/_9sdp"
+                                android:visibility="visible" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/compare_line" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".3"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/txt_equipment_memory"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:gravity="center_vertical"
+                                    android:minHeight="35dp"
+                                    android:text=""
+                                    android:textColor="#818181"
+                                    android:textSize="@dimen/_9sdp"
+                                    android:visibility="visible" />
+
+                                <Button
+                                    android:id="@+id/btn_viewmore"
+                                    android:layout_width="70dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginBottom="7dp"
+                                    android:layout_marginLeft="7dp"
+                                    android:background="#4687C7"
+                                    android:text="View more"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white_color"
+                                    android:textSize="10sp"
+                                    android:visibility="gone" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_premuim_channel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl_channel">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:background="@color/compare_line" />
+
+                        <TextView
+                            android:id="@+id/txt_premuim_channel_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:background="@color/grey_color"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="7dp"
+                            android:text="Premium Channels List"
+                            android:textColor="@color/black_color"
+                            android:textSize="14sp"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_premioum_channel_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_premuim_channel_title"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".69"
+                                android:gravity="center_vertical"
+                                android:minHeight="35dp"
+                                android:padding="7dp"
+                                android:text="Price"
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/_9sdp"
+                                android:visibility="visible" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/compare_line" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".3"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/txt_equipment_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:gravity="center_vertical"
+                                    android:minHeight="35dp"
+                                    android:text=""
+                                    android:textColor="#818181"
+                                    android:textSize="@dimen/_9sdp"
+                                    android:visibility="visible" />
+
+                                <Button
+                                    android:id="@+id/btn_premuim_viewmore"
+                                    android:layout_width="70dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginLeft="7dp"
+                                    android:layout_toRightOf="@+id/txt_premuim_channel_detail"
+                                    android:background="#4687C7"
+                                    android:text="View more"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white_color"
+                                    android:textSize="10sp"
+                                    android:visibility="gone" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/ll_premioum_channel_list"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:background="@color/compare_line" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/compare_line" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginTop="15dp"
+                    android:text="Users"
+                    android:textColor="@color/black_color"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:orientation="vertical"
+                        android:paddingLeft="7dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Applicant"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_applicantname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:textColor="@color/order_detail_color"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_applicantaddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/order_detail_color"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Primary id:"
+                            android:textColor="@color/order_detail_color"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Secondary id:"
+                            android:textColor="@color/black_color"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/tdevider"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/compare_line"
+                        android:visibility="gone" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/compare_line" />
+
+                <TextView
+                    android:id="@+id/txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Additional Comments"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:id="@+id/freetext_show"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:text="ssss"
+                    android:textSize="@dimen/_9sdp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/compare_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/_15sdp"
+                        android:paddingLeft="7dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Billing Address"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_biilingname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:textColor="@color/order_detail_color"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_billingaddres"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:textColor="@color/order_detail_color"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Primary id:"
+                            android:textColor="@color/black_color"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Secondary id:"
+                            android:textColor="@color/black_color"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:text="Service Address"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_service_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:text=""
+                            android:textColor="@color/order_detail_color"
+                            android:textSize="@dimen/_9sdp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/compare_line"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_weight=".5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Shipping Address"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_shipingname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:textColor="@color/order_detail_color"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_shipingaddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:textColor="@color/order_detail_color"
+                            android:textSize="@dimen/_9sdp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_legel_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/shadow"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="7dp">
+
+                    <TextView
+                        android:id="@+id/txt_business_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Registered"
+                        android:textColor="@color/black_color"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_legelname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Name: Name"
+                        android:textColor="@color/order_detail_color"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_legeldetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Contact No: 933494343"
+                        android:textColor="@color/order_detail_color"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Primary id:"
+                        android:textColor="@color/black_color"
+                        android:textSize="12sp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Secondary id:"
+                        android:textColor="@color/black_color"
+                        android:textSize="12sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_telecom_manager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_weight=".6"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Telecom Manager"
+                        android:textColor="@color/black_color"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_managername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textColor="@color/order_detail_color"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_managermobileno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/order_detail_color"
+                        android:textSize="@dimen/_9sdp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,28 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%' >
+  <tr> 
+    <td class='main' id='main' valign='top'>
+
+      <div class='title_tools'>
+				<% if current_user.is_at_admin_level? %><%= link_to "View All EquipmentColors", equipment_colors_path %><% end %>
+      </div>
+      <div class='title'>
+        <span id='title'>Update EquipmentColor</span>
+      </div>
+			<div class="small-6 large-centered columns">
+				<%= form_for(@equipment_color) do |f| %><br/>
+					<div><strong>Color Name: </strong><br />
+					  <%= f.text_field :color_name %>
+					</div>
+					<div><strong>Color Code: </strong><br />
+	          <%= f.text_field :color_code %>
+	        </div>
+	        <div><strong>Color Image: </strong><br />
+	          <%= f.file_field :image %>
+	        </div>
+					<div><%= f.check_box :status %><strong>Status</strong></div>
+						<div><%= f.submit "Update" %></div>
+					<% end %>
+			</div>
+    </td>
+	</tr>
+</table>

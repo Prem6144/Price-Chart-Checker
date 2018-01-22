@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  app_user_id: 1
+  reedeem_amount: 1.5
+  email_id: MyString
+  is_cash: false
+  gift_card_type: MyString
+
+two:
+  app_user_id: 1
+  reedeem_amount: 1.5
+  email_id: MyString
+  is_cash: false
+  gift_card_type: MyString

@@ -1,0 +1,79 @@
+<nav class="top-bar">
+  <div class="title-area">
+    <%= link_to "Service Deals", root_path, class: "text-header" %>
+    <div class="logout">
+      <% if user_signed_in? %>
+          <div><%= link_to 'Logout', destroy_user_session_path, :method=>:delete%></div>
+      <% end %>
+    </div>
+  </div>
+
+  <section class="top-bar-section">
+    <ul class="menu">
+      <% if user_signed_in? && current_user.is_at_admin_level? %>
+
+          <li><%= link_to "S Category", service_categories_path %></li>
+
+          <li><%= link_to "S Providers", service_providers_path %></li>
+
+          <li><%= link_to "Zips", zipcodes_path %></li>
+
+          <li><%= link_to "Cellphone Details", cellphone_details_path %></li>
+
+          <li><%= link_to "Deals", deals_path %></li>
+          <li><%= link_to "Deal Extra Services", deal_extra_services_path %></li>
+          <li><%= link_to "Equipment Colors", equipment_colors_path %></li>
+          <li><%= link_to "Extra Services", extra_services_path %></li>
+
+          <li><%= link_to "Orders", orders_path %></li>
+
+          <li><%= link_to "Gifts", gifts_path %></li>
+
+          <li><%= link_to "Referral Gifts", referral_gift_amounts_path %></li>
+
+          <li><%= link_to "SP Checklists", service_provider_checklists_path %></li>
+
+          <li><%= link_to "App Users", app_users_path %></li>
+
+          <li><%= link_to "Users", users_path %></li>
+
+          <li><%= link_to "User Gifts", user_gifts_path %></li>
+
+          <li><%= link_to "Channels", channels_path %></li>
+          <li><%= link_to "Packages", channel_packages_path %></li>
+      <% end %>
+
+    </ul>
+    <!--ul class="menu">
+      <%# if user_signed_in? && current_user.is_at_admin_level? %>
+        <li><%#= link_to "Service Preferences", service_preferences_path %></li>
+        
+        <li><%#= link_to "Notification", notifications_path %></l>
+
+        <li><%#= link_to "BulkNotification", bulk_notifications_path %></li>
+        
+        <li><%#= link_to "Comment&Rating", comment_ratings_path %></li>
+        
+        <li><%#= link_to "ReferralInfo", referral_infos_path %></li>
+
+        <li><%#= link_to "Advertisement", advertisements_path %></li>
+        
+        <li><%#= link_to "InternetPreference", internet_service_preferences_path %></li>
+        
+        <li><%#= link_to "CablePreference", cable_service_preferences_path %></li>
+        
+        <li><%#= link_to "TelephonePreference", telephone_service_preferences_path %></li>
+        
+        <li><%#= link_to "CellphonePreference", cellphone_service_preferences_path %></li>
+        
+        <li><%#= link_to "BundlePreference", bundle_service_preferences_path %></li>
+        
+        <li><%#= link_to "DealSubscription", subscribe_deals_path %></li>
+        
+        <li><%#= link_to "TrendingDeals", trending_deals_path %></li>
+        
+      <%# end %>
+      
+    </ul-->
+  </section>
+</nav>  

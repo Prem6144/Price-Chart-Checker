@@ -1,0 +1,44 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+	<tr>
+		<td class='main' id='main' valign='top'>
+			
+			<div id="users" class="list">
+				<table id="users_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+					<thead>
+						
+						<tr>
+							<th><strong>ID</strong></th>
+							<th><strong>App User ID</strong></th>
+							<th><strong>Gift ID</strong></th>
+							<th><strong>Order Id</strong></th>
+							<th><strong>Status</strong></th>
+							<th><strong>Action</strong></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @user_gifts.each do |user_gift| %>
+							<% if can? :read, user_gift %>
+								<tr>
+									<td><%= user_gift.id %></td>
+									<td><%= user_gift.app_user_id %></td>
+									<td><%= user_gift.gift_id %></td>
+									<td><%= user_gift.order_id%></td>
+									<td><%= user_gift.status %></td>
+									<td><%= (link_to 'Edit', edit_user_gift_path(user_gift)) if can? :manage, user_gift %> | <%= (link_to "Delete", user_gift, method: :delete, data: { confirm: "You sure?" }) if can? :manage, user_gift %></td>
+								</tr>
+							<% end %>
+						<% end %>
+                        <div class="digg_pagination">
+                          <%= will_paginate @user_gifts %>
+                        </div>
+					</tbody>
+				</table>
+				<p>
+          Download:
+          <%= link_to "CSV", user_gifts_path(format: "csv") %>
+          <%#= link_to "Excel", service_categories_path(format: "xls") %>
+        </p>
+			</div>
+		</td>
+	</tr>
+</table>

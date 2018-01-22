@@ -1,0 +1,44 @@
+
+<% if controller.controller_name=="home" and controller.action_name=="index" %>
+
+    <title>Amazing Bundle Deals for Cable, Mobile, Telephone and Internet Plans</title>
+    <meta name="description" content="Servicedealz.com is the best solution for all Telecom Servers and Utilities services.Choose from a variety of bundle deals for telephones, cell phones, internet and cable.">
+     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+ <% elsif controller.controller_name=="home" and controller.action_name=="deal_details" and params[:category_id].to_i == Deal::CABLE_CATEGORY%>
+    <title>Get the Best Internet Cable Deals | Internet & Cable Offers</title>
+    <meta name="description" content="Get the best offers for cable & internet only at servicedealz.com. Compare the best packages of cable internet deals and get the maximum benefits.">
+     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<% elsif controller.controller_name=="home" and controller.action_name=="deal_details" and params[:category_id].to_i == Deal::INTERNET_CATEGORY%>
+    <title>Best High Speed Internet Plans | Get High Speed Internet Deals</title>
+    <meta name="description" content="Compare the best and cheap internet plans in your area and get the best deals on high speed internet. Also find the cheap broadband internet service offers at servicedealz.com.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<% elsif controller.controller_name=="home" and controller.action_name=="deal_details" and params[:category_id].to_i == Deal::TELEPHONE_CATEGORY%>
+   <title>Best Telephone & Internet Offers | Amazing Internet Telephone Packages</title>
+    <meta name="description" content="If you need to buy the best yet cheap telephone internet offers, visit servicedealz.com. Here you will find the perfect deals for home phone internet bundles.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<% elsif controller.controller_name=="home" and controller.action_name=="deal_details" and params[:category_id].to_i == Deal::CELLPHONE_CATEGORY%>
+    <title>Unlimited Data Plans for Cell Phones | Best & Cheap Mobile Internet Offers</title>
+    <meta name="description" content="Choose Servicedealz.com to get the best, cheap and unlimited data and internet deals for your cell phones. Find the best cell phone talk and text plans with best data offers.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<% elsif controller.controller_name=="home" and controller.action_name=="deal_details" and params[:category_id].to_i == Deal::BUNDLE_CATEGORY%>
+    <title>Great Offers for Cable TV, Internet & Phone Bundles | Internet Data Bundles</title>
+    <meta name="description" content="Get the best bundles for cable, internet, mobiles and telephones only at servicedealz.com. Here you can find the best and cheap bundle offers for internet packages.">
+     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+
+<% elsif controller.controller_name=="home" and controller.action_name=="calculate_bandwidth" %>
+    
+
+     <title>Online Bandwidth Calculator | Bandwidth Usage Online Calculator</title>
+    <meta name="description" content="Measure your data usage with the online bandwidth usage calculator at servicedealz.com. This website bandwidth calculator helps you find the total hosting bandwidth requirement.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    <% else %>
+
+    <title>Service Dealz | Best Deals Platform</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <% end %>

@@ -1,0 +1,264 @@
+<%= render :partial => 'website/home/internet_banner',locals: { :category_name => @category_name } %>
+<section class="details">
+  <div class="container">
+    <div class="row">
+      <%= render :partial=> 'website/home/left_filter' %>
+      <div class="col-xs-12 col-sm-12 col-md-9">
+        <div class="row">
+          <%= render :partial => 'website/home/sorting_filter' %>
+          <div class="col-sm-12 ">
+            <div id="compare_box" class="compare_box border-radius-bg affix" >
+              <div class="row">
+                <div id="compare-box-deal-1" class=" hidden"></div>
+                <div id="compare-box-deal-2" class=" hidden"></div>
+                <div  style="text-align:center;">
+                  <a href="#" id="compare-deal" class="compare-dealbtn" onclick="comparedeals()">COMPARE</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%bundle_deals = BundleDealAttribute.get_linked_bundle_deal(params[:category_id],params[:deal_type],session[:user_id])%>
+          <%if bundle_deals.present? and bundle_deals.count > 0 %>
+            <div class="col-sm-12 bundle-deals-details" style="overflow: hidden">
+              <div class="border-radius-bg">
+                <h2 class="text-center">Bundled Deals with <%= ServiceCategory.get_category_name_by_id(params[:category_id]).titleize%></h2>
+                <div class="owl-carousel bundle-deal ">
+                  <%bundle_deals.each do |bd|%>
+                    <div class="bundle-det" style="margin: 16px auto;">
+                      <a href="/website/home/more_deal_details?deal_id=<%=bd.id%>" style="width: 30%;margin-top: 3%;">
+                        <p class="bundled-data-header "><%=bd.bundle_combo%></p>
+                        <div class="bx-img text-center">
+                          <%if display_logo_permission(bd.service_provider_id,bd.deal_type)%>
+                            <img src="<%=display_logo_permission(bd.service_provider_id,bd.deal_type)%>" alt="Service Provider Logo" class="img-responsive">
+                          <%else%>
+                            <img src="<%=bd.image%>" alt="Service Provider Logo" class="img-responsive">
+                          <%end%>
+                        </div>
+                        <p class="caption-title tooltip_p" title='<%=bd.title%>', data-toggle = 'tooltip' data-placement = 'bottom'><%= display_deal_name_permission(bd.service_provider_id,bd.deal_type,bd.title).truncate(20) rescue nil%></p>
+                        <div class="sd-best-price">Price  <span>$<%="%.2f" % bd.price%>/mon</span>  </div>
+                        <div class="caption-des text-left cat-bundle"><%=raw(bd.short_description)%></div>
+                      </a>
+                    </div>
+                  <%end%>
+                </div>
+              </div>
+            </div>
+          <%end%>
+          <div class="col-xs-12">
+            <% if params[:category_id].to_i == Deal::CELLPHONE_CATEGORY %>
+              <div class="row box-sec sd-deals-details  reset-height" id="deal-form">
+            <%else%>
+              <div class="row box-sec  sd-deals-details " id="deal-form">
+            <%end%>
+            <%#= render :partial => "website/home/category_best_and_trending_deals" if session[:user_id].present?%>
+            <% if @dashboard_data.present? %>
+              <% @dashboard_data.each do |data| %>
+                <div class="col-xs-12 col-sm-6 col-md-4 sd-deals-block">
+                  <div class="border-radius-bg auto-height">
+                    <% if data[:is_deal] == "best" %>
+                     <div class="best-trending-sty"><img src="/assets/website/best_deal.png" alt="Best Deal"></div>
+                     <% elsif data[:is_deal] == "trending"  %>
+                      <div class="best-trending-sty"><img src="/assets/website/trending_deal.png" alt="Trending Deal"></div>
+                     <% end %>
+                    <% if ((data[:is_deal] != "best") && (data[:is_deal] != "trending") && (data['is_customisable'] == true)) %>
+                      <div class="best-trending-sty"><img src="/assets/website/custom_deal.png" style="width:33px;" alt="Customize Deal Logo"></div>
+                    <% end %>
+                    <div class="sddeals-imgcon">
+                      <%if display_logo_permission(data['service_provider_id'],data['deal_type'])%>
+                        <a href="<%= more_deal_details_website_home_index_path(:deal_id=> data['id'], :effective_price => data['effective_price']) %>">
+                        <img src="<%= display_logo_permission(data['service_provider_id'],data['deal_type'])%>" alt="Service Provider Logo" class="img-responsive"></a>
+                      <%else%>
+                        <a href="<%= more_deal_details_website_home_index_path(:deal_id=> data['id'], :effective_price => data['effective_price']) %>">
+                        <img src="<%= data['deal_image_url'] %>" alt="Service Provider Logo" class="img-responsive"></a>
+                      <%end%>
+                    </div>
+                    <div class="main-external-div1">
+                      <%title =display_deal_name_permission(data['service_provider_id'],data['deal_type'],data['title'])%>
+                      <% if title.present? %>
+                        <h5 class="tooltip_p" title='<%=data['title']%>', data-toggle = 'tooltip' data-placement = 'bottom'><%= title.truncate(25) rescue nil%></h5>
+                      <% else %>
+                        <h5 ><%= title.truncate(25) rescue nil %></h5>
+                      <% end %>
+                      <ul class="description-height">
+                        <li><%=raw(data['short_description'])%></li>
+                      </ul>
+                    </div>
+                  <div>
+                  <%rating=CommentRating.where(:deal_id => data["id"]).average(:rating_point).to_i%>
+                    <%if rating.present?%>
+                      <p id="rating" class="sd-rating">
+                        <%rating.times do%>
+                          <i class="fa fa-star"></i>
+                        <%end%>
+                        <%rev=5-rating%>
+                        <%rev.times do%>
+                          <i class="fa fa-star-o"></i>
+                        <%end%>
+                      </p>
+                    <%else%>
+                      <p id="rating" class="sd-rating">
+                        <%5.times do%>
+                          <i class="a fa-star-o"></i>
+                        <%end%>
+                      </p>
+                    <%end%>
+                    <a class="sd-more-details" href="<%= more_deal_details_website_home_index_path(:deal_id=> data['id'], :effective_price => data['effective_price']) %>"> +More Details</a></div>
+                  <div class="box_down">
+                    <span class="separator_2"></span>
+                    <div class="sd-dealprices">
+                      <div class="sd-best-price">Price
+                        <span>$<%= data['deal_price'] %>/mon</span>
+                      </div>
+                      <div class="sd-effective-price">
+                        Effective price
+                        <span>$<%= "%.2f" % data['effective_price'] if  data['effective_price'].present? %>/mon</span>
+                      </div>
+                    </div>
+                    <%if @current_user.present?%>
+                      <%if @current_user.email_verified %>
+                        <% if data['is_customisable'] == true && data['is_order_available'] != false %>
+                          <a class="order-btn" href="<%= more_deal_details_website_home_index_path(:deal_id=> data['id'],:effective_price=> data['effective_price']) %>" id=<%=data['id']%>>Order</a>
+                        <% elsif ((data['is_customisable'] == true && data['is_order_available'] == false) || (data['is_order_available'] == false)) %>
+                          <a id="order-btn" class="order-btn btn_3" >Not Available</a>
+                        <% else %>
+                          <a class="order-btn" href="<%= order_website_app_users_path(:deal_id=> data['id'],:effective_price=> data['effective_price'])%>"  id=<%=data['id']%>>Order</a>
+                        <% end %>
+                      <%else%>
+                        <a class="order-btn" href="javascript:void(0)">Verify email</a>
+                      <%end%>
+                    <%else%>
+                      <% if data['is_customisable'] == true && data['is_order_available'] != false %>
+                        <a class="order-btn" href="<%= more_deal_details_website_home_index_path(:deal_id=> data['id'],:effective_price=> data['effective_price']) %>" id=<%=data['id']%>>Order</a>
+                      <% elsif ((data['is_customisable'] == true && data['is_order_available'] == false) || (data['is_order_available'] == false)) %>
+                          <a id="order-btn" class="order-btn  btn_3" >Not Available</a>
+                      <% else %>
+                        <a class="order-btn" href="<%= order_website_app_users_path(:deal_id=> data['id'],:effective_price=> data['effective_price'])%>"  id=<%=data['id']%>>Order</a>
+                      <% end %>
+                    <%end%>
+                    <div class="checkbox checkbox-info" id="deal-checkbox">
+                      <input class="comparebox-display" value="<%=data.first.last%>" onclick='showcomparebox(<%=data['id']%>)' deal_id="<%=data['id']%>" logo_url=<%=data['deal_image_url']%> id="checkbox<%=data.first.last%>" type="checkbox">
+                      <label for="checkbox<%=data.first.last%>"> Add to compare </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<%=render :partial => "page_content.html.erb"%>
+<script>
+
+
+
+  $('.owl-carousel').owlCarousel({
+     loop:true,
+     margin:10,
+     responsiveClass:true,
+    items:3,
+   });
+     var checkedValues,dealids;
+     $("#compare_box").hide();
+     $( document ).ready(function() {
+          dealids = [
+             <%if @deal_ids.present?%>
+             <%=@deal_ids.map(&:to_s).join(", ")%>
+             <%end%>
+         ];
+         for(i=0;i<dealids.length;i++){
+             $("#"+dealids[i]).addClass("btn_3");
+             $("#"+dealids[i]).text("Already Ordered");
+             $("#"+dealids[i]).prop("href","javascript:void(0)")
+         }
+         dealids=[];
+     });
+  
+   function comparedeals(){
+     checked=new Array();
+     $(".comparebox-display:checkbox:checked").each(function(){
+      checked.push($(this).attr("deal_id"));
+     });
+     if (checked.length==2){
+       window.open("/website/home/compare_deals?deal_ids="+checked[0]+","+checked[1],"_self");
+     }
+     else {
+       alert("Please select 2 deals to compare");
+     }
+  
+   }
+     $(document).ready(function () {
+       checked=new Array();
+         $(".comparebox-display:checked").attr("checked",false);
+         $(".comparebox-display").attr("disabled",false)
+         $(".comparebox-display:checkbox:checked").attr("checked", false);
+         if ($(".comparebox-display:checkbox:checked").length >= 2) {
+             $(".comparebox-display:checkbox").not(":checked").attr("disabled", 2);
+         }
+         $(".comparebox-display:checkbox").on("change",function () {
+             var bol = $(".comparebox-display:checkbox:checked").length >= 2;
+             $(".comparebox-display:checkbox").not(":checked").attr("disabled", bol);
+        });
+        if($("#compare-box-deal-1").is(":visible")==false && $("#compare-box-deal-2").is(":visible")==false) {
+           $("#compare_box").hide();
+        }
+      });
+  
+  function showcomparebox(deal_id) {
+   if ($("#checkbox"+deal_id).is(":checked")==true) {
+     if($("#compare_box").is(":visible")==false && $("#compare-box-deal-1").is(":visible")==false){
+       console.log(1);
+       $("#compare-box-deal-1").removeClass("hidden");
+      logo_url=$("#checkbox"+deal_id).attr("logo_url");
+           $("#compare-box-deal-1").html("<div id=compare-"+deal_id+"><img src="+logo_url+" alt='Logo' height='120' width='120'><i class='fa fa-times' onclick='hideandreset("+deal_id+")' deal_id="+deal_id+" style='position:absolute;cursor:pointer;top:4px;right:4px;'></i></div>");
+           $("#compare-box-deal-1").removeClass("hidden");
+           $("#compare_box").show();
+      }
+      else if($("#compare_box").is(":visible")==true && $("#compare-box-deal-1").is(":visible")==true){
+        console.log(2);
+        logo_url=$("#checkbox"+deal_id).attr("logo_url");
+             $("#compare-box-deal-2").html("<div id=compare-"+deal_id+"><img src="+logo_url+" alt='Logo' height='120' width='120'><i class='fa fa-times' onclick='hideandreset("+deal_id+")' deal_id="+deal_id+" style='position:absolute;cursor:pointer;top:4px;right:4px;'></i></div>");
+             $("#compare-box-deal-2").removeClass("hidden");
+             $("#compare-box-deal-2").show();
+      }
+      else if($("#compare_box").is(":visible")==true && $("#compare-box-deal-1").is(":visible")==false){
+        console.log(3);
+        logo_url=$("#checkbox"+deal_id).attr("logo_url");
+             $("#compare-box-deal-1").html("<div id=compare-"+deal_id+"><img src="+logo_url+" alt='Logo' height='120' width='120'><i class='fa fa-times-circle' onclick='hideandreset("+deal_id+")' deal_id="+deal_id+" style='position:absolute;cursor:pointer;top:4px;right:4px;'></i></div>");
+             $("#compare-box-deal-1").removeClass("hidden");
+             $("#compare-box-deal-1").show();
+      }
+   }
+   else if($("#checkbox"+deal_id).is("checked")==false){
+     div_id=$("#compare-"+deal_id).parent().attr("id");
+     $("#"+div_id).addClass("hidden");
+     if($("#compare-box-deal-1").is(":visible")==false && $("#compare-box-deal-2").is(":visible")==false){
+         $("#compare_box").hide();
+     }
+   }
+  }
+  
+  function hideandreset(deal_id){
+   div_id=$("#compare-"+deal_id).parent().attr("id");
+   console.log(div_id+"hidden");
+   $("#"+div_id).addClass("hidden");
+   $("#checkbox"+deal_id).attr("checked",false);
+   if($("#compare-box-deal-1").is(":visible")==false && $("#compare-box-deal-2").is(":visible")==false){
+       $("#compare_box").hide();
+   }
+   $(".comparebox-display:checkbox").not(":checked").attr("disabled",false);
+  }
+  function resetcomparebox() {
+     $("#compare_box").hide();
+     $(".comparebox-display:checked").attr("checked",false);
+     $(".comparebox-display").attr("disabled",false)
+     $(".comparebox-display:checkbox").attr("checked", false);
+     $("#compare-box-deal-1").addClass("hidden");
+     $("#compare-box-deal-2").addClass("hidden");
+  }
+</script>

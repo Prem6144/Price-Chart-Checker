@@ -1,0 +1,98 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+body {
+  background: #f5f5f5;
+}
+</style>
+<table width="600" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#666666; margin:0 auto; padding:10px 5px; background:#fff">
+  <tr>
+    <td>
+      <table width="100%" style="border-bottom:solid 1px #ebebeb; padding-bottom:15px;">
+        <tr>
+          <td style="padding-left:30px;"><img src="http://res.cloudinary.com/dhdl31ov5/image/upload/v1481885228/logo_zeyxyq.png" width="228" height="79" alt="Service Deal"></td>
+          <td align="right" style="font-size:12px; text-align:right; padding-top:15px; padding-right:20px;">Mailing Address:<br>
+            <a href="mailto:info@servicedeal.com" style="color:#e50005; text-decoration:none;">care@servicedealz.com</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="100%" style="padding:30px; ">
+       
+        <tr>
+          <td style="text-align:left; color:#e50005; font-size:28px; line-height:18px; padding:20px 0 20px 0;">Hurray!</td>
+        </tr>
+        
+        <tr>
+        
+        <td style="text-align:left; color:#000; font-size:18px; line-height:18px;">You are just one step away from the best deals</td>
+        
+        
+        </tr>
+
+
+
+
+        <tr>
+        <% if Socket.gethostname=="servicedlz-Virtual-Machine" %>
+    <td><a href="http://103.243.5.242:2123/verify_email?user_id=<%=@user_id%>&secure_token=<%=@secure_token%>" style="background-color:#008efb; color:#fff;margin: 10px 0; display: inline-block; text-decoration:none; padding:10px 30px">Click here to verify your email address</a> </td>
+    <%else%>
+    <td><a href="http://servicedealz.com/verify_email?user_id=<%=@user_id%>&secure_token=<%=@secure_token%>" style="background-color:#008efb; color:#fff;margin: 10px 0; display: inline-block; text-decoration:none; padding:10px 30px">Click here to verify your email address</a> </td>
+    <%end%>
+        
+        
+        </tr>
+        <tr>
+        <td style="text-align:left; color:#000; font-size:14px; line-height:18px; padding:20px 0 0 0;">Regards,</td>
+         
+        </tr>
+        <tr>
+        <td style="text-align:left; color:#000; font-size:12px; line-height:18px; padding:0 0 20px 0;">ServiceDealz Team</td>
+        </tr>
+        
+        
+        
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="100%">
+        
+        <tr height="20"></tr>
+        <tr>
+          <td style="font-size:14px; color:#666666; padding-bottom:10px; line-height:22px; text-align:center; padding-top:15px;"> Connect with us </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding-bottom:20px; border-bottom:solid 1px #d3d3d3;"> <a href="https://www.facebook.com/ServiceDealz"><img src="http://res.cloudinary.com/dhdl31ov5/image/upload/v1481885227/fb-icon_mq24tk.png" width="36" height="36" alt="facebook" title="Facebook" style="padding-right:5px;"></a> <a href="https://www.linkedin.com/company/servicedealz"><img src="http://res.cloudinary.com/dhdl31ov5/image/upload/v1481885227/linkedIn-icon_gyswaq.png" width="36" height="36" alt="Linkein" title="LinkedIn" style="padding-right:5px;"></a> <a href="https://twitter.com/ServiceDealz/"><img src="http://res.cloudinary.com/dhdl31ov5/image/upload/v1481885227/twitter-icon_lrufpj.png" width="36" height="36" alt="twitter" title="Twitter" style="padding-right:5px;"></a> <a href="https://plus.google.com/102597607813014592314"><img src="http://res.cloudinary.com/dhdl31ov5/image/upload/v1481886547/google-plus-icon_ewzmey.png" width="36" height="36" alt="whatsapp" title="googleplus"></a> </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="font-size:12px; color:#8f8f8f; padding-top:15px; line-height:20px; text-align:center">ServiceDealz has sent this e-mail to you because your subscription preferences <br>
+              indicate that you want to receive alerts on this email address. Click here to <a href="#" style="color:#808080">unsubscribe</a></p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  
+  
+  
+</table>

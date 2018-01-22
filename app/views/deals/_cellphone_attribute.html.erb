@@ -1,0 +1,84 @@
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <fieldset id="cellphone-attributes" style="display:none;">
+        <h4>Cellphone Deal Attributes</h4>
+        <table class="form-data">
+          <tr>
+            <td width="50%">
+              <%= f.label :no_of_lines %>
+              <%= f.text_field :no_of_lines %>
+            </td>
+            <td width="50%">
+              <%= f.label :price_per_line %>
+              <%= f.text_field :price_per_line %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <div><b>Talk &amp; Text</b></div><br/>
+            <div>Domestic Call Minutes<span class="mandat">*</span></div>
+            <div><input type='checkbox' id='cellphone_domestic_unlimited'><span> Unlimited</span></div>
+            <%= f.text_field :domestic_call_minutes, :id=>'cellphone-domestic-call-minutes' %>
+            </td>
+            <td valign="bottom">
+            <%= f.label :domestic_text %>
+            <%= f.text_field :domestic_text %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <%= f.label :international_call_minutes %>
+            <div><input type='checkbox' id='cellphone_international_unlimited'><span> Unlimited</span></div>
+            <%= f.text_field :international_call_minutes,:id=>'cellphone-international-call-minutes' %>
+            </td>
+            <td valign="bottom">
+            <%= f.label :international_text %>
+            <%= f.text_field :international_text %>
+            </td>
+          </tr>
+          <tr>
+            <td><div><b>Data Plan</b></div></td>
+          </tr>
+          <tr>   
+            <td>
+            <%= f.label :data_plan %>
+            <%= f.text_field :data_plan %>
+            </td>
+            <td>
+              <%= f.label :data_plan_price %>
+              <%= f.text_field :data_plan_price %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label :additional_data %>
+              <%= f.text_field :additional_data %>
+            </td>
+            <td>
+              <%= f.label :additional_data_price %>
+              <%= f.text_field :additional_data_price %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div><%= f.check_box :rollover_data %> Rollover data </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <%= f.fields_for :cellphone_equipments do |builder| %>
+                <%= render 'cellphone_equipment_fields', f: builder %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <!-- <p><td colspan="2"><%#= link_to_add_fields "Add Equipment", f, :cellphone_equipments %></td></p> -->
+          </tr>
+        </table>
+      </fieldset>
+    </td>
+  </tr>
+</table>
+
+

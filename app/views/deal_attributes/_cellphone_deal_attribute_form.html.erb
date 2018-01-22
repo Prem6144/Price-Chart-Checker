@@ -1,0 +1,57 @@
+<% if @deal_attribute.new_record? %>
+    <%
+       method = 'POST'
+       url = deal_attributes_path(@deal_attribute)
+    %>
+<% else %>
+    <%
+       method = 'PUT'
+       url = "#{deal_attributes_path}/#{@deal_attribute.id}"
+    %>
+<% end %>
+<%= form_tag url,:method => method.to_sym do %>
+    <%= hidden_field_tag :deal_id,@deal_id,:name => 'deal_attributes[deal_id]' %>
+    <%= hidden_field_tag :category_name,@category_name %>
+    <% if @deal.is_customisable == false %>
+      <div><strong>No of Lines:<span id="mandat">*</span> </strong><br />
+        <%= text_field_tag :no_of_lines,@deal_attribute.no_of_lines,:placeholder => 'Input no_of_lines',:name => 'deal_attributes[no_of_lines]' %>
+      </div>
+    <% end %>
+    <div><strong>Price per Line:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :price_per_line,@deal_attribute.price_per_line,:placeholder => 'Input price_per_line',:name => 'deal_attributes[price_per_line]' %>
+    </div>
+    <div><strong>Title:</strong><br />
+      <%= text_field_tag :title,@deal_attribute.try(:title),:placeholder => 'Input title',:name => 'deal_attributes[title]' %>
+    </div>
+    <div><strong>Description:</strong><br />
+      <%= text_field_tag :description,@deal_attribute.try(:description),:placeholder => 'Input description',:name => 'deal_attributes[description]' %>
+    </div>
+    <div><strong>Domestic Call Mins:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :domestic_call_minutes,@deal_attribute.domestic_call_minutes,:placeholder => 'Input domestic_call_minutes',:name => 'deal_attributes[domestic_call_minutes]' %>
+    </div>
+    <div><strong>Domestic Text:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :domestic_text,@deal_attribute.domestic_text,:placeholder => 'Input domestic_text',:name => 'deal_attributes[domestic_text]' %>
+    </div>
+    <div><strong>International Call Minutes:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :international_call_minutes,@deal_attribute.international_call_minutes,:placeholder => 'Input international_call_minutes',:name => 'deal_attributes[international_call_minutes]' %>
+    </div>
+    <div><strong>International Text:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :international_text,@deal_attribute.international_text,:placeholder => 'Input international_text',:name => 'deal_attributes[international_text]' %>
+    </div>
+    <div><strong>Data Plan:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :data_plan,@deal_attribute.data_plan,:placeholder => 'Input data_plan',:name => 'deal_attributes[data_plan]' %>
+    </div>
+    <div><strong>Data Plan Price:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :data_plan_price,@deal_attribute.data_plan_price,:placeholder => 'Input data_plan_price',:name => 'deal_attributes[data_plan_price]' %>
+    </div>
+    <div><strong>Additional Data:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :additional_data,@deal_attribute.additional_data,:placeholder => 'Input additional_data',:name => 'deal_attributes[additional_data]' %>
+    </div>
+    <div><strong>Additional Data Price:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :additional_data_price,@deal_attribute.additional_data_price,:placeholder => 'Input additional_data_price',:name => 'deal_attributes[additional_data_price]' %>
+    </div>
+    <div><strong>Rollover Data:<span id="mandat">*</span> </strong><br />
+      <%= check_box_tag :rollover_data,true,true,:name => 'deal_attributes[rollover_data]' %>
+    </div>
+    <%= submit_tag 'Submit' %>
+<% end %>

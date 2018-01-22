@@ -1,0 +1,30 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%' >
+  <tr> 
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+		<%= link_to "View All Service Preferences", service_preferences_path %>
+      </div>
+      <div class='title'>
+        <span id='title'>Add a New Service Preference</span>
+      </div>
+
+			<div class="small-6 large-centered columns">
+				<%= form_for(@service_preference, :url => @service_preferences) do |f| %>
+					<br/>
+				  <div><strong>App User Id : </strong><br />
+				  <%= f.text_field :app_user_id %></div>
+				  <div><strong>Service Category Name : </strong><br />
+				  <%= f.select :service_category_name, ServiceCategory.uniq.pluck(:name).reject { |f| f.nil? || f.empty? },{:include_blank => "Select Category"},:onchange=>"populate_service_provider(this);" %></div>
+				  <div><strong>Service Provider Name:</strong><br />
+				  <%= f.text_field :service_provider_name %></div>
+				  <div><strong>Contract Date:</strong><br />
+				  <%= f.text_field :contract_date %></div>
+				  <div><%= f.check_box :is_contract %><strong>Is Contract ? </strong></div>
+				  <div><strong>Contract Fee</strong><br />
+				  <%= f.text_field :contract_fee %></div>
+				  <div><%= f.submit "Create" %></div>
+				<% end %>
+			</div>
+    </td>
+	</tr>
+</table>

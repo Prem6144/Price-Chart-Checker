@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_135sdp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_gravity="left">
+
+
+    <LinearLayout
+        android:layout_width="@dimen/_135sdp"
+        android:layout_height="@dimen/_102sdp"
+        android:background="@drawable/edit_border2"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/basic"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="BASIC"
+
+                android:gravity="center"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="#000"
+                android:maxLines="1"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+            <CheckBox
+                android:id="@+id/checkbox_tv"
+                android:gravity="right"
+                android:focusable="true"
+                android:theme="@style/CustomCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/channel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="255+ Channels"
+            android:textColor="@color/backround_color"
+            android:textSize="@dimen/_9sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/quality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="80+ HD"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textSize="@dimen/_8sdp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/premimum_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_11sdp"
+            android:text="2 Premium Movie Channel"
+            android:maxLines="1"
+            android:textSize="@dimen/_9sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/money"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/shadow_rounded"
+            android:gravity="center"
+            android:text="$24.08/mo"
+            android:textColor="#000"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

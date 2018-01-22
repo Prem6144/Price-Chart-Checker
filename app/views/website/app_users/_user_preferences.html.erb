@@ -1,0 +1,172 @@
+<div id="Preference" class="prefrence-tab tab-pane fade" role="tabpanel">
+  <%#= form_for(Notification.new, :url => @notifications, id: 'notification-form') do |f| %>
+  <%= form_tag preferences_website_app_users_path(@app_user), method: :post do %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <h4>Deal Notification</h4>
+  <div class="receive-notification">Receive notification before contract expire</div>
+    <div class="row">
+
+      <div class="col-md-12 details-zip">
+        <%#= label_tag :recieve_notification, "Yes", :value => "true"  %>
+        <%#= radio_button_tag 'notification[recieve_notification]', true,@app_user.notification.try(:recieve_notification) %>
+
+
+        <div class="col-xs-2 col-md-2 radio_inline">
+                      <label>
+                        <input type="radio" name="optionsRadios" id="residence" value="low">
+                        <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span> Yes</span> </label>
+                    </div>
+
+                    <div class="col-xs-2 col-md-2 radio_inline">
+                                  <label>
+                                    <input type="radio" name="optionsRadios" id="residence" value="low">
+                                    <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span> No</span> </label>
+                                </div>
+
+        <%#= label_tag :recieve_notification, "No", :value => "false" %>
+        <%#= radio_button_tag 'notification[recieve_notification]', false%>
+
+
+
+      </div>
+
+
+      <div class="col-md-12"><div class="form-group  col-md-4 mgt20">
+        <label>First Notification</label>
+        <%= text_field_tag('notification[day]' ,@app_user.notification.try(:day),:class => 'form-control',:placeholder => 'Day') %>
+      </div>
+
+        <div class="form-group col-md-4 mgt20">
+          <div>
+            <label>Last Notification</label>
+            <%= select_tag('notification[repeat_notification_frequency]',options_for_select(["Weekly" , "Bi-Weekly","Daily" ],selected: @app_user.notification.try(:repeat_notification_frequency)),:class => 'form-control',) %>
+          </div>
+        </div></div>
+
+
+      <div class="col-md-12">
+        <!-- <input type="checkbox" id="checkbox8a"> -->
+          <%#=check_box_tag('notification[recieve_trending_deals]', nil,0,:class=>"recievecallcbox") %>
+        <%#= f.check_box :recieve_trending_deals%>
+
+
+        <div class="checkbox checkbox-info">
+            <!--<input id="" type="checkbox" class="provider_checkbox">
+            -->
+
+            <input type="checkbox" name="AT&amp;T" id="1" value="1" class="provider_checkbox">
+            <label for="1"> <span>Receive Trending Deals and Special offers  </span> </label>
+          </div>
+
+
+
+
+
+      </div>
+
+
+
+
+      <%if @app_user.notification.present? and @app_user.notification.recieve_trending_deals%>
+      <script>$(".recievecallcbox:checked").prop("checked",true)</script>
+      <%else%>
+        <script>$(".recievecallcbox:checked").attr("checked",false)</script>
+      <%end%>
+
+
+      <div class="col-md-12">
+        <!-- <input type="checkbox" id="checkbox8b"> -->
+        <%#= check_box_tag('notification[receive_call]',nil,0,:class=>"recievecallcbox") %>
+         <!-- <%#= f.check_box :receive_call%><span> Call and Receive calls </span> -->
+         <%#if @app_user.notification.present? and @app_user.notification.receive_call%>
+         <!-- <script>$(".recievecallcbox:checked").prop("checked",true)</script> -->
+         <%#else%>
+           <!-- <script>$(".recievecallcbox:checked").attr("checked",false)</script> -->
+         <%#end%>
+
+
+
+                  <div class="checkbox checkbox-info">
+                      <!--<input id="" type="checkbox" class="provider_checkbox">
+                      -->
+
+                      <input type="checkbox" name="AT&amp;T" id="2" value="2" class="provider_checkbox">
+                      <label for="2"> <span> Call and Receive calls  </span> </label>
+                    </div>
+
+
+      </div>
+    </div>
+
+
+    <h4>Ratings</h4>
+    <div class="row">
+
+      <div class="col-md-12"><div class="form-group  col-md-4 ">
+        <label>Minimum Service Provider Rating</label>
+        <%= select_tag('notification[min_service_provider_rating]',options_for_select([["☆ ☆ ☆ ☆ ☆","5"], ["☆ ☆ ☆ ☆","4"],["☆ ☆ ☆","3"],["☆ ☆","2"],["☆","1" ]],selected: @app_user.notification.try(:min_service_provider_rating)),:class => 'form-control',) %>
+      </div>
+
+        <div class="form-group col-md-4">
+          <div>
+            <label>Minimum Deal Rating</label>
+            <%= select_tag('notification[min_deal_rating]',options_for_select([["☆ ☆ ☆ ☆ ☆","5"], ["☆ ☆ ☆ ☆","4"],["☆ ☆ ☆","3"],["☆ ☆","2"],["☆","1" ]],selected: @app_user.notification.try(:min_deal_rating)),:class => 'form-control',) %>
+          </div>
+        </div></div>
+
+
+      <div class="col-md-12 margin_checkbox">
+        <h4>Communications Permissions</h4>
+          <%#= check_box_tag('notification[receive_email]',nil,0, :class=>"recieve_emailcbox") %>
+          <!-- <%if @app_user.notification.present? and @app_user.notification.receive_email%> -->
+          <!-- <script>$(".recieve_emailcbox:checked").prop("checked",true)</script> -->
+          <%#else%>
+            <!-- <script>$(".recieve_emailcbox:checked").attr("checked",false)</script> -->
+          <!-- <%end%> -->
+
+          <div class="checkbox checkbox-info">
+              <!--<input id="" type="checkbox" class="provider_checkbox">
+              -->
+
+              <input type="checkbox" name="AT&amp;T" id="4" value="2" class="provider_checkbox">
+              <label for="4"> <span> Receive emails </span> </label>
+            </div>
+
+
+      </div>
+
+      <div class="col-md-12">
+          <%#= check_box_tag('notification[receive_text]',nil,0,:class=>"recieve_textcbox") %>
+          <!-- <%if @app_user.notification.present? and @app_user.notification.receive_text%> -->
+          <!-- <script>$(".recieve_textcbox:checked").prop("checked",true)</script> -->
+          <%#else%>
+            <!-- <script>$(".recieve_textcbox:checked").attr("checked",false)</script> -->
+          <!-- <%end%> -->
+
+
+
+           <div class="checkbox checkbox-info">
+               <!--<input id="" type="checkbox" class="provider_checkbox">
+               -->
+
+               <input type="checkbox" name="AT&amp;T" id="5" value="5" class="provider_checkbox">
+               <label for="5"> <span> Receive Texts  </span> </label>
+             </div>
+
+
+      </div>
+
+      <div class="col-sm-6">
+        <div>
+          <%= submit_tag('Send',:class => 'btn theme-btn') %>
+          <%#= f.submit "Send",class:"btn btn-info",id: 'notification-submit' %>
+        </div>
+
+
+
+        <!-- <button id="Send" name="Send" class="btn btn-info">Save</button> -->
+      </div>
+    </div>
+<%end%>
+
+</div>

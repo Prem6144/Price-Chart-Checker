@@ -1,0 +1,1060 @@
+
+
+<%
+if @app_user.primary_id_number.present?
+  primary_id_number = @app_user.primary_id_number.split('===').last
+  primary_state = @app_user.primary_id_number.split('===').first
+end
+if @app_user.secondary_id_number.present?
+  secondary_id_number = @app_user.secondary_id_number.split('===').last
+  secondary_state = @app_user.secondary_id_number.split('===').first
+end
+%>
+<%deal_attributes = @deal_detail['deal_attributes']%>
+<%deal_equipments = @deal_detail['deal_equipments']%>
+<%additional_offers = @deal_detail['additional_offers']%>
+<script type="text/javascript" src="jquery.min.js"></script>
+
+<section class="order-form top-footer-1">
+  <div class="container">
+    <div class="row sd-order-con">
+      <div class="col-sm-12 col-md-4 right-offer">
+        <div class="border-radius-bg">
+          <div class="sd-img-box">
+            <%if display_logo_permission(@deal.service_provider_id,@deal.deal_type)%>
+              <img src="<%=display_logo_permission(@deal.service_provider_id,@deal.deal_type)%>" alt="Service Provider Logo" class="img-responsive">
+            <%else%>
+              <img class= "img-responsive" src="<%= @deal.image.present? ? @deal.image.url : '' %>" alt="<%= @deal.title %>">
+            <% end %>
+          
+        </div>
+        <!--  <h2 class="text-center"><%= @deal.title %></h2>
+          <div class="text-center">
+            <small><%= @deal.short_description %></small><br />
+            <small> Contract <%= @deal.contract_period %> months</small>-->
+
+
+
+            <ul class="sd-deal-price">
+              <li class="sd-dealprice-single">Deal Price:<span>$<%= "%.2f" % @deal.price %>/mo</span></li>
+              <li class="sd-effective-price-single">Effective Price:<span id="update_effective_price">$<%= @effective_price.present? ? "%.2f" % @effective_price : "%.2f" % @deal.effective_price %>/mo</span></li>
+              <li>Contract:<span><%= @deal.contract_period!= 0 ? @deal.contract_period : 'None'%><%= @deal.contract_period!= 0  ? 'months' : '' %></span></li>
+              <%# deal_equipments.each do |deal_equipment|%>
+                <%# if @deal.service_category_id == Deal::CELLPHONE_CATEGORY %>
+                <!-- <li><%#=deal_equipment.model%>: <span><%#=deal_equipment.price%></span></li> -->
+                <%# else %>
+                <!-- <li><%#=deal_equipment.name%>: <span>$<%#=  "%.2f" % deal_equipment.price if deal_equipment.price.present?%></span></li> -->
+                <%# end %>
+              <%# end %>
+              <%# additional_offers.each do |additional_offer|%>
+                <!-- <li><%#=additional_offer.title%>: <span>$<%#=  "%.2f" %  additional_offer.price if  additional_offer.present?%></span></li> -->
+              <%# end %>
+
+             <!--  <li id= "deal_attributes"></li>
+              <li id= "deal_extra_services"></li> -->
+
+            </ul>
+            <% if @deal.is_customisable == true && @deal.service_category_id == Deal::CELLPHONE_CATEGORY %>
+
+            <div id="deal-attributes-added" class="deal-attributes-added">
+              <h5>Additional Deals Attributes</h5>
+              
+            </div>
+            <div class="deal-equipments-added">
+              <h5>Additional Equipments</h5>
+              
+            </div>
+            <div id="deal-services-added" class="deal-attributes-added">
+              <h5>Additional Deals Services</h5>
+              
+            </div>
+            <% elsif @deal.is_customisable == true && @deal.service_category_id == Deal::CABLE_CATEGORY %>
+            <div id="deal-attributes-added" class="deal-attributes-added">
+              <h5>Additional Deals Attribute</h5>
+              
+            </div>
+            <div id="deal-packages-added" class="deal-attributes-added">
+              <h5>Additional Deals Package</h5>
+              
+            </div>
+            <div id="deal-cable-equipments-added" class="deal-attributes-added">
+              <h5>Additional Deals Equipment</h5>
+              
+            </div>
+             <% end %>
+
+          </div>
+      <!--       <div class="gen-info">
+            <table class="table table-condensed">
+              <tr>
+                <td align="right" width="50%">Deal Price</td>
+                <td align="left"  width="50%" class="bold"></td>
+              </tr>
+              <tr>
+                <td  align="right" class="bold effective-color">Effective Price</td>
+                <td  align="left" class="bold" id="update_effective_price">$<%#= @effective_price.present? ? "%.2f" % @effective_price : "%.2f" % @deal.effective_price %></td>
+              </tr>
+            </table>
+          </div>-->
+
+          <% if @equipments.present? %>
+            </br>
+            <div>
+              <%= select_tag(:equipment_id, options_for_select(@equipments.collect { |p|
+                ["#{p.model}($#{p.price})", p.id] }),:class => 'form-control',:id => "drop_equipment_id") %>
+            </div>
+          <% end %>
+
+
+        </div>
+
+
+
+      <div class="col-md-8 col-sm-12">
+        <div class="tabber border-radius-bg">
+          <div class="tab-wrapper tab-primary">
+            <ul class="nav nav-tabs">
+              <li class="active"><a id="personal_information_menu_tab" data-toggle="tab" href="#personal-info">Personal Information</a></li>
+              <% if @app_user.user_type == "business" %>
+              <li><a id="business_information_menu_tab" data-toggle="tab" href="#business-info">Business Information</a></li>
+              <% end %>
+              <li><a id="address_information_menu_tab" data-toggle="tab" href="#address-info">Address Information</a></li>
+              <li><a id="order_information_menu_tab" data-toggle="tab" href="#order-review" id="ordertab">Order Review</a></li>
+            </ul>
+            <%= form_tag create_order_website_app_users_path(@app_user), method: :post, :id=> "order_create_form" do %>
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <div class="tab-content formContainer">
+              <!-- About -->
+              <div id="personal-info" class="tab-pane active">
+
+                  <div class="col-lg-12">
+                    <div class="col-md-6">
+                      <label for="Name" class="control-label">First Name<span id="mandat">*</span></label></label>
+                      <%= text_field_tag('app_user[first_name]',Base64.decode64(@app_user.first_name).titleize,:onkeyup=>"capitalise_first(this)",:class => 'form-control input-md',:placeholder => 'First Name', :id=> 'first_name',maxlength: 20) %>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="Name" class="control-label">Last Name<span id="mandat">*</span></label></label>
+                      <%= text_field_tag('app_user[last_name]',Base64.decode64(@app_user.last_name).titleize,:onkeyup=>"capitalise_first(this)",:class => 'form-control input-md',:placeholder => 'Last Name', :id=> 'last_name', maxlength: 20) %>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="Name" class="control-label">Contact Number<span id="mandat">*</span></label></label>
+                      <%= phone_field_tag('app_user[mobile]',@app_user.mobile.present? ? Base64.decode64(@app_user.mobile): @app_user.mobile,:class => 'form-control input-md',:placeholder => 'Mobile Number', :id=> "mobile", :maxlength=>10)%>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="Name" class="control-label">Email</label>
+                      <%= email_field_tag('app_user[email]',@app_user.email,:class => 'form-control input-md',:placeholder => 'Your Email Address',:disabled => true) %>
+                    </div>
+                    <%= render :partial=>"user_primary_information", :locals => {primary_id_number: primary_id_number, primary_state: primary_state,secondary_id_number: secondary_id_number, secondary_state: secondary_state} %>
+                    <div class="btn-group btnBox mg_bottom15 ">
+                                      <div class="col-sm-12">
+                                    <button class="btn save-btn" type="button" id="personal_information_tab">
+                                        Next
+                                      </button>
+                                    </div></div>
+
+                  </div>
+
+                <!-- Button group -->
+
+
+            </div>
+
+            <!-- Body -->
+
+            <% if @app_user.user_type == "business" %>
+            <%= render :partial=>"business_user_order_form"%>
+            <% else %>
+            <%= render :partial=>"residence_user_order_form"%>
+            <%end%>
+
+
+  <!--order review page-->
+
+  <div id="order-review" class="tab-pane">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="col-md-6"><div class="col-md-12"><h3>Personal details</div></h3>
+          <span class="style3">Name &nbsp;:</span> <span id="review-name" class="style5"></span><br />
+          <!-- <span class="style3">Last Name:</span> <span id="review-last-name" class="style5"></span><br /> -->
+          <span class="style3">Mobile &nbsp;:</span> <span id="review-mobile" class="style5"></span><br />
+          <span class="style3">Primary Id &nbsp;:</span> <span id="review-primary-id" class="style5"></span> - <span id="review-primary" class="style5"></span><br/>
+           <!-- <span class="style3">Primary Id Number &nbsp;:</span> <span id="review-primary" class="style5"></span><br/> -->
+          <span class="style3">Secondary Id &nbsp;:</span> <span id="review-secondary-id" class="style5"></span> - <span id="review-secondary" class="style5">
+          <!-- <span class="style3">Secondary Id Number &nbsp;:</span> <span id="review-secondary" class="style5"></span> -->
+        </div>
+
+        <% if (@app_user.user_type == AppUser::BUSINESS) && (@app_user.business_app_users.first.business.business_type ==  Business::REGISTERED) %>
+
+        <div class="col-md-6"> <div class="col-md-12"><h3>Registered</h3></div>
+          <span class="style3">Business Name:</span> <span id="review-business" class="style5"></span><br />
+          <span class="style3">Federal Tax ID:</span> <span id="review-federal" class="style5"></span><br />
+          <!-- <span class="style3">Dan & Bradsheet Number:</span> <span id="review-db" class="style5" ></span> -->
+        </div>
+        <% elsif (@app_user.user_type == AppUser::BUSINESS) && (@app_user.business_app_users.first.business.business_type ==  Business::SOLE_PROPRIETOR) %>
+        <div class="col-md-6"> <h3>SOLE PROPRIETOR</h3>
+          <span class="style3">Business Name:</span> <span id="review-business" class="style5"></span><br />
+          <span class="style3 ">SSN:</span> <span id="review-ssn" class="style5"></span><br />
+          <!-- <span class="style3">Dan & Bradsheet Number:</span> <span id="review-db" class="style5" ></span> -->
+        </div>
+        <% end %>
+        <div class="col-md-12"><div class="col-md-12"> <h3>Address</h3></div>
+          <div class="billing-address col-sm-4 padding0  ">
+            <h5>Billing Address</h5>
+            <div class="billing-address-innertxt word-wrap" style="overflow:hidden"></div>
+
+          </div>
+          <div class="shipping-address col-sm-4 padding0">
+            <h5>Shipping Address</h5>
+            <div class="shipping-address-innertxt word-wrap" style="overflow:hidden"></div>
+          </div>
+          <div class="service-address col-sm-4 padding0  ">
+            <h5>Service Address</h5>
+            <div class="service-address-innertxt word-wrap" style="overflow:hidden"></div>
+          </div>
+        </div>
+        <div class="col-sm-12 btn-con">
+        <div class="btn-group btnBox mg_bottom15">
+          <div class="col-sm-12 text-right">
+            <%= hidden_field_tag :deal_id,@deal.id,{:name=> 'order_items[deal_id]'}%>
+            <%= hidden_field_tag :status,'new_order',{:name=> 'order_items[status]'}%>
+            <%= hidden_field_tag :deal_price,@deal.price,{:name=> 'order_items[deal_price]'}%>
+            <%= hidden_field_tag :effective_price,@effective_price,{:name=> 'order_items[effective_price]'}%>
+            <%= hidden_field_tag :equipment_id,'',{:name=> 'order_equipments[equipment_id]'}%>
+            <%= hidden_field_tag :equipment_price,'',{:name=> 'order_equipments[equipment_price]'}%>
+            <%= hidden_field_tag '','',{:name=> 'order_attributes', :id=> 'order_attributes'}%>
+            <%= hidden_field_tag '','',{:name=> 'order_extra_services', :id=> 'order_extra_services'}%>
+            <%= hidden_field_tag '','',{:name=> 'order_equipments', :id=> 'order_equipments'}%>
+
+            <%#= hidden_field_tag '','',{:name=> 'order_attributes', :id=> 'prafull'}%>
+            <%= submit_tag('Submit',:class => 'btn save-btn',:id => 'order_submit_button') %>
+          </div>
+        </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<input type="hidden" id="getnamevalue">
+<input type="hidden" id="getlastnamevalue">
+<input type="hidden" id="getmobilevalue">
+<input type="hidden" id="getprimaryvalue">
+<input type="hidden" id="getsecondaryvalue">
+<input type="hidden" id="getprimaryidvalue">
+<input type="hidden" id="getsecondaryidvalue">
+<input type="hidden" id="getssn">
+<input type="hidden" id="getfederal">
+<input type="hidden" id="getbusiness">
+
+
+</section>
+
+<!--Order-form-->
+<script>
+<% if @deal.is_customisable == true %>
+
+var dealAttributeObject = localStorage.getItem('deal_attributes');
+var dealExtraServiceObject = localStorage.getItem('deal_extra_services');
+var dealEquipmentObject = localStorage.getItem('deal_equipments');
+var effectivePriceObject = localStorage.getItem('effective_price');
+var cableEquipmentObject = localStorage.getItem("cable_deal_equipments");
+var cableDealAttributeObject = localStorage.getItem("cable_deal_attributes");
+var dealChannelsObject = localStorage.getItem("deal_channel_packages");
+var colorDataObject = localStorage.getItem("color_data");
+
+
+// console.log(dealAttributeObject);
+ 
+
+
+// $('#deal_attributes').html("Hello");
+
+<%if( @deal.service_category_id == Deal::CELLPHONE_CATEGORY) %>
+  $('#order_equipments').val(dealEquipmentObject);
+  $('#order_attributes').val(dealAttributeObject);
+  $('#order_extra_services').val(dealExtraServiceObject);
+
+<%elsif(@deal.service_category_id == Deal::CABLE_CATEGORY)%>
+  $('#order_equipments').val(cableEquipmentObject);
+  $('#order_attributes').val(cableDealAttributeObject);
+<% end %>
+
+var effective_price = effectivePriceObject
+// alert(effective_price);
+$('#update_effective_price').html("$" + parseFloat(effectivePriceObject).toFixed(2));
+// alert(parseFloat(effectivePriceObject).toFixed(2));
+$('#effective_price').val( parseFloat(effectivePriceObject).toFixed(2));
+
+
+// localStorage.removeItem('deal_attributes');
+// localStorage.removeItem('deal_extra_services');
+// localStorage.removeItem('deal_equipments');
+// localStorage.removeItem('effective_price');
+// localStorage.removeItem('cable_deal_equipments');
+
+<% end %>
+
+
+
+var errormsg="";
+$(document).ready(function(e) {
+
+  <%if @deal.is_customisable == true && (@deal.service_category_id == Deal::CELLPHONE_CATEGORY || @deal.service_category_id == Deal::CABLE_CATEGORY) %>
+  $.ajax({
+    url:"/website/app_users/order_attributes",
+    type: "GET",
+    // JSON.parse(localStorage.getItem('deal_attributes')).length;
+     data:{ id: JSON.parse(localStorage.getItem('deal_attributes'))[0]["ref_id"], type:JSON.parse(localStorage.getItem('deal_attributes'))[0]["ref_type"]},
+      success: function(data){
+      console.log(data);
+     // $("#deal_attributes").html(data["data"]["title"]+": $"+parseFloat(data["data"]["data_plan_price"]).toFixed(2));
+      <%if @deal.service_category_id == Deal::CELLPHONE_CATEGORY  %>
+     $('#deal-attributes-added').append('<div> <p>'+data["data"]["title"]+' </p>  <span>$'+data["data"]["data_plan_price"]+'</span></div>');
+     <%elsif @deal.service_category_id == Deal::CABLE_CATEGORY %> 
+     $('#deal-attributes-added').append('<div> <p>'+data["data"]["description"]+' </p>  <span>$'+data["data"]["amount"]+'</span></div>');
+     <% end %>
+    }
+  });
+  <% end %>
+
+  <%if @deal.is_customisable == true && @deal.service_category_id == Deal::CELLPHONE_CATEGORY  %>
+
+    $.ajax({
+    url:"/website/app_users/order_extra_services",
+    type: "GET",
+    data:{ id:JSON.parse(localStorage.getItem('deal_extra_services'))[0]['deal_extra_service_id']},
+      success: function(data){
+      $('#deal-services-added').append('<div> <p>'+data["name"]+' </p>  <span>$'+data["price"]+'</span></div>');
+    }
+  });
+
+    $.ajax({
+    url:"/website/app_users/order_equipment_data",
+    type: "GET",
+    data:{ data: JSON.parse(localStorage.getItem("color_data"))},
+      success: function(data){
+      console.log(data["color"].length);
+      for(i=0;i<data["color"].length;i++){
+        text = data["name"][i]+"("+data["color"][i]+")"+": $"+parseFloat(data["price"][i]).toFixed(2);
+        // console.log(data + "oofof");
+        // $(".sd-deal-price").append("<li>"+text+"</li>");
+        $(".deal-equipments-added").append('<div class="selectedequipments-box"><div class="equipmenr-img"><img src='+data['image']+' style="height:100px; width:50px" alt="equipments"></div><div class="equipmenr-details"><div class="equipment-readingprice"><h6>'+data['brand'][i]+'</h6> <span>$'+ data['price'][i]+'</span></div> <strong>'+data['name'][i]+'</strong><span>'+data['color'][i]+'</span></div></div>')
+      }
+     // $("#deal_extra_services").html(data["name"]+": $"+parseFloat(data["price"]).toFixed(2));
+    }
+  });
+  
+  <%elsif @deal.is_customisable == true && @deal.service_category_id == Deal::CABLE_CATEGORY  %>
+   $.ajax({
+    url:"/website/app_users/order_channel_packages",
+    type: "GET",
+    data:{ id: JSON.parse(localStorage.getItem('deal_channel_packages'))[0]["ref_id"]},
+      success: function(data){
+     $('#deal-packages-added').append('<div> <p>'+data["data"]["package_name"]+' </p>  <span>$'+data["data"]["price"]+'</span></div>');
+    }
+  });
+
+    $.ajax({
+    url:"/website/app_users/order_cable_equipments",
+    type: "GET",
+    data:{ id: JSON.parse(localStorage.getItem('cable_deal_equipments'))[0]["equipment_id"]},
+      success: function(data){
+     $('#deal-cable-equipments-added').append('<div> <p>'+data["data"]["name"]+' </p>  <span>$'+data["data"]["price"]+'</span></div>');
+    }
+  });
+<% end %>
+
+  <% if @equipments.present? %>
+  var effective_price = $('#update_effective_price').html().split('$')[1];
+  var first_price = $("#drop_equipment_id option:selected").text().split('$')[1].split(')')[0];
+  $("#drop_equipment_id").change(function(e){
+    var first =$("#drop_equipment_id option:selected").text();
+    if(first ==  " iPhone® SE($16.66)"){
+      current_equipment = $('#drop_equipment_id option:selected').text().split('$')[1].split(')')[0];
+      total_price = parseFloat(effective_price) + parseFloat(current_equipment) - parseFloat(current_equipment)
+      $('#update_effective_price').html("$" + parseFloat(total_price));
+      $('#effective_price').val(parseFloat(total_price));
+      $('#equipment_id').val(parseInt($('#drop_equipment_id').val()));
+      $('#equipment_price').val(current_equipment);
+    }
+    else{
+      current_equipment = $('#drop_equipment_id option:selected').text().split('$')[1].split(')')[0];
+      total_price = parseFloat(effective_price) + parseFloat(current_equipment) - parseFloat(first_price);
+      $('#update_effective_price').html("$" + parseFloat(total_price));
+      $('#effective_price').val(parseFloat(total_price));
+      $('#equipment_id').val(parseInt($('#drop_equipment_id').val()));
+      $('#equipment_price').val(current_equipment);
+    }
+  });
+<% end %>
+  <%
+  if @app_user.user_type == "residence" %>
+  var billing_address;
+  var service_address;
+  var shipping_address;
+  $.ajax({
+    url:"/get_user_addresses",
+    type: "GET",
+    data:{ id:<%=@app_user.id%>},
+    success: function(data){
+      console.log(data);
+      // if (data["type"]!="residence_user_first_order"){
+        billing_address=data.status[0];
+        service_address=data.status[2];
+        shipping_address=data.status[1];
+        if(billing_address != ''){
+          $("#app_user_billing_address_1").val(billing_address.address1);
+          $("#app_user_billing_address_2").val(billing_address.address2);
+          $("#app_user_billing_zip").val(billing_address.zip);
+          $("#app_user_billing_address_name").val(billing_address.address_name);
+          $("#app_user_billing_city").val(billing_address.city);
+          value = billing_address["state"]
+          $('#billing_state option[value="' + value + '"]').prop('selected', true);
+        }
+         if(shipping_address != ''){
+          $("#app_user_shipping_address_1").val(shipping_address.address1);
+          $("#app_user_shipping_address_2").val(shipping_address.address2);
+          $("#app_user_shipping_zip").val(shipping_address.zip);
+          $("#app_user_shipping_address_name").val(shipping_address.address_name);
+          $("#app_user_shipping_city").val(shipping_address.city);
+          value = shipping_address["state"]
+          $('#app_user_shipping_state option[value="' + value + '"]').prop('selected', true);
+        }
+         if(service_address != ''){
+          $("#app_user_service_address_1").val(service_address.address1);
+          $("#app_user_service_address_2").val(service_address.address2);
+          $("#app_user_service_zip").val(service_address.zip);
+          $("#app_user_service_address_name").val(service_address.address_name);
+          $("#app_user_service_city").val(service_address.city);
+          value = service_address["state"]
+          $('#app_user_service_state option[value="' + value + '"]').prop('selected', true);
+        }
+        // $("#billing_address_1").val(billing_address.address1);
+        // $("#billing_address_2").val(billing_address.address2);
+        // $("#billing_zip").val(billing_address.zip);
+
+        // $("billing-name").val(billing_address.address_name);
+
+        // $("#shipping_address_1").val(shipping_address.address1);
+        // $("#shipping_address_2").val(shipping_address.address2);
+        // $("#shipping_zip").val(shipping_address.zip);
+        // $("shipping-name").val(shipping_address.address_name);
+        // $("#service_address_1").val(service_address.address1);
+        // $("#service_address_2").val(service_address.address2);
+        // $("#service_zip").val(service_address.zip);
+        // $("service-name").val(service_address.address_name);
+        // $("#app_user_service_address_name").val(service_address.address_name);
+        // $("#app_user_service_city").val(service_address.city);
+
+        // $("#app_user_shipping_address_1").val(shipping_address.address1);
+        // $("#app_user_shipping_address_2").val(shipping_address.address2);
+        // $("#app_user_shipping_zip").val(shipping_address.zip);
+        // $("#app_user_service_address_1").val(service_address.address1);
+        // $("#app_user_service_address_2").val(service_address.address2);
+        // $("#app_user_service_zip").val(service_address.zip);
+        // $("#app_user_shipping_city").val(shipping_address.city);
+        // $("#app_user_shipping_address_name").val(shipping_address.address_name);
+      // }
+      // else {
+      //   if(data["type"]=="residence_user_first_order"){
+      //     console.log(data["status"]);
+      //     $("#app_user_billing_address_1").val("").val(data["status"]["address1"]);
+      //     $("#app_user_billing_address_2").val(data["status"]["address2"]);
+      //     $("#app_user_billing_zip").val(data["status"]["zip"]);
+      //     $("#app_user_billing_state_name").val(data["status"]["address_name"]);
+      //     console.log(data["status"]);
+      //   }
+
+    }
+  });
+  <%else%>
+  $.ajax({
+    url:"/get_business_user_addresses",
+    type: "GET",
+    data:{ id:<%=@app_user.id%>},
+    success:function(data){
+      console.log(data);
+      billing_address=data.status[0];
+      service_address=data.status[2];
+      shipping_address=data.status[1];
+      if(billing_address != ''){
+        $("#billing_address_1").val(billing_address["address1"]);
+        $("#billing_address_2").val(billing_address["address2"]);
+        $("#billing_zip").val(billing_address["zip"]);
+        $("#billing_address_name").val(billing_address["address_name"]);
+        $("#billing_city").val(billing_address["city"]);
+        value = billing_address["state"]
+        $('#billing_state option[value="' + value + '"]').prop('selected', true);
+      }
+      if(shipping_address != ''){
+        $("#shipping_address_1").val(shipping_address["address1"]);
+        $("#shipping_address_2").val(shipping_address["address2"]);
+        $("#shipping_zip").val(shipping_address["zip"]);
+        $("#shipping_address_name").val(shipping_address["address_name"]);
+        $("#shipping_city").val(shipping_address["city"]);
+        value = shipping_address["state"]
+        $('#shipping_state option[value="' + value + '"]').prop('selected', true);
+      }
+      if(service_address != ''){
+        $("#service_address_1").val(service_address["address1"]);
+        $("#service_address_2").val(service_address["address2"]);
+        $("#service_zip").val(service_address["zip"]);
+        $("#service_address_name").val(service_address["address_name"]);
+        $("#service_city").val(service_address["city"]);
+        value = service_address["state"]
+        $('#service_state option[value="' + value + '"]').prop('selected', true);
+      }
+    }
+  });
+  <% end%>
+
+});
+$(document).keydown(function(e){
+  if (e.which==13){
+  if($("#business_information_tab").is(":visible")==true){
+    $("#business_information_tab").click();
+  }else if($("#personal_information_tab").is(":visible")==true){
+     $("#personal_information_tab").click();
+  }else if($("#business_address_information_tab").is(":visible")==true) {
+   $("#business_address_information_tab").click();
+  }else if($("#residence_address_information_tab").is(":visible")==true) {
+   $("#residence_address_information_tab").click();
+  }
+  else if($("#order_submit_button").is(":visible")==true) {
+   $("#order_submit_button").click();
+ }
+  }
+})
+
+var  federal = $('#federal_number').val();
+$('#getfederal').val(federal);
+var federal_value= $(getfederal).val()
+$("#review-federal").text(federal_value);
+
+  <%if @app_user.user_type == "business" %>
+  var  business = $('#business_name').val();
+  $('#getbusiness').val(business);
+  var business_value= $('#getbusiness').val();
+  f=business_value[0].toUpperCase();
+  l=business_value.substr(1);
+  $("#review-business").text(f+''+l);
+  <%end%>
+
+var  ssn = $('#ssn').val();
+$('#getssn').val(ssn);
+var ssn_value= $(getssn).val()
+$("#review-ssn").text($('#ssn').val());
+
+var  last_name = $('#last_name').val();
+$('#getlastnamevalue').val(last_name);
+var get_last_name= $(getlastnamevalue).val()
+$("#review-last-name").text(get_last_name);
+
+var mobile_value = $('#mobile').val();
+$('#getmobilevalue').val(mobile_value);
+var get_mobile= $(getmobilevalue).val()
+$("#review-mobile").text(get_mobile);
+
+var primary_value = $('#primary_id_number').val().split('===')[1];
+$('#getprimaryvalue').val(primary_value);
+var get_primary= $(getprimaryvalue).val()
+$("#review-primary").text(get_primary);
+
+
+var primary_id_value = $('#primary_id').val();
+$('#getprimaryidvalue').val(primary_id_value);
+var get_primary_id= $(getprimaryidvalue).val()
+$("#review-primary-id").text(get_primary_id);
+
+var secondary_value = $('#secondary_id_number').val().split('===')[1];
+$('#getsecondaryvalue').val(secondary_value);
+var get_secondary= $(getsecondaryvalue).val()
+$("#review-secondary").text(get_secondary);
+
+var secondary_id_value = $('#secondary_id').val();
+$('#getsecondaryidvalue').val(secondary_id_value);
+var get_secondary_id= $(getsecondaryidvalue).val()
+$("#review-secondary-id").text(get_secondary_id);
+
+$("#order_information_menu_tab").click(function(event){
+   firstname=$('#first_name').val();
+   rest=firstname.substr(1);
+   first=firstname[0].toUpperCase();
+   finalfirstname=first+''+rest;
+   lastname=$("#last_name").val();
+   last_rest=lastname.substr(1);
+   last_first_char=lastname[0].toUpperCase();
+   finallastname=last_first_char+''+last_rest;
+   $('#review-name').text(finalfirstname+" "+finallastname);
+   $('#review-last-name').text($('#last_name').val());
+   $('#review-mobile').text($('#mobile').val());
+   $('#review-primary').text($('#primary_id_number').val().split('===')[1]);
+   $('#review-secondary').text($('#secondary_id_number').val().split('===')[1]);
+
+  var first_name = $('#first_name').val();
+  var mobile = $('#mobile').val();
+  var last_name = $('#last_name').val();
+  var primary_id = $('#primary_id').val();
+  var secondary_id = $('#secondary_id').val();
+  var business_manager_name = $('#business_manager_name').val();
+  var business_manager_contact = $('#business_manager_contact').val();
+  var billing_address_1 = $('#billing_address_1').val();
+  var billing_address_2 = $('#billing_address_2').val();
+  var billing_zip = $('#billing_zip').val();
+  var billing_state = $('#billing_state').val();
+  var billing_city = $('#billing_city').val();
+  var billing_address_name = $('#billing_address_name').val();
+  var shipping_address_1 = $('#shipping_address_1').val();
+  var shipping_address_2 = $('#shipping_address_2').val();
+  var shipping_zip = $('#shipping_zip').val();
+  var shipping_state = $('#shipping_state').val();
+  var shipping_city = $('#shipping_city').val();
+  var shipping_address_name = $('#shipping_address_name').val();
+  var service_address_1 = $('#service_address_1').val();
+  var service_address_2 = $('#service_address_2').val();
+  var service_zip = $('#service_zip').val();
+  var service_address_name = $('#service_address_name').val();
+  var service_state = $('#service_state').val();
+  var service_city = $('#service_city').val();
+  var app_user_billing_address_1 = $('#app_user_billing_address_1').val();
+  var app_user_billing_address_2 = $('#app_user_billing_address_2').val();
+  var app_user_billing_zip = $('#app_user_billing_zip').val();
+  var app_user_billing_address_name = $('#app_user_billing_address_name').val();
+  var app_user_billing_state = $('#app_user_billing_state').val();
+  var app_user_billing_city = $('#app_user_billing_city').val();
+  var app_user_shipping_address_1 = $('#app_user_shipping_address_1').val();
+  var app_user_shipping_address_2 = $('#app_user_shipping_address_2').val();
+  var app_user_shipping_zip = $('#app_user_shipping_zip').val();
+  var app_user_shipping_address_name = $('#app_user_shipping_address_name').val();
+  var app_user_shipping_state = $('#app_user_state').val();
+  var app_user_shipping_city = $('#app_user_shipping_city').val();
+  var app_user_service_address_1 = $('#app_user_service_address_1').val();
+  var app_user_service_address_2 = $('#app_user_service_address_2').val();
+  var app_user_service_zip = $('#app_user_service_zip').val();
+  var app_user_service_address_name = $('#app_user_service_address_name').val();
+  var app_user_service_state = $('#app_user_service_state').val();
+  var app_user_service_city = $('#app_user_service_city').val();
+
+  if ($('#user_type').val() == "business"){
+    billing_address=billing_address_1+"<br/>"+billing_address_2+"<br/>"+billing_city+", "+$("#billing_state option:selected").val()+"<br/>"+billing_zip;
+      service_address=service_address_1+"<br/>"+service_address_2+"<br/>"+service_city+", "+$("#service_state option:selected").val()+"<br/>"+service_zip;
+      shipping_address=shipping_address_1+"<br/>"+shipping_address_2+"<br/>"+shipping_city+", "+$("#shipping_state option:selected").val()+"<br/>"+shipping_zip;
+      $(".service-address-innertxt").html(service_address);
+      $(".shipping-address-innertxt").html(shipping_address);
+      $(".billing-address-innertxt").html(billing_address);
+    }
+    else{
+      console.log($("#billing_state option:selected").val());
+      app_user_billing_address=app_user_billing_address_1+"<br/>"+app_user_billing_address_2+"<br/>"+app_user_billing_city+", "+$("#billing_state option:selected").val()+"<br/>"+app_user_billing_zip;
+      app_user_service_address=app_user_service_address_1+"<br/>"+app_user_service_address_2+"<br/>"+app_user_service_city+", " +$("#app_user_service_state option:selected").val()+"<br/>"+app_user_service_zip;
+      app_user_shipping_address=app_user_shipping_address_1+"<br/>"+app_user_shipping_address_2+"<br/>"+app_user_shipping_city+", "+$("#app_user_shipping_state option:selected").val()+"<br/>"+app_user_shipping_zip;
+      $(".service-address-innertxt").html(app_user_billing_address);
+      $(".shipping-address-innertxt").html(app_user_service_address);
+      $(".billing-address-innertxt").html(app_user_shipping_address);
+    }
+
+  if( primary_id=='' || secondary_id=='' || first_name == '' || mobile == '' || last_name == '' || primary_id == '' || secondary_id == '' || business_manager_name == '' || business_manager_contact == '' || billing_address_1 == '' || billing_zip == '' || shipping_address_1 == '' || shipping_zip == '' || service_address_1 == '' || service_zip == '' || app_user_billing_address_1 == '' || app_user_billing_zip == '' || app_user_shipping_address_1  == '' || app_user_shipping_zip  == '' || app_user_service_address_1 == '' || app_user_service_zip == ''  || billing_address_name == '' || billing_state == '' || shipping_address_name == '' || shipping_state == '' || service_address_name == '' || service_city == '' ) {
+    alert("Please fill all the mandatory fields.");
+    console.log(1);
+    event.stopImmediatePropagation();
+  }
+});
+
+  $("#address_information_menu_tab").click(function(event){
+    var first_name = $('#first_name').val();
+    var mobile = $('#mobile').val();
+    var last_name = $('#last_name').val();
+    var primary_id = $('#primary_id').val();
+    var secondary_id = $('#secondary_id').val();
+    var business_manager_name = $('#business_manager_name').val();
+    var state = $('#business_state option:selected').val();
+    var ssn = $('#ssn').val();
+    var federal = $('#federal_number').val();
+    var business_manager_contact = $('#business_manager_contact').val();
+    if( first_name == '' || mobile == '' || last_name == '' || primary_id == '' || secondary_id == '' || business_manager_name == '' || business_manager_contact == '' || ssn == '' || federal == '') {
+      alert("Please fill all the mandatory fields.");
+      console.log(2);
+      event.stopImmediatePropagation();
+    }
+    if ($('#user_type').val() == "business"){
+      if (mobile.length < 10  || business_manager_contact.length < 10){
+        alert('Please enter 10-digit number.');
+        console.log(3);
+        event.stopImmediatePropagation();
+      }
+      else {
+       if (mobile.length < 10){
+        alert('Please enter 10-digit number.')
+        event.stopImmediatePropagation();
+      }
+      }
+    }
+
+  });
+
+  var billing_address,service_address,shipping_address,app_user_billing_address_2,app_user_billing_address_1, app_user_billing_zip;
+  var app_user_shipping_zip,app_user_service_address_1,app_user_service_address_2,app_user_service_zip,app_user_shipping_address_1,app_user_shipping_address_2;
+
+  $("#residence_address_information_tab").click(function(event){
+    event.preventDefault();
+    app_user_billing_address_2 = $('#app_user_billing_address_2').val();
+    app_user_billing_address_1 = $('#app_user_billing_address_1').val();
+    app_user_billing_zip = $('#app_user_billing_zip').val();
+    app_user_shipping_zip = $('#app_user_shipping_zip').val();
+    app_user_service_address_1 = $('#app_user_service_address_1').val();
+    app_user_service_address_2 = $('#app_user_service_address_2').val();
+    app_user_service_zip = $('#app_user_service_zip').val();
+    app_user_shipping_address_1 = $('#app_user_shipping_address_1').val();
+    app_user_shipping_address_2 = $('#app_user_shipping_address_2').val();
+    app_user_service_state =$('#service_state').val();
+    app_user_shipping_state =$('#app_user_shipping_state option:selected').val();
+    app_user_billing_state =$('#billing_state').val();
+    if(app_user_billing_address_1 == '' || app_user_billing_zip == '' || app_user_shipping_address_1  == '' || app_user_shipping_zip  == '' || app_user_service_address_1 == '' || app_user_service_zip == ''  || app_user_billing_state == '' || app_user_shipping_state == '' || app_user_service_state == '') {
+      alert("Please fill all the mandatory fields.")
+    }
+    else {
+      billing_address=app_user_billing_address_1+"<br/>"+app_user_billing_address_2+"<br/><b></b>"+app_user_billing_zip;
+      service_address=app_user_service_address_1+"<br/>"+app_user_service_address_2+"<br/><b></b>"+app_user_service_zip;
+      shipping_address=app_user_shipping_address_1+"<br/>"+app_user_shipping_address_2+"<br/><b></b>"+app_user_shipping_zip;
+      $(".service-address-innertxt").html(service_address);
+      $(".shipping-address-innertxt").html(shipping_address);
+      $(".billing-address-innertxt").html(billing_address);
+      $('.nav-tabs > .active').next('li').find('a').trigger('click');
+    }
+  });
+
+  $("#business_address_information_tab").click(function(event){
+    event.preventDefault();
+    var billing_address_1 = $('#billing_address_1').val();
+    var billing_address_2 = $('#billing_address_2').val();
+    var billing_zip = $('#billing_zip').val();
+    var shipping_address_1 = $('#shipping_address_1').val();
+    var shipping_address_2 = $('#shipping_address_2').val();
+    var shipping_zip = $('#shipping_zip').val();
+    var service_address_1 = $('#service_address_1').val();
+    var service_address_2 = $('#service_address_2').val();
+    var service_zip = $('#service_zip').val();
+    var service_state =$('#service_state').val();
+    var shipping_state =$('#shipping_state').val();
+    var billing_state =$('#billing_state').val();
+    var billing_address_name = $('#billing_address_name').val();
+    var shipping_address_name = $('#shipping_address_name').val();
+    var service_address_name = $('#service_address_name').val();
+    if(billing_address_1 == '' || billing_zip == '' || shipping_address_1 == '' || shipping_zip == '' || service_address_1 == '' || service_zip == '' || billing_state == '' || service_state == '' || shipping_state == '' || billing_address_name  == '' || shipping_address_name == '' || service_address_name == '' ) {
+      alert("Please fill all the mandatory fields.")
+    }
+    else {
+      billing_address=billing_address_1+"<br/>"+billing_address_2+"<br/><b></b>"+billing_zip;
+      service_address=service_address_1+"<br/>"+service_address_2+"<br/><b></b>"+service_zip;
+      shipping_address=shipping_address_1+"<br/>"+shipping_address_2+"<br/><b></b>"+shipping_zip;
+      $(".service-address-innertxt").html(service_address);
+      $(".shipping-address-innertxt").html(shipping_address);
+      $(".billing-address-innertxt").html(billing_address);
+      $("#review-ssn").text($('#ssn').val());
+      $('.nav-tabs > .active').next('li').find('a').trigger('click');
+    }
+  });
+
+  $("#business_information_tab").click(function(event){
+    event.preventDefault();
+    var business_manager_name = $('#business_manager_name').val();
+    var ssn = $('#ssn').val();
+    var federal = $('#federal_number').val();
+    var business_manager_contact = $('#business_manager_contact').val();
+    if( ssn == '' || business_manager_name == '' || business_manager_contact == ''  ) {
+      alert("Please fill all the mandatory fields.")
+    }
+    else if (business_manager_contact.length < 10 ) {
+      alert("Please enter 10-digit number.");
+      console.log(4);
+    }
+    else {
+      $('.nav-tabs > .active').next('li').find('a').trigger('click');
+    }
+  });
+  $("#personal_information_tab").click(function(event){
+    event.preventDefault();
+    var  first_name = $('#first_name').val();
+    var  mobile = $('#mobile').val();
+    var  last_name = $('#last_name').val();
+    var primary_id = $('#primary_id').val();
+    var secondary_id = $('#secondary_id').val();
+     if(first_name == '' || mobile == '' || last_name == '' || primary_id == '' || secondary_id == ''  )  {
+      alert("Please fill all the mandatory fields.")
+    }
+    else if (mobile.length < 10){
+      alert('Please enter 10-digit number.')
+    }
+    else {
+      $('.nav-tabs > .active').next('li').find('a').trigger('click');
+    }
+  });
+
+  $("#business_information_menu_tab").click(function(event) {
+    var  first_name = $('#first_name').val();
+    var mobile = $('#mobile').val();
+    var last_name = $('#last_name').val();
+    var primary_id = $('#primary_id').val();
+    var secondary_id = $('#secondary_id').val();
+    if( first_name == '' || mobile == '' || last_name == '' || primary_id == '' || secondary_id == '') {
+      alert("Please fill all the mandatory fields.")
+      event.stopImmediatePropagation();
+    }
+    else if (mobile.length < 10){
+      alert('Please enter 10-digit number.')
+      event.stopImmediatePropagation();
+    }
+  });
+
+  $("#order_submit_button").click(function(event){
+    event.preventDefault();
+    var first_name = $('#first_name').val();
+    var mobile = $('#mobile').val();
+    var last_name = $('#last_name').val();
+    var primary_id = $('#primary_id').val();
+    var secondary_id = $('#secondary_id').val();
+
+
+    var business_manager_name = $('#business_manager_name').val();
+    var business_manager_contact = $('#business_manager_contact').val();
+
+    var billing_address_1 = app_user_billing_address_1+"State: "+$("#billing_state option:selected").val();;
+    var billing_address_2 = app_user_billing_address_2;
+    var billing_zip = app_user_billing_zip;
+
+    var shipping_address_1 = app_user_shipping_address_1+"State: "+$("#shipping_state option:selected").val();;
+    var shipping_address_2 = app_user_shipping_address_2;
+    var shipping_zip = app_user_shipping_zip;
+
+    var service_address_1 =app_user_service_address_1+"State: "+$("#service_state option:selected").val();
+    var service_address_2 =app_user_service_address_2;
+    var service_zip = app_user_service_zip;
+    if( primary_id == '' || secondary_id== '' || first_name == '' || mobile == '' || last_name == '' || primary_id == '' || secondary_id == '' || business_manager_name == '' || business_manager_contact == '' || billing_address_1 == '' || billing_zip == '' || shipping_address_1 == '' || shipping_zip == '' || service_address_1 == '' || service_zip == '' || app_user_billing_address_1 == '' || app_user_billing_zip == '' || app_user_shipping_address_1  == '' || app_user_shipping_zip  == '' || app_user_service_address_1 == '' || app_user_service_zip == '' ) {
+      alert("Please fill all the mandatory fields.")
+    }
+    else {
+      $('#order_create_form').submit();
+    }
+
+    address1=$("#app_user_billing_address_1").val();
+    address2=$("#app_user_billing_address_2").val()
+    zip=$("#app_user_billing_address_zip").val();
+    if (address1!="" && address2!="" && zip!=""){
+      $("#shipping_address").toggle();
+    }
+    else {
+      alert("Please Enter Details then click on checkbox");
+    }
+
+    $(".comparebox-display:checked").attr("checked",false);
+    populate_user_type($('#user_type').val());
+    populate_business_type($('#business_type').val());
+    $('#user_type').on('change', function() {
+      populate_user_type($('#user_type').val())
+    });
+    $('#business_type').on('change', function() {
+      populate_business_type($('#business_type').val())
+    });
+
+  });
+
+  function populate_user_type(user_type) {
+    if(user_type == 'business'){
+      $('#business_type_div').show();
+      $('#business_name_div').show();
+    }else{
+      $("#business_type :selected").prop('selected', false);
+      $('#business_type_div').hide();
+      $('#business_name').val('');
+      $('#business_name_div').hide();
+      $('#federal_number').val('');
+      $('#ssn').val('');
+      $('#federal_number_div').hide();
+      $('#ssn_div').hide();
+    }
+  }
+  function populate_business_type(business_type){
+    if(business_type != '') {
+      if (business_type == <%= Business::SOLE_PROPRIETOR %>) {
+        $('#ssn_div').show();
+        // $('#federal_number_div').hide();
+        $('#federal_number').val('');
+      } else if (business_type == <%= Business::REGISTERED %>) {
+        // $('#ssn_div').hide();
+        $('#ssn').val('');
+        $('#federal_number_div').show();
+      }
+      $('#federal_number, #business_name, #ssn').removeAttr("disabled");
+    }else{
+      $('#ssn_div').hide();
+      $('#ssn').val('');
+      $('#federal_number_div').hide();
+      $('#federal_number').val('');
+    }
+  }
+
+  $(".registerDetails").hide();
+  $("#soleprop").click(function(){
+    $(".registerDetails").hide();
+    $(".soleproDetails").show();
+  });
+
+  $("#registered").click(function(){
+    $(".soleproDetails").hide();
+    $(".registerDetails").show();
+  });
+
+  $('.btnPrevious').click(function(){
+    $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+  });
+
+  $('#first_name').keyup(function(){
+    var  abc = $('#first_name').val();
+    $('#getnamevalue').val(abc);
+  });
+
+  $("#ordertab").click(function(){
+    var y= $(getnamevalue).val()
+    $("#review-name").text(y);
+    var get_mobile= $(getmobilevalue).val()
+    $("#review-mobile").text(get_mobile);
+    var get_primary= $(getprimaryvalue).val()
+    $("#review-primary").text(get_primary);
+    var get_secondary= $(getsecondaryvalue).val()
+    $("#review-secondary").text(get_secondary);
+  });
+
+  $('#mobile').keyup(function(){
+    var  mobile_value = $('#mobile').val();
+    $('#getmobilevalue').val(mobile_value);
+  });
+
+  $('#primary_id').change(function(){
+    var  primary_value = $('#primary_id').val();
+    $('#getprimaryvalue').val(primary_value);
+  });
+
+  $('#secondary_id').change(function(){
+    var  secondary_value = $('#secondary_id').val();
+    $('#getsecondaryvalue').val(secondary_value);
+  });
+
+  $("#checkboxb").change(function () {
+   $("#service_address").toggle();
+  });
+
+  $("#checkbox7a").change(function () {
+   $("#shipping_address").toggle();
+  });
+
+  $("#checkbox8a").change(function () {
+    $("#business_service_address").toggle();
+  });
+
+  $("#checkbox8b").change(function () {
+    $("#business_shipping_address").toggle();
+  });
+
+  function SetService(checked) {
+    if (checked) {
+      document.getElementById('service_address_1').value = document.getElementById('billing_address_1').value;
+      document.getElementById('service_address_name').value = document.getElementById('billing_address_name').value;
+      document.getElementById('service_city').value = document.getElementById('billing_city').value;
+      document.getElementById('service_address_2').value = document.getElementById('billing_address_2').value;
+      document.getElementById('service_zip').value = document.getElementById('billing_zip').value;
+      index=$("#billing_state option:selected").index();
+      console.log(index);
+      $("#service_state option:eq("+index+")").prop("selected", true);
+
+    }
+    else {
+      document.getElementById('service_address_1').value = '';
+      document.getElementById('service_address_2').value = '';
+      document.getElementById('service_zip').value = '';
+    }
+  }
+
+  function SetShipping(checked) {
+    if (checked) {
+      document.getElementById('shipping_address_1').value = document.getElementById('billing_address_1').value;
+      document.getElementById('shipping_address_name').value = document.getElementById('billing_address_name').value;
+      document.getElementById('shipping_city').value = document.getElementById('billing_city').value;
+      document.getElementById('shipping_address_2').value = document.getElementById('billing_address_2').value;
+      document.getElementById('shipping_zip').value = document.getElementById('billing_zip').value;
+      index=$("#billing_state option:selected").index();
+      console.log(index);
+      $("#shipping_state option:eq("+index+")").prop("selected", true);
+    }
+    else {
+      document.getElementById('shipping_address_1').value = '';
+      document.getElementById('shipping_address_2').value = '';
+      document.getElementById('shipping_zip').value = '';
+    }
+  }
+
+  function SetAppUserService(checked) {
+    if (checked) {
+      document.getElementById('app_user_service_address_1').value = document.getElementById('app_user_billing_address_1').value;
+      document.getElementById('app_user_service_address_name').value = document.getElementById('app_user_billing_address_name').value;
+      document.getElementById('app_user_service_address_2').value = document.getElementById('app_user_billing_address_2').value;
+      document.getElementById('app_user_service_city').value = document.getElementById('app_user_billing_city').value;
+      document.getElementById('app_user_service_zip').value = document.getElementById('app_user_billing_zip').value;
+      index=$("#billing_state option:selected").index();
+      console.log(index);
+      $("#app_user_service_state option:eq("+index+")").prop("selected", true);
+
+    }
+    else {
+      document.getElementById('app_user_service_address_1').value = '';
+      document.getElementById('app_user_service_address_2').value = '';
+      document.getElementById('app_user_service_zip').value = '';
+    }
+  }
+
+  function SetAppUserShipping(checked) {
+    if (checked) {
+      document.getElementById('app_user_shipping_address_1').value = document.getElementById('app_user_billing_address_1').value;
+      document.getElementById('app_user_shipping_address_2').value = document.getElementById('app_user_billing_address_2').value;
+      document.getElementById('app_user_shipping_zip').value = document.getElementById('app_user_billing_zip').value;
+      document.getElementById('app_user_shipping_city').value = document.getElementById('app_user_billing_city').value;
+      document.getElementById('app_user_shipping_address_name').value = document.getElementById('app_user_billing_address_name').value;
+      index=$("#billing_state option:selected").index()
+      $("#app_user_shipping_state option:eq("+index+")").prop("selected", true);
+
+    }
+    else {
+      document.getElementById('app_user_shipping_address_1').value = '';
+      document.getElementById('app_user_shipping_address_2').value = '';
+      document.getElementById('app_user_shipping_zip').value = '';
+    }
+  }
+  // function checkedifchanged(){
+  //   if ($("#checkbox7a").prop("checked")==true || $("#checkboxb").prop("checked")==true) {
+  //     app_user_billing_address_2 = $('#app_user_billing_address_2').val();
+  //     app_user_billing_address_1 = $('#app_user_billing_address_1').val();
+  //     app_user_billing_zip = $('#app_user_billing_zip').val();
+  //     $('#app_user_shipping_address_1').val(app_user_billing_address_1);
+  //     $('#app_user_shipping_address_2').val(app_user_billing_address_2);
+  //     $('#app_user_shipping_zip').val(app_user_billing_zip );
+  //     $('#app_user_service_address_1').val(app_user_billing_address_1);
+  //     $('#app_user_service_address_2').val(app_user_billing_address_2);
+  //     $('#app_user_service_zip').val(app_user_billing_zip);
+  //     index=$("#billing_state option:selected").index();
+  //     $("#service_state").prop("selectedIndex",index);
+  //     $("#shipping_state").prop("selectedIndex",index);
+  //   }
+  // }
+  function capitalise_first(object) {
+     value=$("#"+object.id).val();
+     rest=value.substr(1);
+     object.value=value[0].toUpperCase()+""+rest
+  }
+</script>

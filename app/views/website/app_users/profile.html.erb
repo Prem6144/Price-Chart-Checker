@@ -1,0 +1,58 @@
+<!-- <section class="account-banner">
+  <div class="container">
+    <div class="row">
+  <h3 class="text-center"> Account Info</h3>
+</div></div>
+</section> -->
+<section class="account-page account_page_height">
+
+  <div class="container">
+    <div class="tabber-profie">
+    <div data-example-id="togglable-tabs" class="tabber">
+      <ul role="tablist" class="nav tab1" id="myTabs">
+        <li class="active"><a data-toggle="tab" role="tab" id="home-tab" href="#Profile" aria-expanded="true">Profile</a></li>
+        <li class=""><a data-toggle="tab" id="profile-tab" role="tab" href="#Preference" aria-expanded="false">Preference</a></li>
+
+        <li class=""><a data-toggle="tab" id="order-tab" role="tab" href="#Order" aria-expanded="false">My Orders</a></li>
+        <li class=""><a data-toggle="tab" id="earnings-tab" role="tab" href="#earnings" aria-expanded="false">Referrals And Earnings</a></li>
+       <!--  <li class=""><a data-toggle="tab" id="user-addresses-tab" role="tab" href="#user_addresses" aria-expanded="false">Saved Addresses</a></li> -->
+      </ul>
+      <div class="tab-content" id="myTabContent">
+
+        <%= render :partial => 'website/app_users/personal_details' %>
+
+        <%= render :partial => 'website/app_users/user_preferences' %>
+
+        <%= render :partial => 'website/app_users/order_history' %>
+
+        <%= render :partial => 'website/app_users/earnings' %>
+
+        <%#= render :partial => 'website/app_users/app_user_addresses' %>
+
+      </div>
+    </div>  </div>
+  </div>
+  <%if params[:status].present?%>
+  <script>
+    $("#order-tab").click()
+  </script>
+  <%end%>
+  <%if params[:new_user].present?%>
+  <script>
+    $("#home-tab").click()
+  </script>
+  <%end%>
+  <%if params[:goto].present?%>
+  <script>
+    $("#earnings-tab").click()
+  </script>
+  <%end%>
+  <%if params[:saved_address].present?%>
+  <script>
+    $("#user-addresses-tab").click()
+  </script>
+  <%end%>
+
+
+
+</section>

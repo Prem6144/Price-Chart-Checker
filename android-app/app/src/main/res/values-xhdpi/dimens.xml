@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    =============loginpage===============
+    <dimen name="margin_top">30dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="padding_5">5dp</dimen>
+    ======================================
+    ============selectgame======================
+    ============================================
+    ========================charities===============
+    =======================================================
+    ===================================Forgotpassword==============
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_48">48dp</dimen>
+    <dimen name="margin_46">46dp</dimen>
+
+
+    =======================gameboard===================================
+    ======================================================================
+
+    =========================Personal status=================
+    <dimen name="padding_10">10dp</dimen>
+    ========================================================
+
+    ===========================Profile======================
+    ======================================================
+</resources>

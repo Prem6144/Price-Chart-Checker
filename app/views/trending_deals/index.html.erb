@@ -1,0 +1,38 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+	<tr>
+		<td class='main' id='main' valign='top'>
+			<div class='title_tools'>
+				<% if current_user.is_super_admin? %>
+					<%#= link_to "Create New Service Preferences", new_service_preference_path %>
+				<% end %>
+			</div>
+
+			<div id="users" class="list">
+				<table id="users_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+					<thead>
+						<tr>
+							<th><strong>ID</strong></th>
+							<th><strong>Deal Id</strong></th>
+							<th><strong>Category Id</strong></th>
+							<th><strong>Subscription Count</strong></th>
+							<th><strong>Action</strong></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @trending_deals.each do |tdeal| %>
+							<% if can? :read, tdeal %>
+								<tr>
+									<td><%= tdeal.id %></td>
+									<td><%= tdeal.deal_id %></td>
+									<td><%= tdeal.category_id %></td>
+									<td><%= tdeal.subscription_count %></td>
+									<td><%= (link_to 'Edit', edit_trending_deal_path(tdeal)) if can? :manage, tdeal %> | <%= (link_to "Delete", tdeal, method: :delete, data: { confirm: "You sure?" }) if can? :manage, tdeal %></td>
+								</tr>
+							<% end %>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>

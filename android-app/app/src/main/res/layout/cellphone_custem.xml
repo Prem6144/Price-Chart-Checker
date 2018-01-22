@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/backround_color_ServiceDealz"
+    >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+
+            <RelativeLayout
+                android:id="@+id/rl_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/offer_level"
+
+                android:padding="10dp">
+
+                <FrameLayout
+                    android:id="@+id/ll_offer"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignParentLeft="true"
+
+                    android:orientation="vertical">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/_3sdp">
+
+
+                        <TextView
+                            android:id="@+id/txt_dollar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:paddingLeft="5dp"
+                            android:text="$"
+                            android:textColor="@color/white_color"
+                            android:textSize="@dimen/_8sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/txt_dollar"
+                            android:gravity="left"
+                            android:maxLength="9"
+                            android:paddingLeft="2dp"
+                            android:text="99/"
+                            android:textColor="@color/white_color"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/txt_price"
+                            android:layout_toRightOf="@+id/txt_price"
+                            android:text="month"
+                            android:textColor="@color/white_color"
+                            android:textSize="@dimen/_8sdp" />
+                    </RelativeLayout>
+
+
+                </FrameLayout>
+
+                <ImageView
+                    android:id="@+id/img_company"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_below="@+id/ll_offer"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_toRightOf="@+id/ll_offer"
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp">
+
+                    <TextView
+                        android:id="@+id/txt_deal_detail_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:maxLines="2"
+                        android:textColor="@color/red_color"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_short_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:maxLines="2"
+                        android:textColor="#7f7f7f"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_expiry_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:textColor="#7f7f7f"
+                        android:textSize="@dimen/_8sdp" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_effective"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Effective Price  "
+                            android:textColor="#00b551"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/cellphoneffective_deal_price"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:gravity="left"
+                            android:maxLength="14"
+                            android:text="$99.90"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/_8sdp"
+                            android:textStyle="normal" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txt_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:textColor="@color/black_color"
+                        android:textSize="10dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_top"
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:background="@drawable/offer_level2"
+                android:paddingBottom="15dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="10dp">
+
+
+                <TextView
+                    android:id="@+id/txt_about_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="About the Offer"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/txt_about"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_about_title"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#818181"
+                    android:textSize="@dimen/_8sdp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_equipmentse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_4sdp"
+                android:layout_below="@+id/rl_description"
+                android:layout_marginLeft="@dimen/_4sdp"
+                android:layout_marginRight="@dimen/_3sdp"
+                android:background="@color/white_color"
+                android:orientation="vertical"
+                android:visibility="visible">
+                <LinearLayout
+                    android:id="@+id/ll_plan_subscriptions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/_2sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:gravity="left|center_vertical"
+                        android:text="Plan Subscriptions"
+                        android:textColor="@color/red_color"
+                        android:textSize="@dimen/_14sdp"
+                       />
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:visibility="visible">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/lv_extra_services"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/_2sdp"
+                            android:paddingTop="@dimen/_1sdp"></android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_equiments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/_2sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:gravity="left|center_vertical"
+                        android:text="Add Equipments"
+                        android:textColor="@color/red_color"
+                        android:textSize="@dimen/_14sdp"
+                        />
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/lv_equipments"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/_2sdp"
+                            ></android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:padding="@dimen/_1sdp"
+                    android:id="@+id/ll_services"
+                    android:paddingLeft="@dimen/_2sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:paddingLeft="@dimen/_2sdp"
+                        android:gravity="left|center_vertical"
+                        android:text="Deals Data Extra Services"
+                        android:textColor="@color/red_color"
+                        android:textSize="@dimen/_14sdp"
+                         />
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/lv_data_services"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/_1sdp"></android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:gravity="left|center_vertical"
+                    android:text="Additional Offers"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_12sdp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:visibility="gone">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/lv_additional_offer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:paddingTop="@dimen/_1sdp"></android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_layout_rate"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/ll_equipmentse"
+                android:layout_marginLeft="@dimen/_4sdp"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:background="#ececec">
+
+                <TextView
+                    android:id="@+id/txt_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+
+                    android:text=""
+                    android:textColor="@color/black_color"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/ll_star_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/txt_rate">
+
+
+                    <RatingBar
+                        android:id="@+id/ratingBar2"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:numStars="5"
+                        android:progressTint="#fec923" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_reviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/ll_star_rating"
+                    android:gravity="center"
+                    android:text="0 reviews"
+                    android:textColor="@color/black_color"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img_share"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/txt_reviews"
+                    android:background="@drawable/share_icon"
+                    android:text="High-Speed 3G/4G Data" />
+
+                <Button
+                    android:id="@+id/txt_activate11"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/activate_drawable"
+                    android:drawableLeft="@drawable/headphone"
+                    android:enabled="true"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_13sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:text="Order"
+                    android:textColor="@color/white_color"
+                    android:textSize="@dimen/_7sdp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+
+</LinearLayout>

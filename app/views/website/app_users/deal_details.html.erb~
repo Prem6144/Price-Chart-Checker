@@ -1,0 +1,91 @@
+<%= render :partial => 'website/home/internet_banner' %>
+<section class="details">
+  <div class="container">
+    <div class="row">
+
+      <%= render :partial=> 'website/home/left_filter' %>
+
+      <div class="col-xs-12 col-sm-8 col-md-9 pagination_sec">
+        <div class="row">
+
+          <%= render :partial => 'website/home/sorting_filter' %>
+
+          <div class="col-sm-12">
+            <div id="compare_box" class="compare_box border-radius-bg affix" style="display: block;">
+              <a class="close2" href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+              <div class="row">
+                <div class="col-sm-10">
+                  <div id="box1" class="col-sm-3">
+                    <div class="compare_box_border" id="box-deal">
+                      <span><img src="website/AT&amp;T_logo_2005.png"></span>
+                      <p id ="p-deal">Products name here</p>
+                      <a class="btn1" href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-2"><a id="compare-deal "class="btn_2" href="/website/home/compare_deals" onclick="location.href=this.href+'?deal_ids='+checkedValues;return false;">COMPARE</a></div>
+                <!-- <a href="2.html" onclick="location.href=this.href+'?key='+scrt_var;return false;" -->
+                <!-- <input type="button" id="testB" onclick="submit()" value="OK" /> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12">
+            <div class="row box-sec" id="deal-form">
+              <% @dashboard_data.each do |data| %>
+              <div class="col-xs-6 col-sm-6 col-md-4">
+                <div class="border-radius-bg auto-height">
+                  <div class="vertical_middle" style="overflow: hidden;"><img src="<%= data['deal_image_url'] %>"  height="70" width="155" alt=""></div>
+                  <h5><%= data['title'].truncate(20) %></h5>
+                  <ul class="description-height">
+                    <!-- $<%#= data['deal_price'] %>  -->
+                    <!-- <li><%#= data['download_speed'] %> Mbps Download Speed</li> -->
+                    <li><%= data['short_description'].truncate(55) %></li>
+                  </ul>
+                  <a class="btn_more" href="<%= more_deal_details_website_home_index_path(:deal_id=> data['id']) %>"> More Details</a>
+                  <div class="box_down">
+                    <span class="separator_2"></span>
+                    <p>price</p>
+                    <h2 class="price_fnt">$<%= data['deal_price'] %> <span class="light">/</span><span class="regular">mo</span></h2>
+                    <p>effective price</p>
+                    <h2>$<%= data['effective_price'] %> <span class="light">/</span><span class="regular">mo</span></h2>
+                    <a class="btn_2" href="<%= order_website_app_users_path(:deal_id=> data['id']) %>">Order</a>
+                    <div class="checkbox checkbox-info" id="deal-checkbox">
+                      <input class="comparebox-display" value="<%=data.first.last%>" id="checkbox<%=data.first.last%>" type="checkbox">
+                      <label for="checkbox<%=data.first.last%>"> Add to compare </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+var checkedValues;
+  $( document ).ready(function() {
+    $("#compare_box").hide();
+  });
+    
+
+$(document).ready(function () {
+  if ($("input:checkbox:checked").length >= 2) {
+    $("input:checkbox").not(":checked").attr("disabled", 2);
+  }
+  $("input:checkbox").click(function () {
+    var bol = $("input:checkbox:checked").length >= 2;
+    $("input:checkbox").not(":checked").attr("disabled", bol);
+    checkedValues = $('input:checkbox:checked').map(function() {
+      return this.value;
+    }).get();
+  });
+});
+
+
+</script>

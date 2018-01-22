@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backround_color_ServiceDealz"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <ListView
+
+        android:id="@+id/lv_comment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_margin="10dp"
+        android:background="@color/backround_color_ServiceDealz"
+        android:divider="@color/transparent"
+        android:dividerHeight="0dp"
+        android:scrollbars="none"></ListView>
+
+
+</RelativeLayout>

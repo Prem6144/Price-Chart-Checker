@@ -1,0 +1,87 @@
+  <%loop_length= [@deal_attributes_first.count,@deal_attributes_second.count].max%>
+  <% if loop_length > 0 %>
+  <tr>
+   <%loop_length= [@deal_attributes_first.count,@deal_attributes_second.count].max%>
+    <%(0...1).each_with_index do |attribute,index|%>
+    <table class="table table-bordered">
+      <tr>
+        <th scope="row" >Cable</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td width="30%">Channel Count</td>
+         
+        <% if @deal_attributes_first[index].try(:channel_count).present? %>
+          <%channel_count_1 =@deal_attributes_first[index].try(:channel_count)%>
+          <% if ((channel_count_1  > 125) && (channel_count_1 < 150)) %>
+            <td width="30%" class="text-center">125+</td>
+          <% elsif ((channel_count_1  > 175) && (channel_count_1 < 200)) %>
+            <td width="30%" class="text-center">175+</td>
+          <% elsif (channel_count_1  > 200) %>
+            <td width="30%" class="text-center">200+</td>
+              <td width="30%" class="text-center">200+</td>
+          <% else%>
+            <td width="30%" class="text-center"><%=@deal_attributes_first[index].try(:channel_count)%></td>
+          <% end %>
+        <% else %>
+          <td width="30%" class="text-center">-</td>
+        <% end %>
+
+         <% if @deal_attributes_second[index].try(:channel_count).present? %>
+          <%channel_count_1 =@deal_attributes_second[index].try(:channel_count)%>
+          <% if ((channel_count_1  > 125) && (channel_count_1 < 150)) %>
+            <td width="30%" class="text-center">125+</td>
+          <% elsif ((channel_count_1  > 175) && (channel_count_1 < 200)) %>
+            <td width="30%" class="text-center">175+</td>
+          <% elsif (channel_count_1  > 200) %>
+            <td width="30%" class="text-center">200+</td>
+          <% else%>
+            <td width="30%" class="text-center"><%=@deal_attributes_second[index].try(:channel_count)%></td>
+          <% end %>
+        <% else %>
+          <td width="30%" class="text-center">-</td>
+        <% end %>
+        
+       
+      </tr>
+    </table>
+    <% end %>
+  </tr>
+  <% end %>
+
+   <%loop_length= [@deal_equipment_first.count,@deal_equipment_second.count].max%>
+<%if loop_length > 0 %>
+<tr>
+   <table>
+
+      <tr class="row-differ">
+    <th scope="row" >Equipment &amp; Installation</th>
+    <th></th>
+    <th></th>
+  </tr>
+   </table>
+</tr>
+  <tr>
+   <%loop_length= [@deal_equipment_first.count,@deal_equipment_second.count].max%>
+    <%(0...loop_length).each_with_index do |attribute,index|%>
+    <table class="table table-bordered">
+      <tr>
+        <th width="30%">Name</th>
+        <th width="30%" class="text-center"><%=@deal_equipment_first[index].try(:name).present? ? @deal_equipment_first[index].try(:name) : "-"%></th>
+        <th width="30%" class="text-center"><%= @deal_equipment_second[index].try(:name).present? ? @deal_equipment_second[index].try(:name) : "-"%></th>
+      </tr>
+       <tr>
+        <td>Price /mon</td>
+        <td class="text-center"><%= @deal_equipment_first[index].try(:price).present? ? "$#{"%.2f" % @deal_equipment_first[index].try(:price)}" : "$0.00"%></td>
+        <td class="text-center"><%= @deal_equipment_second[index].try(:price).present? ? "$#{"%.2f" % @deal_equipment_second[index].try(:price)}" : "$0.00"%></td>
+      </tr>
+      <tr>
+        <td>Installation</td>
+        <td class="text-center"><%=  @deal_equipment_first[index].try(:installation).present? ? @deal_equipment_first[index].try(:installation) : "-"%></td>
+        <td class="text-center"><%=@deal_equipment_second[index].try(:installation).present? ? @deal_equipment_second[index].try(:installation) : "-" %></td>
+      </tr>
+    </table>
+    <% end %>
+  </tr>
+  <% end %>

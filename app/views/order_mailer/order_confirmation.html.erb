@@ -1,0 +1,109 @@
+<style>
+body {
+	background: #f5f5f5;
+}
+</style>
+<table width="600" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#666666; margin:0 auto; padding:10px 5px; background:#fff">
+  <tr>
+    <td>
+      <!-- <table width="100%" style="border-bottom:solid 1px #ebebeb; padding-bottom:15px;">
+        <tr>
+          <td style="padding-left:30px;"><img src="http://sp-assurance.com/ServiceDealz/logo.png" width="228" height="79" alt="Service Deal"></td>
+          <td align="right" style="font-size:12px; text-align:right; padding-top:15px; padding-right:20px;">Mailing Address:<br>
+            <a href="mailto:info@servicedeal.com" style="color:#e50005; text-decoration:none;">info@servicedeal.com</a></td>
+        </tr>
+      </table> -->
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="100%" style="padding:30px;  border-bottom:solid 1px #ebebeb;">
+        <tr>
+          <td style="text-align:left; color:#e9292a; font-size:20px;">Hi <%=@name%></td>
+        </tr>
+        <tr>
+          <td style="text-align:left; color:#8f8f8f; font-size:14px; line-height:18px;">Thank You for your purchanse from ServiceDealz.</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="100%" style="padding:20px 30px;" >
+        <tr>
+          <td style="text-align:left; color:#000; font-size:18px; padding-bottom:20px;">Order Details</td>
+        </tr>
+        <tr>
+          <td>
+            <table width="100%">
+              <tr>
+                <td width="50%" valign="top" style="color:#181818; font-size:13px; line-height:18px;">
+                  <p style="padding:0; margin:0">Order# <span style="font-weight:bold"><%=@order.order_id%> </span></p>
+                  <p style="padding:0; margin:0">Placed on <%=@order.created_at.strftime("%D")%></p>
+                </td>
+                <td width="50%" style="text-align:right; color:#181818; font-size:13px; line-height:18px;"> <b>Shipping Address: </b><br />
+                  <%=@order_billing_address.address1%> <br />
+                  <%=@order_billing_address.address2%><br />
+                  <%=try(@order_billing_address.address2)%><br />
+                  <%=@order_billing_address.state%> <br />
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table width="100%" style="font-size:14px; font-weight:bold;padding: 5px 0; margin-top: 20px; border-top:solid 1px #ebebeb;  background:#ececec;">
+              <% @order.order_items.each do |order_item| %>
+              <% @total_price = 0.00 %>
+               <% deal = Deal.find_by_id(order_item.deal_id)%>
+               <% if deal.present? %>
+                   <tr>
+                     <td width="30%" style="padding:0 10px 0 0;"><img width="100%" src="<%= deal.image.present? ? deal.image.url : '' %>" alt="<%= deal.title %>"></td>
+                     <td width="60%" style="padding:0 10px; font-size:12px;"><%= deal.title %> <br>
+                       <%= deal.short_description %></td>
+                     <td width="10%" style="padding:0 0 0 10px;">$<%= order_item.effective_price %></td>
+                   </tr>
+                   <% @total_price += order_item.effective_price %>
+               <% end %>
+           <% end %>
+            </table>
+          </td>
+        </tr>
+       <tr>
+        	<td  align="right" style="font-size:15px; color:#315a81; font-weight:bold; padding:8px 15px;  background:#f7f7f7;">Order Total: <%=@total_price%></td>
+        </tr>
+
+
+
+      </table>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td>
+      <table width="100%">
+
+        <tr height="20"></tr>
+        <tr>
+          <td style="font-size:14px; color:#666666; padding-bottom:10px; line-height:22px; text-align:center; padding-top:15px;"> Connect with us </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding-bottom:20px; border-bottom:solid 1px #d3d3d3;">
+            <a href="#"><%=image_tag("http://sp-assurance.com/ServiceDealz/fb-icon.png", width: "36", alt: "Edit Entry")%>
+            <a href="#"><img src="http://sp-assurance.com/ServiceDealz/linkedIn-icon.png" width="36" height="36" alt="Linkein" title="LinkedIn" style="padding-right:5px;" /></a>
+            <a href="#"><img src="http://sp-assurance.com/ServiceDealz/twitter-icon.png" width="36" height="36" alt="twitter" title="Twitter" style="padding-right:5px;" /></a>
+            <a href="#"><img src="http://sp-assurance.com/ServiceDealz/whatapp-icon.png" width="36" height="36" alt="whatsapp" title="Whatsapp" /></a>
+           </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="font-size:12px; color:#8f8f8f; padding-top:15px; line-height:20px; text-align:center">ServiceDealz has sent this e-mail to you because your subscription preferences <br>
+              indicate that you want to receive alerts on this email address. Click here to <a href="#" style="color:#808080">unsubscribe.</a></p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

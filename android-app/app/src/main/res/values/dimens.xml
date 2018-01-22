@@ -1,0 +1,11 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="sliding_menu_width">130dp</dimen>
+    <dimen name="text_size20">20sp</dimen>
+    <dimen name="text_size16">16sp</dimen>
+    <dimen name="text_size15">15sp</dimen>
+    <dimen name="paddingItemDecorationDefault">5dp</dimen>
+    <dimen name="paddingItemDecorationEdge">5dp</dimen>
+</resources>

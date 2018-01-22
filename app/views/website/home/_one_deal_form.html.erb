@@ -1,0 +1,72 @@
+
+      <div class="col-md-12 sd-box-con">
+          <a class="sd-alldeal"  href="<%= deal_details_website_home_index_path %>?category_id=<%= deal_data[:service_category_id]%>&zip_code=<%= get_zipcode_and_user_type %>&deal_type=<%= session[:user_type] %>">All <%= deal_data[:service_category_name]%> Deals <i class="fa  fa-angle-right"></i></a>
+
+        <h2><%= deal_data[:service_category_name]%></h2>
+
+        <div class="col-md-3 col-sm-3 col-xs-3  sd-dealinfo-left">
+           
+          <div class="sd-deal-img"> 
+            <%if display_logo_permission(trending_deal['service_provider_id'],trending_deal['deal_type'])%>
+           <a href="<%= more_deal_details_website_home_index_path(:deal_id=> trending_deal['id'],:effective_price => trending_deal['effective_price']) %>">
+              <img src="<%=display_logo_permission(trending_deal['service_provider_id'],trending_deal['deal_type'])%>" alt="Deal Logo" class="img-responsive">
+            </a>
+            <%else%>
+            <a href="<%= more_deal_details_website_home_index_path(:deal_id=> trending_deal['id'],:effective_price => trending_deal['effective_price']) %>">
+             <img src="<%= trending_deal['deal_image_url'] %>" alt="Deal Logo" class="img-responsive"> 
+           </a>
+            <% end %>
+            
+          </div>
+
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-9  sd-deal-info">
+          <div class="no-login-tdeal"><img src="/assets/website/trending-dealblock.png" alt="Trending Deal" ></div>
+            <%title =display_deal_name_permission(trending_deal['service_provider_id'],trending_deal['deal_type'],trending_deal['title'])%>
+            <% if title.present? %>
+          <h4 class="tooltip_p" title='<%=trending_deal['title']%>', data-toggle = 'tooltip' data-placement = 'bottom'><%= title rescue nil%></h4>
+          <% else %>
+          <h4><%= title rescue nil %></h4>
+          <% end %>
+
+
+
+          <!-- <h4><%#= display_deal_name_permission(trending_deal['service_provider_id'],trending_deal['deal_type'],trending_deal['title']) %></h4> -->
+          <%= render :partial => "rating_form" ,locals: {deal: trending_deal}%>
+
+          <!--  <p>
+          <%#=trending_deal['short_description'].to_s.gsub(/\n/,"<br> ").html_safe%></p>-->
+          <!-- <a href="javascript:void(0)" id="seemore_<%#=trending_deal['id']%>" onclick="show_more_button(<%#=trending_deal['id']%>)">See Less</a> -->
+          <div id="moredeal-info_<%=trending_deal['id']%>">
+            <!-- <b>Includes:</b><br/> -->
+       <%=simple_format(trending_deal['detail_description'])%>
+          </div>
+          <ul class="sd-deal-price">
+            <li class="sd-dealprice-single">Deal Price:<span>$<%= trending_deal['deal_price']%>/mon</span></li>
+            <li class="sd-effective-price-single">Effective Price:<span>$<%="%.2f" %  trending_deal['effective_price'] if trending_deal['effective_price'].present?%>/mon</span></li>
+            <% if trending_deal['contract_period'] == 0 %>
+            <li>Contract:<span>None</span></li>
+            <% else %>
+            <li>Contract:<span><%= trending_deal['contract_period'] %>months</span></li>
+
+            <% end %>
+
+          </ul>
+           <a href="<%= more_deal_details_website_home_index_path(:deal_id=> trending_deal['id'],:effective_price => trending_deal['effective_price']) %>" class="sd-more-details">+ More Details</a>
+          <%#= render :partial => "#{deal_data[:service_category_name].downcase}_deal_form" %>
+
+        </div>
+      </div>
+<script>
+// function show_more_button(id) {
+//   if($('#moredeal-info_'+id).is(":visible") == true) {
+//      $('#moredeal-info_'+id).slideToggle();
+//      $('#seemore_'+id).text("See More")
+//   }
+//   else
+//   {
+//    $('#moredeal-info_'+id).slideToggle();
+//      $('#seemore_'+id).text("See Less")
+//   }
+// }
+</script>

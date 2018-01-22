@@ -1,0 +1,43 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%' >
+  <tr> 
+    <td class='main' id='main' valign='top'>
+
+      <div class='title_tools'>
+				<% if current_user.is_at_admin_level? %><%= link_to "View All Bundle Service Preferences", bundle_service_preferences_path %><% end %>
+      </div>
+      <div class='title'>
+        <span id='title'>Update Bundle Service Preference</span>
+      </div>
+			<div class="small-6 large-centered columns">
+				<%= form_for(@bundle_service_preference) do |f| %><br/>
+				  <div><strong>Service Preference Id : </strong><br />
+				  <%= f.text_field :service_preference_id, :readonly => true %></div>
+				  <div><strong>Bundle Combo : </strong><br />
+				  <%= f.text_field :bundle_combo %></div>
+				  <div><strong>Upload Speed :</strong><br />
+				  <%= f.text_field :upload_speed %></div>
+				  <div><strong>Download Speed :</strong><br />
+				  <%= f.text_field :download_speed %></div>
+				  <div><strong>Data :</strong><br />
+				  <%= f.text_field :data %></div>
+				  <div><strong>Free Channels :</strong><br />
+				  <%= f.text_field :free_channels %></div>
+				  <div><strong>Premium Channels :</strong><br />
+				  <%= f.text_field :premium_channels %></div>
+				  <div><strong>Domestic Call Minutes :</strong><br />
+				  <%= f.text_field :domestic_call_minutes %></div>
+				  <div><strong>International Call Minutes :</strong><br />
+				  <%= f.text_field :international_call_minutes %></div>
+				  <div><strong>Data Plan :</strong><br />
+				  <%= f.text_field :data_plan %></div>
+				  <div><strong>Data Speed :</strong><br />
+				  <%= f.text_field :data_speed %></div>
+				  <div><%= f.check_box :domestic_call_unlimited %><strong>Domestic Call Unlimited ? </strong></div>
+				  <div><%= f.check_box :international_call_unlimited %><strong>International Call Unlimited ? </strong></div>
+				  <div><%= f.submit "Update" %></div>
+				<% end %>
+			</div>
+    </td>
+	</tr>
+</table>
+

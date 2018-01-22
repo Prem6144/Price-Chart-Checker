@@ -1,0 +1,41 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%' >
+  <tr> 
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+		<%= link_to "View All EquipmentColors", equipment_colors_path %>
+      </div>
+      <div class='title'>
+        <span id='title'>Add a New EquipmentColor</span>
+      </div>
+
+			<div class="small-6 large-centered columns">
+				<%= form_for(@equipment_color, :url => @equipment_colors) do |f| %>
+					<br/>
+					<% if @equipment_color.errors.any? %>
+  					<div id="error_explanation">
+    					<div class="alert alert-danger">
+      					The form contains <%= pluralize(@equipment_color.errors.count, "error") %>.
+    					</div>
+    					<ul>
+    						<% @equipment_color.errors.full_messages.each do |msg| %>
+      						<li><%= msg %></li>
+    						<% end %>
+    					</ul>
+  					</div>
+					<% end %>
+				  <br/>
+						<div><span style="color:#4285F4"><strong><i>Fields marked * are mandatory</i></strong></span></div><br/>
+					<div><strong>Color Name: </strong><br />
+				  <%= f.text_field :color_name %></div>
+          <div><strong>Color Code: </strong><br />
+          <%= f.text_field :color_code %></div>
+          <div><strong>Color Image: </strong><br />
+          <%= f.file_field :image %></div>
+				  <div><%= f.check_box :status %><strong>Status</strong></div>
+				  <div><%= f.submit "Create" %></div>
+				<% end %>
+			</div>
+    </td>
+	</tr>
+</table>
+

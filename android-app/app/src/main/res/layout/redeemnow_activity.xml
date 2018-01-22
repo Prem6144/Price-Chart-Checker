@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backround_color_ServiceDealz"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/rl_button"
+            android:layout_marginBottom="40dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txt_total_gift_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Available Balance: "
+                android:textColor="@color/black_color"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_available_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/txt_total_gift_card"
+                android:gravity="center"
+                android:text="$0"
+                android:textColor="@color/red_color"
+                android:textSize="22sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="30dp">
+
+            <Button
+                android:id="@+id/btn_cashout_maximum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_background_red"
+                android:text="Cashout maximum amount"
+                android:textAllCaps="false"
+                android:textColor="@color/white_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_modify_cashout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_cashout_maximum"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/btn_background_red"
+                android:text="Modify cash amount"
+                android:textAllCaps="false"
+                android:textColor="@color/white_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_modify_cashout"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/btn_background_red"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/white_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

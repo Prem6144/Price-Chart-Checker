@@ -1,0 +1,69 @@
+<div class="col-sm-12">
+  <div class="border-radius-bg pagin-sty">
+
+    <div class="row">
+      <div class="col-md-12  pagination_sec">
+        <h6 class="heading-2">Sort By:</h6>
+        <ul>
+          <!--<li><a class="active" href="#">Relevance</a></li>-->
+          <%
+             if params[:sort_by] == 'price ASC'
+               active_class1 = 'active'
+               active_class2 = ''
+             elsif params[:sort_by] == 'price DESC'
+               active_class1 = ''
+               active_class2 = 'active'
+             else
+               active_class1 = 'active'
+               active_class2 = ''
+             end
+          %>
+          <li><%= link_to 'Price Low to High',params.merge({:sort_by => 'price ASC'}),:class => active_class1 %></li>
+          <li><%= link_to 'Price High to Low',params.merge({:sort_by => 'price DESC'}),:class => active_class2 %></li>
+        </ul>
+        <%if session[:user_id].present? and ServicePreference.where(:app_user_id=>session[:user_id], :service_category_id=>params[:category_id]).present?%>
+         <div style="float:right">  <a href="#" data-toggle="modal" data-target="#myModal" class="prefrence-popup">Edit Service</a> </div>
+         <%elsif session[:user_id].present?%>
+         <div style="float:right">  <a href="#" data-toggle="modal" data-target="#myModal" class="prefrence-popup">Add Service </a> </div>
+        <%end%>
+      </div>
+      <div class="col-md-4">
+        <div class="input-group stylish-input-group">
+          <!-- <input type="text" class="form-control" placeholder="Search...">
+                                        <span class="input-group-addon">
+                                            <button type="submit">
+                                              <span class="glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </span> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="modal fade text-left services-popup" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <button type="button" class="close log-pop-btn" data-dismiss="modal">×</button>
+    <div class="modal-content compare-popsty">
+          <h4>Current <%=ServiceCategory.get_category_name_by_id(params[:category_id]).capitalize%> Service</h4>
+        <div class="modal-body">
+              <%if params[:category_id].to_i == 1%>
+               <%=render :partial=>"internet_preferences.html.erb" %>
+              <%end%>
+              <%if params[:category_id].to_i == 2%>
+               <%=render :partial=>"telephone_preferences.html.erb" %>
+              <%end%>
+              <%if params[:category_id].to_i == 3%>
+               <%=render :partial=>"cable_preferences.html.erb" %>
+              <%end%>
+              <%if params[:category_id].to_i == 4%>
+               <%=render :partial=>"cellphone_preferences.html.erb" %>
+              <%end%>
+              <%if params[:category_id].to_i == 5%>
+               <%=render :partial=>"bundle_preferences.html.erb" %>
+              <%end%>
+        </div>
+    </div>
+  </div>
+</div>

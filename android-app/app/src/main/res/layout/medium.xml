@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:id="@+id/email_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="#000000"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How many text-only emails  do you send/receive?"
+                android:textColor="#949393"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/seekBar_email"
+                    android:layout_width="@dimen/_210sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:max="50"
+                    android:progressDrawable="@drawable/progressbar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100 emails"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pages_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/email_ll"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Web Aceess"
+                android:textColor="#000000"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How many web pages do you spend on video calling?"
+                android:textColor="#949393"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/seekBar_web"
+                    android:layout_width="@dimen/_210sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:progressDrawable="@drawable/progressbar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="500 pages"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/video_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pages_ll"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Video Calling"
+                android:textColor="#000000"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How many minutes do you spend on video calling?"
+                android:textColor="#949393"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/seekBar_video"
+                    android:layout_width="@dimen/_210sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:progressDrawable="@drawable/progressbar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="90 mins"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/photo_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/video_ll"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload and Download"
+                android:textColor="#000000"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How many photos do you upload and download?"
+                android:textColor="#949393"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/seekBar_photo"
+                    android:layout_width="@dimen/_210sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:progressDrawable="@drawable/progressbar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100 photos"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="wrap_content"
+            android:layout_height="1dip"
+            android:layout_below="@+id/photo_ll"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="#000" />
+
+        <LinearLayout
+            android:id="@+id/device_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line1"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Device(s)"
+                android:textColor="#000000"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="How many device(s) you are using?"
+                android:textColor="#949393"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                style="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/spinner_rounded" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line1"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_55sdp"
+            android:layout_toRightOf="@+id/device_ll"
+            android:text="Calculated bandwidth will be multiplied by the number of devices you have choosen."
+            android:textColor="#333333"
+            android:textSize="@dimen/_8sdp"
+            android:textStyle="italic" />
+
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="wrap_content"
+            android:layout_height="1dip"
+            android:layout_below="@+id/device_ll"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="#000" />
+
+        <LinearLayout
+            android:id="@+id/data_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line2"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Monthly Data Usage for one Your Devices"
+
+                android:textColor="#949393"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:max="100"
+                android:progress="35"
+                android:progressDrawable="@drawable/progressbar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/data_ll"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 GB"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_28sdp"
+                android:text="4 GB"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_28sdp"
+                android:text="8 GB"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_28sdp"
+                android:text="12 GB"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_28sdp"
+                android:text="16 GB"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_28sdp"
+                android:text="20+ GB"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

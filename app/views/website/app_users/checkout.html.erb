@@ -1,0 +1,345 @@
+<% unless session[:user_id].present? %>
+  <section class="login-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-8 col-sm-12  col-xs-12 col-md-offset-2">
+            <!-- <form class="checkout-login"> -->
+            <form class="checkout-login" id="order_login_app_user" action="/website/app_users/signin" accept-charset="UTF-8" method="post">
+              <div id="sign_in_checkout" class="col-md-7 inner-logindt">
+                <h4> Login</h4>
+                <div class="form-group">
+                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
+                  <input type="text" class="form-control" placeholder="Email"  name="user[email]" id="checkout_user_email" >
+                  <!-- <input type="text" required placeholder="Email" class="form-control"> -->
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" placeholder="Password" name="user[password]" id="checkout_user_password" >
+                </div>
+                <div class="form-group">
+                  <input type="submit" name="commit" value="Login" class="btn  btn-login" id="checkout_login_user">
+                  <!-- <button type="button" class="btn  btn-login" id="checkout_login_user">Login to continue</button> -->
+                  <a href ="#" id="sign_up_btn" class="sign-up-btn">Sign up?</a>
+                </div>
+                <div class="form-group">
+                  <!-- <div class="checkbox checkbox-info"> -->
+                    <!-- <input id="checkbox8a" type="checkbox"> -->
+                    <!-- <label for="checkbox8a"> <span> Checkout as Guest </span> </label> -->
+                    <!-- <label class="checkbox-inline" >
+                    <input type="checkbox" value="" id="" name="" >
+                    Remember Me</label> -->
+                  <!-- </div> -->
+
+                    <!-- <div class="checkbox checkbox-info" id="deal-checkbox"> -->
+                      <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+                      <label for="checkbox15">   Remember Me</label>
+                            <!-- <input type="checkbox" value="" name="" id="checkbox15"> -->
+                       <!--
+                        </div> -->
+                  <!--  </span> <span class="pull-right"><a class="help-block" href="javascript:void(0)" id="checkout_forgot_password">Forgot Your Password?</a></span>  -->
+                  <a href="javascript:void(0)" id="checkout_forgot_password" class="forgot-pasw">Forgot password?</a>
+                </div>
+                <span class="seperator">OR</span>
+              </div>
+              <div class="col-md-5 login-socialmedia"> <a href="#" class="login-wd-fb"><i class="fa fa-2x fa-facebook"></i> Login with facebook</a> <a href="#" class="login-wd-gp"><i class="fa fa-2x fa-google-plus"></i>Login with googleplus</a> </div>
+            </form>
+            <% @user = AppUser.new() %>
+            <%= form_for(@user, :url => website_app_users_path,:html => {:id=>"sign_up_checkout",:class => "checkout-login"}) do |f| %>
+            <div class="col-md-12 inner-signdt">
+              <h4> Signup</h4>
+              <div class="form-group col-md-6">
+                <%= f.text_field :first_name,:class => "form-control",:placeholder => "First name",required: true , id: "checkout_app_user_first_name",:onblur =>"titleize_text(this)",:onkeyup=>"titleize_text(this)"%>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.text_field :last_name,:class => "form-control",:placeholder => "Last name" , required: true, id: "checkout_app_user_last_name",:onblur =>"titleize_text(this)",:onkeyup=>"titleize_text(this)"%>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.text_field :email,:class => "form-control",:placeholder => "Email", :id => "checkout_signup_user_email" %>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.password_field :password,:class => "form-control",:placeholder => "Password", :id => "checkout_signup_user_password" %>
+                <span id="result1"></span>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.password_field :password_confirmation,:class => "form-control",:placeholder => "Confirm Password" , :id => "checkout_signup_user_cpassword"%>
+              </div>
+              <div class="form-group col-md-6">
+                <select class="form-control" name="app_user[user_type]" id="app_user_user_1" required>
+                  <option value="0">Select User type</option>
+                  <option value="residence">Residence</option>
+                  <option value="business">Business</option>
+
+                </select>
+                <%#=f.select :user_type,["Select User type", ["Residence","residence"], ["Business","business"]], :class=>"form-control"%>
+              </div>
+              <div class="form-group col-md-6">
+               <%= f.text_field :zip,:class => "form-control",:placeholder => "Enter Zip", :id => "checkout_signup_user_zip", :maxlength=> 6 %>
+             </div>
+              <!-- <div class="form-group col-md-6"> -->
+                <div id="business_name_div_1" class="form-group col-md-6">
+                <%= text_field_tag(:business_name,"",:class => "form-control",:placeholder => "Business name", :name=>"business[business_name]",:onkeyup=>"titleize_text(this)") %>
+              <!-- </div> -->
+
+              </div>
+              <div class="form-group col-md-6">
+                <select id="checkout_business_type" name="business[business_type]" class="form-control col-md-6">
+                  <option value="0">Select Business type</option>
+                  <option value="SOLE_PROPRIETOR">Sole Proprietor</option>
+                  <option value="REGISTERED">Registered</option>
+                </select>
+              </div>
+
+
+
+              <div class="form-group col-md-12">
+                <!-- <button type="button" class="btn  btn-login">Signup to continue</button> -->
+                <%= f.submit "Signup", :class => "btn  btn-login",:id => 'checkout_create_user' %>
+                <a href ="#" id="login_btn" class="sign-up-btn">Already a User?</a>
+              </div>
+              <% end %>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
+<script type="text/javascript">
+ function titleize_text(object) {
+    value=$("#"+object.id).val();
+    rest=value.substr(1);
+    object.value=value[0].toUpperCase()+""+rest
+  }
+  $( document ).ready(function() {
+    $('#checkout_signup_user_password').keyup(function() {
+        $('#result1').html(checkStrength($('#checkout_signup_user_password').val()));
+      });
+
+     function checkStrength(password) {
+          var strength = 0
+          if (password.length < 8) {
+              $('#result1').removeClass()
+              $('#result1').addClass('short')
+              return '8 characters or longer.<br/> Atleast one number, one alphabet and one symbol (like @#$%*).'
+          }
+          if (password.length > 7) strength += 1
+          // If password contains both lower and uppercase characters, increase strength value.
+          if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1
+          // If it has numbers and characters, increase strength value.
+          if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) strength += 1
+          // If it has one special character, increase strength value.
+          if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+          // If it has two special characters, increase strength value.
+          if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+          // Calculated strength value, we can return messages
+          // If value is less than 2
+          if (strength < 2) {
+              $('#result1').removeClass()
+              $('#result1').addClass('short')
+              return '8 characters or longer.Atleast one number and one symbol (like @#$%*)'
+          } else if (strength == 2) {
+              $('#result1').removeClass()
+              $('#result1').addClass('short')
+              return '8 characters or longer.Atleast one number and one symbol (like @#$%*)'
+          } else {
+              $('#result1').removeClass()
+              $('#result1').addClass('strong')
+              return ''
+          }
+      }
+
+       $("#app_user_user_1 option[value='Select User type']").prop("selected","selected")
+        $("#business_name_div_1").hide();
+        $("#checkout_business_type").hide();
+
+      $("#app_user_user_1").change(function(){
+        if (  $("#app_user_user_1 option:selected").val() == "business") {
+          $("#business_name_div_1").show();
+        $("#checkout_business_type").show();
+
+          // $(".height_popup").css("height", "700px")
+        }
+        else {
+          $("#business_name_div_1").hide();
+        $("#checkout_business_type").hide();
+
+        }
+      });
+
+    $("#sign_up_checkout").hide();
+      $("#checkout_create_user").click(function(){
+          var check = true;
+
+          var a = $('#checkout_signup_user_email').val().trim();
+          if (a == null || a == "") {
+              $('#checkout_signup_user_email').addClass('custom-input-error')
+              check = false
+          }else{
+              $('#checkout_signup_user_email').removeClass('custom-input-error')
+          }
+
+          var a = $('#checkout_signup_user_password').val().trim();
+          var b = $('#checkout_signup_user_cpassword').val().trim();
+          if (a == null || a == "" || b == null || b == "" || (a != b) ) {
+              $('#checkout_signup_user_password').addClass('custom-input-error')
+              $('#checkout_signup_user_cpassword').addClass('custom-input-error')
+              check = false
+          }else{
+              $('#checkout_signup_user_password').removeClass('custom-input-error')
+              $('#checkout_signup_user_cpassword').removeClass('custom-input-error')
+          }
+
+          if ($("#checkout_app_user_first_name").val()!=""){
+            $('#checkout_app_user_first_name').removeClass('custom-input-error')
+          }
+          else{
+            $('#checkout_app_user_first_name').addClass('custom-input-error')
+            check = false
+          }
+
+          if ($("#checkout_app_user_last_name").val()!=""){
+            $('#checkout_app_user_last_name').removeClass('custom-input-error')
+          }
+          else{
+            $('#checkout_app_user_last_name').addClass('custom-input-error')
+            check = false
+          }
+
+          if ($("#checkout_signup_user_zip").val()!=""){
+            $('#checkout_signup_user_zip').removeClass('custom-input-error')
+          }
+          else{
+            $('#checkout_signup_user_zip').addClass('custom-input-error')
+            check = false
+          }
+
+           if ($("#app_user_user_1").val()!="0"){
+              $('#app_user_user_1').removeClass('custom-input-error')
+          }
+          else{
+              $('#app_user_user_1').addClass('custom-input-error')
+              check = false
+          }
+
+          if(check) {
+               if($("#app_user_user_1 option:selected").val()=="business" && $("#checkout_business_name").val()!="" && $("#checkout_business_type").val()!="0") {
+                  $("#new_app_user").submit();
+              }
+              else {
+                  if($("#app_user_user_1 option:selected").val()=="residence" && check) {
+                      $("#new_app_user").submit();
+                  }
+                  else {
+                      alert("Please enter all fields")
+                      event.preventDefault();
+                  }
+
+              }
+
+          }else{
+              return false
+          }
+      });
+
+  $("#sign_up_btn").click(function(){
+
+  $("#order_login_app_user").hide();
+
+  $("#sign_up_checkout").show();
+
+  });
+
+  $("#login_btn").click(function(){
+  $("#sign_up_checkout").hide();
+  $("#order_login_app_user").show();
+
+  });
+
+
+
+
+
+
+      $("#checkout_login_user").click(function(){
+          var check = true;
+
+          var a = $('#checkout_user_email').val().trim();
+          if (a == null || a == "") {
+              $('#checkout_user_email').addClass('custom-input-error')
+              check = false
+          }else{
+              $('#checkout_user_email').removeClass('custom-input-error')
+          }
+
+          var a = $('#checkout_user_password').val().trim();
+          if (a == null || a == "") {
+              $('#checkout_user_password').addClass('custom-input-error')
+              check = false
+          }else{
+              $('#checkout_user_password').removeClass('custom-input-error')
+          }
+
+          if(check) {
+              $('#checkout_login_app_user').submit()
+          }else{
+              return false
+          }
+      });
+
+      $("#checkout_forgot_password").click(function(){
+          var user_email = $('#checkout_user_email').val();
+          if(user_email != ''){
+              location.href = "<%= forget_password_website_app_users_path %>?email=" + user_email
+          }else{
+              alert('Please enter your email address')
+          }
+      });
+
+  });
+
+  $( "#checkout_signup_user_email").focusout(function() {
+      checkEmail('signup',$(this).val());
+  });
+  $( "#checkout_user_email").focusout(function() {
+      checkEmail('signin',$(this).val());
+  });
+
+  function isEmail(email) {
+      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      return regex.test(email);
+  }
+
+  function checkEmail(action,email) {
+      if( !isEmail(email)) {
+          $('#checkout_signup_user_email, #checkout_user_email').val('');
+          $('#checkout_signup_user_email, #checkout_user_email').addClass('custom-input-error')
+      }else {
+          $.ajax({
+              type: "GET",
+              url: "<%= check_user_email_ajax_website_app_users_path %>?email=" + email,
+              dataType: "json",
+              success: function (data) {
+                  if(action == 'signup') {
+                      if (data['data'] && data['data']['email']) {
+                          $('#checkout_signup_user_email').addClass('custom-input-error');
+                          $('#checkout_signup_user_email').val('');
+                      } else {
+                          $('#checkout_signup_user_email').removeClass('custom-input-error')
+                      }
+                  }else{
+                      if (data['data'] && data['data']['email']) {
+                          $('#checkout_user_email').removeClass('custom-input-error')
+                      } else {
+                          $('#checkout_user_email').addClass('custom-input-error');
+                          $('#checkout_user_email').val('');
+                      }
+                  }
+              },
+              error: function (data) {
+                  //alert(data)
+              }
+          });
+      }
+  }
+</script>

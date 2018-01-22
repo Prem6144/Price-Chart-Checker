@@ -1,0 +1,240 @@
+<% deal_attributes =  customized_deals['deal_attributes'] 
+deal_equipments = customized_deals['deal_equipments'] 
+deal_extra_services = customized_deals['deal_extra_services'] 
+deal_channel_packages = customized_deals['channel_packages']
+ %>
+
+<section>
+	<div class='equipments-details col-md-12'>	
+		<h5>Choose Your Custom TV Plan</h5>
+		<div id="deal_attributes" class="owl-carousel" style='float: left;'>
+			<% deal_attributes.each do |deal_attribute| %>
+				<div class="text-center">
+					<div class="sd-deal-sty">
+						<div class="custom_cursor" onclick="show_modal(<%=deal_attribute.to_json%>,'cable_attribute')">
+						<h6><%= deal_attribute["title"]%></h6>	
+						<p><%=deal_attribute["channel_count"]%>+ Channels</p>	
+						<p><%= deal_attribute["hd_channels"]%>+ HD</p>	
+						<p><%= deal_attribute["description"]%></p>	
+						<p>Price $<%= deal_attribute["amount"]%>/mo</p>	
+					</div>
+						<div class="text-left">
+							<div class="checkbox checkbox-info">
+								<input type="checkbox" id="deal_attribute_<%=deal_attribute['id']%>" name="deal_attributes" val="<%=deal_attribute['id']%>_<%= deal_attribute["amount"]%>_cable" />
+								<%#=deal_attribute['data_plan_price'].to_f %>
+								<label for="deal_attribute_<%=deal_attribute['id']%>" >Select</label>
+			  			</div>
+			  		</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class='equipments-details col-md-12'>	
+		<h5>Get More With Premium Channels</h5>
+	 	<div id="channel_package" class="owl-carousel" style='float: left;'>
+			<% deal_channel_packages.each do |deal_channel_package| %>
+				<div class="text-center">
+					<div class="sd-deal-sty " >
+						<div class="custom_cursor" onclick="show_modal(<%=deal_channel_package.to_json%>,'channel_package')">
+						<h6><%= deal_channel_package["package_name"]%></h6>	
+						<p><%=deal_channel_package["channel_count"]%>+Channels</p>	
+						<p>Domestic minutes <%= deal_channel_package["description"]%></p>	
+						<p>Price $<%= deal_channel_package["price"]%>/mo</p>	
+					</div>
+						<div class="text-left">
+							<div class="checkbox checkbox-info">
+								<input type="checkbox" id="deal_channel_package_<%=deal_channel_package['id']%>" name="deal_channel_packages" val="<%=deal_channel_package['id']%>_<%= deal_channel_package["price"]%>_channel_packeage" />
+								<label for="deal_channel_package_<%=deal_channel_package['id']%>" >Select</label>
+							</div>
+		  			</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class='equipments-details col-md-12'>	
+		<h5>Cable Equipments</h5>
+		<div id="cable_deal_equipments" class="owl-carousel" style='float: left;'>
+			<% deal_equipments.each do |deal_equipment| %>
+				<div class="text-center">
+					<div class="sd-deal-sty" >
+						<div class="custom_cursor" onclick="show_modal(<%=deal_equipment.to_json%>,'cable_equipment')">
+						<h6><%= deal_equipment["name"]%></h6>	
+						<!-- <p>Data Plan Price: $<%#=deal_equipment["data_plan_price"]%></p>	 -->
+						<!-- <p>Domestic minutes <%#= deal_equipment["domestic_call_minutes"]%></p>	 -->
+						<p>Price $<%= deal_equipment["price"]%>/mo</p>	
+					</div>
+						<div class="text-left">
+							<div class="checkbox checkbox-info">
+								<input type="checkbox" id="cable_deal_equipment_<%=deal_equipment['id']%>" name="cable_deal_equipments" val="<%=deal_equipment['id']%>_<%=deal_equipment['price'].to_f%>" />
+								<label for="cable_deal_equipment_<%=deal_equipment['id']%>" >Select</label>
+			  			</div>
+			  		</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+
+
+
+		<div id="customdeal" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+  	<button type="button" class="close log-pop-btn" data-dismiss="modal">&times;</button>
+    <div id="custom_services" class="modal-content">
+      <div id="cable_attribute_div" class="modal-body  ">
+      	<h4 id="cable_attribute_title"></h4>
+      	<strong id="cable_attribute_price" class="pop-price"><span>Price</span> ""</strong>
+      	<p id="cable_attribute_description"></p>
+      	<ul class="channel_scroller row channel-list  channel-new-sty" id="cable_attribute_channel_list"></ul>
+
+   		</div>
+
+   		<div id="channel_package_div" class="modal-body">
+      <h4 id="channel_package_title"></h4>
+      	<strong id="channel_package_price" class="pop-price"><span>Price</span> ""</strong>
+      	<p id="channel_package_description"></p>
+      	<ul class="channel_scroller row channel-list channel-new-sty" id="channel_package_channel_list"></ul>
+   		</div>
+
+   		<div id="cable_equipment_div" class="modal-body">
+      	<h4 id="cable_equipment_title"></h4>
+      	<strong id="cable_equipment_price" class="pop-price"><span>Price</span> ""</strong>
+      	<p id="cable_equipment_desc"></p>
+   		</div>
+    </div>
+  </div>
+</div>
+
+</section>
+
+<script>
+var effective_price;
+ effective_price = parseFloat($('#effective_price').text().split('$')[1].split('/')[0]);
+
+ $('#cable_deal_equipments,#deal_attributes,#channel_package').owlCarousel({
+    loop:true,
+    margin:10,
+    responsiveClass:true,
+   items:3,
+  });
+
+ function show_modal(data,type) {
+ 		$('#custom_services').children().addClass('hidden');
+		if (type == 'cable_attribute') {
+			$("#"+type+"_div").removeClass('hidden');
+			$("#"+type+'_price').html("Price" + " " + "$" +data["amount"]);
+			$("#"+type+'_description').html(data["description"]);
+			$("#"+type+'_title').html(data["title"]);
+			// $("#"+type+'channel_list').html("<ul>");
+			for(i=0;i<data['channel_name'].length;i++) {
+				$("#"+type+'_channel_list').append("<li>"+data['channel_name'][i]['channel_name']+"</li>");
+			}
+			// $("#"+type+'channel_list').html("</ul>");
+		}
+		if (type == 'channel_package') {
+			$("#"+type+"_div").removeClass('hidden');
+			$("#"+type+'_price').html("Price" + " " + "$"+data["price"]);
+			$("#"+type+'_description').html(data["description"]);
+			$("#"+type+'_title').html(data["package_name"]);
+			// $("#"+type+'channel_list').html("<ul>");
+			for(i=0;i<data['channel_name'].length;i++) {
+				console.log(data['channel_name'][i]['channel_name']);
+				$("#"+type+'_channel_list').append("<li>"+data['channel_name'][i]['channel_name']+"</li>");
+			}
+			// $("#"+type+'channel_list').html("</ul>");
+		}
+		if (type == 'cable_equipment') {
+			$("#"+type+"_div").removeClass('hidden');
+			$("#"+type+'_title').html(data["name"]);
+			$("#"+type+'_price').html("Price" + " " + "$" +data["price"]);
+			$("#"+type+'_desc').html(data["description"]);
+
+
+
+		}
+   		$("#customdeal").modal("show");
+	}
+
+	$(document).ready(function() {
+		$("#order-btn").hide();
+		$("#reset_order").hide();
+		 $("input[name='deal_attributes']:first").prop("checked","checked");
+	     $("input[name='cable_deal_equipments']:first").prop("checked","checked");
+	     $("input[name='deal_channel_packages']:first").prop("checked","checked");
+  // // $("input[name='deal_attributes']:first").prop("checked","checked");
+  // // $("input[name='deal_extra_services']:first").prop("checked","checked");
+  // effective_price = parseFloat($('#effective_price').text().split('$')[1].split('/')[0]);
+  // var chkId = 0;
+  // $('input[type=checkbox]').on('change', function() {
+  //   $(this).each ( function() {
+  //     effective_price = parseFloat($('#effective_price').text().split('$')[1].split('/')[0]);
+  //     if($(this).prop('checked') == true){
+  //       effective_price = parseFloat($('#effective_price').text().split('$')[1].split('/')[0]);
+  //       chkId =$(this).attr("val").split("_")[1];
+  //       effective_value = effective_price + parseFloat(chkId);
+  //       $('#effective_price').text('$' + effective_value.toFixed(2) + '/mo');
+  //     }
+  //     else if($(this).prop('checked') == false){
+  //       effective_price = parseFloat($('#effective_price').text().split('$')[1].split('/')[0]);
+  //       chkId =$(this).attr("val").split("_")[1];
+  //       effective_value = effective_price - parseFloat(chkId);
+  //       $('#effective_price').text('$' + effective_value.toFixed(2) + '/mo' );
+  //     }
+  //     else{
+  //       effective_price = parseFloat($('#effective_price').text().split('$')[1].split('/')[0]);
+  //       effective_value = effective_value = effective_price 
+  //       $('#effective_price').text('$' + effective_value.toFixed(2) + '/mo' );
+  //     }
+  //     localStorage["effective_price"] = JSON.stringify(effective_value);
+  //   });
+  // });
+ 
+});
+
+
+$("input[name='cable_deal_equipments']").on('change', function() {
+   $("input[name='cable_deal_equipments']").not(this).prop('checked', false);
+});
+
+
+$("input[name='deal_attributes']").on('change', function() {
+  
+   $("input[name='deal_attributes']").not(this).prop('checked', false);
+});
+
+$("input[name='deal_channel_packages']").on('change', function() {
+   $("input[name='deal_channel_packages']").not(this).prop('checked', false);
+});
+
+
+function calculate_total_price_for_cable() {
+  attribute_price = parseFloat($("input[name='deal_attributes']:checked").attr("val").split("_")[1]);
+  channel_package_price = parseFloat($("input[name='deal_channel_packages']:checked").attr("val").split("_")[1]);
+  cable_deal_equipments_price = parseFloat($("input[name='cable_deal_equipments']:checked").attr("val").split("_")[1]);
+  console.log('ap' + attribute_price);
+  // console.log('ap' +  extra_services_price);
+  console.log('ap' +  cable_deal_equipments_price);
+
+  // equipment_sum = 0;
+  
+  // $("[id*=selected_equipment_price]").each(function() {
+  //   equipment_sum = equipment_sum+parseFloat($(this).attr("value"));
+  // });
+
+
+  // equipment_sum = parseFloat(equipment_sum);
+  total_price = attribute_price+ channel_package_price+cable_deal_equipments_price+effective_price;
+  $("#effective_price").text('$' + total_price.toFixed(2) + '/mo');
+  $("#order-btn").show();
+  $("#reset_order").show();
+  $("#total-calculate-btn").hide();
+  $("input[type='checkbox']").attr("disabled",true);
+  // $("[id*=removeequip]").hide();
+  localStorage["effective_price"] = JSON.stringify(total_price);
+} 
+
+
+</script>
+	

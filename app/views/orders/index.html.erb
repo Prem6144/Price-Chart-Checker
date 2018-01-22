@@ -1,0 +1,47 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+	<tr>
+		<td class='main' id='main' valign='top'>
+			
+			<div id="users" class="list">
+				<table id="users_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+					<thead>
+						<tr>
+							<th><strong>ID</strong></th>
+							<th><strong>Deal Id</strong></th>
+							<th><strong>App User Id</strong></th>
+							<th><strong>Deal Price</strong></th>
+							<th><strong>Effective Price</strong></th>
+							<th><strong>Activation Date</strong></th>
+							<th><strong>Status</strong></th>
+							<th><strong>Action</strong></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @orders.each do |order| %>
+							<% if can? :read, order %>
+								<tr>
+									<td><%= order.id %></td>
+									<td><%= order.deal_id %></td>
+									<td><%= order.app_user_id %></td>
+									<td><%= order.deal_price %></td>
+									<td><%= order.effective_price %></td>
+									<td><%= order.activation_date %></td>
+									<td><%= order.status %></td>
+									<td><%= (link_to 'Edit', edit_order_path(order)) if can? :manage, order %> | <%= (link_to "Delete", order, method: :delete, data: { confirm: "You sure?" }) if can? :manage, order %></td>
+								</tr>
+							<% end %>
+						<% end %>
+                        <div class="digg_pagination">
+                          <%= will_paginate @orders %>
+                        </div>
+					</tbody>
+				</table>
+				<p>
+          Download:
+          <%= link_to "CSV", orders_path(format: "csv") %>
+          <%#= link_to "Excel", service_categories_path(format: "xls") %>
+        </p>
+			</div>
+		</td>
+	</tr>
+</table>

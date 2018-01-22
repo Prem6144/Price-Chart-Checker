@@ -1,0 +1,48 @@
+<% if @deal_equipment.new_record? %>
+    <%
+       method = 'POST'
+       url = deal_equipments_path(@deal_equipment)
+    %>
+<% else %>
+    <%
+       method = 'PUT'
+       url = "#{deal_equipments_path}/#{@deal_equipment.id}"
+    %>
+<% end %>
+
+<%= form_tag url, method: method.to_sym do %>
+    <%= hidden_field_tag :deal_id,@deal_id,:name => 'deal_equipments[deal_id]' %>
+    <%= hidden_field_tag :category_name,@category_name %>
+    <div><strong>Cellphone Name:<span id="mandat">*</span> </strong><br />
+      <%list=options_for_select(CellphoneDetail.pluck(:cellphone_name,:id))%>
+      <%= select_tag :cellphone_detail_id,list,:class => '', :style=>"width: 100%;",:name =>'deal_equipments[cellphone_detail_id]' %>
+    </div>
+    <div><strong>Model:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :model,@deal_equipment.try(:model),:placeholder => 'Input model',:name => 'deal_equipments[model]'  %>
+    </div>
+    <div><strong>Make:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :make,@deal_equipment.make,:placeholder => 'Input make',:name => 'deal_equipments[make]' %>
+    </div>
+    <div><strong>Memory:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :memory,@deal_equipment.memory,:placeholder => 'Input memory',:name => 'deal_equipments[memory]' %>
+    </div>
+    <div><strong>Price:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :price,@deal_equipment.price,:placeholder => 'Input price',:name => 'deal_equipments[price]' %>
+    </div>
+    <div><strong>Installation:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :installation,@deal_equipment.installation,:placeholder => 'Input installation',:name => 'deal_equipments[installation]' %>
+    </div>
+    <div><strong>Activation:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :activation,@deal_equipment.activation,:placeholder => 'Input activation',:name => 'deal_equipments[activation]' %>
+    </div>
+
+    <div><strong>Equipment Color:<span id="mandat">*</span> </strong><br />
+      <%list=options_for_select(EquipmentColor.pluck(:color_name,:id))%>
+      <%= select_tag :available_colors,list,:class => 'chosen-select', :style=>"width: 100%;",:multiple => true,:name =>'deal_equipments[available_colors][]' %>
+    </div>
+    <%= submit_tag 'Submit' %>
+<% end %>
+
+<script>
+$("#chosen-select").chosen();
+</script>

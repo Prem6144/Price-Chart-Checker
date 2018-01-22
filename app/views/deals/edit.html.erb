@@ -1,0 +1,187 @@
+<%zipcodes = get_zipcodes%>
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%' >
+  <tr>
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+      <%= link_to "View All Deals", deals_path %>
+      </div>
+      <div class='title'>
+        <span id='title'>Update Deal</span>
+      </div>
+    <%= form_for(@deal, :url => @deals) do |f| %>
+      <br/>
+      <% if @deal.errors.any? %>
+        <div id="error_explanation">
+        <div class="alert alert-danger">
+          The form contains <%= pluralize(@deal.errors.count, "error") %>.
+        </div>
+        <ul>
+          <% @deal.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+        </div>
+      <% end %>
+      <br/>
+      <div><span style="color:#4285F4"><i>Fields marked * are mandatory</i></span></div>
+      <table class='form-data'>
+        <tr>
+          <td style="width:50%;">
+          <div>Service Category:<span id="mandat">*</span> </div>
+          <%= f.select :service_category_id, ServiceCategory.all.map { |c| [c.name, c.id]},{:include_blank => "---Select---"} %>
+          </div>
+        </td>
+        <td>
+          <div>Service Provider:<span id="mandat">*</span> </div>
+            <%= f.select :service_provider_id, ServiceProvider.where("service_category_id=?",@deal.service_category_id).map { |c| [c.name, c.id]},{:include_blank => "---Select---"} %>
+          </div>
+          </td>
+        </tr>
+        <tr>
+            <td>
+            <div>Title:<span id="mandat">*</span></div>
+            <%= f.text_field :title %></div>
+           </td>
+           <td>
+            <div>Image:<span id="mandat">*</span></div>
+            <%= f.file_field :image %></div>
+            <%= f.hidden_field :image_cache %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>Price:<span id="mandat">*</span> </div>
+            <%= f.text_field :price %></div>
+          </td>
+          <td>
+              <div>URL:</div>
+              <%= f.text_field :url %></div>
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <div><%= f.check_box :is_contract %> Is Contract?</div>
+          </td>
+          <td>
+              <div>Contract Period (months):</div>
+              <%= f.text_field :contract_period %></div>
+          </td>
+        </tr>
+        <tr>
+              <td>
+                <div>Enter a Short Description:<span id="mandat">*</span> </div>
+              <%= f.text_area :short_description %></div>
+              </td>
+              <td>
+                <div>Enter Detail Description:<span id="mandat">*</span> </div>
+              <%= f.text_area :detail_description %></div>
+              </td>
+          </tr>
+          <tr>
+              <td valign="top">
+                <div style="width:49%;display: inline-block;vertical-align: top;">
+                  <div><%= f.check_box :is_nationwide,:id=>'deal-nationwide' %> Is Nationwide? </div>
+                </div>
+                <div style="width:50%;display: inline-block;">
+                  <%= f.fields_for :deal_include_zipcodes do |builder| %>
+                    <%= render 'include_zipcodes', f: builder %>
+                  <% end %>
+                </div>
+              </td>
+              <td>
+                <%= f.label 'Exclude Zipcodes:' %>
+                  <%= f.select :zipcode_ids, Zipcode.all.map { |r| [r.code+' - '+r.city, r.id] },{},{ id: "deal-exclude-zipcode",multiple: true,size: 10  } %>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                <div>Start Date:<span id="mandat">*</span></div>
+              <%= f.date_select :start_date %>
+              </td>
+              <td>
+                <div>End Date:<span id="mandat">*</span></div>
+              <%= f.date_select :end_date %>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  <div>Deal Type:</div>
+                  <%= f.select :deal_type,[["Residence", "residence"],["Business","business"]] %>
+              </td>
+              <td>
+                <div><%= f.check_box :is_active %> Is Active? </div>
+              </td>
+          </tr>
+          <tr>
+            <td>
+              <div><%= f.check_box :is_sponsored %> Is Sponsored? </div>
+            </td>
+          </tr>
+       </table>
+          <%#= f.fields_for :internet_deal_attributes do |builder| %>
+            <%#= render 'internet_attribute', f: builder %>
+          <%# end %>
+
+          <%#= f.fields_for :telephone_deal_attributes do |builder| %>
+            <%#= render 'telephone_attribute', f: builder %>
+            <%# end %>
+
+          <%#= f.fields_for :cable_deal_attributes do |builder| %>
+            <%#= render 'cable_attribute', f: builder %>
+          <%# end %>
+
+          <%#= f.fields_for :cellphone_deal_attributes do |builder| %>
+            <%#= render 'cellphone_attribute', f: builder %>
+          <%# end %>
+
+          <%#= f.fields_for :bundle_deal_attributes do |builder| %>
+            <%#= render 'bundle_attribute', f: builder %>
+          <%# end %>
+          <%= f.fields_for :additional_offers do |builder| %>
+            <%= render 'additional_offer_fields',:locals => { :@zipcodes => zipcodes } , f: builder  %>
+          <% end %>
+          <%#= link_to_add_fields "Add Additional Offer", f, :additional_offers %>
+
+
+
+      <div><%= f.submit "Update" %></div>
+  <% end %>
+  </td>
+  </tr>
+</table>
+
+<script>
+
+  if($("#deal_service_category_id").val()!=null){
+    $("#deal_service_category_id").prop("disabled",true);
+
+    if($("#deal_service_category_id option:selected").text()=="Internet"){
+      $("#internet-attributes").css("display","block");
+      $("#internet-download").prop("required",true);
+    }else if($("#deal_service_category_id option:selected").text()=="Telephone"){
+      $("#telephone-attributes").css("display","block");
+      $("#telephone-domestic-call-minutes").prop("required",true);
+    }else if($("#deal_service_category_id option:selected").text()=="Cable"){
+      $("#cable-attributes").css("display","block");
+      $("#cable-free-channels").prop("required",true);
+    }else if($("#deal_service_category_id option:selected").text()=="Cellphone"){
+      $("#cellphone-attributes").css("display","block");
+      $("#cellphone-telephone-domestic-call-minutes").prop("required",true);
+    }else if($("#deal_service_category_id option:selected").text()=="Bundle"){
+      $("#bundle-attributes").css("display","block");
+      $("#bundle-internet-download").prop("required",true);
+      $("#bundle-telephone-domestic-call-minutes").prop("required",true);
+      $("#bundle-cable-free-channels").prop("required",true);
+    }
+  }
+
+$("#deal_is_contract").click(function(){
+    if($(this).is(':checked')){
+        $("#deal_contract_period").prop("disabled",false);
+      }else{
+        $("#deal_contract_period").prop("disabled",true);
+      }
+  });
+
+
+</script>

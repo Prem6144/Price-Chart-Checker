@@ -1,0 +1,83 @@
+	<div class= 'col-md-4 no-padding'>
+	<label for="Name" class="control-label">Select State</label>
+    <%= select_tag('',options_for_select(AppUser::STATES,p_state),:class => 'form-control',:prompt => 'Select State',:name=>"primary_state", :id=>id) %>
+</div>
+<script>
+$(document).ready(function(e) {
+  $("#primary_state").change(function(e){
+    $("#primary_id_number").val($('#primary_state option:selected').val() + "===" + $('#primary_id_number1').val());
+  });
+
+  $("#secondary_state").change(function(e){
+    $("#secondary_id_number").val($('#secondary_state option:selected').val() + "===" + $('#secondary_id_number1').val());
+  });
+ 
+  $('#primary_id_number2').keyup(function(e){
+    $('#primary_id_number').val($('#primary_state option:selected').val() + "===" + $('#primary_id_number2').val());
+  });
+
+  $('#primary_id_number1').keyup(function(e){
+    $('#primary_id_number').val($('#primary_state option:selected').val() + "===" + $('#primary_id_number1').val());
+  });
+
+  primary_name = $('#primary_id').val();
+  if(primary_name == "Driving License"){
+      $('#primary_id_information').hide();
+      $('#primary_d_license').show();
+      $("#primary_id_number").val($('#primary_state option:selected').val() + "===" + $('#primary_id_number1').val());
+  }
+  else{
+      $('#primary_d_license').hide();
+          $('#primary_id_information').show();
+          $("#primary_id_number").val($('#primary_state option:selected').val() + "===" + $('#primary_id_number2').val());
+  }
+
+  $("#primary_id").change(function(e){
+    primary_name = $('#primary_id').val();
+    if(primary_name == "Driving License"){
+      $('#primary_id_information').hide();
+      $('#primary_d_license').show();
+      $("#primary_id_number").val($('#primary_state option:selected').val() + "===" + $('#primary_id_number1').val());
+    }
+    else{
+      $('#primary_d_license').hide();
+      $('#primary_id_information').show();
+      $("#primary_id_number").val($('#primary_state option:selected').val() + "===" + $('#primary_id_number2').val());
+    }
+  });
+
+  $('#secondary_id_number2').keyup(function(e){
+    $('#secondary_id_number').val($('#secondary_state option:selected').val() + "===" + $('#secondary_id_number2').val());
+  });
+
+  $('#secondary_id_number1').keyup(function(e){
+    $('#secondary_id_number').val($('#secondary_state option:selected').val() + "===" + $('#secondary_id_number1').val());
+  });
+
+  secondary_name = $('#secondary_id').val();
+  if(secondary_name == "Driving License"){
+      $('#secondary_id_information').hide();
+      $('#secondary_d_license').show();
+      $("#secondary_id_number").val($('#secondary_state option:selected').val() + "===" + $('#secondary_id_number1').val());
+  }
+  else{
+      $('#secondary_d_license').hide();
+          $('#secondary_id_information').show();
+          $("#secondary_id_number").val($('#secondary_state option:selected').val() + "===" + $('#secondary_id_number2').val());
+  }
+
+  $("#secondary_id").change(function(e){
+    secondary_name = $('#secondary_id').val();
+    if(secondary_name == "Driving License"){
+      $('#secondary_id_information').hide();
+      $('#secondary_d_license').show();
+      $("#secondary_id_number").val($('#secondary_state option:selected').val() + "===" + $('#secondary_id_number1').val());
+    }
+    else{
+      $('#secondary_d_license').hide();
+      $('#secondary_id_information').show();
+      $("#secondary_id_number").val($('#secondary_state option:selected').val() + "===" + $('#secondary_id_number2').val());
+    }
+  });
+});
+</script>

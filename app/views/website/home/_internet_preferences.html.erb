@@ -1,0 +1,141 @@
+<div class="form-area">
+  <%
+  if @current_user.present? and ServicePreference.where(:app_user_id=>@current_user.id, :service_category_id=>params[:category_id]).present?
+    @service_preferences_data=ServicePreference.where(:app_user_id=>@current_user.id, :service_category_id=>params[:category_id])
+   service_provider_name=@service_preferences_data[0].service_provider_name
+   service_provider_id=@service_preferences_data[0].service_provider_id
+   price=@service_preferences_data[0].price
+   no_contract=@service_preferences_data[0].is_contract
+   start_date=@service_preferences_data[0].start_date
+   end_date=@service_preferences_data[0].end_date
+   plan_name= @service_preferences_data[0].plan_name
+   @internet_preferences=InternetServicePreference.where(:service_preference_id=>@service_preferences_data[0].id)
+   if @internet_preferences.present?
+     download_speed=@internet_preferences[0].download_speed
+     upload_speed=@internet_preferences[0].upload_speed
+   end
+   end
+  %>
+  <%=form_for(:service_preferences, :url=>"/edit_or_change_service_preferences", :method=>"post") do %>
+
+  <%=hidden_field_tag("service_category_name",ServiceCategory.get_category_name_by_id(params[:category_id]))%>
+  <%=hidden_field_tag("service_category_id",params[:category_id])%>
+  <%=hidden_field_tag("app_user_id",session[:user_id])%>
+  <%=hidden_field_tag("from_site","true")%>
+
+    <div class="col-md-6">
+    <% @providers=ServiceProvider.where(:service_category_id=>params[:category_id]).pluck(:name,:id)%>
+    <!-- <select class="form-control" id="service_provider_id" name="service_provider_id"> -->
+    <%#= options_for_select(@providers, :prompt=>"Select", :value=>@providers) %>
+    <!-- </select> -->
+
+     <%= select_tag('',options_for_select(@providers,''),:class => 'form-control',:prompt => 'Select Vendor', :id=>"service_provider_id", :name=>"service_provider_id") %>
+    </div>
+
+    <div class="col-md-6 mg_bttom20">
+    <%= number_field_tag(:price,price.present? ? "%.2f" % price : '',:class=>"form-control", :placeholder=>"Enter price", :required=>true)%>
+    </div>
+       <div class="col-md-6 ">
+    <p class="contract-margin-sty">Contract Date</p>
+    </div>
+
+
+    <div class="col-md-6">
+    <div class="checkbox checkbox-info no-contract-sty">
+    <%= check_box_tag "no_contract",nil,:class=>"form-control"%>
+    <label for="no_contract"> <span>No Contract </span> </label>
+    </div>
+    </div>
+
+
+
+   
+ 
+    <div class="col-md-6 mg_bttom20"><%= text_field_tag("start_date","#{start_date.to_date if start_date.present?}", :class=>"form-control",:placeholder =>"Start Date")%> </div>
+    <div class="col-md-6 mg_bttom20"><%= text_field_tag("end_date","#{end_date.to_date if end_date.present?}", :class=>"form-control",:placeholder =>"End Date")%> </div>
+    <div class="col-md-6 mg_bttom20"><%= number_field_tag("download_speed",download_speed.present? ? download_speed : '', :class=>"form-control", :placeholder=>"Download(Mbps)", :required=>true)%></div>
+    <div class="col-md-6 mg_bttom20"><%= number_field_tag("upload_speed",upload_speed, :class=>"form-control", :placeholder=>"Upload(Mbps)")%></div>
+    <%=hidden_field_tag("plan_name","none")%>
+
+    <div class="col-md-12 text-center">
+  
+    <%= submit_tag("Save", :class=>"btn save-button")%>
+
+
+    <%if @service_preferences_data.present?%>
+    <%= button_tag("Unsubscribe", :class=>"skip-button", :onclick=>"Unsubscribe()")%>
+    <%end%>
+
+    </div>
+
+    <%end%>
+  </div>
+  <script>
+  <%if session[:user_id].present?%>
+  function Unsubscribe()
+  {
+    event.preventDefault();
+    $.ajax({
+      url:"/api/v1/deselect_prference",
+      type:"POST",
+      data: {
+        app_user_id:<%=session[:user_id]%>,
+        category:<%=params[:category_id]%>
+      },
+      success: function(d){
+        console.log(d);
+        if(d["success"] == true){
+          location.reload();
+        }
+      }
+    });
+  }
+  <%end%>
+  $(document).ready(function(){
+    $("#no_contract").prop("checked",false);
+    $("#no_contract").on("change",function(){
+      if($("#no_contract").prop("checked")==true){
+        $("#start_date").attr("disabled",true);
+        $("#end_date").attr("disabled",true);
+        $("#no_contract").val("true")
+        $("#start_date").val('');
+        $("#end_date").val('');
+      }
+      else {
+        $("#start_date").attr("disabled",false);
+        $("#end_date").attr("disabled",false);
+        $("#no_contract").val("false")
+      }
+    });
+
+<%if @service_preferences_data.blank?%>
+     <%if session[:user_id].present? and AppUser.find(session[:user_id]).user_type == "residence" %>
+    $("#price").val("70.00");
+    $('#download_speed').val('30.00');
+   
+    <%end%>
+
+    <%if session[:user_id].present? and AppUser.find(session[:user_id]).user_type == "business" %>
+     $("#price").val("120.00");
+    $('#download_speed').val('20.00');
+    <%end%>
+<% end %>
+
+      <%
+      if service_provider_id.present?%>
+        set_service_provider("<%=service_provider_id%>")
+      <% end
+      %>
+      <%
+      if !no_contract %>
+        $("#start_date").attr("disabled",true);
+        $("#end_date").attr("disabled",true);
+        $("#no_contract").prop("checked","checked");
+      <% end
+      %>
+  });
+
+    function set_service_provider(id) {
+        $("#service_provider_id option[value='"+id+"']").attr('selected','selected');
+    }
+  </script>

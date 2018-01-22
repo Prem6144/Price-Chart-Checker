@@ -1,0 +1,238 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backround_color_ServiceDealz"
+    tools:context="com.spa.fragment.Preferences">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp">
+        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shadow"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="5dp"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:id="@+id/ll_order"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="vertical"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:fontFamily="sans-serif-light"
+                                android:singleLine="true"
+                                android:text="Order Summary"
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/devider"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_below="@+id/ll_order"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="#c6c5c5" />
+
+                        <RelativeLayout
+                            android:id="@+id/ll_image_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/devider"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="10dp"
+                            android:weightSum="1">
+
+                            <ImageView
+                                android:id="@+id/img_provider"
+                                android:layout_width="@dimen/_70sdp"
+                                android:scaleType="fitXY"
+                                android:layout_height="@dimen/_70sdp"
+                                android:layout_gravity="center"
+                                android:padding="2dp" />
+
+                            <TextView
+                                android:id="@+id/txt_deal_description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/txt_ordertitle"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="@dimen/_8sdp"
+                                android:layout_marginTop="1dp"
+                                android:layout_toRightOf="@+id/img_provider"
+                                android:maxLines="2"
+                                android:text=""
+                                android:textColor="#7f7f7f"
+                                android:textSize="@dimen/_8sdp" />
+
+
+                            <TextView
+                                android:id="@+id/txt_ordertitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:layout_toRightOf="@+id/img_provider"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="@color/red_color"
+                                android:textSize="@dimen/_10sdp" />
+
+
+                            <TextView
+
+                                android:id="@+id/txt_expiry_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/txt_deal_description"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="1dp"
+                                android:layout_toRightOf="@+id/img_provider"
+                                android:maxLines="1"
+                                android:text="efefef"
+                                android:textColor="#7f7f7f"
+                                android:textSize="@dimen/_7sdp" />
+
+                            <TextView
+                                android:id="@+id/txt_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/txt_expiry_date"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_toRightOf="@+id/img_provider"
+                                android:maxLines="1"
+                                android:text="Price  "
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/_9sdp" />
+
+                            <TextView
+                                android:id="@+id/txt_order_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/txt_expiry_date"
+                                android:layout_marginTop="2dp"
+                                android:layout_toRightOf="@+id/txt_price"
+                                android:maxLines="1"
+                                android:text="dcdc"
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/_9sdp" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_effective"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/txt_order_price"
+                                android:layout_marginLeft="10dp"
+                                android:layout_toRightOf="@+id/img_provider"
+                                android:orientation="horizontal"
+                                android:visibility="visible">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:text="Effective Price  "
+                                    android:textColor="#00b551"
+                                    android:textSize="@dimen/_9sdp" />
+
+
+                                <TextView
+                                    android:id="@+id/txt_effective_deal_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:gravity="left"
+                                    android:maxLength="14"
+                                    android:text=""
+                                    android:textColor="@color/black_color"
+                                    android:textSize="@dimen/_9sdp"
+                                    android:textStyle="normal" />
+                            </LinearLayout>
+
+                            <RatingBar
+                                android:id="@+id/ratingBar_deal"
+                                style="?android:attr/ratingBarStyleSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/txt_expiry_date"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_toRightOf="@+id/img_provider"
+                                android:numStars="5"
+                                android:progressTint="#eab615"
+                                android:visibility="gone" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <include layout="@layout/custemcellphoneequipmentslayout"></include>
+
+                <include layout="@layout/customcable_equipements"/>
+                <Spinner
+                    android:id="@+id/spinner_equipments"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/txt_ordertitle"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/order_editext_background"
+                    android:paddingLeft="0dp"
+                    android:spinnerMode="dialog"
+                    android:textColor="#7f7f7f"
+                    android:visibility="visible" />
+
+                <include layout="@layout/order_personal_information"></include>
+            </LinearLayout>
+
+            <include layout="@layout/order_business_information"></include>
+
+
+            <include layout="@layout/order_address_infomation"></include>
+
+            <include layout="@layout/order_review"></include>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

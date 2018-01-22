@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_135sdp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+
+
+        <LinearLayout
+            android:layout_width="@dimen/_132sdp"
+            android:layout_height="@dimen/_105sdp"
+            android:background="@drawable/edit_border2"
+            android:gravity="right"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="ENTERTAINMENT"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+                <CheckBox
+                    android:id="@+id/plansubcriptioncheckbox"
+                    android:gravity="right"
+                    android:focusable="true"
+                    android:theme="@style/CustomCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/txt_chanels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="8+ Channels"
+                android:textColor="@color/backround_color"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_movie_pack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:text="Movie Lovers Pack"
+                android:textColor="#000"
+                android:maxLines="1"
+                android:padding="@dimen/_3sdp"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_price"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/shadow_rounded"
+                android:gravity="center"
+                android:text="$24.08/mo"
+                android:textColor="#000"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/_10sdp"/>
+        </LinearLayout>
+
+
+
+</LinearLayout>

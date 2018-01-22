@@ -1,0 +1,48 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+  <tr>
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+        <% if current_user.is_super_admin? %>
+            <%= link_to "Create New ExtraService", new_extra_service_path %>
+        <% end %>
+      </div>
+
+      <div id="users" class="list">
+        <table id="users_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+          <thead>
+          <tr>
+            <th><strong>ID</strong></th>
+            <th><strong>Service Name</strong></th>
+            <th><strong>Service Category Id</strong></th>
+            <th><strong>Service Description</strong></th>
+            <th><strong>Status</strong></th>
+            <th><strong>Action</strong></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @extra_services.each do |extra_service| %>
+              <% if can? :read, extra_service %>
+                  <tr>
+                    <td><%= extra_service.id %></td>
+                    <td><%= extra_service.service_name %></td>
+                    <td><%= extra_service.service_category.name if extra_service.service_category.name.present? %></td>
+                    <td><%= extra_service.service_description %></td>
+                    <td><%= extra_service.status %></td>
+                    <td><%= (link_to 'Edit', edit_extra_service_path(extra_service)) if can? :manage, extra_service %> | <%= (link_to "Delete", extra_service, method: :delete, data: { confirm: "You sure?" }) if can? :manage, extra_service %></td>
+                  </tr>
+              <% end %>
+          <% end %>
+          <div class="digg_pagination">
+            <%= will_paginate @extra_services %>
+          </div>
+          </tbody>
+        </table>
+        <p>
+          Download:
+          <%= link_to "CSV", extra_services_path(format: "csv") %>
+          <%#= link_to "Excel", service_categories_path(format: "xls") %>
+        </p>
+      </div>
+    </td>
+  </tr>
+</table>

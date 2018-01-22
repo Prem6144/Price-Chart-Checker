@@ -1,0 +1,26 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%' >
+  <tr> 
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+				<%= link_to "View All Notifications", notifications_path %>
+      </div>
+      <div class='title'>
+        <span id='title'>Edit Notification</span>
+      </div>
+
+			<div class="small-6 large-centered columns">
+				<%= form_for(@notification, :url => @notifications) do |f| %>
+					<br/>
+
+				  <div><strong>App User Id : </strong><br />
+				  <%= f.text_field :app_user_id, :readonly => true  %></div>
+				  <div><%= f.check_box :recieve_notification %><strong>Wants to recieve notification ? :</strong></div>
+				  <div><strong>Day:</strong><br />
+				  <%= f.text_field :day %></div><br/>
+				  <div><%= f.check_box :recieve_trending_deals %><strong>Wants to recieve trending deals ? :</strong></div>
+				  <div><%= f.submit "Update" %></div>
+				<% end %>
+			</div>
+    </td>
+	</tr>
+</table>

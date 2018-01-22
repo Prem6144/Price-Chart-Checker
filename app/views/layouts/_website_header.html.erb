@@ -1,0 +1,498 @@
+<section class="top-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 pull-left social-icon">
+        <a href="" class="fb-top" target="_blank"><i class="fa fa-facebook"></i></a>
+        <a href="" class="tw-top" target="_blank"><i class="fa fa-twitter"></i></a>
+        <a href="" target="_blank" class="gplus-top"><i class="fa fa-google-plus"></i></a>
+        <a href="" class="in-top"><i class="fa fa-linkedin"></i></a>
+      </div>
+      <div class="col-md-6 pull-right text-right login-tab">
+
+        <% if session[:user_id].present? %>
+
+
+
+            <% session[:business].present? ? headername = session[:business].titleize : headername = Base64.decode64(AppUser.find(session[:user_id]).first_name).titleize %>
+
+
+            <%# if AppUser.find(session[:user_id]).first_name.present? %>
+            <%#headername= Base64.decode64(AppUser.find(session[:user_id]).first_name)%>
+            <%#else%>
+            <%#headername=session[:user_name]%>
+            <%#end%>
+
+            <div class="dropdown">
+              <% unless session[:user_id].present? %>
+                  <button class="dropbtn">Dropdown</button>
+              <% else %>
+                  <a class="dropbtn" href="javascript:void(0)"><b>Welcome </b> &nbsp;<%= headername %></a>
+              <% end %>
+              <div class="dropdown-content">
+                <!-- <a href="<%#= profile_website_app_users_path %>">Welcome <%= headername %></a> | -->
+                <a href="<%= profile_website_app_users_path %>">Profile</a>
+                <a href="/website/app_users/profile?status=true">My Orders</a>
+                <a href="<%= signout_website_app_users_path %>">SignOut</a>
+              </div>
+            </div>
+
+
+
+            <%if session[:zip_code].present?%>
+                <a id="zipcode_header" href="#" class="text-center serviceRow" data-toggle="modal" data-target="#zipcode-modal">ZIP : <%= Base64.decode64(AppUser.find(session[:user_id]).zip).to_i %></a>
+            <%else%>
+                <a id="zipcode_header" href="#" class="text-center serviceRow" data-toggle="modal" data-target="#zipcode-modal">ZIP : <%=  session[:zip_code] %></a>
+            <%end%>
+
+        <% else %>
+
+            <% if controller.controller_name=="app_users" and controller.action_name=="checkout" %>
+                <a href="#" style="display:none" data-toggle="modal" data-target="#myModal">Signin / SignUp</a> |
+            <%else%>
+                <a href="#" data-toggle="modal" data-target="#myModal">Signin / SignUp</a> |
+            <%end%>
+            <a id="zipcode_header" href="#" class="text-center serviceRow" data-toggle="modal" data-target="#zipcode-modal">ZIP : <%=  session[:zip_code] %></a>
+
+            <div class="modal fade text-left login-popupwd" id="myModal" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <button type="button" class="close log-pop-btn" data-dismiss="modal">×</button>
+                <div class="modal-content height_popup">
+                  <div class="popup_left">
+                    <h4>Welcome</h4>
+                    <p>Save Hundred’s Of $ Month On Month &amp; Pick The Best Deals</p>
+                    <ul>
+                      <li>Unlimited internet plans</li>
+                      <li>Customize your Bundles offer</li>
+                      <li>Unlimited Digital Cable TV Plans &amp; Packages</li>
+                      <li>Looking For Best Deals please sign up</li>
+                    </ul>
+                  </div>
+                  <div class="popup_right">
+                    <div class="modal-header">
+                      <!-- <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a href="#login" role="tab" data-toggle="tab">SIGN IN</a></li>
+                        <li><a href="#signup" role="tab" data-toggle="tab">SIGN UP</a></li>
+                      </ul>
+                    </div>
+                    <div class="modal-body">
+
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="login">
+                          <div class="login-signup col-lg-12 col-xs-12">
+
+                            <form class="form-horizontal" id="login_app_user" action="/website/app_users/signin" accept-charset="UTF-8" method="post">
+                              <!-- <input type = "hidden" name="data['id']" id="data_id"> -->
+                              <!-- <input type = "hidden" name="data['effective_price']" id="data_effective_price" > -->
+
+                              <span style="font-size: 12px;color: red;margin-left: -14px;display: none;" id="user_not_found">Incorrect Username or Password!</span>
+                              <div class="form-group">
+                                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
+                                <input type="text" class="form-control" placeholder="Email"  name="user[email]" id="user_email" required>
+                                <span style="font-size: 12px;color: red;margin-left: 5px;display: none;" id="is-login-email-valid">Email does not Exists.</span>
+
+
+                              </div>
+                              <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" autocomplete="off" name="user[password]" required id="user_password" maxlength="10" >
+                              </div>
+
+
+                              <div class="form-group">
+                                <div class="col-md-12">
+                                  <span class="pull-left">
+                                      <%= check_box_tag :remember_me, 1, params[:remember_me], :onchange=>"register_cookie(this)" %>
+                                     <label for="remember_me">   Remember Me</label>
+                             <!--    <label class="checkbox-inline" >
+                                  <input type="checkbox" value="" id="" name="" > -->
+                                  <!-- <input type="checkbox" value="on" id="" name="user[remember_me]" > -->
+                                  <!-- Remember Me</label> -->
+
+
+
+                                <br>
+                                </span> <span class="pull-right"><a class="help-block" href="javascript:void(0)" id="forgot_password">Forgot Your Password?</a></span> </div>
+                              </div>
+                              <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                  <input type="submit" name="commit" value="SIGN IN" class="btn  btn-login" onclick="checkcredentials()" id="login_user">
+                                </div>
+                                <strong></strong> </div>
+                            </form>
+
+                          </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="signup">
+
+                          <div class="login-signup col-lg-12 col-xs-12">
+                            <% @user = AppUser.new() %>
+                            <%= form_for(@user, :url => website_app_users_path,:html => {:class => "form-horizontal"}) do |f| %>
+                                <!-- <input type = "hidden" name="data['id']" id="data_id_1"> -->
+                                <!-- <input type = "hidden" name="data['effective_price']" id="data_effective_price_1"> -->
+                                <div class="form-group">
+
+                                    <%= f.text_field :first_name,:class => "form-control",:placeholder => "First Name",:onblur =>"titleize_text(this)",:onkeyup=>"titleize_text(this)" %>
+                                    <span style="font-size: 12px;color: red;margin-left: 5px;display: none;" id="is-signup-fname-valid">Email Already Exists.</span>
+                                  </div>
+                                  <div class="form-group">
+                                    <%= f.text_field :last_name,:class => "form-control",:placeholder => "Last Name",:onblur =>"titleize_text(this)",:onkeyup=>"titleize_text(this)" %>
+                                    <span style="font-size: 12px;color: red;margin-left: 5px;display: none;" id="is-signup-lname-valid">Email Already Exists.</span>
+
+                                </div>
+                                <div class="form-group">
+                                  <%= f.text_field :email,:class => "form-control",:placeholder => "Email" %>
+                                  <span style="font-size: 12px;color: red;margin-left: 5px;display: none;position:absolute" id="is-signup-email-valid">Email Already Exists.</span>
+                                </div>
+
+                                <div class="form-group">
+                                  <!-- <select name="user_type" class="form-control" name="app_user[user_type]" id="app_user_user_type" required>
+                                    <option value="0">Select User type</option>
+                                    <option value="residence">Residence</option>
+                                    <option value="business">business</option>
+                                  </select> -->
+                                  <%=f.select :user_type,["Select User type", ["Residence","residence"], ["Business","business"]], :class=>"form-control", id: "app_user_user_type"%>
+                                </div>
+
+                                <div id="business_name_div" class="form-group hidden">
+                                  <%= text_field_tag(:business_name,"",:class => "form-control",:placeholder => "Business name", :name=>"business[business_name]",:onkeyup=>"titleize_text(this)") %>
+                                  <br />
+                                  <select id="business_type" name="business[business_type]" class="form-control">
+                                    <option value="0">Select Business type</option>
+                                    <option value="SOLE_PROPRIETOR">Sole Proprietor</option>
+                                    <option value="REGISTERED">Registered</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                <%= f.text_field :zip,:class => "form-control",:placeholder => "Enter Zip", :maxlength=> 6%>
+                              </div>
+                                <div class="form-group">
+                                  <%= f.password_field :password,:class => "form-control",:placeholder => "Password"%>
+                                  <% if ServiceDealConfig::where(config_key: 'password_complicated').first.config_value == ServiceDealConfig::PASSWORD_COMPLICATED %>
+                                  <span id="result"></span>
+                                  <% end %>
+                                </div>
+
+                                <div class="form-group">
+                                  <%= f.password_field :password_confirmation,:class => "form-control",:placeholder => "Confirm Password" %>
+                                </div>
+
+                                <div class="form-group">
+                                  <div class="col-md-12 text-center">
+                                    <%= f.submit "SIGN UP", :class => "btn  btn-login",:id => 'create_user' %>
+                                  </div>
+                                </div>
+                            <% end %>
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+<%if params[:from_blog]%>
+$("#zipcode-modal").modal("hide");
+$("#myModal").modal("show");
+$("#zipcode-modal").modal("hide");
+<%end%>
+    function titleize_text(object) {
+        value=$("#"+object.id).val();
+        rest=value.substr(1);
+        object.value=value[0].toUpperCase()+""+rest
+    }
+    $( document ).ready(function() {
+      if(Cookies.get("email")!="" && Cookies.get("password")!="") {
+        $("#user_email").val(Cookies.get("email"));
+        $("#user_password").val(Cookies.get("password"));
+      }
+        <% if !session[:user_id].present?  %>
+        $('#zipcode_header').show();
+        <% end %>
+        $("#app_user_user_type").addClass("form-control");
+        $("#app_user_user_type option[value='Select User type']").prop("selected","selected")
+        $('#app_user_password').keyup(function() {
+            $('#result').html(checkStrength($('#app_user_password').val()));
+        });
+
+        $("#app_user_user_type").change(function(){
+            if (  $("#app_user_user_type option:selected").val() == "business") {
+                $("#business_name_div").removeClass("hidden");
+            }
+            else {
+                $("#business_name_div").addClass("hidden");
+            }
+        });
+
+        function checkStrength(password) {
+            var strength = 0
+            if (password.length < 8) {
+                $('#result').removeClass()
+                $('#result').addClass('short')
+                return '8 characters or longer.<br/> Atleast one number, one alphabet and one symbol (like @#$%*).'
+            }
+            if (password.length > 7) strength += 1
+            // If password contains both lower and uppercase characters, increase strength value.
+            if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1
+            // If it has numbers and characters, increase strength value.
+            if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) strength += 1
+            // If it has one special character, increase strength value.
+            if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+            // If it has two special characters, increase strength value.
+            if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+            // Calculated strength value, we can return messages
+            // If value is less than 2
+            if (strength < 2) {
+                $('#result').removeClass()
+                $('#result').addClass('short')
+                return '8 characters or longer.Atleast one number and one symbol (like @#$%*)'
+            } else if (strength == 2) {
+                $('#result').removeClass()
+                $('#result').addClass('short')
+                return '8 characters or longer.Atleast one number and one symbol (like @#$%*)'
+            } else {
+                $('#result').removeClass()
+                $('#result').addClass('strong')
+                return ''
+            }
+        }
+
+        $("#create_user").click(function(){
+            var check = true;
+            var a = $('#app_user_email').val().trim();
+            if (a == null || a == "") {
+                $('#app_user_email').addClass('custom-input-error')
+                check = false
+            }else{
+                $('#app_user_email').removeClass('custom-input-error')
+            }
+            var a = $('#app_user_password').val().trim();
+            var b = $('#app_user_password_confirmation').val().trim();
+            if (a == null || a == "" || b == null || b == "" || (a != b)  ) {
+                $('#app_user_password').addClass('custom-input-error')
+                $('#app_user_password_confirmation').addClass('custom-input-error')
+                check = false
+            }else{
+                $('#app_user_password').removeClass('custom-input-error')
+                $('#app_user_password_confirmation').removeClass('custom-input-error')
+            }
+
+            var a = $('#result').text();
+            if (a=="8 characters or longer. Atleast one number, one alphabet and one symbol (like @#$%*)."  || a == "Weak" || a == "Too short" ){
+                $('#result').addClass('custom-input-error')
+                check = false
+            }
+            else{
+                $('#result').removeClass('custom-input-error')
+            }
+
+            if ($("#app_user_first_name").val()!=""){
+                $('#app_user_first_name').removeClass('custom-input-error')
+            }
+            else{
+                $('#app_user_first_name').addClass('custom-input-error')
+                check = false
+            }
+
+            if ($("#app_user_zip").val()!=""){
+                $('#app_user_zip').removeClass('custom-input-error')
+            }
+            else{
+                $('#app_user_zip').addClass('custom-input-error')
+                check = false
+            }
+
+            if ($("#app_user_last_name").val()!=""){
+                $('#app_user_last_name').removeClass('custom-input-error')
+            }
+            else{
+                $('#app_user_last_name').addClass('custom-input-error')
+                check = false
+            }
+
+            if ($("#app_user_user_type").val()!="Select User type"){
+                $('#app_user_user_type').removeClass('custom-input-error')
+            }
+            else{
+                $('#app_user_user_type').addClass('custom-input-error')
+                check = false
+            }
+
+            if(check) {
+                if($("#app_user_user_type option:selected").val()=="business" && $("#business_name").val()!="" && $("#business_type").val()!="0") {
+                    console.log("oK");
+                    $("#new_app_user").submit();
+                }
+                else {
+                    if($("#app_user_user_type option:selected").val()=="residence" && check) {
+                        console.log("residence user OK");
+                        $("#new_app_user").submit();
+                    }
+                    else {
+                        alert("Please enter all fields")
+                        event.preventDefault();
+                    }
+
+                }
+
+            }
+            else{
+                return false
+            }
+        });
+
+        $("#forgot_password").click(function(){
+            var user_email = $('#user_email').val();
+            if(user_email != ''){
+                location.href = "<%= forget_password_website_app_users_path %>?email=" + user_email
+                alert("You will recieve an email for password");
+            }else{
+                alert('Please enter your email address')
+            }
+        });
+
+    });
+
+    $( "#app_user_email").focusout(function() {
+        checkEmail('signup',$(this).val());
+    });
+    $( "#user_email").focusout(function() {
+        checkEmail('signin',$(this).val());
+
+    });
+    $( "#user_email,#user_password").focusin(function() {
+        $('#user_not_found').hide();
+    });
+
+    // $("#login_user").click(function(){
+    //     var check = true;
+    //
+    //     var a = $('#user_email').val().trim();
+    //     if (a == null || a == "") {
+    //         $('#user_email').addClass('custom-input-error')
+    //         check = false
+    //     }else{
+    //         $('#user_email').removeClass('custom-input-error')
+    //     }
+    //     var a = $('#user_password').val().trim();
+    //     if (a == null || a == "") {
+    //         $('#user_password').addClass('custom-input-error')
+    //         check = false
+    //     }else{
+    //         $('#user_password').removeClass('custom-input-error')
+    //     }
+    //     if(check) {
+    //
+    //       $('#login_app_user').submit()
+    //     }else{
+    //         return false
+    //     }
+    // });
+
+    function checkcredentials(){
+        var s=0;
+        email=$("#user_email").val();
+        password=$("#user_password").val();
+        if(email!="" && password!="") {
+            $.ajax({
+                type: "GET",
+                url: "<%=  check_user_credential_website_app_users_path %>",
+                data : {
+                    email : email,
+                    password : password
+                },
+                success: function (data) {
+                    if (data["status"] == true)  {
+                        register_cookie();
+                        allow_submit();
+                    }
+                    else {
+                        s=0;
+                        $('#user_not_found').show();
+                    }
+                }
+            });
+            if (s == 0){
+                event.preventDefault();
+                event.stopImmediatePropagation();
+            }
+        }
+    }
+
+    function allow_submit(){
+        $("#login_app_user").submit();
+    }
+
+    function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    }
+
+    function checkEmail(action,email) {
+        if( !isEmail(email)) {
+            $('#app_user_email, #user_email').val('');
+            $('#app_user_email, #user_email').addClass('custom-input-error')
+        }else {
+            $.ajax({
+                type: "GET",
+                url: "<%= check_user_email_ajax_website_app_users_path %>?email=" + email,
+                dataType: "json",
+                success: function (data) {
+                    if(action == 'signup') {
+                        if (data['data'] && data['data']['email']) {
+                            $('#app_user_email').addClass('custom-input-error');
+                            $('#app_user_email').val('');
+                            $('#is-signup-email-valid').show();
+                        } else {
+                            $('#app_user_email').removeClass('custom-input-error');
+                            $('#is-signup-email-valid').hide();
+                        }
+                    }else{
+                        if (data['data'] && data['data']['email']) {
+                            $('#user_email').removeClass('custom-input-error');
+                            $('#is-login-email-valid').hide();
+                        } else {
+                            $('#user_email').addClass('custom-input-error');
+                            $('#user_email').val('');
+                            $('#is-login-email-valid').show();
+                        }
+                    }
+                },
+                error: function (data) {
+                }
+            });
+        }
+    }
+</script>
+<script>
+    $(window).load(function(){
+        $("#sticky-top").sticky({ topSpacing: 0 });
+    });
+    function register_cookie(obj){
+      email = $("#user_email").val();
+      pwd= $("#user_password").val();
+      if($("#remember_me").is(":checked") == true) {
+        Cookies.set('email', email, { expires: 7, path: '' });
+        Cookies.set('password', pwd, { expires: 7, path: '' });
+        if(email!="" && pwd!=""){
+        }
+        else {
+          alert("please enter both fields to remember");
+        }
+      }
+    }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.js"></script>

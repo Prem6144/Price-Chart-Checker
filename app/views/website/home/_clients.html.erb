@@ -1,0 +1,28 @@
+<section class="clientCon">
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+
+     <ul class="logo-place text-center">
+        <li><%= image_tag("website/client-logo/1.png",:alt => 'Client') %></li>
+        <li><%= image_tag("website/client-logo/2.png",:alt => 'Client') %></li>
+        <li><%= image_tag("website/client-logo/3.png",:alt => 'Client') %></li>
+        <li><%= image_tag("website/client-logo/4.png",:alt => 'Client') %></li>
+        <li><%= image_tag("website/client-logo/5.png",:alt => 'Client') %></li>
+        <!-- <li><%#= image_tag("website/client-logo/6.png",:alt => 'Client') %></li>
+        <li><%#= image_tag("website/client-logo/7.png",:alt => 'Client') %></li> -->
+        <li><%= image_tag("website/client-logo/8.png",:alt => 'Client') %></li>
+        <li><%= image_tag("website/client-logo/9.png",:alt => 'Client') %></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<script>
+$('.logo-place').owlCarousel({
+
+    loop:true,
+    margin:10,
+    responsiveClass:true,
+   items:8,
+});
+</script>

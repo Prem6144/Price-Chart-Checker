@@ -1,0 +1,38 @@
+<% if @deal_attribute.new_record? %>
+    <%
+       method = 'POST'
+       url = deal_attributes_path(@deal_attribute)
+    %>
+<% else %>
+    <%
+       method = 'PUT'
+       url = "#{deal_attributes_path}/#{@deal_attribute.id}"
+    %>
+<% end %>
+<%= form_tag url, method: method.to_sym do %>
+    <%= hidden_field_tag :deal_id,@deal_id,:name => 'deal_attributes[deal_id]' %>
+    <%= hidden_field_tag :category_name,@category_name %>
+
+    <div><strong>Description: </strong><br />
+      <%= text_field_tag :description,@deal_attribute.try(:description),:placeholder => 'Input description',:name => 'deal_attributes[description]' %>
+    </div>
+    <div><strong>Download(mbps):<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :download,@deal_attribute.download,:placeholder => 'Input download',:name => 'deal_attributes[download]' %>
+    </div>
+    <div><strong>Upload(mbps):<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :upload,@deal_attribute.upload,:placeholder => 'Input upload',:name => 'deal_attributes[upload]' %>
+    </div>
+    <div><strong>Data:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :data,@deal_attribute.data,:placeholder => 'Input data',:name => 'deal_attributes[data]' %>
+    </div>
+    <div><strong>Email:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :email,@deal_attribute.email,:placeholder => 'Input email',:name => 'deal_attributes[email]' %>
+    </div>
+    <div><strong>Online Storage:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :online_storage,@deal_attribute.online_storage,:placeholder => 'Input online_storage',:name => 'deal_attributes[online_storage]' %>
+    </div>
+    <div><strong>Static IP:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :static_ip,@deal_attribute.static_ip,:placeholder => 'Input static_ip',:name => 'deal_attributes[static_ip]' %>
+    </div>
+    <%= submit_tag 'Submit' %>
+<% end %>

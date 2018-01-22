@@ -1,0 +1,379 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backround_color_ServiceDealz"
+    tools:context="com.spa.fragment.Preferences">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp">
+        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shadow"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Deal Notification:"
+                    android:textColor="#117cab"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txt_notification"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Receive notifications before contract expire"
+                    android:textColor="#6b6b6b"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+
+                <RadioGroup
+                    android:id="@+id/rg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RadioButton
+                        android:id="@+id/radioGroupButton0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:checked="true"
+                        android:drawableLeft="@drawable/custom_radio_button"
+                        android:text="  Yes"
+                        android:textColor="#808080"
+                        android:textSize="15sp" />
+
+                    <RadioButton
+                        android:id="@+id/radioGroupButton1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+
+                        android:button="@null"
+                        android:drawableLeft="@drawable/custom_radio_button"
+                        android:text="  No"
+                        android:textColor="#808080"
+                        android:textSize="15sp" />
+                </RadioGroup>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/txt_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="First Notification"
+                            android:textColor="#6b6b6b"
+
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+
+                            <EditText
+                                android:id="@+id/etx_day"
+                                android:layout_width="100dp"
+                                android:layout_height="35dp"
+                                android:background="@drawable/edt_background"
+                                android:inputType="number"
+                                android:maxLength="3"
+                                android:paddingLeft="5dp"
+                                android:text="30"
+                                android:textColor="@color/textcolor">
+
+                            </EditText>
+
+
+                            <TextView
+                                android:id="@+id/txt_permonth"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@+id/etx_day"
+                                android:text="Days"
+                                android:gravity="center"
+                                android:textColor="#808080"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/txt_price1"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="wrap_content"
+
+                            android:text="Repeat Notification"
+                            android:textColor="#6b6b6b"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+
+                            <Spinner
+                                android:id="@+id/etx_day1"
+                                android:layout_width="110dp"
+                                android:layout_height="35dp"
+                                android:background="@drawable/edt_background"
+                                android:entries="@array/frequency_array"
+                                android:paddingLeft="5dp"
+                                android:spinnerMode="dialog"
+                                android:textColor="@color/textviewcolor" />
+
+
+                            <TextView
+                                android:id="@+id/txt_permonth1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="4dp"
+                                android:layout_toRightOf="@+id/etx_day1"
+                                android:text="Days"
+                                android:textColor="#808080"
+                                android:textSize="15sp"
+                                android:visibility="gone" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <CheckBox
+                    android:id="@+id/chk_trending"
+                    android:layout_width="@dimen/_270sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@+id/txt_enddate"
+                    android:button="@drawable/custem_checkbox"
+                    android:checked="true"
+                    android:text="  Receive Trending Deals and Special Offers"
+                    android:textColor="@color/textviewcolor"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Frequency"
+                    android:textColor="#6b6b6b"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spn_frequency"
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edt_background"
+                    android:entries="@array/frequency_array"
+                    android:paddingLeft="5dp"
+                    android:spinnerMode="dialog"
+
+                    android:textColor="@color/textviewcolor" />
+
+                <CheckBox
+                    android:id="@+id/chk_call_receive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@+id/txt_enddate"
+                    android:button="@drawable/custem_checkbox"
+                    android:checked="true"
+                    android:text="  Call and Receive Calls"
+                    android:textColor="@color/textviewcolor"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shadow"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Ratings:"
+                    android:textColor="#117cab"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Minimum Service Provider Rating"
+                    android:textColor="#6b6b6b"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spn_ratings"
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edt_background"
+                    android:entries="@array/rating_array"
+                    android:paddingLeft="5dp"
+                    android:spinnerMode="dialog"
+                    android:textColor="@color/textviewcolor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Minimum Deal Rating"
+                    android:textColor="#6b6b6b"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spn_ratingsmax"
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edt_background"
+                    android:entries="@array/rating_array"
+                    android:paddingLeft="5dp"
+                    android:spinnerMode="dialog"
+                    android:textColor="@color/textviewcolor" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shadow"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Communications Permissions:"
+                    android:textColor="#117cab"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/chk_receive_emails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@+id/txt_enddate"
+                    android:button="@drawable/custem_checkbox"
+                    android:checked="true"
+                    android:text="  Receive Emails"
+                    android:textColor="@color/textviewcolor"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/chk_receive_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@+id/txt_enddate"
+                    android:button="@drawable/custem_checkbox"
+                    android:checked="true"
+                    android:text="  Receive Texts"
+                    android:textColor="@color/textviewcolor"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/btn_background"
+                android:text="@string/updte"
+                android:textColor="@color/white_color" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

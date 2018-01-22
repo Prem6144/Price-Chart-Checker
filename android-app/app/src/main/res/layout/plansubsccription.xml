@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/click"
+        android:gravity="center"
+        android:layout_margin="@dimen/_5sdp"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp">
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/subscription_plantitle"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:layout_alignParentLeft="true"
+                android:padding="@dimen/_5sdp"
+                android:gravity="center_horizontal"
+                android:text="ProtectionPlan"
+                android:textSize="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="#cd040b"
+                />
+
+            <CheckBox
+                android:id="@+id/plansubcriptioncheckbox1"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/subscription_plantitle"
+                android:layout_width="wrap_content"
+                android:theme="@style/CustomCheck"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/plansubcr_international"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/_1sdp"
+            android:text="Description"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:maxLines="2"
+            android:textSize="@dimen/_8sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/plansubcription_domestic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/_2sdp"
+            android:text="Description"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:maxLines="2"
+            android:textSize="@dimen/_8sdp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/plansubscription_price"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_27sdp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_white_background"
+            android:gravity="center"
+            android:padding="@dimen/_2sdp"
+            android:text="$24.08/mo"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:textColor="#000"
+            android:textSize="@dimen/_12sdp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

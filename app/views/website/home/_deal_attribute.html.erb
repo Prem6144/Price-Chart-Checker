@@ -1,0 +1,60 @@
+<% if @category == ("internet" || "bundle") %>
+
+  <tr>
+    <th scope="row">Speed</th>
+    
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td scope="row">Download</td>
+      
+      <td><%= @deal_attributes_first.try(:download)%></td>
+      <td><%= @deal_attributes_second.try(:download)%></td>
+    </tr>
+
+  <tr>
+    <td scope="row">Upload</td>
+    
+    <td><%= @deal_attributes_first.try(:upload)%></td>
+    <td><%= @deal_attributes_second.try(:upload)%></td>
+  </tr>
+<% elsif @category == ("telephone" || "cellphone" || "bundle")%>
+  <tr>
+    <th scope="row">Minutes</th>
+    
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td scope="row">Domestic Call Minutes</td>
+    
+    <td><%= @deal_attributes_first.try(:domestic_call_minutes) %></td>
+    <td><%= @deal_attributes_second.try(:domestic_call_minutes) %></td>
+  </tr>
+  <tr>
+    <td scope="row">International Call Minutes</td>
+    
+    <td><%= @deal_attributes_first.try(:international_call_minutes) %></td>
+    <td><%= @deal_attributes_second.try(:international_call_minutes) %></td>
+  </tr>
+<% elsif @category == ("cable" || "bundle") %>
+  <tr>
+    <th scope="row">Channel</th>
+    
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td scope="row">General</td>
+    
+    <td><%= @deal_attributes_first.try(:free_channels) %></td>
+    <td><%= @deal_attributes_second.try(:free_channels) %></td>
+  </tr>
+  <tr>
+    <td scope="row">Premium</td>
+    
+    <td><%= @deal_attributes_first.try(:premium_channels) %></td>
+    <td><%= @deal_attributes_second.try(:premium_channels) %></td>
+  </tr>
+<% end %>

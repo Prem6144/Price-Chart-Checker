@@ -1,0 +1,120 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backround_color_ServiceDealz"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <ImageView
+            android:id="@+id/wallet"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/wallet" />
+
+        <RelativeLayout
+            android:id="@+id/cashamount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wallet"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txt_total_gift_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cashout Amount"
+                android:textColor="@color/black_color"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_available_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_total_gift_card"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="$0"
+                android:textStyle="bold"
+                android:textColor="#32a023"
+                android:textSize="25sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cashamount"
+            android:layout_margin="30dp">
+
+
+            <EditText
+                android:id="@+id/etx_email"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@drawable/edt_background"
+                android:drawablePadding="10dp"
+                android:gravity="left|center_vertical"
+                android:hint="Enter email"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="@color/textcolor"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etx_confirm_email"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/etx_email"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_background"
+                android:drawablePadding="10dp"
+                android:gravity="left|center_vertical"
+                android:hint="Confirm email"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="@color/textcolor"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_get_itnow"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_below="@+id/etx_confirm_email"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/blue_btnbg"
+                android:text="Get it now"
+                android:textAllCaps="false"
+                android:textColor="@color/white_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_get_itnow"
+                android:background="@android:color/transparent"
+                android:text="Cancel"
+                android:textAllCaps="true"
+                android:textColor="@color/textcolor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

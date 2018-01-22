@@ -1,0 +1,441 @@
+<% deal = @order.order_items.first.deal
+  category_name = deal.service_category.name.downcase
+  deal_equipment = eval("deal.try(:#{category_name}_deal_attributes).first.try(:#{@category_name}_equipments)")
+  app_user = @order.app_user
+  billing_address = @order.order_addresses.where(address_type: 2).first
+  shipping_address = @order.order_addresses.where(address_type: 1).first
+  service_address = @order.order_addresses.where(address_type: 0).first
+  business = app_user.try(:business_app_users).last.try(:business)
+  primary_id = app_user.try(:primary_id)
+  secondary_id = app_user.try(:secondary_id)
+  provider_name =deal.service_provider.name
+  if @order.primary_id_number.present?
+  primary_id_number = @order.primary_id_number.split('===').last
+  primary_state = @order.primary_id_number.split('===').first
+end
+if @order.secondary_id_number.present?
+  secondary_id_number = @order.secondary_id_number.split('===').last
+  secondary_state = @order.secondary_id_number.split('===').first
+end
+
+  %>
+  <% if deal.is_customisable == true && deal.service_category_id == Deal::CELLPHONE_CATEGORY 
+  order_equipments = @order.order_equipments.present? ? @order.order_equipments : ""
+  attributes = @order.order_attributes.present? ? @order.order_attributes : ""
+  order_extra_service = @order.order_extra_services.present? ? @order.order_extra_services : ""
+  elsif deal.is_customisable == true && deal.service_category_id == Deal::CABLE_CATEGORY 
+  order_equipments = @order.order_equipments.present? ? @order.order_equipments : ""
+  attributes =  @order.order_attributes.where(ref_type: "cable").present? ? @order.order_attributes.where(ref_type: "cable") : ""
+   order_packages =  @order.order_attributes.where(ref_type: "channel").present? ? @order.order_attributes.where(ref_type: "channel") : ""
+ end 
+
+ %>
+<!--//nav-->
+<section class="order-details top-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="left-order-dt">
+          <div class="ordersty-top">
+            <div class="order-no-dt pull-left"> Order No: <span><%= @order.order_number%></span>
+              <span class="style4">
+              <%= @order.created_at.strftime("%d  %b %Y") %>  &nbsp; <%= @order.created_at.strftime("%I.%M %p ") %>
+            </span>
+            </div>
+            <div class="order-no-dt pull-right"><%= provider_name%> Order No:<span></span><br/>
+             <%=provider_name%> Status:<button type="button" class=" btn accepted-btn"><%= @order.provider_status %></button>
+              <!-- <button type="button" class=" btn recontracted-btn"><%#= @order.provider_status %></button> -->
+            </div>
+          </div>
+          <div class="order-service-dt">
+            <div class="order-service-left col-md-8">
+              <div class="servicelogo-sty">
+                <%if display_logo_permission(deal.service_provider_id,deal.deal_type)%>
+                  <img src="<%=display_logo_permission(deal.service_provider_id,deal.deal_type)%>" alt="Service Provider Logo" class="img-responsive">
+                <%else%>
+                   <img src="<%= deal.image.present? ? deal.image.url : '' %>" alt="<%= deal.title %>" class="img-responsive" />
+                <% end %>
+               </div>
+              <div class="servicedt-text"><%=raw(deal.short_description)  %></br>
+                <span class="in-progress-btn"><%= @order.status %> </span>
+              </div>
+            </div>
+            <div class="order-product-right col-md-4">
+              <div class="sd-best-price">Price <span>$<%= deal.price %></span> </div>
+              <div class="sd-effective-price"> Effective Price <span>$<%= @order.order_items.first.effective_price  %> </span> </div>
+            </div>
+          </div>
+          <% if deal_equipment.present? %>
+          <div class="equipment-details">
+            <h5>Equipments  &  Installation</h5>
+            <% if category_name == "cellphone" %>
+            <table class="table table-bordered">
+              <thead>
+                <tr class="active">
+                  <th colspan="3"><%= deal_equipment.try(:model) %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td width="20%">Make</td>
+                  <td width="80%" colspan="2"><%= deal_equipment.try(:make) %></td>
+                </tr>
+                <tr>
+                  <td width="20%">Memory</td>
+                  <td width="80%" colspan="2">$<%= deal_equipment.try(:memory) %></td>
+                </tr>
+                <tr>
+                  <td width="20%">Price</td>
+                  <td width="80%" colspan="2">$<%= deal_equipment.try(:price) %></td>
+                </tr>
+                <tr>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <% else %>
+            <table class="table table-bordered">
+              <thead>
+                <tr class="active">
+                  <th colspan="3"><%= deal_equipment.try(:name) %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td width="20%">Installation</td>
+                  <td width="80%" colspan="2"><%= deal_equipment.try(:installation) %></td>
+                </tr>
+                <tr>
+                  <td width="20%">Price</td>
+                  <td width="80%" colspan="2">$<%= deal_equipment.try(:price) %></td>
+                </tr>
+              </tbody>
+            </table>
+            <% end %>
+
+            <!-- <span class="saveurdollar">You Save   $40.29</span>  -->
+          </div>
+          <% end %>
+          <div class="address-det">
+            <div class="applicant-telcome col-md-6 col-sm-6 border-ones">
+              <h4>Applicant</h4>
+              <ul>
+                <li>
+                  <div class="col1">Name:</div>
+                  <div class="col2"><%= decode_api_data(app_user.first_name) + ' ' + decode_api_data(app_user.last_name) %></div>
+                </li>
+                <li>
+                  <div class="col1">Contact No:</div>
+                  <div class="col2"><%= decode_api_data(app_user.mobile) %></div>
+                </li>
+                <li>
+                  <div class="col1">Email:</div>
+                  <div class="col2"><%= app_user.try(:email) %></div>
+                </li>
+                <li>
+                  <div class="col1">Primary Id:</div>
+                  <div class="col2"><%= primary_id%> - <%= primary_id_number %></div>
+                </li>
+                <li>
+                  <div class="col1">Secondary Id:</div>
+                  <div class="col2"><%= secondary_id %> - <%= secondary_id_number %></div>
+                </li>
+              </ul>
+            </div>
+            <% if app_user.user_type == AppUser::BUSINESS %>
+            <div class="applicant-telcome col-md-6 col-sm-6 marginL20">
+              <h4>Telecom Manager</h4>
+              <ul>
+                <li>
+                  <div class="col1">Name:</div>
+                  <div class="col2"><%= business.try(:manager_name) %></div>
+                </li>
+                <li>
+                  <div class="col1">Contact No:</div>
+                  <div class="col2"><%= business.try(:manager_contact) %></div>
+                </li>
+              </ul>
+            </div>
+            <% end %>
+          </div>
+          <div class="billing-det bor-btno">
+            <div class="applicant-telcome col-md-4 col-sm-4">
+              <h4>Billing Address</h4>
+              <ul>
+                <li>
+                  <div class="col1 coll2 word-wrap no-float" style="overflow-x: hidden;"><%= billing_address.try(:address_name) %></div>
+                </li>
+                <li>
+                  <div class="col1 coll2 word-wrap no-float" style="overflow-x: hidden;"><%= billing_address.try(:address1) %></div>
+                </li>
+                <% if billing_address.address2.present? %>
+                <li>
+                  <div class="col1 coll2 word-wrap no-float" style="overflow-x: hidden;"><%= billing_address.try(:address2) %></div>
+                </li>
+                <% end %>
+                <li>
+                  <div class="col1 coll2 word-wrap no-float" style="overflow-x: hidden;"><%= billing_address.try(:zip) %></div>
+                </li>
+              </ul>
+            </div>
+            <div class="applicant-telcome col-md-4  col-sm-4">
+              <h4>Shipping Address</h4>
+              <ul>
+                <li>
+                  <div class="col1 coll2 word-wrap no-float" style="overflow-x: hidden;"><%= shipping_address.try(:address_name) %></div>
+                </li>
+                <li>
+                  <div class="col1 coll2 word-wrap no-float" style="overflow-x: hidden;"><%= shipping_address.try(:address1) %></div>
+                </li>
+                <% if shipping_address.address2.present? %>
+                <li>
+                  <div class="col1 coll2 word-wrap no-float" style="overflow-x: hidden;"><%= shipping_address.try(:address2) %></div>
+                </li>
+                <% end %>
+                <li>
+                  <div class="col1 coll2 word-wrap no-float" style="overflow-x: hidden;"><%= shipping_address.try(:zip) %></div>
+                </li>
+              </ul>
+            </div>
+            <div class="applicant-telcome col-md-4  col-sm-4">
+              <h4>Service Address</h4>
+              <ul>
+                <li>
+                  <div class="col1 coll2 word-wrap no-float" style="overflow-x: hidden;"><%= service_address.try(:address_name) %></div>
+                </li>
+                <li>
+                  <div class="col1 coll2 word-wrap no-float" style="overflow-x: hidden;"><%= service_address.try(:address1) %></div>
+                </li>
+                <% if service_address.address2.present? %>
+                <li>
+                  <div class="col1 coll2 word-wrap no-float" style="overflow-x: hidden;"><%= service_address.try(:address2) %></div>
+                </li>
+                <% end %>
+                <li>
+                  <div class="col1 coll2 word-wrap no-float" style="overflow-x: hidden;"><%= service_address.try(:zip) %></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div></div>
+        <% if app_user.user_type == AppUser::BUSINESS %>
+        <div class="col-md-4">
+          <div class="right-order-dt">
+            <div class="applicant-telcome">
+              <% if app_user.business_app_users.first.business.business_type ==  Business::REGISTERED %>
+              <h4>Registered</h4>
+              <ul>
+                <li>
+                  <div class="col1">Business Name:</div>
+                  <div class="col2"><%=decode_api_data(business.try(:business_name)) %></div>
+                </li>
+                <li>
+                  <div class="col1">DBA : </div>
+                  <div class="col2"><%= business.try(:business_dba) %></div>
+                </li>
+                <li>
+                  <div class="col1">Federal Tax ID: </div>
+                  <div class="col2"><%= decode_api_data(business.try(:federal_number)) %></div>
+                </li>
+                <li>
+                  <div class="col1">Dan & Bradstreet Number: </div>
+                  <div class="col2"><%= business.try(:db_number) %></div>
+                </li>
+              </ul>
+              <% elsif app_user.business_app_users.first.business.business_type ==  Business::SOLE_PROPRIETOR %>
+                <h4>SOLE PROPRIETOR</h4>
+               <ul>
+                <li>
+                  <div class="col1">Business Name:</div>
+                  <div class="col2"><%= decode_api_data(business.try(:business_name)) %></div>
+                </li>
+                <li>
+                  <div class="col1">SSN:</div>
+                  <div class="col2"><%=  decode_api_data(business.ssn) %></div>
+                </li>
+                <li>
+                  <div class="col1">DOB:</div>
+                  <div class="col2"><%= business.try(:dob)%></div>
+                </li>
+              </ul>
+            <% end %>
+
+            </div>
+          </div>
+        </div>
+           <div class="col-sm-12 col-md-4 right-offer order-review-right right-bottom-review ">
+          <div class="border-radius-bg">
+            <div class="sd-img-box">
+               <%if display_logo_permission(deal.service_provider_id,deal.deal_type)%>
+                  <img src="<%= display_logo_permission(deal.service_provider_id,deal.deal_type)%>" alt="Service Provider Logo" class="img-responsive">
+                <%else%>
+                  <img src="<%= deal.image.present? ? deal.image.url : '' %>" alt="<%= deal.title %>" class="img-responsive">
+                <% end %>
+            </div>
+            <ul class="sd-deal-price">
+              <li class="sd-dealprice-single">Deal Price:<span>$<%= deal.price %>/mo</span></li>
+              <li class="sd-effective-price-single">Effective Price:<span>$<%= @order.order_items.first.effective_price %>/mo</span></li>
+              <% if deal.contract_period == 0 %>
+                <li>Contract: <span>None</span></li>
+              <% else %>
+                <li>Contract: <span><%= deal.contract_period %> months</span></li>
+              <% end %>
+
+              <li>Contract:<span><%= deal.contract_period %></span></li>
+            </ul>
+            <% if deal.is_customisable == true && deal.service_category_id == Deal::CELLPHONE_CATEGORY %>
+              <div id='deal-attributes-added' class="deal-attributes-added">
+                <% if @order.order_attributes.present?%>
+                <h5>Additional Deals Attributes</h5>
+
+                <% attribute = CellphoneDealAttribute.find(@order.order_attributes.first.ref_id) %>
+                <div> <p><%= attribute.title%></p>  <span>$<%=attribute.data_plan_price %></span></div>
+                <% end %>
+              </div>
+              <div class="deal-equipments-added">
+                <h5>Additional Equipments</h5>
+                <% order_equipments.each do |order_equipment| %>
+                  <% equipment = CellphoneEquipment.find(order_equipment.equipment_id) %>
+                  <div class="selectedequipments-box">
+                    <div class="equipmenr-img"><img src="<%= equipment.cellphone_detail.image %>" style='height:100px; width:50px' alt="equipments"></div>
+                    <div class="equipmenr-details">
+                      <div class="equipment-readingprice"><h6><%= equipment.cellphone_detail.brand %></h6> <span>$<%= equipment.price%></span></div> 
+                      <strong><%= equipment.cellphone_detail.cellphone_name%></strong>
+                      <span><%= EquipmentColor.find(order_equipment.color).color_name%></span>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div class='deal-attributes-added' id="deal-services-added">
+                <h5>Additional Deal Services</h5>
+                <% extra_service = DealExtraService.find(@order.order_extra_services.first.deal_extra_service_id)%>
+                <div> <p><%= extra_service.extra_service.service_name%></p>  <span>$<%=extra_service.price %></span></div>
+              </div>
+
+              <% elsif deal.is_customisable == true && deal.service_category_id == Deal::CABLE_CATEGORY %>
+               <div id='deal-attributes-added' class="deal-attributes-added">
+                <h5>Additional Deals Attribute</h5>
+                <% attribute = CableDealAttribute.find(attributes.first.ref_id) %>
+                <div> <p><%= attribute.description%></p>  <span>$<%=attribute.amount %></span></div>
+              </div>
+              <div class='deal-attributes-added' id="deal-packages-added">
+                <h5>Additional Deals Package</h5>
+                <% attribute = ChannelPackage.find(order_packages.first.ref_id) %>
+                <div> <p><%= attribute.package_name%></p>  <span>$<%=attribute.price %></span></div>
+              </div>
+              <div class='deal-attributes-added' id="deal-equipments-added">
+                <h5>Additional Equipment</h5>
+                <% order_equipments.each do |order_equipment| %>
+                  <% equipment = CableEquipment.find(order_equipment.equipment_id) %>
+                   <div> <p><%= equipment.name%></p>  <span>$<%=equipment.price %></span></div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <% else %>
+
+
+
+        <div class="col-sm-12 col-md-4 right-offer order-review-right right-bottom-review ">
+          <div class="border-radius-bg">
+            <div class="sd-img-box">
+               <%if display_logo_permission(deal.service_provider_id,deal.deal_type)%>
+                  <img src="<%= display_logo_permission(deal.service_provider_id,deal.deal_type)%>" alt="Service Provider Logo" class="img-responsive">
+                <%else%>
+                   <img src="<%= deal.image.present? ? deal.image.url : '' %>" alt="<%= deal.title %>" class="img-responsive">
+                <% end %>
+            </div>
+            <ul class="sd-deal-price">
+              <li class="sd-dealprice-single">Deal Price:<span>$<%= deal.price %>/mo</span></li>
+              <li class="sd-effective-price-single">Effective Price:<span>$<%= @order.order_items.first.effective_price %>/mo</span></li>
+              <% if deal.contract_period == 0 %>
+                <li>Contract: <span>None</span></li>
+              <% else %>
+                <li>Contract: <span><%= deal.contract_period %> months</span></li>
+              <% end %>
+            </ul>
+            <% if deal.is_customisable == true && deal.service_category_id == Deal::CELLPHONE_CATEGORY %>
+              <div id='deal-attributes-added' class="deal-attributes-added">
+                <%if @order.order_attributes.present? %>
+                <h5>Additional Deals Attributes</h5>
+
+                <% attribute = CellphoneDealAttribute.find(@order.order_attributes.first.ref_id) %>
+                <div> <p><%= attribute.title%></p>  <span>$<%=attribute.data_plan_price %></span></div>
+                <% end %>
+              </div>
+              <div class="deal-equipments-added">
+                <h5>Additional Equipments</h5>
+                <% order_equipments.each do |order_equipment| %>
+                  <% equipment = CellphoneEquipment.find(order_equipment.equipment_id) %>
+                  <div class="selectedequipments-box">
+                    <div class="equipmenr-img"><img src="<%= equipment.cellphone_detail.image %>" style='height:100px; width:50px' alt="equipments"></div>
+                    <div class="equipmenr-details">
+                      <div class="equipment-readingprice"><h6><%= equipment.cellphone_detail.brand %></h6> <span>$<%= equipment.price%></span></div> 
+                      <strong><%= equipment.cellphone_detail.cellphone_name%></strong>
+                      <span><%= EquipmentColor.find(order_equipment.color).color_name%></span>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div class='deal-attributes-added' id="deal-services-added">
+                <h5>Additional Deal Services</h5>
+                <% extra_service = DealExtraService.find(@order.order_extra_services.first.deal_extra_service_id)%>
+                <div> <p><%= extra_service.extra_service.service_name%></p>  <span>$<%=extra_service.price %></span></div>
+              </div>
+
+               <% elsif deal.is_customisable == true && deal.service_category_id == Deal::CABLE_CATEGORY %>
+               <div id='deal-attributes-added' class="deal-attributes-added">
+                <h5>Additional Deals Attribute</h5>
+                 <% attribute = CableDealAttribute.find(attributes.first.ref_id) %>
+                <div> <p><%= attribute.description%></p>  <span>$<%=attribute.amount %></span></div>
+              </div>
+              <div class='deal-attributes-added' id="deal-packages-added">
+                <h5>Additional Deals Package</h5>
+                <% attribute = ChannelPackage.find(order_packages.first.ref_id) %>
+                <div> <p><%= attribute.package_name%></p>  <span>$<%=attribute.price %></span></div>
+              </div>
+              <div  class='deal-attributes-added' id="deal-equipments-added">
+                <h5>Additional Equipment</h5>
+                <% order_equipments.each do |order_equipment| %>
+                  <% equipment = CableEquipment.find(order_equipment.equipment_id) %>
+                   <div> <p><%= equipment.name%></p>  <span>$<%=equipment.price %></span></div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Order-form-->
+<script>
+  $(".registerDetails").hide();
+  $("#soleprop").click(function(){
+
+    $(".registerDetails").hide();
+    $(".soleproDetails").show();
+  });
+
+  $("#registered").click(function(){
+
+    $(".soleproDetails").hide();
+    $(".registerDetails").show();
+  });
+
+  $('.btnNext').click(function(){
+    $('.nav-tabs > .active').next('li').find('a').trigger('click');
+  });
+
+    $('.btnPrevious').click(function(){
+    $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+  });
+  // $(document).ready(function(){
+  //   window.history.pushState('forward', "/", './#forward');
+  //   $(window).on('popstate', function() {
+  //     window.open("/website/app_users/profile?status=new_order", "_self");
+  //      });
+  //     })
+</script>

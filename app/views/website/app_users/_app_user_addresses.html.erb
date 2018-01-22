@@ -1,0 +1,201 @@
+<div id="user_addresses" class="address-tab tab-pane fade" role="tabpanel">
+    <h4>Saved Addresses</h4>
+     <%if AppUser.find(session[:user_id]).user_type == "residence"%>
+       <%addresses=AppUser.find(session[:user_id]).app_user_addresses%>
+       <%addresses.each do |address|%>
+       <%id=SecureRandom.hex(5)%>
+       <div class="col-md-6">
+         <div class="border-address">
+           <%if address[:address_type] == 0%>
+            <p><b>Branch Address</p></b>
+           <%end%>
+           <%if address[:address_type] == 1%>
+            <p><b>Shipping Address</p></b>
+           <%end%>
+           <%if address[:address_type] == 2%>
+            <p><b>Billing Address</p></b>
+           <%end%>
+           <%if address[:address_type] == 3%>
+            <p><b>Business Address</p></b>
+           <%end%>
+           <%if address[:is_default]%>
+           <h3 class="default-address-txt">Default Address</h3> <br />
+           <%end%>
+            <p><%= text_field_tag(:address_name, address[:address_name], :id=>"address_name_#{id}", :disabled=>true, :class=>"form-control")%></p>
+            <p><%= text_field_tag(:address1, address[:address1],:id=>"address_address1_#{id}",:disabled=>true, :class=>"form-control")%></p>
+            <p><%= text_field_tag(:address2, address[:address2],:id=>"address_address2_#{id}" ,:disabled=>true, :class=>"form-control")%></p>
+            <p><%= text_field_tag(:city, address[:city],:id=>"address_city_#{id}",:disabled=>true, :class=>"form-control")%></p>
+            <p><%#= select_tag(:state,options_for_select(AppUser::STATES,address[:state]),:id=>"address_state_#{id}",:disabled=>true, :class=>"form-control",:prompt => 'Select State') %></p>
+            <p><%= text_field_tag(:zip, address[:zip],:id=>"address_zip_#{id}", :disabled=>true, :class=>"form-control")%></p>
+             <p>State: <%=address[:state]%></p>
+            <p>
+              <select class="form-control" id="address_state_<%=id%>" name="service_provider_id" disabled="true" class="form-control">
+                <%= options_for_select(Statelist.pluck(:state).uniq, :prompt=>"Select") %>
+              </select>
+            </p>
+            <%=hidden_field_tag(:app_user_address_id,address.id, :id=>"row_id_#{id}")%>
+            <%=hidden_field_tag(:app_user_type,AppUser.find(session[:user_id]).user_type, :id=>"user_type_#{id}")%>
+            <div class="col-md-3" id="edit_<%=id%>"><button class="btn btn-primary" id="<%=id%>" onclick="editform(this)">Edit</button></div>
+            <div id="save_<%=id%>" class="col-md-3 hidden"><button id="<%=id%>" class="btn btn-primary" onclick="save(this)">Save</button></div>
+            <div class="col-md-4"><button class="btn btn-primary" id="sd<%=id%>" onclick="sd(this)">Set Default</button></div>
+            <div class="col-md-2"><button class="btn btn-danger" id="del<%=id%>" onclick="del(this)">Delete</button></div>
+          </div>
+         </div>
+     <%end%>
+        <div class="col-md-12 text-center">
+        </div>
+       </div>
+
+    <%elsif AppUser.find(session[:user_id]).user_type == "business"%>
+      <p class="mgt20">Business user</p>
+      <%addresses=AppUser.find(session[:user_id]).business_app_users.last.business.business_addresses rescue nil%>
+<% if addresses.present? %>
+      <%addresses.each do |address|%>
+        <%id=SecureRandom.hex(5)%>
+        <div class="col-md-6">
+          <div class="border-address">
+            <%if address[:address_type] == 0%>
+              <p><b>Branch Address</p></b>
+            <%end%>
+            <%if address[:address_type] == 1%>
+              <p><b>Shipping Address</p></b>
+            <%end%>
+            <%if address[:address_type] == 2%>
+              <p><b>Billing Address</p></b>
+            <%end%>
+            <%if address[:address_type] == 3%>
+              <p><b>Business Address</p></b>
+            <%end%>
+            <%if address[:is_default]%>
+            <h3 class="default-address-txt">Default Address</h3> <br />
+            <%end%>
+            <%=hidden_field_tag(:address_type,address, :id=>"user_type_#{id}")%>
+            <p><%= text_field_tag(:address_name, address[:address_name], :id=>"address_name_#{id}", :disabled=>true, :class=>"form-control")%></p>
+            <p><%= text_field_tag(:address1, address[:address1],:id=>"address_address1_#{id}",:disabled=>true, :class=>"form-control")%></p>
+            <p><%= text_field_tag(:address2, address[:address2],:id=>"address_address2_#{id}" ,:disabled=>true, :class=>"form-control")%></p>
+            <p><%= text_field_tag(:city, address[:city],:id=>"address_city_#{id}",:disabled=>true, :class=>"form-control")%></p>
+            <p>State: <%=address[:state]%></p>
+            <p><%#= select_tag(:state,options_for_select(AppUser::STATES,address[:state]),:id=>"address_state_#{id}",:disabled=>true, :class=>"form-control",:prompt => 'Select State') %></p>
+            <p><%= text_field_tag(:zip, address[:zip],:id=>"address_zip_#{id}", :disabled=>true, :class=>"form-control")%></p>
+            <%=hidden_field_tag(:app_user_address_id,address.id, :id=>"row_id_#{id}")%>
+            <%=hidden_field_tag(:app_user_type,AppUser.find(session[:user_id]).user_type, :id=>"user_type_#{id}")%>
+            <div class=" text-left" id="edit_<%=id%>"><button class="btn btn-primary" id="<%=id%>" onclick="editform(this)">Edit</button>
+            <div id="save_<%=id%>" class="col-md-3 hidden"><button id="<%=id%>" class="btn btn-primary" onclick="save(this)">Save</button></div>
+            <button class="btn btn-primary set-default-btn" id="sd<%=id%>" onclick="sd(this)">Set Default</button>
+          <button class="btn btn-danger" id="del<%=id%>" onclick="del(this)">Delete</button></div>
+          </div>
+        </div>
+      <%end%>
+<% end %>
+      <% end %>
+</div>
+<script>
+function editform(obj) {
+id=obj.id;
+console.log(id);
+    if($("#address_name_"+id).attr("disabled") == "disabled" && $("#address_address1_"+id).attr("disabled") == "disabled" &&
+       $("#address_address2_"+id).attr("disabled") == "disabled" && $("#address_zip_"+id).attr("disabled") == "disabled" ) {
+            $("#address_name_"+id).attr("disabled",false);
+            $("#address_address1_"+id).attr("disabled",false);
+            $("#address_address2_"+id).attr("disabled",false);
+            $("#address_city_"+id).attr("disabled",false);
+            $("#address_state_"+id).attr("disabled",false);
+            $("#address_zip_"+id).attr("disabled",false);
+            $("#address_state_"+id).attr("disabled",false);
+            $("#save_"+id).removeClass("hidden");
+            $("#edit_"+id).addClass("hidden");
+      }
+    else if ($("#address_name_"+id).prop("disabled") == false && $("#address_address1_"+id).prop("disabled") == false &&
+            $("#address_address2_"+id).prop("disabled") == false && $("#address_zip_"+id).prop("disabled") == false ) {
+            $("#address_name_"+id).attr("disabled","disabled");
+            $("#address_address1_"+id).attr("disabled","disabled");
+            $("#address_address2_"+id).attr("disabled","disabled");
+            $("#address_city_"+id).attr("disabled","disabled");
+            $("#address_state_"+id).attr("disabled","disabled");
+            $("#address_zip_"+id).attr("disabled","disabled");
+            $("#address_state_"+id).attr("disabled","disabled");
+            $("#save_"+id).addClass("hidden");
+            $("#edit_"+id).removeClass("hidden");
+    }
+}
+function save(obj){
+  console.log("id"+obj.id)
+    $("#"+id).removeClass("hidden");
+    $("#save_"+id).addClass("hidden");
+    $("#address_name_"+id).attr("disabled","disabled");
+    $("#address_address1_"+id).attr("disabled","disabled");
+    $("#address_address2_"+id).attr("disabled","disabled");
+    $("#address_city_"+id).attr("disabled","disabled");
+    $("#address_state_"+id).attr("disabled","disabled");
+    $("#address_zip_"+id).attr("disabled","disabled");
+    $("#address_state_"+id).attr("disabled","disabled");
+    $("#save_"+id).addClass("hidden");
+    $("#edit_"+id).removeClass("hidden");
+    address_name = $("#address_name_"+id).val();
+    address1 = $("#address_address1_"+id).val();
+    address2 = $("#address_address2_"+id).val();
+    city = $("#address_city_"+id).val();
+    state = $("#address_state_"+id).val();
+    zip = $("#address_zip_"+id).val();
+    row_id=$("#row_id_"+id).val();
+    user_type=$("#user_type_"+id).val();
+    state=$("#address_state_"+id+" option:selected").val();
+    console.log(state);
+    $.ajax({
+      url: "/edit_addresses",
+      type: "POST",
+      data: {
+        row_id : row_id,
+        address_name : address_name,
+        address1 : address1,
+        address2 : address2,
+        state : state,
+        city : city,
+        user_type: user_type,
+        zip: zip,
+        state:state
+      },
+      success: function(data) {
+        if(data["status"] == "saved") {
+          window.open("/website/app_users/profile?saved_address=true", "_self")
+        }
+      }
+    });
+  }
+  function sd(obj)
+  {
+    id=obj.id.substr(2);
+    console.log(id);
+    row_id=$("#row_id_"+id).val();
+    user_type=$("#user_type_"+id).val();
+    $.ajax({
+    url: "/set_default_address",
+    type: "POST",
+    data: {
+      row_id: row_id,
+      user_type: user_type
+    },
+    success: function(){
+      window.open("/website/app_users/profile?saved_address=true", "_self")
+  }
+  });
+  }
+
+  function del(obj)
+  {
+    id=obj.id.substr(3);
+    row_id=$("#row_id_"+id).val();
+    user_type=$("#user_type_"+id).val();
+    $.ajax({
+    url: "/delete_address",
+    type: "POST",
+    data: {
+      row_id: row_id,
+      user_type: user_type
+    },
+    success: function(){
+      window.open("/website/app_users/profile?saved_address=true", "_self")
+    }
+  });
+  }
+</script>

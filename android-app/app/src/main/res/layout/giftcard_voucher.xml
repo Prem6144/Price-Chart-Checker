@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backround_color_ServiceDealz"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <ImageView
+            android:id="@+id/wallet"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/wallet" />
+
+        <RelativeLayout
+            android:id="@+id/cashamount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wallet"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txt_total_gift_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cashout Amount"
+                android:textColor="@color/black_color"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_available_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_total_gift_card"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="$0"
+                android:textColor="#32a023"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cashamount"
+            android:layout_margin="30dp">
+
+            <Button
+                android:id="@+id/btn_amazon"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/blue_btnbg"
+                android:text="Amazon"
+                android:textAllCaps="false"
+                android:textColor="@color/white_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_get_walmart"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_below="@+id/btn_amazon"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/blue_btnbg"
+                android:text="Walmart"
+                android:textAllCaps="false"
+                android:textColor="@color/white_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_get_walmart"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/transparent"
+                android:text="Cancel"
+                android:textAllCaps="true"
+                android:textColor="@color/textcolor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

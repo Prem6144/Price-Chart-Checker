@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_seller"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white_color"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="3"
+
+        >
+
+        <TextView
+            android:id="@+id/txt_s_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="S.no."
+            android:textColor="@color/black_color" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="#B8B8B8" />
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="Name"
+            android:textColor="@color/black_color" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="#B8B8B8" />
+
+        <TextView
+            android:id="@+id/txt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".8"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="123@gmail.com"
+            android:textColor="@color/black_color" />
+
+
+    </LinearLayout>
+</LinearLayout>

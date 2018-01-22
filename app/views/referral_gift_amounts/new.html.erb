@@ -1,0 +1,43 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%' >
+  <tr> 
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+		<%= link_to "View All Referral Gifts", referral_gift_amounts_path %>
+      </div>
+      <div class='title'>
+        <span id='title'>Add a New Referral Gift</span>
+      </div>
+
+			<div class="small-6 large-centered columns">
+				<%= form_for(@referral_gift_amount, :url => @referral_gift_amounts) do |f| %>
+					<br/>
+					<% if @referral_gift_amount.errors.any? %>
+  					<div id="error_explanation">
+    					<div class="alert alert-danger">
+      					The form contains <%= pluralize(@referral_gift_amount.errors.count, "error") %>.
+    					</div>
+    					<ul>
+    						<% @referral_gift_amount.errors.full_messages.each do |msg| %>
+      						<li><%= msg %></li>
+    						<% end %>
+    					</ul>
+  					</div>
+					<% end %>
+				  <br/>
+						<div><span style="color:#4285F4"><strong><i>Fields marked * are mandatory</i></strong></span></div><br/>
+					<div><strong>Referrer Amount: </strong><span id="mandat">*</span><br />
+				  <%= f.text_field :referrer_amount %></div>
+				  <div><strong>Referral Amount: </strong><br />
+				  <%= f.text_field :referral_amount %></div>
+				  <div><strong>Referrer Gift Image:</strong><span id="mandat">*</span><br />
+				  <%= f.file_field :referrer_gift_image %></div>
+				  <div><strong>Referral Gift Image:</strong><span id="mandat">*</span><br />
+				  <%= f.file_field :referral_gift_image %></div>
+				  <div><%= f.check_box :is_active %><strong>Is Active</strong></div>
+				  <div><%= f.submit "Create" %></div>
+				<% end %>
+			</div>
+    </td>
+	</tr>
+</table>
+

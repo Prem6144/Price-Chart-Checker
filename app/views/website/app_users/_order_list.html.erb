@@ -1,0 +1,39 @@
+<% if @order_history.present? %>
+    <div id="home" class="tab-pane fade active in">
+      <div class="row desc_heading">
+        <div class="col-xs-2"> <h5>Description</h5> </div>
+        <div class="col-xs-2"> <h5>Order date</h5> </div>
+            <div class="col-xs-2"> <h5>Status</h5> </div>
+
+            <!-- <div class="col-xs-2"> <h5>Price</h5>   </div> -->
+            <div class="col-xs-2"> <h5>Order No.</h5> </div>
+            <div class="col-xs-2"> <h5>Order Total</h5> </div>
+
+      </div>
+      <% @order_history.each do |order| %>
+          <div class="row desc_cont">
+            <div class="col-xs-2">
+              <span class="img_border">
+                <% deal = Deal.find_by_id(order.order_items.first.deal_id) %>
+
+                <%if display_logo_permission(deal.service_provider_id,deal.deal_type)%>
+                  <img src="<%= display_logo_permission(deal.service_provider_id,deal.deal_type)%>" alt="Service Provider Logo" class="img-responsive">
+                <%else%>
+                  <%= image_tag("#{deal.image}", :alt => "logo") %>
+                <% end %>
+                </span>
+              <p class="para_3"><%= deal.title %></p>
+            </div>
+                <div class="col-xs-2"> <p><%=order.created_at.strftime("%m/%d/%y")%></div>
+                <div class="col-xs-2"> <p><span class="panding"><%= order.status %></span></p> </div>
+                <!-- <div class="col-xs-2"> <p><%#s= order.order_items.first.deal_price%></p>   </div> -->
+                <div class="col-xs-2"> <p><%= order.order_number%></p> </div>
+                <div class="col-xs-2"> <p>$<%="%.2f" %  order.order_items.first.effective_price if order.order_items.first.effective_price.present? %></p> </div>
+                <div class="col-xs-2"> <p><%= link_to "Order Detail",  order_detail_website_app_users_path(order_id: order.id)%><br /></p> </div>
+
+          </div>
+      <% end %>
+    </div>
+<%elsif%>
+    </br><div style="color:red; padding-left:200px">There are no Orders in this category.</div>
+<% end %>

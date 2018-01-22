@@ -1,0 +1,35 @@
+<% if @deal_equipment.new_record? %>
+    <%
+       method = 'POST'
+       url = deal_equipments_path(@deal_equipment)
+    %>
+<% else %>
+    <%
+       method = 'PUT'
+       url = "#{deal_equipments_path}/#{@deal_equipment.id}"
+    %>
+<% end %>
+
+<%= form_tag url, method: method.to_sym do %>
+    <%= hidden_field_tag :deal_id,@deal_id,:name => 'deal_equipments[deal_id]' %>
+    <%= hidden_field_tag :category_name,@category_name %>
+    <div><strong>Name:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :name,@deal_equipment.name,:placeholder => 'Input Name',:name => 'deal_equipments[name]' %>
+    </div>
+    <div><strong>Make:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :make,@deal_equipment.make,:placeholder => 'Input make',:name => 'deal_equipments[make]' %>
+    </div>
+    <div><strong>Price:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :price,@deal_equipment.price,:placeholder => 'Input price',:name => 'deal_equipments[price]' %>
+    </div>
+    <div><strong>Installation:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :installation,@deal_equipment.installation,:placeholder => 'Input installation',:name => 'deal_equipments[installation]' %>
+    </div>
+    <div><strong>Activation:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :activation,@deal_equipment.activation,:placeholder => 'Input activation',:name => 'deal_equipments[activation]' %>
+    </div>
+    <div><strong>Offer:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :offer,@deal_equipment.offer,:placeholder => 'Input offer',:name => 'deal_equipments[offer]' %>
+    </div>
+    <%= submit_tag 'Submit' %>
+<% end %>

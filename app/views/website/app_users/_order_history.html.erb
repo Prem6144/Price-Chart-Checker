@@ -1,0 +1,36 @@
+<div id="Order" class="order-tab tab-pane fade" role="tabpanel">
+  <div class="scroller_order">
+    <div class="border-radius-bg">
+      <ul class="nav nav-pills" id="orderMenu">
+        <li class="active"><a data-toggle="tab" id="home" href="#home" aria-expanded="false">All order</a></li>
+         <% ServiceCategory.first(5).each do |service_category| %>
+            <li class=""><a href="#<%= service_category.name.downcase %>" id="<%= service_category.name.downcase %>" data-toggle="tab" aria-expanded="false">
+               <%=service_category.name %></a></li>
+        <% end %>
+      </ul>
+      <div class="tab-content" id="order_list">
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    $("#orderMenu").children('li').click( function() {
+        var order_category_id = $(this).children('a').attr('id');
+        request = void 0;
+        request = $.ajax({
+            type:'GET',
+            url: "<%= order_history_website_app_users_path%>",
+            data: {id: order_category_id}
+        });
+    });
+    $("#order-tab").click( function() {
+        request = void 0;
+        request = $.ajax({
+            type:'GET',
+            url: "<%= order_history_website_app_users_path%>",
+            data: {id: "home"}
+        });
+    });
+</script>

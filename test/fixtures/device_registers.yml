@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  imei: MyText
+  device_id: MyText
+  service_provider: MyText
+
+two:
+  imei: MyText
+  device_id: MyText
+  service_provider: MyText

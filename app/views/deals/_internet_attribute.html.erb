@@ -1,0 +1,46 @@
+<fieldset id="internet-attributes" style="display:none;">
+  <h4>Internet Deal Attributes</h4>
+
+  <table class="form-data">
+    <tr>
+      <td>
+      <div>Downloads (mbps)<span class="mandat">*</span></div>
+      <%= f.text_field :download, :id=>'internet-download' %>
+      </td>
+      <td>
+      <%= f.label 'Upload (mbps)' %>
+      <%= f.text_field :upload %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <%= f.label :data %>
+      <%= f.text_field :data %>
+      </td>
+      <td>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <%= f.label :online_storage %>
+      <%= f.text_field :online_storage %>
+      </td>
+      <td>
+      <%= f.label :static_ip %>
+      <%= f.text_field :static_ip %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <%= f.fields_for :internet_equipments do |builder| %>
+          <%= render 'internet_equipment_fields', f: builder %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <!-- <p><td colspan="2"><%#= link_to_add_fields "Add Equipment", f, :internet_equipments %></td></p> -->
+    </tr>
+  </table>
+</fieldset>

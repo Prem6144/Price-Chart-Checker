@@ -1,0 +1,301 @@
+
+<% if session[:user_id].present?%>
+  <% app_user =AppUser.find_by_id(session[:user_id])
+   user_preference_price = app_user.service_preferences.where(service_category_name: @category).first.price rescue 0 %>
+
+<% end %>
+<!--top-->
+<section class="compare-design">
+    <div class="container">
+      <!-- <h3>Compare Internet Deals</h3> -->
+      <div data-example-id="bordered-table" class="compare-table table-responsive">
+        <table class="table table-bordered">
+          <tbody>
+          
+              <td scope="row"></td>
+
+              <!-- <td align="center">
+                 <% #url1 = display_logo_permission(@deal_first.service_provider_id,@deal_first.deal_type)%>
+                <%#= image_tag("#{url1}", :size => "200x200") %> 
+             </td> -->
+
+            <td align="center">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <% url1 = display_logo_permission(@deal_first.service_provider_id,@deal_first.deal_type)%>
+                      <%= image_tag("#{url1}", :size => "200x200") %> 
+                      <!-- <img src="http://res.cloudinary.com/servicedealz/image/upload/v1479289687/at_t_yltr81.png" alt="At t yltr81" height="200" width="200">  -->
+                    </td>
+                  </tr>
+                  <tr>
+                     <% if app_user.present? && app_user.email_verified == true%>
+                <% if @deal_first.is_order_available == true %>
+                    <td class="text-center"><a  href="<%=order_website_app_users_path(:deal_id=> @deal_first.id)%>" class="order-btn">Order</a></td>
+                <% else %>
+                  <td  class="text-center">
+                  <a id="order-btn" class="order-btn btn_3" >Not Available</a></td>
+                <% end %>
+              <% elsif app_user.present? && app_user.email_verified != true %>
+                <td  class="text-center"><a class="order-btn" href="javascript:void(0)">Verify email</a></td>
+              <% else %>
+                <% if @deal_first.is_order_available == true %>
+                   <td class="text-center"><a  href="<%=order_website_app_users_path(:deal_id=> @deal_first.id)%>" class="order-btn">Order</a></td>
+                   <% else %>
+                  <td  class="text-center">
+                   <a id="order-btn" class="order-btn btn_3" >Not Available</a></td>
+                   <% end %>
+              <% end %>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+
+           <!--  <td align="center">
+              <%# url1 = display_logo_permission(@deal_second.service_provider_id,@deal_second.deal_type)%>
+              <%#= image_tag("#{url1}", :size => "200x200") %> 
+            </td> -->
+            <td align="center">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <% url1 = display_logo_permission(@deal_second.service_provider_id,@deal_second.deal_type)%>
+                      <%= image_tag("#{url1}", :size => "200x200") %> 
+                      <!-- <img src="http://res.cloudinary.com/servicedealz/image/upload/v1479289687/at_t_yltr81.png" alt="At t yltr81" height="200" width="200">  -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <% if app_user.present? && app_user.email_verified == true%>
+                <% if @deal_second.is_order_available == true %>
+                    <td class="text-center"><a  href="<%=order_website_app_users_path(:deal_id=> @deal_second.id)%>" class="order-btn">Order</a></td>
+                <% else %>
+                  <td  class="text-center">
+                  <a id="order-btn" class="order-btn btn_3" >Not Available</a></td>
+                <% end %>
+              <% elsif app_user.present? && app_user.email_verified != true %>
+                <td  class="text-center"><a class="order-btn" href="javascript:void(0)">Verify email</a></td>
+              <% else %>
+                <% if @deal_second.is_order_available == true %>
+                   <td class="text-center"><a  href="<%=order_website_app_users_path(:deal_id=> @deal_second.id)%>" class="order-btn">Order</a></td>
+                   <% else %>
+                  <td  class="text-center">
+                   <a id="order-btn" class="order-btn btn_3" >Not Available</a></td>
+                   <% end %>
+              <% end %>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+
+             </tr>
+             <tr >
+                <td></td>
+              <td scope="row" width="30%"  >
+                <table align="center">
+                  <tr>
+                    <%if @deal_first.service_category_id != Deal::BUNDLE_CATEGORY %>
+                      <td style="padding-right:10px">
+                        <%a ="#{@category}_one" %>
+                        <%= image_tag("website/#{a}.png",:alt => 'banner 1') %>
+                      </td>
+                    <% else %>
+                      <% if @deal_first.deal_attributes.present? %>
+                        <% icon_images =(((@deal_first.deal_attributes.first.bundle_combo).sub! 'and', ',').delete(' ')).split(',')%>
+                        <% icon_images.each do |icon_image| %>
+                          <td style="padding-right:10px">
+                            <%a ="#{icon_image.downcase}_one" %>
+                            <%= image_tag("website/#{a}.png",:alt => 'banner 1') %>
+                          </td>
+                        <% end %>
+                      <% else %>
+                      <% end %>
+                    <% end %>
+ 
+                   <!--  <td style="padding-right:10px">
+                       <%#= image_tag('website/cellphone@2x.png',:alt => 'banner 1') %>
+                    </td>
+                    <td style="padding-right:10px">
+                      <%#= image_tag('website/cellphone@2x.png',:alt => 'banner 1') %>
+                    </td>
+                     <td style="padding-right:10px">
+                       <%#= image_tag('website/cellphone@2x.png',:alt => 'banner 1') %>
+                    </td> -->
+                  </tr>
+                </table>
+              </td>
+               <td scope="row" width="30%"  >
+                <table align="center">
+                  <tr>
+                    <%if @deal_second.service_category_id != Deal::BUNDLE_CATEGORY %>
+                      <td style="padding-right:10px">
+                        <%a ="#{@category}_one" %>
+                        <%= image_tag("website/#{a}.png",:alt => 'banner 1') %>
+                      </td>
+                    <% else %>
+                      <% if @deal_second.deal_attributes.present? %>
+                        <% icon_images =(((@deal_second.deal_attributes.first.bundle_combo).sub! 'and', ',').delete(' ')).split(',')%>
+                        <% icon_images.each do |icon_image| %>
+                          <td style="padding-right:10px">
+                            <%a ="#{icon_image.downcase}_one" %>
+                            <%= image_tag("website/#{a}.png",:alt => 'banner 1') %>
+                          </td>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </tr>
+                </table>
+              </td>
+              <!-- <td width="30%" class="text-center"><%#= image_tag("#{url1}", :size => "200x200") %> </td> -->
+              <!-- <td width="30%" class="text-center"><%#= image_tag("#{url1}", :size => "200x200") %> </td> -->
+            </tr>
+              <tr>
+              <td scope="row" width="30%" >Deal</td>
+
+
+
+              <td width="30%" class="text-center"><%= display_deal_name_permission(@deal_first.service_provider_id,@deal_first.deal_type,@deal_first.title).present? ? display_deal_name_permission(@deal_first.service_provider_id,@deal_first.deal_type,@deal_first.title) : "" %></td>
+              <td width="30%" class="text-center"><%= display_deal_name_permission(@deal_second.service_provider_id,@deal_second.deal_type,@deal_second.title).present? ? display_deal_name_permission(@deal_second.service_provider_id,@deal_second.deal_type,@deal_second.title) : "" %></td>
+            </tr>
+               
+
+           
+            <tr>
+              <td scope="row">Price /mon</td>
+              <td class="text-center"><%= @deal_first.try(:price).present? ? "$#{"%.2f" % @deal_first.try(:price)}" : "$0.00" %> </td>
+              <td class="text-center"><%= @deal_second.try(:price).present? ? "$#{"%.2f" % @deal_second.try(:price)}" : "$0.00"  %></td>
+            </tr>
+             <tr>
+              <td scope="row">Effective Price /mon</td>
+              <td class="text-center"><%= @deal_first.try(:effective_price).present? ? "$#{"%.2f" % @deal_first.try(:effective_price)}" : "$0.00"%> </td>
+              <td class="text-center"><%= @deal_second.try(:effective_price).present? ? "$#{"%.2f" % @deal_second.try(:effective_price)}" : "$0.00" %> </td>
+            </tr>
+              <tr>
+              <td scope="row">Saving /mon</td>
+              <% if  app_user.present? %>
+              <%saving_1 = user_preference_price - @deal_first.try(:effective_price)%>
+              <%saving_2 = user_preference_price - @deal_second.try(:effective_price)%>
+              <% if saving_1 > 0 %>
+                <td class="text-center"><span style="background:#0C6; color:#fff; display:inline-block; padding:0 10px "><%= "$#{saving_1}" %></span></td>
+                <% else%>
+                <td class="text-center"><span style="background:#9b9b9b; color:#fff; display:inline-block; padding:0 10px ">$0.00</span></td>
+                <% end %>
+              <% if saving_2 > 0 %>
+                <td class="text-center"><span style="background:#0C6; color:#fff; display:inline-block; padding:0 10px "><%= "$#{saving_2}" %></span></td>
+                <% else%>
+                <td class="text-center"><span style="background:#9b9b9b; color:#fff; display:inline-block; padding:0 10px ">$0.00</span></td>
+                <% end %>
+              <% else %>
+              <td class="text-center"><span style="background:#9b9b9b; color:#fff; display:inline-block; padding:0 10px ">$0.00</span></td>
+              <td class="text-center"><span style="background:#9b9b9b; color:#fff; display:inline-block; padding:0 10px ">$0.00</span></td>
+              <% end %>
+            </tr>
+            <tr>
+              <td scope="row">Contract</td>
+              <% if @deal_first.try(:contract_period) == 0 %>
+                <td class="text-center">None</td>
+              <% else %>
+                <td class="text-center"><%= @deal_first.try(:contract_period) %> months</td>
+              <% end %>
+              <% if @deal_second.try(:contract_period) == 0 %>
+                <td class="text-center">None</td>
+              <% else %>
+                <td class="text-center"><%= @deal_second.try(:contract_period) %> months</td>
+              <% end %>
+            </tr>
+             <!-- <tr>
+              <td scope="row"></td>
+              <%# if app_user.present? && app_user.email_verified == true%>
+                <%# if @deal_first.is_order_available == true %>
+                    <td class="text-center"><a  href="<%=order_website_app_users_path(:deal_id=> @deal_first.id)%>" class="order-btn">Order</a></td>
+                <%# else %>
+                  <td  class="text-center">
+                  <a id="order-btn" class="order-btn btn_3" >Not Available</a></td>
+                <%# end %>
+              <%# elsif app_user.present? && app_user.email_verified != true %>
+                <td  class="text-center"><a class="order-btn" href="javascript:void(0)">Verify email</a></td>
+              <%# else %>
+                <%# if @deal_first.is_order_available == true %>
+                   <td class="text-center"><a  href="<%=order_website_app_users_path(:deal_id=> @deal_first.id)%>" class="order-btn">Order</a></td>
+                   <%# else %>
+                  <td  class="text-center">
+                   <a id="order-btn" class="order-btn btn_3" >Not Available</a></td>
+                   <%# end %>
+              <%# end %>
+             <%# if app_user.present? && app_user.email_verified == true%>
+                <%# if @deal_second.is_order_available == true %>
+                    <td class="text-center"><a  href="<%=order_website_app_users_path(:deal_id=> @deal_second.id)%>" class="order-btn">Order</a></td>
+                <%# else %>
+                  <td  class="text-center">
+                  <a id="order-btn" class="order-btn btn_3" >Not Available</a></td>
+                <%# end %>
+              <%# elsif app_user.present? && app_user.email_verified != true %>
+                <td  class="text-center"><a class="order-btn" href="javascript:void(0)">Verify email</a></td>
+              <%# else %>
+                <% #if @deal_second.is_order_available == true %>
+                   <td class="text-center"><a  href="<%=order_website_app_users_path(:deal_id=> @deal_second.id)%>" class="order-btn">Order</a></td>
+                   <%# else %>
+                  <td  class="text-center">
+                   <a id="order-btn" class="order-btn btn_3" >Not Available</a></td>
+                   <%# end %>
+              <%# end %>
+            </tr> -->
+
+  
+          <%= render :partial => "#{@category}_compare_form" %> 
+  
+ 
+
+
+
+
+
+<%loop_length= [@deal_first.additional_offers.count,@deal_second.additional_offers.count].max%>
+<%if loop_length > 0 %>
+<tr>
+   <table>
+      <tr class="row-differ">
+    <th scope="row" >Offer</th>
+    <th></th>
+    <th></th>
+  </tr>
+   </table>
+</tr>
+
+  <tr>
+   <%loop_length= [@deal_first.additional_offers.count,@deal_second.additional_offers.count].max%>
+    <%(0...loop_length).each_with_index do |offer,index|%>
+    <table class="table table-bordered">
+      <tr>
+        <th width="30%">Title</th>
+        <th width="30%" class="text-center"><%=@deal_first.additional_offers[index].try(:title).present? ? @deal_first.additional_offers[index].try(:title) : "-"%></th>
+        <th width="30%" class="text-center"><%=@deal_second.additional_offers[index].try(:title).present? ? @deal_second.additional_offers[index].try(:title) : "-"%></th>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td class="text-center"> <%=@deal_first.additional_offers[index].try(:price).present? ? "$#{"%.2f" % @deal_first.additional_offers[index].try(:price)}" : "$0.00" %></td>
+        <td class="text-center"><%=@deal_second.additional_offers[index].try(:price).present? ? "$#{"%.2f" % @deal_second.additional_offers[index].try(:price)}" : "$0.00" %></td>
+      </tr>
+    </table>
+    <% end %>
+  </tr>
+  <% end %>
+   <!--  <th class="text-center"><%#= @deal_second.additional_offers.try(:first).try(:title).present? ? @deal_second.additional_offers.try(:first).try(:title) : "NA" %></th> -->
+
+  <!-- <tr>
+    <td scope="row">Price</td>
+    <td class="text-center"><%#= @deal_first.additional_offers.try(:first).try(:price).present? ? "$ #{@deal_first.additional_offers.try(:first).try(:price)}" : "NA" %></td>
+    <td class="text-center"><%#= @deal_second.additional_offers.try(:first).try(:price).present? ? "$ #{@deal_second.additional_offers.try(:first).try(:price)}" : "NA" %></td>
+  </tr> -->
+  </tbody></table>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+

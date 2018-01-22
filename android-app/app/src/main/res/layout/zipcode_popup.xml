@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relative"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/zipcodebg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/locationicon" />
+
+            <TextView
+
+                android:id="@+id/tv_titale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="Please enter zipcode"
+                android:textColor="#000"
+                android:textSize="26sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_25sdp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/ed_zipcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edt_background"
+                    android:hint="Please Enter Zipcode"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/textcolor"
+                    android:textCursorDrawable="@null"
+                    >
+
+                    <requestFocus />
+                </EditText>
+
+                <LinearLayout
+                    android:id="@+id/ll_usertype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_ename"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Usage Type"
+                        android:textColor="@color/black_color" />
+
+                    <RadioGroup
+                        android:id="@+id/rg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <RadioButton
+                            android:id="@+id/radioGroupButton0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@null"
+                            android:checked="true"
+                            android:drawableLeft="@drawable/custom_radio_button"
+                            android:drawablePadding="@dimen/padding_10"
+                            android:text="Residence"
+                            android:textAllCaps="false"
+                            android:textColor="#808080" />
+
+                        <RadioButton
+                            android:id="@+id/radioGroupButton1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:button="@null"
+                            android:drawableLeft="@drawable/custom_radio_button"
+                            android:text="  Business"
+                            android:textColor="#808080"
+                            android:textSize="15sp"
+                            android:visibility="visible" />
+                    </RadioGroup>
+
+                    <LinearLayout
+                        android:id="@+id/ll_buisness"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll_fname"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/txt_buisnessname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Business Name"
+                            android:textColor="#6b6b6b" />
+
+                        <EditText
+                            android:id="@+id/etx_buisness"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/edt_background"
+                            android:paddingLeft="5dp"
+                            android:singleLine="true"
+                            android:textColor="@color/textcolor"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/btn_background"
+                    android:padding="10dp"
+                    android:text="DONE"
+                    android:textColor="#fff"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imgbtn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/cross"
+            android:visibility="gone" />
+    </LinearLayout>
+</RelativeLayout>

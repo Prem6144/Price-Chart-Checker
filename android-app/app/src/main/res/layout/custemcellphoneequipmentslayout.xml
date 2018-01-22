@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/order_sumerylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/l1sumery_orderAttributes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:visibility="visible"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="sans-serif-light"
+                android:singleLine="true"
+                android:text="DealExtra Attributes"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="#c6c5c5" />
+
+            <LinearLayout
+                android:id="@+id/l1sumery_orderattrtbutes_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/dealattributes_planname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="left"
+                    android:singleLine="true"
+                    android:text="CellPhone Name"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_13sdp" />
+
+                <TextView
+                    android:id="@+id/dealattributes_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center"
+                    android:padding="@dimen/_3sdp"
+                    android:singleLine="true"
+                    android:text="Attributes Price"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="#c6c5c5" />
+        </LinearLayout>
+
+
+        <!--dgggggggggggggggggggggg-->
+
+        <LinearLayout
+            android:id="@+id/l1sumery_ordersubscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:visibility="visible"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="sans-serif-light"
+                android:singleLine="true"
+                android:text="Plan Subscription"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="#c6c5c5" />
+
+            <LinearLayout
+                android:id="@+id/l1sumery_ordersubscription_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/dealsubscription_planname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="left"
+                    android:singleLine="true"
+                    android:text="Plan Name"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_13sdp" />
+
+                <TextView
+                    android:id="@+id/dealsubscription_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center"
+                    android:padding="@dimen/_3sdp"
+                    android:singleLine="true"
+                    android:text="Plan Price"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="#c6c5c5" />
+        </LinearLayout>
+
+
+        <!--eeeeeeeeeeeeeennnnnnnnnnnnnndddddddd-->
+        <RelativeLayout
+            android:id="@+id/rl_additionalattributes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/l1sumery_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="sans-serif-light"
+                    android:singleLine="true"
+                    android:text="Additional Equipments"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/lvbundle_linear_dash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/l1sumery_order"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="@dimen/_10sdp">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/lv_additionalequipments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

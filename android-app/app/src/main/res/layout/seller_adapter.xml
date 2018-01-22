@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/txt_seller_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="Seller Name"
+            android:textColor="@color/black_color" />
+
+
+        <TextView
+            android:id="@+id/txt_seller_user"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="30 User"
+            android:textColor="@color/black_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txt_seller_share"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/green_color"
+                android:gravity="center"
+                android:text="Share User"
+                android:textColor="@color/white_color" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

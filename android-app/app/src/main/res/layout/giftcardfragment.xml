@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backround_color_ServiceDealz"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/rl_giftcard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="70dp"
+        android:background="@color/white_color"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/congoo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="You have earned $10 Gift card\n from deals activation."
+            android:textColor="@color/black_color"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txt_total_gift_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Earning amount from Gift Cards: "
+                android:textColor="@color/black_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txt_totalamount_gift_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/txt_total_gift_card"
+                android:gravity="center"
+                android:text="$0"
+                android:textColor="@color/red_color"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txt_total_referral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Earning amount from Referrals: "
+                android:textColor="@color/black_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txt_totalamount_referral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/txt_total_referral"
+                android:gravity="center"
+                android:text="$0"
+                android:textColor="@color/red_color"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txt_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Total my earning amount: "
+                android:textColor="@color/black_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txt_totalamount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/txt_total"
+                android:gravity="center"
+                android:text="$0"
+                android:textColor="@color/red_color"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txt_redeem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Total redeem amount: "
+                android:textColor="@color/black_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txt_redeem_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/txt_redeem"
+                android:gravity="center"
+                android:text="$0"
+                android:textColor="@color/red_color"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_redeemnow"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/btn_back_rounded_red"
+            android:text="Redeem Now"
+            android:textAllCaps="false"
+            android:textColor="@color/white_color" />
+
+        <View
+            android:id="@+id/view_uper"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/margin_10"
+            android:background="@color/grey_color" />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/grey_color"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:id="@+id/lnr_earned_gift_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@color/red_color"
+                android:paddingBottom="5dp">
+
+                <Button
+                    android:id="@+id/btn_earned_gift_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white_color"
+                    android:text="Gift Cards"
+                    android:textAllCaps="false"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+            <!--<View
+                android:layout_centerHorizontal="true"
+                android:id="@+id/devider"
+                android:layout_width="3dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/earned_gift_card"
+                android:layout_alignTop="@+id/earned_gift_card"
+                android:layout_margin="10dp"
+                android:background="@color/red_color"/>-->
+            <LinearLayout
+                android:id="@+id/lnr_referred"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="0.5"
+                android:background="@color/white_color"
+                android:paddingBottom="5dp">
+
+                <Button
+                    android:id="@+id/btn_referred"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white_color"
+                    android:text="Referrals"
+                    android:textAllCaps="false"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_gift"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_giftcard"
+        android:layout_margin="10dp"
+        android:background="@color/backround_color_general"
+        android:divider="@color/transparent"
+        android:dividerHeight="5dp"
+        android:scrollbars="none"></ListView>
+
+
+</RelativeLayout>

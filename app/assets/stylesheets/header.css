@@ -1,0 +1,104 @@
+.text-header{
+	color:#e00000 !important;
+	font-size: 30px;
+  margin: 20px 0;
+}
+
+.logout{
+	float:right;
+  margin: 5px 0;
+}
+.user-detail{
+  padding-left: 5px;
+}
+
+.top-bar-section ul{
+  background: #1E4262;
+  padding: 0;
+  display:table;
+  width:100%;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+}
+
+.top-bar-section ul li{
+  font-size: 10px;
+  display:table-cell;
+}
+.top-bar-section ul li > a {
+  display: block;
+  width: 100%;
+  padding: 12px 0 12px 0;
+  padding-left: 0.9375rem;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 1.0000rem;
+  font-weight: normal;
+  text-transform: none;
+  color: #ffffff;
+}
+
+.top-bar-section li.hover > a:not(.button) {
+  color: #FFFFFF;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+  padding: 0 0.9375rem;
+  line-height: 2.8125rem;
+  
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):hover {
+  background: #1E4262;
+  color:#ffffff;
+}
+
+.top-bar-section li.active:not(.has-form) a:not(.button) {
+  padding: 0 0.9375rem;
+  line-height: 2.8125rem;
+  color: #FFFFFF;
+  
+}
+
+.top-bar-section li.active:not(.has-form) a:not(.button):hover {
+  color: #FFFFFF;
+}
+
+.row {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 62.5rem;
+}
+
+#tabs {
+  background: #1E4262;
+  height: 26px;
+  padding: 0px;
+  text-align: center;
+  width: 100%;
+}
+
+#error_explanation {
+  color: red;
+}
+
+#error_explanation ul {
+  color: red;
+}
+
+#mandat,.mandat{
+  color: red;
+}
+
+.menu li {
+    float: left;
+    width: 200px;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+    line-height: 33px;
+    padding: 0 0.9375rem;
+}

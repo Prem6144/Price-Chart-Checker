@@ -1,0 +1,53 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+	<tr>
+		<td class='main' id='main' valign='top'>
+			<div class='title_tools'>
+				<% if current_user.is_super_admin? %>
+					<%#= link_to "Create New Service Preferences", new_service_preference_path %>
+				<% end %>
+			</div>
+
+			<div id="users" class="list">
+				<table id="users_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+					<thead>
+						<tr>
+							<th><strong>ID</strong></th>
+							<th><strong>App User Id</strong></th>
+							<th><strong>Service Category Id</strong></th>
+							<th><strong>Service Provider Id</strong></th>
+							<th><strong>Start Date</strong></th>
+							<th><strong>End Date</strong></th>
+							<th><strong>Is Contract?</strong></th>
+							<th><strong>Price</strong></th>
+							<th><strong>Plan Name</strong></th>
+							<th><strong>Action</strong></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @service_preferences.each do |service_preference| %>
+							<% if can? :read, service_preference %>
+								<tr>
+									<td><%= service_preference.id %></td>
+									<td><%= service_preference.app_user_id %></td>
+									<td><%= service_preference.service_category_id %></td>
+									<td><%= service_preference.service_provider_id %></td>
+									<td><%= service_preference.start_date %></td>
+									<td><%= service_preference.end_date %></td>
+									<td><%= service_preference.is_contract %></td>
+									<td><%= service_preference.price %></td>
+									<td><%= service_preference.plan_name %></td>
+									<td><%= (link_to 'Edit', edit_service_preference_path(service_preference)) if can? :manage, service_preference %> | <%= (link_to "Delete", service_preference, method: :delete, data: { confirm: "You sure?" }) if can? :manage, service_preference %></td>
+								</tr>
+							<% end %>
+						<% end %>
+					</tbody>
+				</table>
+				<p>
+          Download:
+          <%= link_to "CSV", service_preferences_path(format: "csv") %>
+          <%#= link_to "Excel", service_categories_path(format: "xls") %>
+        </p>
+			</div>
+		</td>
+	</tr>
+</table>

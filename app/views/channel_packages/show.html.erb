@@ -1,0 +1,33 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+  <tr>
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+        <%= link_to "View All Packages", channel_packages_path %>
+      </div>
+      <div class='title'>
+        <span id='title'>Show Channel</span>
+      </div>
+      <p id="notice"><%= notice %></p>
+
+      <table cellpadding='0' cellspacing='0' border='1'>
+
+        <tr>
+          <td>Package Name : </td><td><%= @channel_package.package_name %></td>
+        </tr>
+        <tr>
+          <td>Package Code : </td><td><%= @channel_package.package_code %></td>
+        </tr>
+        <tr>
+          <td>Channel Count : </td><td><%= @channel_package.channel_count %></td>
+        </tr>
+        <tr>
+          <td>Description : </td><td><%= @channel_package.description %></td>
+        </tr>
+
+      </table>
+
+      <%= link_to 'Edit', edit_channel_package_path(@channel_package) %> |
+      <%= link_to 'Back', channel_packages_path %>
+    </td>
+  </tr>
+</table>

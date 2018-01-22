@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E7E2DF">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/invitationbox">
+
+        <TextView
+            android:id="@+id/txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txt1"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="Enter Invitation Code"
+            android:textColor="@color/black_color"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txt1"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="if you were invited by a friend,you can use thier\ninvite code so will get you 10 free credits\nand your friend will get 20 credits!"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/etx_code"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/txt1"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="40dp"
+            android:background="#E7E2DF"
+            android:gravity="center"
+            android:maxLength="5"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/etx_code"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/btn_background"
+            android:text="Submit"
+            android:textColor="@color/white_color" />
+
+    </RelativeLayout>
+</LinearLayout>

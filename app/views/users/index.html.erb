@@ -1,0 +1,48 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+  <tr> 
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+				<% if current_user.is_super_admin? %>
+					<%= link_to "Create New User", new_user_path%>
+				<% end %>
+      </div>
+
+      <div class='title'>
+        <span id='title'><%= image_tag("users_active.png")%> Users</span>
+      </div>
+
+			<div id="users" class="list">
+				<table id="users_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+					<thead>
+				  	<tr>
+				    	<th><strong>ID</strong></th>
+				    	<th><strong>Name</strong></th>
+				    	<th><strong>Email</strong></th>
+				    	<th><strong>Role</strong></th>
+				    	<th><strong>Last Sign In Time</strong></th>
+				    	<th><strong>Last Sign In I.P.</strong></th>
+				    	<th><strong>Account Active?</strong></th>
+				    	<th><strong>Edit</strong></th>
+				  	</tr>
+					</thead>
+				  <tbody>
+						<% @users.each do |user| %>
+							<% if can? :read, user %>
+						  	<tr>
+						    	<td><%= user.id %></td>
+						    	<td><%= user.name %></td>
+						    	<td><%= user.email %></td>
+						    	<td><%= user.role.humanize rescue '-'%></td>
+						    	<td><%= user.last_sign_in_at || 'Never'%></td>
+						    	<td><%= user.last_sign_in_ip || '/' %></td>
+						    	<td><%= user.enabled ? '✓' : '' %></td>
+						    	<td><%= (link_to 'Edit', edit_user_path(user)) if can? :manage, user %></td>
+						  	</tr>
+							<% end %>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+    </td>
+	</tr>
+</table>

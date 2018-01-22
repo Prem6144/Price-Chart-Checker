@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/shadow"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:layout_centerVertical="true"
+                android:text="Order Review"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/_12sdp" />
+
+            <ImageView
+                android:id="@+id/img_order"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/arrowup"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_order_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/compare_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Billing Detail"
+                    android:textColor="@color/black_color"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ececec"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/txt_order_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:textColor="@color/black_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_mobile_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Mobile 8888888888 "
+                        android:textColor="@color/textcolor"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/txt_order_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="75025 Map Drive,Plans,Texes\n75024 United States"
+                        android:textColor="@color/textcolor"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/txt_registredor_sole"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Registered"
+                        android:textColor="@color/black_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_business_type_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="FederalNumber"
+                        android:textColor="@color/textcolor"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Address"
+                        android:textColor="@color/black_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Billing Address"
+                        android:textColor="@color/black_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/txt_billing_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="75025 Map Drive,Plans,Texes\n75024 United States"
+                        android:textColor="@color/textcolor"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Shipping Address"
+                        android:textColor="@color/black_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/txt_shipping_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="75025 Map Drive,Plans,Texes\n75024 United States"
+                        android:textColor="@color/textcolor"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Service Address"
+                        android:textColor="@color/black_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/txt_service_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="75025 Map Drive,Plans,Texes\n75024 United States"
+                        android:textColor="@color/textcolor"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <EditText
+                android:id="@+id/free_edt_text"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Free Text"
+                android:padding="@dimen/_6sdp"
+                android:gravity="center_horizontal"
+                android:background="@drawable/shadow"
+                android:textSize="@dimen/_18sdp"
+                />
+            <TextView
+                android:id="@+id/txt_proceed"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:background="#3687c4"
+                android:gravity="center"
+                android:paddingRight="10dp"
+                android:text="Submit"
+                android:textColor="@color/white_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

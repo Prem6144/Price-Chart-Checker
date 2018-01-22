@@ -1,0 +1,38 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%' >
+	<tr>
+		<td class='main' id='main' valign='top'>
+			<div class='title_tools'>
+				<%= link_to "View All Advertisements", advertisements_path %>
+			</div>
+			<div class='title'>
+				<span id='title'>Update Advertisement</span>
+			</div>
+			<div class="small-6 large-centered columns">
+				<%= form_for(@advertisement) do |f| %><br/>
+					<div><strong>Service Category : </strong><br />
+						<%= f.select :service_category_name, ServiceCategory.uniq.pluck(:name).reject { |f| f.nil? || f.empty? },{:include_blank => "Select a service category"}%>
+					</div>
+					<div><strong>Name:</strong><br />
+						<%= f.text_field :name %>
+					</div>
+					<div><strong>URL:</strong><br/>
+						<%= f.text_field :url %>
+					</div>
+					<div><strong>Advertisement Image:</strong><br/>
+						<%= f.file_field :image %>
+					</div>
+					<div><strong>Is Active :</strong><br />
+						<%= f.check_box :status %>
+					</div>
+					<div><strong>Start Date:</strong><br />
+						<%= f.text_field :start_date %>
+					</div>
+					<div><strong>End Date:</strong><br />
+						<%= f.text_field :end_date %>
+					</div>
+					<div><%= f.submit "Update" %></div>
+				<% end %>
+			</div>
+		</td>
+	</tr>
+</table>

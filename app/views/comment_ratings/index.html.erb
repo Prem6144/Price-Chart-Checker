@@ -1,0 +1,46 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+  <tr> 
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+	    	<% if current_user.is_super_admin? %>
+		  		<%#= link_to "Create New Service Category", new_service_category_path %>
+				<% end %>
+      </div>
+
+      <div class='title'>
+        <span id='title'><%= image_tag("comments.png")%> Comment & Rating</span>
+      </div>
+
+      <div id="comment" class="list">
+	    <table id="comment_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+		  <thead>
+		    <tr>
+		      <th><strong>App User ID</strong></th>
+			  	<th><strong>Deal ID </strong></th>
+			  	<th><strong>Show on page ? </strong></th>
+			  	<th><strong>Rating</strong></th>
+			  	<th><strong>Title</strong></th>
+			  	<th><strong>Comment</strong></th>
+			  	<th><strong>Edit </strong></th>
+				</tr>
+		  </thead>
+		  <tbody>
+		    <% @comment_ratings.each do |cg| %>
+			  	<% if can? :read, cg %>
+			    	<tr>
+			      	<td><%= cg.app_user_id %></td>
+				  		<td><%= cg.deal_id %></td>
+				  		<td><%= cg.status %></td>
+				  		<td><%= cg.rating_point %></td>
+				  		<td><%= cg.comment_title %></td>
+				  		<td><%= cg.comment_text %></td>
+				  		<td><%= (link_to 'Edit', edit_comment_rating_path(cg)) if can? :manage, cg %> | <%= (link_to "Delete", cg, method: :delete, data: { confirm: "You sure?" }) if can? :manage, cg %></td>
+						</tr>
+			  	<% end %>
+				<% end %>
+		  </tbody>
+		</table>
+	  </div>
+    </td>
+  </tr>
+</table>

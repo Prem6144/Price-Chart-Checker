@@ -1,0 +1,47 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+	<tr>
+		<td class='main' id='main' valign='top'>
+			<div class='title_tools'>
+				<% if current_user.is_super_admin? %>
+					<%#= link_to "Create New Service Preferences", new_service_preference_path %>
+				<% end %>
+			</div>
+
+			<div id="users" class="list">
+				<table id="users_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+					<thead>
+						<tr>
+							<th><strong>ID</strong></th>
+							<th><strong>Service Preference Id</strong></th>
+							<th><strong>DomesticCallMins</strong></th>
+							<th><strong>InternationalCallMins</strong></th>
+							<th><strong>Domestic Call Unlimited</strong></th>
+							<th><strong>International Call Unlimited</strong></th>
+							<th><strong>Action</strong></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @telephone_service_preferences.each do |tsp| %>
+							<% if can? :read, tsp %>
+								<tr>
+									<td><%= tsp.id %></td>
+									<td><%= tsp.service_preference_id %></td>
+									<td><%= tsp.domestic_call_minutes %></td>
+									<td><%= tsp.international_call_minutes %></td>
+									<td><%= tsp.domestic_call_unlimited %></td>
+									<td><%= tsp.international_call_unlimited %></td>
+									<td><%= (link_to 'Edit', edit_telephone_service_preference_path(tsp)) if can? :manage, tsp %> | <%= (link_to "Delete", tsp, method: :delete, data: { confirm: "You sure?" }) if can? :manage, tsp %></td>
+								</tr>
+							<% end %>
+						<% end %>
+					</tbody>
+				</table>
+				<p>
+          Download:
+          <%= link_to "CSV", telephone_service_preferences_path(format: "csv") %>
+          <%#= link_to "Excel", service_categories_path(format: "xls") %>
+        </p>
+			</div>
+		</td>
+	</tr>
+</table>

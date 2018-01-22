@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000">
+    <!--  android:background="@color/backround_color_general"-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:layout_marginBottom="100dp"
+                android:background="@drawable/giftcard"
+                android:orientation="vertical"
+
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:visibility="gone"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/txt_giftcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="100dp"
+                        android:text="For switching service using ServiceDealz."
+                        android:textColor="@color/black_color"
+                        android:textSize="13sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_giftcard"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+
+
+                        <Button
+                            android:id="@+id/btn_update"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginRight="60dp"
+                            android:background="@drawable/btn_back_rounded_red"
+                            android:text="View Gift cards"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white_color" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/img1"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_below="@+id/ll_button"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/gift1" />
+
+                    <ImageView
+                        android:id="@+id/img2"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_below="@+id/img1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/gift2" />
+
+                    <ImageView
+                        android:id="@+id/img3"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_below="@+id/img2"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/gift3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img3"
+                        android:layout_marginLeft="10dp"
+                        android:text="* Click enable card to redeem"
+                        android:textColor="@color/black_color"
+                        android:textSize="13sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_close"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/gtk_close" />
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>

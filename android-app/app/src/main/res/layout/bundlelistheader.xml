@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_bundle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:visibility="visible">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" "
+        android:textColor="@color/red_color"
+        android:textSize="10dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/lvbundle_linear_dash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bundlelistgradient">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/lv_bundle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/_6sdp"
+            android:paddingTop="@dimen/_6sdp"></android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+</LinearLayout>

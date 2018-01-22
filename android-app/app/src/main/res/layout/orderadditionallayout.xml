@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/ordersumry_image_view"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/devider_ordersumry"
+        android:background="@drawable/bundlelistgradient"
+        android:paddingBottom="10dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingTop="10dp"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/ordersumry_img_provider"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:background="@drawable/iphon"
+            android:padding="2dp" />
+
+        <LinearLayout
+            android:id="@+id/ordersumrytxt_ordertitle_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_toRightOf="@+id/ordersumry_img_provider"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/ordersumrytxt_ordertitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:maxLines="1"
+                android:text="Apple"
+                android:textColor="@color/red_color"
+                android:textSize="@dimen/_12sdp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_brandname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ordersumrytxt_ordertitle_linear"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_toRightOf="@+id/ordersumry_img_provider"
+            android:maxLines="1"
+            android:text="Brand Name"
+            android:textColor="#7f7f7f"
+            android:textSize="@dimen/_10sdp" />
+
+        <TextView
+            android:id="@+id/ordersumrytxt_colorname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_brandname"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/ordersumry_img_provider"
+            android:maxLines="1"
+            android:text="color name  "
+            android:textColor="#7f7f7f"
+            android:textSize="@dimen/_10sdp" />
+
+        <TextView
+            android:id="@+id/equipements_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ordersumrytxt_colorname"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/ordersumry_img_provider"
+            android:gravity="center"
+            android:text="Price" />
+
+        <TextView
+            android:id="@+id/ordersumrytxt_order_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/ordersumry_img_provider"
+            android:maxLines="1"
+            android:text="Quantity"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/_13sdp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/ordersumeryll_effective"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/ordersumrytxt_order_quantity"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="sans-serif-medium"
+                android:text=""
+                android:textColor="#00b551"
+                android:textSize="@dimen/_9sdp" />
+
+
+            <TextView
+                android:id="@+id/ordersumrytxt_effective_deal_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="right"
+                android:maxLength="14"
+                android:text=""
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

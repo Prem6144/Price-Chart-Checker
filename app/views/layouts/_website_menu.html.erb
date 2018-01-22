@@ -1,0 +1,20 @@
+<nav class="navbar navbar-inverse " role="navigation" id="sticky-top">
+  <div class="container">
+    <div class="navbar-header pull-left"> <a class="navbar-brand" href="<%= website_home_index_path %>"><%= image_tag("website/logo1.png",:alt => 'Service Dealz') %></a> </div>
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+    <div id="navbar" class="navbar-collapse collapse  pull-right">
+      <ul class="navService">
+        <li><a href="<%= deal_details_website_home_index_path %>?category_id=<%= Deal::BUNDLE_CATEGORY %>&zip_code=<%= get_zipcode_and_user_type %>&deal_type=<%= session[:user_type] %>">Bundle</a></li>
+        <li><a href="<%= deal_details_website_home_index_path %>?category_id=<%= Deal::INTERNET_CATEGORY %>&zip_code=<%= get_zipcode_and_user_type %>&deal_type=<%= session[:user_type] %>">Internet</a></li>
+        <li><a href="<%= deal_details_website_home_index_path %>?category_id=<%= Deal::CABLE_CATEGORY %>&zip_code=<%= get_zipcode_and_user_type %>&deal_type=<%= session[:user_type] %>">Cable</a></li>
+        <li><a href="<%= deal_details_website_home_index_path %>?category_id=<%= Deal::TELEPHONE_CATEGORY %>&zip_code=<%= get_zipcode_and_user_type %>&deal_type=<%= session[:user_type] %>">Telephone</a></li>
+        <% if !(session[:user_type] == "residence") %>
+        <li><a href="<%= deal_details_website_home_index_path %>?category_id=<%= Deal::CELLPHONE_CATEGORY %>&zip_code=<%= get_zipcode_and_user_type %>&deal_type=<%= session[:user_type] %>">Cellphone</a></li>
+        <% end %>
+        <li><a href="/calculate_bandwidth">Bandwidth Calculator</a></li>
+      </ul>
+    </div>
+    <!--/.navbar-collapse -->
+  </div>
+</nav>
+ <%= render :partial => "website/home/zip_modal" %>

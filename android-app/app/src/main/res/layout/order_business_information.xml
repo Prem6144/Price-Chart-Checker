@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_business_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/shadow"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="sans-serif-light"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:text="Business Information"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/_12sdp" />
+
+            <ImageView
+                android:id="@+id/img_business"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/arrowup"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+
+        <LinearLayout
+
+            android:id="@+id/ll_buisness_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#c6c5c5" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/etx_business_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/disable_edittext"
+                            android:capitalize="words"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:hint="Business Name"
+                            android:paddingLeft="5dp"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/_10sdp" />
+
+
+                        <EditText
+                            android:id="@+id/etx_buisness_mobile_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight=".5"
+                            android:background="@drawable/order_editext_background"
+                            android:hint="Main Telephone Number*"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:singleLine="true"
+                            android:textColor="@color/black_color"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="13dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <RadioButton
+                                android:id="@+id/radioGroupButton0"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@null"
+                                android:checked="true"
+                                android:drawableLeft="@drawable/custom_radio_button"
+                                android:enabled="false"
+                                android:maxLines="1"
+                                android:text="  Sole Proprietor"
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/_10sdp"
+                                android:textStyle="bold" />
+
+                            <RadioButton
+                                android:id="@+id/radioGroupButton1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@null"
+                                android:drawableLeft="@drawable/custom_radio_button"
+                                android:enabled="false"
+                                android:text="  Registered"
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/_10sdp"
+                                android:textStyle="bold" />
+                        </RadioGroup>
+
+                        <LinearLayout
+                            android:id="@+id/ll_registred_business"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/etx_dba_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_weight=".5"
+                                    android:background="@drawable/order_editext_background"
+                                    android:capitalize="words"
+                                    android:hint="DBA Number"
+                                    android:paddingLeft="5dp"
+                                    android:singleLine="true"
+                                    android:text=""
+                                    android:textColor="@color/black_color"
+                                    android:textSize="@dimen/_10sdp" />
+
+                                <EditText
+                                    android:id="@+id/etx_federal_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_weight=".5"
+                                    android:background="@drawable/disable_edittext"
+                                    android:hint="Federal Tax ID*"
+                                    android:inputType="number"
+                                    android:maxLength="10"
+                                    android:singleLine="true"
+                                    android:textColor="@color/black_color"
+                                    android:textSize="@dimen/_10sdp" />
+
+
+                            </LinearLayout>
+
+                            <EditText
+                                android:id="@+id/etx_db_number"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginTop="8dp"
+                                android:layout_weight=".5"
+                                android:background="@drawable/order_editext_background"
+                                android:hint="Dan &amp; Bradstreet Number"
+                                android:inputType="number"
+                                android:maxLength="15"
+                                android:singleLine="true"
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/_10sdp" />
+
+                            <EditText
+                                android:id="@+id/etx_manager_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginTop="8dp"
+                                android:background="@drawable/order_editext_background"
+                                android:capitalize="words"
+                                android:hint="Manager Name"
+                                android:paddingLeft="5dp"
+                                android:singleLine="true"
+                                android:text=""
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/_10sdp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_sole_business"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="13dp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <EditText
+                                android:id="@+id/etx_buisness_dob_number"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight=".5"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:background="@drawable/order_editext_background"
+                                android:hint="MM/DD/YYYY"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:singleLine="true"
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/_10sdp" />
+
+                            <EditText
+                                android:id="@+id/etx_ssn_number"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight=".5"
+                                android:background="@drawable/disable_edittext"
+                                android:hint="SSN*"
+                                android:inputType="number"
+                                android:maxLength="11"
+                                android:singleLine="true"
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/_10sdp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_business_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#3687c4"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="10dp"
+                    android:text="Next"
+                    android:textColor="@color/white_color"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

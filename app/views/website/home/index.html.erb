@@ -1,0 +1,352 @@
+<%#= stylesheet_link_tag 'website/owl.carousel' %>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active"> <%= image_tag('website/banner2.png',:alt => 'banner 1') %>
+      <div class="carousel-caption">
+        <h1>Moving? Find Best Deals for Your New Coordinates</h1>
+      </div>
+    </div>
+    <div class="item "> <%= image_tag('website/banner1.png',:alt => 'banner 2') %>
+      <div class="carousel-caption">
+        <h1> Pick Best Deals, Switch and Save $1000s</h1>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next </span>
+    </a>
+    <div class="formcontainer">
+      <%=form_tag("/website/home/deal_details", method: :get, :id=>"firstpageform") do%>
+          <h3>Please enter valid ZIP Code & Choose Category and Type.</h3>
+          <div class="col-md-12">
+            <div class="col-md-5 col-sm-6 col-xs-offset-1">
+              <%=text_field(:zip_code,nil, :class=>"form-control", :placeholder=>"Enter Zip*",:id=>"zip-code", maxlength: 6)%>
+              <span class="pos-rel error-msg" id="zip-error">Please enter zipcode.</span>
+            </div>
+            <div class="col-md-5 col-sm-6 select-style ">
+              <%if session[:user_type] == AppUser::RESIDENCE %>
+              <%= select_tag(:category_id,options_for_select(get_service_categories.first(5) - [["Cellphone", 4]]),:class => 'form-control',:prompt => 'Select Service', :id=>"service-type") %>
+              <% else %>
+              <%= select_tag(:category_id,options_for_select(get_service_categories.first(5)),:class => 'form-control',:prompt => 'Select Service', :id=>"service-type") %>
+              <% end %>
+              <span class="pos-rel error-msg" id="category-type-error">Please choose a category from the list.</span>
+            </div>
+          </div>
+          <div class="col-md-12 col-sm-12">
+
+            <div class="col-md-10 col-xs-offset-1 select-style ">
+              <%= select_tag(:deal_type,options_for_select((AppUser::USER_TYPES.collect{|m| [m.titleize, m]}),nil),:class => 'form-control',:prompt => 'Select your User Type', :id=>"user-type") %>
+              <span class="pos-rel error-msg" id="deal-type-error">Please choose User Type from the list.</span>
+            </div>
+          </div><br />
+          <div style="width:100%; display:inline-block;">
+          <button type="submit" class="btn btn-default btn-blue">Enter Now</button>
+
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+<!-- //banner -->
+
+
+
+<!--<banner form small device>-->
+<section class="sd-services-col">
+  <div class="container">
+    <div class="row">
+      <h1 class="text-center">Your One Stop Shop for Telecom Servers and Utilities</h1>
+      <% if session[:user_type] != AppUser::RESIDENCE %>
+        <div class="col-sm-4 col-xs-6 text-center sd-services-opt">
+          <a href="<%= deal_details_website_home_index_path %>?category_id=<%= Deal::CELLPHONE_CATEGORY %>&zip_code=<%= get_zipcode_and_user_type %>&deal_type=<%= session[:user_type] %>" >
+            <div><%= image_tag('website/cellphone.png',:alt => 'cellphone') %></div>
+            <p>Cellphone</p>
+          </a>
+        </div>
+      <% end %>
+      <div class="col-sm-4 col-xs-6 text-center sd-services-opt">
+        <a href="<%= deal_details_website_home_index_path %>?category_id=<%= Deal::CABLE_CATEGORY %>&zip_code=<%= get_zipcode_and_user_type %>&deal_type=<%= session[:user_type] %>">
+          <div><%= image_tag('website/cable.png',:alt => 'tv') %></div>
+          <p>Cable</p>
+        </a>
+      </div>
+      <div class="col-sm-4 col-xs-6 text-center sd-services-opt">
+        <a href="<%= deal_details_website_home_index_path %>?category_id=<%= Deal::TELEPHONE_CATEGORY %>&zip_code=<%= get_zipcode_and_user_type %>&deal_type=<%= session[:user_type] %>" >
+          <div><%= image_tag('website/telephone.png',:alt => 'telephone') %></div>
+          <p>Telephone</p>
+        </a>
+      </div>
+      <div class="col-sm-4 col-xs-6 text-center sd-services-opt">
+        <a href="<%= deal_details_website_home_index_path %>?category_id=<%= Deal::INTERNET_CATEGORY %>&zip_code=<%= get_zipcode_and_user_type %>&deal_type=<%= session[:user_type] %>" >
+          <div><%= image_tag('website/internet.png',:alt => 'wifi') %></div>
+          <p>Internet</p>
+        </a>
+      </div>
+      <div class="col-sm-4 col-xs-6 text-center sd-services-opt">
+        <a href="<%= deal_details_website_home_index_path %>?category_id=<%= Deal::BUNDLE_CATEGORY %>&zip_code=<%= get_zipcode_and_user_type %>&deal_type=<%= session[:user_type] %>" >
+          <div><%= image_tag('website/bundle.png',:alt => 'bundle') %></div>
+          <p>Bundle</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<% unless session[:user_id].present?%>
+    <section class="sd-deal-nologin">
+      <div class="container sd-deal-dashboard ">
+        <% @trending_deal_data.each do |trending_deal_data|%>
+
+         <% if trending_deal_data.present? %>
+
+        <% if !((trending_deal_data[:service_category_id] == Deal::CELLPHONE_CATEGORY) && (session[:user_type] == AppUser::RESIDENCE)) %>
+        
+          <% trending_deal = trending_deal_data[:trending_deal]%>
+            <% if trending_deal.present? %>
+              <%=render :partial => "one_deal_form.html.erb", locals: {deal_data: trending_deal_data , trending_deal: trending_deal}%>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <% end %>
+
+        
+
+      </div>
+    </section>
+
+
+<% else %>
+    <section class="sd-deal-threeblock">
+      <div class="container sd-deal-dashboard ">
+        <% @best_deal_data.each do |deal_data|%>
+
+        <% if deal_data.present? %>
+
+         <%if !((deal_data[:service_category_id] == Deal::CELLPHONE_CATEGORY) && (session[:user_type] == AppUser::RESIDENCE)) %>
+            <% trending_deal = deal_data[:trending_deal]
+               best_deal = deal_data[:best_deal]
+               order_deal = deal_data[:order_deal] %>
+            <% if trending_deal.present? && best_deal.present? && order_deal.present? %>
+                <%=render :partial => "three_deal_form.html.erb", locals: {deal_data: deal_data , best_deal: best_deal, trending_deal: trending_deal, order_deal: order_deal}%>
+
+
+             <% elsif trending_deal.present? && best_deal.present? && order_deal.blank? %>
+                <%=render :partial => "two_deal_form.html.erb",locals: {deal_data: deal_data , deal_1: best_deal, deal_2: trending_deal, key: "trending-best"}%>
+
+              <% elsif trending_deal.present? && best_deal.blank? && order_deal.present? %>
+                <%=render :partial => "two_deal_form.html.erb",  locals: {deal_data: deal_data , deal_1: trending_deal, deal_2: order_deal, key: "trending-order"}%>
+
+
+              <% elsif trending_deal.blank? && best_deal.present? && order_deal.present? %>
+                <%=render :partial => "two_deal_form.html.erb", locals: {deal_data: deal_data , best_deal: best_deal, trending_deal: '', order_deal: order_deal}%>
+
+
+            <% elsif trending_deal.present? && best_deal.blank? && order_deal.blank? %>
+                <%=render :partial => "one_deal_form.html.erb", locals: {deal_data: deal_data , trending_deal: trending_deal}%>
+
+
+
+            <% end %>
+
+            <% end %>
+            <% end %>
+        <% end %>
+      </div>
+    </section>
+<% end %>
+
+
+
+<div class="modal fade nuf-popup" id="comparePopup" role="dialog"  data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+        <button type="button" class="close log-pop-btn" id="secondary-cross-btn" data-dismiss="modal" onclick="calculate_you_save()">×</button>
+    <button type="button" class="close log-pop-btn hidden" id="primary-cross-btn" data-dismiss="modal" onclick="calculate_you_save()">×</button>
+    <div class="modal-content compare-popsty " >
+      <div id="welcome-popup">
+        <div class="text-center mg-bt25">
+          <img src="/assets/website/welcome1.png" alt="Welcome Logo" width="150">
+        </div>
+        <p class="mg-bt25 text-center"><span style="color:#2c9d12; font-weight:400;">$ave </span>$1000s by switching <span style="color:#e50005; font-weight:600;">Internet, TV, Telephone, Cellphone</span>
+           </p>
+        <p class="mg-bt25 text-center">It is easy as 1 - 2 - 3</p>
+        <ul class="info_listing">
+          <li><span>1</span><p>Enter your service information</p></li>
+          <li><span>2</span><p>Review potential savings</p></li>
+          <li><span>3</span><p>Review suggested best deals</p></li>
+        </ul>
+        <div class="text-center">
+          <button type="button" onclick="move_next()" class="btn compare-btn">I’M INTERESTED</button>
+        </div>
+      </div>
+      <div id="internet_pref" style="display:none">
+        <%=render :partial => "internet_preferences0.html.erb"%>
+      </div>
+      <div id="telephone_pref" style="display:none;">
+        <%=render :partial => "telephone_preferences0.html.erb"%>
+      </div>
+      <div id="cable_pref" style="display:none;">
+        <%=render :partial => "cable_preferences0.html.erb"%>
+      </div>
+      <% if session[:user_type] != AppUser::RESIDENCE %>
+      <div id="cellphone_pref" style="display:none;">
+        <%=render :partial => "cellphone_preferences0.html.erb"%>
+      </div>
+      <% end %>
+      <div id="bundle_pref" style="display:none;">
+        <%=render :partial => "bundle_preferences0.html.erb"%>
+      </div>
+      <div id="onwait" style="background-color: #000;    height: 586px; position: absolute;    top: 1px;    width: 100%;    opacity: 0.3;">
+        <i id="wait-spinner" style="position: absolute;top: 50%;left: 43%;color: #fafafa;" class="fa fa-spinner fa-pulse fa-4x fa-fw fa-spin"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="wowPopup" role="dialog"  data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog  user-motivation">
+    <!-- Modal content-->
+    <button type="button" class="close log-pop-btn" data-dismiss="modal" onclick="refresh()">×</button>
+    <div class="modal-content">
+      <div id="welcome-popup">
+        <div class="text-center mg-bt25">
+          <div><img src="/assets/website/user-motivational.png" alt="User Motivational Logo"></div>
+          <div> <img src="/assets/website/wow.png" alt="Wow Logo"></div>
+          <div class="potential-saving">Your Potential $aving are
+            <span id="you_save_value">$900 - $1,200</span></div>
+        </div>
+        <div class="mg-bt25 text-center">
+          <button type="button" onclick = "refresh()" value="Save and switch"  class="btn compare-btn">Review Deals & Switch</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Internet, Telephone, cable, Cellphone, Bundle. -->
+<script type="text/javascript">
+    $('#dashboad-sm-deals').owlCarousel({
+        loop:true,
+        margin:10,
+        responsiveClass:true,
+        items:4,
+    });
+
+    function move_next() {
+        $("#welcome-popup").hide();
+        $("#primary-cross-btn").removeClass("hidden");
+        $("#secondary-cross-btn").addClass("hidden");
+        $("#comparePopup").removeClass("nuf-popup");
+        $("#internet_pref").show();
+    }
+
+    <%if session[:user_id].present?%>
+    function calculate_you_save(){
+        $.ajax({
+            url:"/api/v1/you_save",
+            type: "GET",
+            data: {
+                id:<%=session[:user_id]%>
+            },
+            success: function(data){
+                console.log(data);
+                $("#wowPopup").modal("show");
+                if (data["you_save"] !="" && data["you_save"]!=null && data["you_save"] > 0){ 
+                    $("#you_save_value").html("$"+data["you_save"]+" per annum")
+                }
+                else {
+                    $("#you_save_value").html("$"+0)
+                }
+            }
+        });
+    }
+    <%end%>
+
+    function refresh() {
+        window.open("/website/home","_self");
+    }
+
+    <%if params[:new_user] == "true"%>
+    $("#comparePopup").modal("show");
+    <%end%>
+</script>
+
+
+<%#= render :partial => "website/home/zip_modal" %>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        <% if !session[:user_id].present? && !cookies[:zip_code].present?%>
+        $('#zipcode-modal').modal("show");
+        <% end %>
+        $("#sticky-top").sticky({ topSpacing: 0 });
+
+        // $("#onwait").hide();
+        // $("#wait-spinner").hide();
+        $(document).ajaxStart(function() {
+            $("#onwait").show();
+            $("#wait-spinner").show();
+        });
+        $(document).ajaxStop(function() {
+            $("#onwait").hide();
+            $("#wait-spinner").hide();
+        });
+        $("#business_name").css("text-transform","capitalize");
+    });
+
+    $("#firstpageform").submit(function(e){
+
+        var zip=$("#zip-code").val();
+        var service_type=$("#service-type option:selected").text();
+        var user_type=$("#user-type option:selected").text();
+        if(parseInt(zip.length)<5 && service_type=="Select Service" && user_type=="Select your User Type"){
+            $("#zip-error").css("display","block");
+            $("#category-type-error").css("display","block");
+            $("#deal-type-error").css("display","block");
+            e.preventDefault();
+        }
+        else if(zip==""){
+            $("#zip-error").css("display","block");
+            $("#category-type-error").css("display","none");
+            $("#deal-type-error").css("display","none");  e.preventDefault();
+        }
+        else if(parseInt(zip.length)<5){
+            $("#zip-error").html("zip should be of 5 digits");
+            $("#zip-error").css("display","block");
+            $("#category-type-error").css("display","none");
+            $("#deal-type-error").css("display","none");  e.preventDefault();
+        }
+        else if(service_type=="Select Service"){
+            $("#category-type-error").css("display","block");
+            $("#zip-error").css("display","none");
+            $("#deal-type-error").css("display","none");
+            e.preventDefault();
+        }
+        else if(user_type=="Select your User Type"){
+            $("#deal-type-error").css("display","block");
+            $("#category-type-error").css("display","none");
+            $("#zip-error").css("display","none");
+            e.preventDefault();
+        }
+        else {
+            $("#firstpageform").submit();
+
+        }
+        console.log(zip.length+" "+service_type+" "+user_type);
+    });
+  
+    // var dialogOpen = false, lastFocus, dialog, pagebackground;
+</script>
+
+<%=javascript_include_tag "https://code.jquery.com/ui/1.12.0/jquery-ui.js"%>

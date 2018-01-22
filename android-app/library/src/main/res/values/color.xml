@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="backround_color_ServiceDealz">#e7e1df</color>
+    <color name="disable_color">#e2e2e2</color>#
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="button_bg_selected">#248dc2</color>
+    <color name="button_bg_pressed">#248dc2</color>
+    <color name="button_bg_normal">#00000000</color>
+
+    <color name="red_color">#cd040b</color>
+    <color name="backround_color">#C25743</color>
+    <color name="backround_color_general">#E7E2DF</color>
+    <color name="edit_text_backround_color">#DAD3CD</color>
+    <color name="button_backround_color">#008ebb</color>
+    <color name="white_color">#ffffff</color>
+    <color name="black_color">#000000</color>
+    <color name="order_detail_color">#5f5f5f</color>
+    <color name="green_color">#62bc04</color>
+    <color name="transparent">#00000000</color>
+    <color name="devider">#009688</color>
+    <color name="textcolor">#76726f</color>
+    <color name="textcolor1">#4e4e4e</color>
+    <color name="compare_line">#DEDEDE</color>
+    <color name="material_grey_600">#ff757575</color>
+    <color name="tabcolor">#9f9f9f</color>
+    <color name="grey_color">#ECECEC</color>
+    <color name="textviewcolor">#4e4d4d</color>
+    <color name="ratingblankcolor">#d4d2d2</color>
+    <color name="yellow_color">#fec923</color>
+
+</resources>

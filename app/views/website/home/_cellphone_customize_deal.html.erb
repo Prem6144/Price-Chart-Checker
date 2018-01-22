@@ -1,0 +1,287 @@
+<% deal_attributes =  customized_deals['deal_attributes']
+   deal_equipments = customized_deals['deal_equipments']
+   deal_extra_services = customized_deals['deal_extra_services']
+%>
+
+
+
+
+
+<section>
+  <div class='equipments-details col-md-12'>
+    <h5>Deals Attributes</h5>
+    <div id="deal_attributes" class="owl-carousel" style='float: left;'>
+      <% deal_attributes.each do |deal_attribute| %>
+          <div class="pull-left">
+            <div class="sd-deal-sty">
+              <div class="custom_cursor" onclick="show_modal(<%=deal_attribute.to_json%>,'attribute')">
+                <h6 >Data Plan : <%= deal_attribute["data_plan"]%> GB</h6>
+                <p>Data Plan Price: $<%=deal_attribute["data_plan_price"]%></p>
+                <p>Domestic minutes <%= deal_attribute["domestic_call_minutes"]%></p>
+                <p>International minutes <%= deal_attribute["international_call_minutes"]%></p>
+              </div>
+              <div class="pull-left">
+                <div class="checkbox checkbox-info">
+                  <input type="checkbox" id="deal_attribute_<%=deal_attribute['id']%>" name="deal_attributes" val="<%=deal_attribute['id']%>_<%=deal_attribute['data_plan_price'].to_f%>_<%=customized_deals["service_category_name"]%>" />
+                  <label for="deal_attribute_<%=deal_attribute['id']%>" >Select</label>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- <div id="equipments_selected" class='equipments-details col-md-12 '>
+      <h5>Equipments Selected</h5>
+
+  </div> -->
+
+  <button id="add_a_device" class="equipments-details ad-linebtn col-md-12">Add a Line</button>
+
+
+
+  <div id="equipments_p" class='equipments-details col-md-12 '>
+    <h5>Equipments</h5>
+    <div id="deal_equipments" class="owl-carousel" style='float: left;'>
+      <% deal_equipments.each do |deal_equipment| %>
+          <div class="text-center">
+            <div class="sd-deal-sty">
+              <div class="custom_cursor" onclick="show_modal(<%=deal_equipment.to_json%>,'equipment')">
+                <h6><%=deal_equipment["brand"]%></h6>
+                <p id="description_<%=deal_equipment['id']%>" class="hidden"><%=deal_equipment["brand"]%></p>
+                <h6><%= deal_equipment['cellphone_name']%></h6>
+              </div>
+              <% if deal_equipment["available_color"].present? %>
+                  <%deal_equipment["available_color"].each_with_index do |av,index|%>
+                      <div class="color-wrapper text-center">
+                        <input type="radio" checked="checked" name="deviceColors_<%=deal_equipment['id']%>" id="color_<%=deal_equipment['id']%>_<%=av['id']%>_<%=av['color_code']%>_<%= av['color_name']%>" class="colorSelector" />
+                        <label for="color_<%=deal_equipment['id']%>_<%=av['id']%>_<%=av['color_code']%>_<%= av['color_name']%>" title="<%=index%>" class="colorSelector_label colorSelector_checkShadow" style="background-color: <%=av['color_code']%>" />
+                      </div>
+                  <%end%>
+              <% end %>
+              <div class="equip-price"> <span>$<%=deal_equipment["price"]%> </span> </div>
+              <div class="text-left">
+                <div class="checkbox checkbox-info">
+                  <input type="checkbox" id="deal_equipment_<%=deal_equipment['id']%>" name="deal_equipments"
+                         val="<%=deal_equipment['id']%>_<%=deal_equipment['price']%>_<%=deal_equipment["brand"]%>_<%=deal_equipment['cellphone_name'] %>" />
+                  <label for="deal_equipment_<%=deal_equipment['id']%>" >Select</label>
+                </div>
+              </div>
+            </div>
+          </div>
+      <%end%>
+    </div>
+
+  </div>
+  <div class='equipments-details col-md-12'>
+    <a class="order-btn" href="javascript:void(0)" id="continue">Continue</a>
+  </div>
+
+
+  <div class='equipments-details col-md-12'>
+    <h5>Deals Extra Services</h5>
+    <div id="deal_extra_services" class="owl-carousel" style='float: left;'>
+      <% deal_extra_services.each do |deal_extra_service| %>
+          <div class="text-center">
+            <div class="sd-deal-sty">
+              <div class="custom_cursor" onclick="show_modal(<%=deal_extra_service.to_json%>,'extra_services')">
+                <h6><%=deal_extra_service["service_name"].truncate(12)%></h6>
+                <p style="line-height:20px; height:100px; overflow-y:auto;"> <%=deal_extra_service["service_description"]%></p>
+                <div class="equip-price"> <span>$ <%="%.2f" % deal_extra_service["price"]%></span> </div>
+              </div>
+              <div class="text-left">
+                <div class="checkbox checkbox-info">
+                  <input name="deal_extra_services" type="checkbox" id="deal_extra_service_<%=deal_extra_service['id']%>" val="<%=deal_extra_service['id']%>_<%=deal_extra_service['price']%>" />
+                  <label for="deal_extra_service_<%=deal_extra_service['id']%>" >Select</label>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div id="customdeal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <button type="button" class="close log-pop-btn" data-dismiss="modal">&times;</button>
+      <div id="custom_services" class="modal-content">
+        <div id="attribute_div" class="modal-body">
+          <h4 id="attribute_title"></h4>
+          <strong id="attribute_data_plan_price" class="pop-price"><span>Price</span> ""</strong>
+          <p id="attribute_description"></p>
+        </div>
+
+        <div id="equipment_div" class="modal-body">
+          <div class="left-equipment-img">
+            <img src="/assets/website/iphone6s.png" alt="Iphone" />
+          </div>
+          <div class="right-equipment-img"><h4 id="equipment_brand"></h4>
+            <strong id="equipment_price" class="pop-price"><span>Price</span>''</strong>
+            <p id="equipment_description">''</p>
+          </div>
+        </div>
+
+        <div id="extra_services_div" class="modal-body ">
+          <h4 id="extra_services_title"></h4>
+          <strong id="extra_services_price" class="pop-price"><span>Price</span> ""</strong>
+          <p id="extra_services_desc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>
+
+
+<script>
+    var effective_price;
+    var color_data;
+    $(document).ready(function(){
+
+        color_data=new Array();
+        $("#order-btn").hide();
+        $("#reset_order").hide();
+        $("input[name='deal_attributes']:first").prop("checked","checked");
+        $("input[name='deal_extra_services']:first").prop("checked","checked");
+        effective_price = parseFloat($('#effective_price').text().split('$')[1].split('/')[0]);
+        $('#equipments_p').hide();
+        $('#equipments_selected').hide();
+        $('#continue').hide();
+        $('#add_a_device').click(function(){
+            $("input[name='deal_equipments']:checked").removeAttr('checked');
+            $('#equipments_p').show();
+            $('#add_a_device').hide();
+        });
+
+        var count = 0
+        $('#continue').click(function(){
+            $('#continue').hide();
+            $('#equipments_p').hide();
+            $('#add_a_device').show();
+            $('#equipments_selected').show();
+            $("input[name='deal_equipments']:checked").each(function(){
+                var value=$(this).attr("val");
+                var id = value.split("_")[0];
+                $("input[type='radio']:checked").each(function(){
+                    var color=this.id;
+                    if(color!="option1" && this.id.split("_")[1] == id ) {
+                        var equip = "equip" + count++;
+                        equip +=color.split('_#')[0];
+                        color_data.push(this.id.split("_")[1]+"_"+this.id.split("_")[2]);
+                        // $('#equipments_selected').append('<div id='+ equip +'><div class="text-center"><div class="sd-deal-sty"><div class="custom_cursor" onclick=""><h6 id="equipment_brand" >'+ value.split("_")[2] +'</h6><p id="equipment_description"></p><h6 id="equipment_name">'+ value.split("_")[3] +'</h6></div><div class="color-wrapper text-center"><label class="colorSelector_label colorSelector_checkShadow" style="background-color: '+color.split('_')[3]+'" /></div><div id="equipment_price" class="equip-price"> <span id="selected_equipment_price" value='+value.split("_")[1]+'>Price $ '+ value.split("_")[1]+ '</span> </div><a class="" href="javascript:void(0)" id="remove'+ equip+'" onclick="remove_options('+equip+')">Remove</a></div></div></div>');
+
+
+
+                        $('#equipments_selected').append('<div id='+ equip +' class="selectedequipments-box"><div class="equipmenr-img"><img src="/assets/website/iphone_6ssmall.png" alt="equipments"></div><div class="equipmenr-details"><div class="equipment-readingprice"><h6 id="equipment_brand">'+ value.split("_")[2] +'</h6> <span id="selected_equipment_price" value='+value.split("_")[1]+'>$'+ value.split("_")[1]+ '</span></div> <div class="equipment-remove"><strong id="equipment_name">'+ value.split("_")[3] +'</strong><a class="" href="javascript:void(0)" id="remove'+ equip+'" onclick="remove_options('+equip+')">Remove</a></div><span>'+color.split('_')[4]+'</span></div></div>')
+                    }
+                });
+            });
+        });
+
+        $("input[name='deal_equipments']:first").prop("checked","checked");
+        $("#continue").click();
+    });
+
+    $("input[name='deal_equipments']").click(function(){
+        if($("input[name='deal_equipments']:checked").is(":checked")){
+            $('#continue').show();
+        }
+        else{
+            $('#continue').hide();
+        }
+    });
+
+    function remove_options(value){
+        console.log(value.id)
+        $("#"+value.id).remove();
+        var index = color_data.indexOf(value.id.split('color_')[1]);
+        color_data.splice(index, 1);
+    }
+
+    $('#deal_equipments,#deal_attributes,#deal_extra_services').owlCarousel({
+        loop:true,
+        margin:10,
+        responsiveClass:true,
+        items:3,
+    });
+
+
+
+    function show_modal(data,type) {
+        // $("#"+type+"_div").css("display","none");
+        $('#custom_services').children().addClass('hidden');
+        if (type == 'attribute') {
+            $("#"+type+"_div").removeClass('hidden');
+            // $("#"+type+"_div").css("display","block");
+            $("#"+type+'_data_plan_price').html("Price" + " " + "$" +data["data_plan_price"]);
+            $("#"+type+'_description').html(data["description"]);
+            $("#"+type+'_title').html(data["title"]);
+        }
+        if (type == 'equipment') {
+            $("#"+type+"_div").removeClass('hidden');
+            // $('#attribute_div').addClass('hidden');
+
+            // $("#"+type+"_div").css("display","block");
+            $("#"+type+'_price').html("Price" + " " + "$"+data["price"]);
+            $("#"+type+'_description').html(data["description"]);
+            $("#"+type+'_brand').html(data["brand"] + ' '  + data["cellphone_name"]);
+        }
+        if (type == 'extra_services') {
+            $("#"+type+"_div").removeClass('hidden');
+            // $("#"+type+"_div").css("display","block");
+            $("#"+type+'_title').html(data["service_name"]);
+            $("#"+type+'_price').html("Price" + " " + "$" +data["price"]);
+            $("#"+type+'_desc').html(data["service_description"]);
+
+
+        }
+        $("#customdeal").modal("show");
+    }
+
+
+
+    $("input[name='deal_equipments']").on('change', function() {
+        $("input[name='deal_equipments']").not(this).prop('checked', false);
+    });
+
+
+    $("input[name='deal_attributes']").on('change', function() {
+
+        $("input[name='deal_attributes']").not(this).prop('checked', false);
+    });
+
+    $("input[name='deal_extra_services']").on('change', function() {
+        $("input[name='deal_extra_services']").not(this).prop('checked', false);
+    });
+
+    function calculate_total_price_for_cellphone() {
+        attribute_price = parseFloat($("input[name='deal_attributes']:checked").attr("val").split("_")[1]);
+        var deal_extra_service_val = $("input[name='deal_extra_services']:checked").attr("val");
+        if(deal_extra_service_val != '' && deal_extra_service_val != null) {
+            extra_services_price = parseFloat(deal_extra_service_val.split("_")[1]);
+        }else{
+            extra_services_price = 0
+        }
+        equipment_sum = 0;
+
+        $("[id*=selected_equipment_price]").each(function() {
+            equipment_sum = equipment_sum+parseFloat($(this).attr("value"));
+        });
+
+
+        equipment_sum = parseFloat(equipment_sum);
+        total_price = attribute_price+equipment_sum+extra_services_price+effective_price;
+        $("#effective_price").text('$' + total_price.toFixed(2) + '/mo');
+        $("#order-btn").show();
+        $("#reset_order").show();
+        $("#total-calculate-btn").hide();
+        $("input[type='checkbox']").attr("disabled",true);
+        $("[id*=removeequip]").hide();
+        localStorage["effective_price"] = JSON.stringify(total_price);
+    }
+
+</script>

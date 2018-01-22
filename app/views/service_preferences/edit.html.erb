@@ -1,0 +1,32 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%' >
+  <tr> 
+    <td class='main' id='main' valign='top'>
+
+      <div class='title_tools'>
+				<% if current_user.is_at_admin_level? %><%= link_to "View All Service Preferences", service_preferences_path %><% end %>
+      </div>
+      <div class='title'>
+        <span id='title'>Update Service Preference</span>
+      </div>
+			<div class="small-6 large-centered columns">
+				<%= form_for(@service_preference) do |f| %><br/>
+				  <div><strong>App User Id : </strong><br />
+				  <%= f.text_field :app_user_id, :readonly => true %></div>
+				  <div><strong>Service Category : </strong><br />
+				  <%= f.text_field :service_category_id, :readonly => true %></div>
+				  <div><strong>Service Provider:</strong><br />
+				  <%= f.text_field :service_provider_id, :readonly => true %></div>
+				  <div><strong>Start Date:</strong><br />
+				  <%= f.text_field :start_date %></div>
+				  <div><strong>End Date:</strong><br />
+				  <%= f.text_field :end_date %></div>
+				  <div><%= f.check_box :is_contract %><strong>Is Contract ? </strong></div>
+				  <div><strong>Contract Fee</strong><br />
+				  <%= f.text_field :price %></div>
+				  <div><%= f.submit "Update" %></div>
+				<% end %>
+			</div>
+    </td>
+	</tr>
+</table>
+

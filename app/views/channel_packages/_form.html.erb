@@ -1,0 +1,44 @@
+<%= form_for(@channel_package) do |f| %>
+    <% if @channel_package.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@channel_package.errors.count, "error") %> prohibited this channel_package from being saved:</h2>
+
+          <ul>
+            <% @channel_package.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <label>Service Providers</label>
+    <%# channel_ids = @channel_package.channel_ids.present? ? eval(@channel_package.channel_ids) : '' %>
+    <%#= f.select :service_provider_id,options_for_select('',''),{},:class => 'chosen-select' %>
+    <%= f.select :service_provider_id, @service_providers.map { |r| [r.name, r.id]}, {:include_blank => "Select a service provider"}%>
+
+    <%= f.label :package_name %>
+    <%= f.text_field :package_name, :required=>'true' %>
+
+    <%= f.label :package_name %>
+    <%= f.text_field :package_name, :required=>'true' %>
+
+    <%= f.label :package_code %>
+    <%= f.text_field :package_code, :required=>'true' %>
+
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+
+    <label for="channel_channel_ids">Channels</label>
+    <% channel_ids = @channel_package.channel_ids.present? ? eval(@channel_package.channel_ids) : '' %>
+    <%= f.select :channel_ids,options_for_select(get_channels,channel_ids),{},:class => 'chosen-select',:multiple => true %>
+
+    <%= f.label :description %>
+    <%= f.text_area :description, :required=>'true' %>
+
+    <%= f.label :status %>
+    <%= f.check_box :status %>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

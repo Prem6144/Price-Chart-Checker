@@ -1,0 +1,265 @@
+<div class="form-area">
+  <%
+  if @current_user.present? and ServicePreference.where(:app_user_id=>@current_user.id, :service_category_id=>params[:category_id]).present?
+   @service_preferences_data=ServicePreference.where(:app_user_id=>@current_user.id, :service_category_id=>params[:category_id])
+   service_provider_name=@service_preferences_data[0].service_provider_name
+   service_provider_id=@service_preferences_data[0].service_provider_id
+
+   price=@service_preferences_data[0].price
+   is_contract=@service_preferences_data[0].is_contract
+   start_date=@service_preferences_data[0].start_date
+   end_date=@service_preferences_data[0].end_date
+   plan_name= @service_preferences_data[0].plan_name
+   @Telephone_preferences=TelephoneServicePreference.where(:service_preference_id=>@service_preferences_data[0].id)
+   if @Telephone_preferences.present?
+     domestic_call_minutes=@Telephone_preferences[0].domestic_call_minutes
+     international_call_minutes=@Telephone_preferences[0].international_call_minutes
+     domestic_call_unlimited=@Telephone_preferences[0].domestic_call_unlimited
+     international_call_unlimited=@Telephone_preferences[0].international_call_unlimited
+   end
+  end
+  %>
+
+  <%=form_for(:service_preferences, :url=>"/edit_or_change_service_preferences", :method=>"post") do %>
+  <%=hidden_field_tag("service_category_name",ServiceCategory.get_category_name_by_id(params[:category_id]))%>
+  <%=hidden_field_tag("service_category_id",params[:category_id])%>
+  <% @providers=ServiceProvider.where(:service_category_id=>params[:category_id]).pluck(:name,:id)%>
+  <%=hidden_field_tag("app_user_id",session[:user_id])%>
+  <%=hidden_field_tag("from_site","true")%>
+
+  <div class = "col-md-6" >
+    <!-- <select class="form-control"  id="service_provider_id" name="service_provider_id"> -->
+  <%#= options_for_select(@providers, :prompt=>"Select" ,:value=>@providers) %>
+  <!-- </select>   -->
+   <%= select_tag('',options_for_select(@providers,''),:class => 'form-control',:prompt => 'Select Vendor', :id=>"service_provider_id", :name=>"service_provider_id") %>
+</div>
+  <div class = "col-md-6  mg_bttom20" >  <%= number_field_tag(:price,price.present? ? "%.2f" % price : '',:class=>"form-control", :placeholder=>"Enter price", :required=>true)%> </div>
+
+  <div class="col-md-6">
+    <p class="contract-margin-sty">Contract Date</p>
+  </div>
+
+
+
+
+    <div class="col-md-6">
+      <div class="checkbox checkbox-info no-contract-sty">
+        <input type="checkbox" name="is_contract" id="is_contract" value="false" checked="checked">
+        <label for="is_contract"> <span>No Contract </span> </label>
+      </div>
+    </div>
+    <div class="col-md-6"><%= text_field_tag(:start_date,start_date, :class=>"form-control", :placeholder => "Start Date")%></div>
+    <div class="col-md-6 mg_bttom20"><%= text_field_tag(:end_date,end_date, :class=>"form-control", :placeholder => "End Date")%></div>
+
+
+
+      <div class="col-md-12">  <p  class="set-call">Domestic</p></div>
+
+      <div class="col-md-6 unlimited-call ">
+        <div class="checkbox checkbox-info no-contract-sty">
+         <%= check_box_tag "domestic_call_unlimited", "", :class=>"form-control", :onchange=>"resetcontractdate()"%>
+         <label for="domestic_call_unlimited"> <span>Unlimited</span> </label>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <%=number_field_tag(:domestic_call_minutes,domestic_call_minutes.present? ? domestic_call_minutes : 0, :class=>"form-control", :placeholder=>"minutes")%>
+      </div>
+
+
+      <div class="col-md-12 "> <p class="set-call">International</p> </div>
+      <div class="col-md-6  unlimited-call">
+
+        <div class="checkbox checkbox-info no-contract-sty">
+         <%= check_box_tag "international_call_unlimited", "", :class=>"form-control", :onchange=>"resetcontractdate()"%>
+         <label for="international_call_unlimited"> <span>Unlimited</span> </label>
+         </div>
+
+      </div>
+
+
+
+      <div class="col-md-6">
+        <%=number_field_tag(:international_call_minutes,international_call_minutes.present? ? international_call_minutes :0, :class=>"form-control", :placeholder=>"minutes")%>
+      </div>
+
+    <div class="col-md-12 text-center btn-group-sty">
+
+      <%= submit_tag("Save", :class=>"btn save-button")%>
+
+
+      <%if @service_preferences_data.present?%>
+      <%= button_tag("Unsubscribe", :class=>"btn skip-button", :onclick=>"Unsubscribe()")%>
+      <%end%>
+
+    </div>
+
+    <%end%>
+  </div>
+  <script>
+  <%if session[:user_id].present?%>
+  function Unsubscribe()
+  {
+    event.preventDefault();
+    $.ajax({
+      url:"/api/v1/deselect_prference",
+      type:"POST",
+      data: {
+        app_user_id:<%=session[:user_id]%>,
+        category:<%=params[:category_id]%>
+      },
+      success: function(d){
+        console.log(d);
+        if(d["success"] == true){
+          location.reload();
+        }
+      }
+    });
+  }
+  <%end%>
+   $(document).ready(function(){
+
+    <% if @service_preferences_data.blank? %>
+
+    $("#international_call_unlimited").prop("checked",false);
+    $("#domestic_call_unlimited").prop("checked",false);
+    $("#domestic_call_unlimited").val("true");
+    $("#is_contract").prop("checked","true");
+    $("#start_date").attr("disabled",true);
+    $("#end_date").attr("disabled",true);
+    $("#is_contract").on("change",function(){
+      if($("#is_contract").prop("checked")==true){
+        $("#start_date").attr("disabled",true);
+        $("#end_date").attr("disabled",true);
+        $("#is_contract").val(false);
+      }
+      else {
+        $("#start_date").attr("disabled",false);
+        $("#end_date").attr("disabled",false);
+        $("#is_contract").val(true);
+      }
+    });
+
+
+ <%if session[:user_id].present? and AppUser.find(session[:user_id]).user_type == "residence" %>
+    $("#price").val("40.00");
+    $("#domestic_call_unlimited").prop("checked","checked");
+    $("#domestic_call_minutes").attr("disabled",true);
+   
+    <%end%>
+
+    <%if session[:user_id].present? and AppUser.find(session[:user_id]).user_type == "business" %>
+     $("#price").val("35.00");
+     $("#domestic_call_unlimited").prop("checked","checked");
+    $("#domestic_call_minutes").attr("disabled",true);
+    <%end%>
+<% else %>
+
+
+    $("#is_contract").prop("checked",false);
+    
+     $("#international_call_unlimited").prop("checked",false);
+    $("#domestic_call_unlimited").prop("checked",false);
+    $("#domestic_call_unlimited").val("true");
+    $("#is_contract").on("change",function(){
+      if($("#is_contract").prop("checked")==true){
+        $("#start_date").attr("disabled",true);
+        $("#end_date").attr("disabled",true);
+      }
+      else {
+        $("#start_date").attr("disabled",false);
+        $("#end_date").attr("disabled",false);
+      }
+    });
+
+
+
+    
+    <% if domestic_call_unlimited.present? %>
+        var domestic_call_unlimited = <%= raw domestic_call_unlimited.to_json %>
+        if (domestic_call_unlimited == true){
+          $("#domestic_call_unlimited").prop("checked","checked");
+          $("#domestic_call_minutes").attr("disabled",true);
+          $("#domestic_call_unlimited").val("true");
+        }
+      
+      <% else %>
+        $("#domestic_call_unlimited").prop("checked",false);
+      <% end %>
+
+
+
+
+      <% if !is_contract %>
+        $("#start_date").attr("disabled",true);
+        $("#end_date").attr("disabled",true);
+        $("#is_contract").prop("checked","checked");
+      <% end%>
+
+       <%if service_provider_id.present?%>
+      set_service_provider("<%=service_provider_id.present? ? service_provider_id : 2%>")
+      <%end%>
+      <% end %>
+  });
+
+    $("#domestic_call_unlimited").on("change",function(){
+      if($("#domestic_call_unlimited").prop("checked")==true){
+        $("#domestic_call_minutes").attr("readonly",true);
+        $("#domestic_call_unlimited").val(true);
+        $("#domestic_call_minutes").val(0);
+      }
+      else {
+        $("#domestic_call_minutes").attr("disabled",false);
+        $("#domestic_call_minutes").attr("readonly",false);
+        $("#domestic_call_unlimited").val(false);
+      }
+    });
+
+    $("#international_call_unlimited").on("change",function(){
+      if($("#international_call_unlimited").prop("checked")==true){
+        $("#international_call_minutes").attr("readonly",true);
+        $("#international_call_minutes").val(0);
+        $("#international_call_unlimited").val(true);
+      }
+      else {
+        $("#international_call_minutes").attr("disabled",false);
+        $("#international_call_unlimited").val(false);
+        $("#international_call_minutes").attr("readonly",false);
+      }
+    });
+   
+  function set_service_provider(id) {
+    $("#service_provider_id option[value="+id+"]").attr('selected','selected');
+  }
+
+  </script>
+  <%if domestic_call_unlimited %>
+  <script>
+  console.log("sss");
+  $("#domestic_call_minutes").prop("disabled","true");
+  $("#domestic_call_minutes").val("0");
+  $("#domestic_call_unlimited").prop("checked",true);
+  </script>
+  <%else%>
+  <script>
+  console.log("sss");
+  $("#domestic_call_minutes").prop("disabled",false);
+  $("#domestic_call_minutes").val(<%=domestic_call_minutes%>);
+  $("#domestic_call_unlimited").prop("checked",false);
+  </script>
+  <%end%>
+  <%if international_call_unlimited == true%>
+  <script>
+  console.log("sss");
+  $("#international_call_minutes").prop("disabled",true);
+  $("#international_call_minutes").val("0");
+  $("#international_call_unlimited").prop("checked",true);
+  </script>
+  <%else%>
+  <script>
+  console.log("sss");
+  $("#international_call_minutes").prop("disabled",false);
+  $("#international_call_minutes").val(<%=international_call_minutes%>);
+  $("#international_call_unlimited").prop("checked",false);
+  </script>
+  <%end%>

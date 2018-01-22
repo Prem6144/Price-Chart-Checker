@@ -1,0 +1,543 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*Vishal css*/
+@media (max-width: 1375px) {
+	.formcontainer {
+    top: 20%;
+	}
+	.carousel-caption {
+   top: 7%;
+	}
+}
+@media (max-width: 1200px) {
+	.carousel-inner h1 {
+	font-size: 24px;
+	}
+	.formcontainer h2 {
+	font-size: 16px;
+    padding: 5px 0;
+    margin-bottom: 10px;
+	}
+	.formcontainer {
+    padding-top: 40px;
+	}
+	.formcontainer input {
+    margin-bottom: 15px;
+	}
+	.separator_2 {
+    margin: 20px -38px;
+	}
+	.pagination_sec ul li a {
+    font-size: 13px;
+	}
+	.pagination_sec ul li {
+    margin-right: 13px;
+    padding-right: 13px;
+	}
+	.heading-2 {
+    font-size: 13px;
+    margin-right: 13px;
+    padding-right: 13px;
+	}
+	.bor_sec_left .checkbox {
+    padding-left: 20px;
+	}
+	#compare_box.affix {
+    width: 697px;
+	}
+	.compare_box .btn_2 {
+    padding: 6px 10px;
+	margin-top: 30px;
+	}
+	.compare_box_border p {
+    font-size: 10px;
+	}
+}
+@media (max-width: 992px) {
+	.carousel-caption {
+    top: 25px;
+	}
+	.formcontainer {
+    top: 12%;
+	}
+	.formcontainer input {
+    margin-bottom: 10px;
+	}
+	.formcontainer input {
+    height: 40px !important;
+	}
+	.serviceCon .row .serviceRow {
+    width: 32.9%;
+	}
+
+	.serviceCon1 h1::before,
+	.serviceCon1 h1::after {
+    width: 30%;
+	}
+	.trending_deals .serviceCon1 h1::before, .trending_deals .serviceCon1 h1::after {
+    width: 25%;
+	}
+	.pagination_sec .input-group {
+    margin-top: 10px;
+	}
+	.prefrence-tab .form-group:nth-child(2) {
+    padding-left: 0px;
+	}
+	.prefrence-tab .form-group:nth-child(1) {
+    padding-right: 0px;
+	}
+	.account-page .prefrence-tab .custom-select:after {
+    right: 1px;
+	top: 27px;
+	}
+	.account-page .prefrence-tab .form-group.custom-select:nth-child(2)::after {
+    top: 28px;
+	}
+	.prefrence-tab .col-md-12:nth-child(2) {
+    margin-top: 0px;
+	}
+	.margin_checkbox h4 {
+	margin-top: 45px !important;
+	}
+	.order-tab .border-radius-bg {
+    width: 639px;
+	}
+	.scroller_order {
+		overflow-x: scroll;
+	}
+	.desc_cont p {
+    width: 88px;
+    margin-top: 0px;
+	}
+	.order-tab .nav>li>a {
+    width: 96px;
+	}
+	.compare-design .scroller_order {
+    overflow-x: hidden;
+	}
+	.login-tab .modal-dialog {
+    width: 675px;
+	}
+	#zipcode .modal-dialog {
+	width: 600px;
+	}
+	.zipcode-body {
+    	padding: 30px 20px;
+	}
+	#zipcode .modal-dialog {
+    	margin-top: 100px;
+	}
+	.details .bor_sec_left {
+	width: 100%;
+	margin: auto;
+    float: none;
+	}
+	.bor_sec_left .checkbox {
+    padding-left: 35px;
+	}
+	.pagination_sec {
+	margin-top: 27px;
+	}
+	#compare_box.affix {
+    width: 720px;
+	}
+}
+/*End of Vishal css*/
+
+@media (max-width: 767px) {
+
+/*vishal responsive form 768 show*/
+	.carousel-inner .item {
+		display: none;
+	}
+	.carousel-inner {
+		height: auto;
+		background: #2586d4;
+	}
+	.formcontainer {
+		position: static;
+		padding-top: 50px;
+		padding-bottom: 50px;
+		text-align: left;
+	}
+	.carousel-inner .carousel-control {
+		display: none;
+	}
+	.formcontainer h2 {
+		font-size: 24px;
+		margin-bottom: 15px;
+		margin-top: 0px;
+		margin-left: 30px;
+		margin-right: 30px;
+	}
+	.formcontainer .btn-red {
+		margin-left: 30px;
+	}
+	.formcontainer .btn-red {
+		padding: 8px 40px;
+		font-size: 18px;
+	}
+	.navbar-brand {
+    	padding: 10px 15px;
+	}
+	.formcontainer input {
+    	margin-bottom: 20px;
+	}
+	.formcontainer input:focus {
+    	border: 1px solid #000 !important;
+	}
+.formcontainer .btn-red {
+    color: #2586d4;
+    background-color: #ffffff;
+    border-color: #e8e8e8;
+}
+.carousel-inner .formcontainer .btn-default:hover, .carousel-inner .formcontainer .btn-default:focus, .carousel-inner .formcontainer .btn-default.focus, .carousel-inner .formcontainer .btn-default:active, .carousel-inner .formcontainer .btn-default.active, .carousel-inner .formcontainer .open>.dropdown-toggle.btn-default {
+	background: #eaeaea;
+    color: #2586d4;
+    border-bottom: 5px solid #d4d4d4;
+}
+.copyright {
+    text-align: left;
+    border-left: 1px solid rgba(255, 255, 255, 0);
+    box-shadow: -1px 0px 0px rgba(0, 0, 0, 0);
+    padding: 0px 15px;
+}
+footer .col-xs-6:nth-child(3) ul ,
+footer .col-xs-6:nth-child(4) p {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0px -1px 0px #000;
+}
+footer .col-xs-6 ul {
+	display: block;
+	margin-right: 0px;
+}
+.inte_ser .col-sm-4 img {
+	margin: auto;
+    margin-bottom: 35px;
+}
+.serviceCon1 h1::before,
+.serviceCon1 h1::after {
+    width: 26%;
+}
+.trending_deals .serviceCon1 h1::before, .trending_deals .serviceCon1 h1::after {
+    width: 18%;
+}
+.bor_sec_left .checkbox {
+    padding-left: 35px;
+}
+.profile-tab {
+    float: none;
+}
+.profile-tab .btn-group, .profile-tab .btn-group-vertical {
+    display: block;
+}
+.profile_imgbox {
+	margin-bottom: 30px;
+}
+.prefrence-tab .form-group {
+    padding-left: 0px;
+}
+
+.prefrence-tab .form-group:nth-child(1) {
+    padding-right: 0px;
+}
+.compare-table {
+    width: 721px;
+}
+.popup_left {
+	display: none;
+}
+.popup_right {
+    width: 100%;
+	height: auto;
+}
+.height_popup {
+    height: auto;
+}
+.login-tab .modal-dialog {
+    width: 480px;
+	margin: auto;
+	margin-top: 130px;
+}
+#zipcode .modal-dialog {
+	width: 500px;
+	margin: auto;
+	margin-top: 100px;
+}
+ .compare_box .btn_2 {
+	 display: inline-block;
+}
+#compare_box.affix {
+    width: auto;
+    right: 15px;
+    left: 15px;
+}
+.compare_box .btn_2 {
+    margin-top: 10px;
+	margin-bottom: 10px;
+}
+.compare_box .col-sm-3:nth-child(2) {
+    padding-right: 0px;
+}
+.compare_box .col-sm-10 {
+	float: left;
+}
+.compare_box .col-sm-2 {
+	float: left;
+}
+/*End of vishal responsive form 768 show*/
+
+
+h1 {
+	font-size: 20px;
+}
+h2 {
+	font-size: 15px;
+}
+.carousel-inner img {
+	width: auto;
+}
+.navbar-collapse {
+	width: 100%;
+	margin: 0 !important;
+	padding: 0;
+}
+.navService li {
+	display: block;
+	padding: 10px 15px;
+	cursor: pointer;
+	border-bottom: 1px solid #eceaea;
+}
+#navbar {
+	border-top: 1px solid #eceaea;
+}
+.navService li:hover {
+	background: #e50005;
+}
+.navService li:hover a {
+	color: #fff;
+}
+.navbar .container {
+	padding: 0;
+	margin: 0;
+}
+.navbar-header {
+	padding-left: 10px;
+}
+.bestdeal {
+	background: #2586d4;
+	padding: 15px
+}
+.bestdeal h1 {
+	color: #fff;
+	text-align: center;
+}
+.account-page .custom-select::after {
+    top: 28px;
+}
+	.compare-design .scroller_order {
+    overflow-x: scroll;
+	}
+	.zipcode-body {
+    background-size: 100% 100%;
+	}
+}
+
+/*Vishal css*/
+@media (max-width: 560px) {
+
+.best_deals .container.serviceCon1 .row .col-xs-6 {
+	width: 309px;
+    margin: 50px auto;
+    float: none;
+}
+.best_deals .container.serviceCon1 .row .col-xs-6:last-child {
+	margin-bottom: 0px;
+}
+.trending_deals .container.serviceCon1 .row .col-xs-6 {
+	width: 309px;
+    margin: 50px auto;
+    float: none;
+}
+.trending_deals .container.serviceCon1 .row .col-xs-6:last-child {
+	margin-bottom: 0px;
+}
+.serviceCon1 h1::before, .serviceCon1 h1::after {
+    width: 25%;
+}
+.trending_deals .serviceCon1 h1::before, .trending_deals .serviceCon1 h1::after {
+    width: 17%;
+}
+.box-sec .col-xs-6 {
+	width: 360px;
+	margin-left: auto;
+	margin-right: auto;
+	float: none;
+}
+.heading-2 {
+    margin-right: 10px;
+    padding-right: 10px;
+}
+.pagination_sec ul li {
+    margin-right: 10px;
+    padding-right: 10px;
+}
+.separator_2 {
+    margin: 20px -49px;
+}
+	.heading-2 {
+		border-right: 0px;
+		display: block;
+	}
+	.pagination_sec ul li {
+		border-right: 0px;
+		display: block;
+	}
+	.pagination_sec .col-sm-12 {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.account-page .nav-tabs>li ,
+	.account-page .nav-tabs>li:last-child {
+    width: 100%;
+	}
+	.account-page ul.nav-tabs li a:after ,
+	.account-page ul.nav-tabs li a:before {
+		display: none;
+	}
+	.account-page ul.nav-tabs li a {
+    margin-right: 0px;
+	}
+	.account-page .nav-tabs>li:first-child {
+	margin-top: 0px;
+	}
+	.account-page .nav-tabs>li {
+    margin-top: 2px;
+	}
+	.account-page ul.nav-tabs li a {
+    height: auto;
+    line-height: normal;
+	}
+	.login-tab .modal-dialog {
+    width: 330px;
+	}
+	.height_popup .pull-right {
+		float: left !important;
+	}
+	.login-tab .popup_right a.help-block {
+    margin-top: 17px;
+	}
+	#zipcode .modal-dialog {
+	width: 400px;
+	}
+	.zipcode-body {
+    background-size: 100% 100%;
+	}
+	.login-tab  a { font-size: 11px;}
+}
+
+@media (max-width: 500px) {
+.serviceCon .row .serviceRow {
+    width: 100%;
+}
+.carousel .carousel-inner .formcontainer .col-xs-6 {
+    width: 100%;
+}
+footer .col-xs-6 {
+	width: 100%;
+}
+footer .col-xs-6:first-child ul {
+	margin-top: 0px;
+	padding-top: 0px;
+	border-top: 1px solid rgba(255, 255, 255, 0);
+    box-shadow: 0px -1px 0px rgba(255, 255, 255, 0);
+}
+footer .col-xs-6 ul {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0px -1px 0px #000;
+}
+
+.serviceCon1 h1::before, .serviceCon1 h1::after {
+	display: none;
+}
+.trending_deals .serviceCon1 h1::before, .trending_deals .serviceCon1 h1::after {
+    display: none;
+}
+.inte_ser h1 {
+    font-size: 30px;
+}
+.inte_ser p {
+    font-size: 14px;
+}
+.inte_ser ul li {
+    font-size: 16px;
+}
+.inte_ser ul li::before {
+    top: -2px;
+}
+.inte_ser ul {
+    margin-top: 35px;
+}
+.heading-2 {
+	font-size: 12px;
+}
+.pagination_sec ul li a {
+    font-size: 12px;
+}
+	#zipcode .modal-dialog {
+	width: 330px;
+	}
+	.zipcode-body {
+    background-size: 100% 100%;
+	}
+
+.formcontainer .btn-red {
+    margin: auto;
+    display: inherit;
+}
+}
+
+
+
+.login-tab .modal-dialog {
+    width: 250px;
+}
+.popup_right {
+    height: auto;
+    padding: 5px;
+}
+.popup_right .form-group:last-child {
+    margin-bottom: 0px;
+}
+.popup_right .btn-login {
+    width: 100%;
+}
+#zipcode .modal-dialog {
+	width: 248px;
+}
+.zipcode-body h4 {
+    font-size: 22px;
+}
+.zipcode-body .col-xs-5 {
+    width: 100%;
+}
+}
+
+@media (max-width: 300px) {
+
+.best_deals .container.serviceCon1 .row .col-xs-6 ,
+.trending_deals .container.serviceCon1 .row .col-xs-6 {
+    width: 100%;
+}
+.bor_sec_left .checkbox {
+    padding-left: 20px;
+}
+
+
+}
+/*End of Vishal css*/

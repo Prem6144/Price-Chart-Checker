@@ -1,0 +1,210 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/backround_color_ServiceDealz"
+    tools:context="com.spa.fragment.ProfileFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:id="@+id/top_layout"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="#c25743">
+
+                <FrameLayout
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_centerInParent="true">
+
+
+                    <com.github.siyamed.shapeimageview.CircularImageView
+                        android:id="@+id/img_user1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:src="@drawable/profileimg"
+                        app:siBorderColor="#ffffff"
+                        app:siBorderWidth="2dp" />
+
+
+                    <ImageView
+                        android:id="@+id/img_edit"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="bottom|right"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/edit" />
+
+                </FrameLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/top_layout"
+                android:layout_marginLeft="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <include layout="@layout/personalinformatin"></include>
+
+                <include layout="@layout/business_profile_layout"></include>
+
+                <EditText
+                    android:id="@+id/etx_zipcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_weight=".5"
+                    android:background="@drawable/edt_background"
+                    android:hint="Zipcode*"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/textcolor"
+                    android:textSize="14sp" />
+
+                <include layout="@layout/address_profile"></include>
+
+                <LinearLayout
+                    android:id="@+id/ll_add_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_usertype"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:textColor="#6b6b6b" />
+
+                    <EditText
+                        android:id="@+id/etx_add_Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:background="@drawable/edt_background"
+                        android:maxLength="350"
+                        android:paddingLeft="5dp"
+                        android:singleLine="true"
+                        android:textColor="@color/textcolor"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_state_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_add_name"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/txt_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="City *" />
+
+                    <EditText
+                        android:id="@+id/etx_state_Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/edt_background"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        android:maxLength="50"
+                        android:paddingLeft="5dp"
+                        android:singleLine="true"
+                        android:textColor="@color/textcolor"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_city_zipcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_state_name"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/txt_state"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="State *"
+                            android:visibility="gone" />
+
+                        <Spinner
+                            android:id="@+id/spn_city1"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="@drawable/edt_background"
+                            android:paddingLeft="0dp"
+                            android:spinnerMode="dialog">
+
+                        </Spinner>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_city_zipcode"
+                    android:layout_marginTop="10dp">
+
+                    <Button
+                        android:id="@+id/btn_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginLeft="@dimen/_40sdp"
+                        android:layout_marginRight="@dimen/_40sdp"
+                        android:background="@drawable/btn_background"
+                        android:text="@string/updte"
+                        android:textColor="@color/white_color" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

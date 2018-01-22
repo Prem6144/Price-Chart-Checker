@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/referbackground"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_marginTop="@dimen/_56sdp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_70sdp"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_refer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_invite"
+            android:layout_alignParentTop="true"
+            android:layout_margin="30dp"
+            android:background="@drawable/shadow"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_promo_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txt_refer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Enter your referral code to grab your offer"
+                    android:textColor="#8b8484"
+                    android:textSize="14sp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_refer"
+                    android:layout_centerHorizontal="true">
+
+                    <EditText
+                        android:id="@+id/etx_referral_code"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="Referral Code"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btn_refferal_code"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/etx_referral_code"
+                        android:background="@drawable/btn_background"
+                        android:gravity="center"
+                        android:text="Apply"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white_color"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="INVITE FRIENDS &amp; EARN"
+                android:textColor="@color/black_color"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/referbg" />
+
+            <TextView
+                android:id="@+id/txt_refrralcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textColor="#424242"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:text="For every Friends SignUp you get $10."
+                android:textColor="#383838"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="*Amount is redeemable after your friend's deal is Activated."
+                android:textColor="#3277c5"
+                android:padding="@dimen/_1sdp"
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_invite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/btn_background_red"
+        android:text="INVITE FRIENDS"
+        android:textColor="@color/white_color"
+        android:textSize="18sp" />
+
+</RelativeLayout>

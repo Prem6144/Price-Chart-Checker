@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+  <tr>
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+        <% if current_user.is_super_admin? %>
+            <%= link_to 'Add New Package', new_channel_package_path %>
+        <% end %>
+      </div>
+
+      <div class='title'>
+        <span id='title'>Channel Packages</span>
+      </div>
+
+      <table id="service_deals_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Code</th>
+          <th>Service Provider</th>
+          <th>Price</th>
+          <th>Channel Count</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div class="digg_pagination">
+          <%= will_paginate @channel_packages %>
+        </div>
+        <% @channel_packages.each do |channel_package| %>
+            <tr>
+              <td class="best_in"><%= channel_package.package_name %></td>
+              <td class="best_in"><%= channel_package.package_code %></td>
+              <td><%= channel_package.service_provider.name %></td>
+              <td><%= channel_package.price %></td>
+              <td><%= channel_package.channel_count %></td>
+              <td><%= channel_package.status %></td>
+              <td>
+                <%= link_to 'Show', channel_package %> |
+                <%= link_to 'Edit', edit_channel_package_path(channel_package) %> |
+                <%= link_to 'Delete', channel_package, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+            </tr>
+        <% end %>
+
+        </tbody>
+      </table>
+  
+    </td>
+  </tr>
+</table>
+
+

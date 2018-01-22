@@ -1,0 +1,62 @@
+<div id="earnings" class="refer-earning-tab tab-pane fade" role="tabpanel">
+
+  <h4>Referrals And Earnings</h4>
+
+<br />
+
+  <div class="row">
+    <div class="col-md-4">
+      <p id="myrefercode">rrrrr</p>
+    </div>
+    <div class="col-md-4">
+      <p id="earnings-txt">dd</p>
+    </div>
+  </div>
+<hr />
+  <div id="redeem-form" class="row">
+    <div class="col-md-4">
+      <h3>Reedem a referral code</h3><br />
+      <%= form_for(:reedem,:url=>"/api/v1/account_referrals", :method=>"post", :class=>"form") do %>
+      <%= text_field_tag(:referral_code,"", :class=>"form-control")%><br />
+      <%= hidden_field_tag(:referrer_id,  @app_user.id, :class=>"form-control")%>
+      <%= hidden_field_tag(:referral_gift_coins,"", :class=>"form-control")%>
+      <%= hidden_field_tag(:from_site,true, :class=>"form-control")%>
+      <%= hidden_field_tag(:referrar_gift_coins,"", :class=>"form-control")%>
+      <%= submit_tag("Redeem", :class=>"btn btn-success")%>
+      <%end%>
+    </div>
+ </div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+  $.ajax({
+    url:"/api/v1/my_earnings",
+    type:"get",
+    data: {
+      app_user_id : <%= session[:user_id] %>,
+    },
+    success: function(d){
+       $("#earnings-txt").html("Total Earnings "+d["total_amount"]);
+       if(d["total_amount"]>0){
+         $("#redeem-form").css("display","none").html("Error!");
+       }
+    }
+  });
+
+  $.ajax({
+    url:"/api/v1/referral_code",
+    type:"get",
+    data: {
+      app_user_id : <%= session[:user_id]%>,
+    },
+    success: function(d){
+       $("#myrefercode").html("Your refer code <b>"+d["app_user_code"]+"</b>")
+    }
+  });
+});
+<%if params["error"]=="wrong_code"%>
+<%flash[:notice]="Wrong Code"%>
+<%end%>
+</script>

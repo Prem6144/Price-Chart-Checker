@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_color"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:id="@+id/img_services"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_services1"
+                android:layout_width="83dp"
+                android:layout_height="83dp"
+                android:background="#FCD9BB"
+                android:padding="10dp"
+                android:scaleType="fitXY"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_detail"
+            android:layout_width="match_parent"
+            android:layout_height="83dp"
+            android:layout_toLeftOf="@+id/ll_offer"
+            android:layout_toRightOf="@+id/img_services"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <TextView
+
+                android:id="@+id/txt_category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text=""
+                android:textColor="@color/black_color"
+                android:textSize="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/primary_material_light" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/offerbg"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:text=" No deal available"
+                    android:textColor="@color/white_color"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

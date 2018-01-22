@@ -1,0 +1,56 @@
+<fieldset id="bundle-attributes" style="display:none;">
+  <h4>Bundle Deal Attributes</h4>
+
+  <%= f.label :bundle_combo %>
+  <%= f.select :bundle_combo, options_for_select(['Internet,Telephone and Cable','Internet and Telephone','Internet and Cable','Telephone and Cable'].map{|o| [o,o] }) %>
+
+  <div id="bundle-internet">
+  <div>Downloads (mbps)<span class="mandat">*</span></div>
+  <%= f.text_field :download, :id=>'bundle-internet-download' %>
+  
+  <%= f.label 'Upload (mbps)' %>
+  <%= f.text_field :upload %>
+
+  <%= f.label :data %>
+  <%= f.text_field :data %>
+
+  <%= f.label :static_ip %>
+  <%= f.text_field :static_ip %>
+  </div>
+
+  <div id="bundle-telephone">
+  <div>Domestic Call Minutes<span class="mandat">*</span></div>
+  <div><input type='checkbox' id='bundle_domestic_unlimited'><span> Unlimited</span></div>
+  <%= f.text_field :domestic_call_minutes, :id=>'bundle-telephone-domestic-call-minutes' %>
+
+  <%= f.label :international_call_minutes %>
+  <div><input type='checkbox' id='bundle_international_unlimited'><span> Unlimited</span></div>
+  <%= f.text_field :international_call_minutes,:id=>'bundle-telephone-international-call-minutes' %>
+  </div>
+
+  <div id="bundle-cable">
+  <div>Free channels<span class="mandat">*</span></div>
+  <%= f.text_field :free_channels, :id=>'bundle-cable-free-channels' %>
+  
+  <%= f.label 'Free channels list (comma separated)' %>
+  <%= f.text_field :free_channels_list %>
+
+  <%= f.label :premium_channels %>
+  <%= f.text_field :premium_channels %>
+
+  <%= f.label 'Premium channels list (comma separated)' %>
+  <%= f.text_field :premium_channels_list %>
+
+  <%= f.label :hd_channels %>
+  <%= f.text_field :hd_channels %>
+
+  <%= f.label 'HD channels list (comma separated)' %>
+  <%= f.text_field :hd_channels_list %>
+  </div>
+  <div>
+    <%= f.fields_for :bundle_equipments do |builder| %>
+      <%= render 'bundle_equipment_fields', f: builder %>
+    <% end %>
+    <!-- <p><%#= link_to_add_fields "Add Equipment", f, :bundle_equipments %></p> -->
+  </div>
+</fieldset>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_color"
+
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_your_plan"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+
+            android:id="@+id/txt_category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Internet"
+            android:textColor="@color/red_color"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/txt_category_name"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/txt_category_name"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="For more relevant deals "
+            android:textColor="#3b3a3a"
+            android:textSize="@dimen/_11sdp" />
+
+        <TextView
+            android:id="@+id/txt_add_services"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/txt_category_name"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/add_services"
+            android:textColor="#287077"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</LinearLayout>

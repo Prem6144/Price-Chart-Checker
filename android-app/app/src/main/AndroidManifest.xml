@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.spa.servicedealz">
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="com.prgguru.example.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+    <supports-screens android:requiresSmallestWidthDp="600"
+        android:xlargeScreens="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:anyDensity="true"/>
+    <application
+        android:name="com.spa.MyApplication"
+        android:icon="@drawable/appicon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme1">
+        <meta-data
+            android:name="LOCALYTICS_APP_KEY"
+            android:value="91529d263dd9f76e69d42d4-41af853e-ec48-11e5-4249-00adad38bc8d" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="com.spa.servicedealz.ui.SplashActivity"
+            android:label="@string/app_name"
+
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="t4jsample"
+                    android:scheme="oauth" />
+            </intent-filter>
+            <!-- Add this intent filter below, and change yourapp to your app name -->
+            <intent-filter>
+                <data
+                    android:host="open"
+                    android:scheme="ServiceDealz" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.spa.servicedealz.services.CableServiceActivity"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <meta-data
+            android:name="io.branch.sdk.TestMode"
+            android:value="true" />
+        <!-- Set to true to use Branch_Test_Key -->
+        <meta-data
+            android:name="io.branch.sdk.BranchKey"
+            android:value="key_live_ghbNNxiVvpN0Mob5DmxUDldbtwjCU41H" />
+        <meta-data
+            android:name="io.branch.sdk.BranchKey.test"
+            android:value="key_test_cfnLNBkOFkU6SbmZCiwZRnkdztpyLW4Z" />
+
+        <!-- Optional. Set to true to disable auto deep link feature -->
+
+
+        <!-- Add this for branch for install referrer tracking -->
+        <receiver
+            android:name="io.branch.referral.InstallListener"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.spa.servicedealz.drawer.AuctionCategoryActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.drawer.ReferActivity"
+
+            android:theme="@style/AppTheme2"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name="com.spa.servicedealz.drawer.GiftCardActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.drawer.CalculatorActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.compare.CompareActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.PageIndicatorActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.IntroScreenActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.DealDetailActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.BundleDealDetailActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.CellphoneCustemDealActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.CableDealDeatilActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+
+        <activity
+            android:name="com.spa.servicedealz.ui.RedeemNowActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.CashoutType"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.CashoutVoucher"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.PlaceOrderAndPay"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.GetCashoutInfo"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.PrefrenceActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.OrderDealDetailActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.ChartActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.TermConditionsActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.drawer.AuctionHomeActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.drawer.ProfileActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+
+            android:theme="@style/AppTheme2"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="deeplink"
+                    android:pathPrefix="/profile"
+                    android:scheme="ServiceDealz" />
+                />
+
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.AdvertisementActivity"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.WelcomeScreenActivity"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.WowScreenActivity"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.services.BundleServiceActivity"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.LoginDailogActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.services.TelephoneServices"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.GiftCardActivty"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.LoginActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.SignUpActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.services.GasServiceActivity"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.services.ElectricityServiceActivity"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.services.HomeSecurityServiceActivity"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.services.InternetServiceActivity"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.services.CellPhoneServiceActivity"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.SellerUserDetailActivity"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name="com.spa.servicedealz.drawer.GuestDashbaordActiviy"
+
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name="com.spa.servicedealz.drawer.MyOrderActivity"
+
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name="com.spa.servicedealz.drawer.DashboardActivity"
+
+            android:theme="@style/AppTheme2">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="deeplink"
+                    android:pathPrefix="/home"
+                    android:scheme="ServiceDealz" />
+                />
+
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.spa.servicedealz.ui.WebViewActivity"
+           ></activity>
+        <activity
+            android:name="com.spa.servicedealz.drawer.DealListActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.drawer.PrefrenceActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.spa.servicedealz.drawer.SellerActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name="com.spa.servicedealz.ui.SlideMenuActivity">
+            <intent-filter>
+                <data android:scheme="f47721343c459caa5cfee88-47c3ae80-eb57-11e5-57d2-0042876ec363" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.localytics.android.PushReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="com.spa.servicedeal" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.spa.internet_connectivity.NetworkChangeReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider1709136025977941"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+
+        <receiver
+            android:name="com.spa.notification.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+            </intent-filter>
+        </receiver>
+        <!-- Register Service -->
+        <service android:name="com.spa.notification.GCMNotificationIntentService" />
+        <service android:name="com.spa.service.RemovedTaskFromService" />
+
+
+        <receiver
+            android:name="com.localytics.android.ReferralReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name="com.localytics.android.PushTrackingActivity" />
+        <activity
+            android:name="com.spa.servicedealz.ui.ZipCodeActivity"
+
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name="com.spa.servicedealz.ui.ChannelListActivity"
+
+            android:theme="@style/AppTheme2"></activity>
+
+    </application>
+
+</manifest>

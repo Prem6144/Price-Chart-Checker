@@ -1,0 +1,46 @@
+<tr>
+  <th scope="row">Equipment &amp; Installation</th>
+
+  <th></th>
+  <th></th>
+</tr>
+<% if @category != ("cellphone")%>
+  <tr>
+    <td scope="row">Name</td>
+    
+    <td><%= @deal_equipment_first.try(:name) %></td>
+    <td><%= @deal_equipment_second.try(:name) %></td>
+  </tr>
+  <tr>
+    <td scope="row">Installation</td>
+    
+    <td><%= @deal_equipment_first.try(:installation) %></td>
+    <td><%= @deal_equipment_second.try(:installation) %></td>
+  </tr>
+  <tr>
+    <td scope="row">Price</td>
+    
+    <td><%= @deal_equipment_first.try(:price) %></td>
+    <td><%= @deal_equipment_second.try(:price) %></td>
+  </tr>
+
+<% else %>
+  <tr>
+    <td scope="row">Model Name</td>
+    
+    <td><%= @deal_equipment_first.try(:model) %></td>
+    <td><%= @deal_equipment_second.try(:model) %></td>
+  </tr>
+  <tr>
+    <td scope="row">Memory</td>
+    
+    <td><%= @deal_equipment_first.try(:memory) %></td>
+    <td><%= @deal_equipment_second.try(:memory) %></td>
+  </tr>
+  <tr>
+    <td scope="row">Price</td>
+    
+    <td><%= @deal_equipment_first.try(:price) %></td>
+    <td><%= @deal_equipment_second.try(:price) %></td>
+  </tr>
+<% end %>

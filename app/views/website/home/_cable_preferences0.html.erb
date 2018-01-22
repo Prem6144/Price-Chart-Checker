@@ -1,0 +1,161 @@
+  <div class="form-area">
+  <%
+
+  if @current_user.present? and ServicePreference.where(:app_user_id=>@current_user.id, :service_category_id=>3).present?
+    @service_preferences_data=ServicePreference.where(:app_user_id=>@current_user.id, :service_category_id=>3)
+   service_provider_name=@service_preferences_data[0].service_provider_name
+   service_provider_id=@service_preferences_data[0].service_provider_id
+   price=@service_preferences_data[0].price
+   is_contract=@service_preferences_data[0].is_contract
+   start_date=@service_preferences_data[0].start_date
+   end_date=@service_preferences_data[0].end_date
+   @Cable_preferences=CableServicePreference.where(:service_preference_id=>@service_preferences_data[0].id)
+   if @Cable_preferences.present?
+     free_channels=@Cable_preferences[0].free_channels
+     premium_channels=@Cable_preferences[0].premium_channels
+   end
+ end
+  %>
+
+  <h4>Current Cable Service </h4>
+
+  <%=form_for(:service_preferences, :url=>"/edit_or_change_service_preferences", :method=>"post") do %>
+  <%=hidden_field_tag("service_category_name",ServiceCategory.get_category_name_by_id(params[:category_id]))%>
+  <%=hidden_field_tag("service_category_id",3)%>
+  <% @providers=ServiceProvider.where(:service_category_id=>3).pluck(:name, :id)%>
+  <%=hidden_field_tag("app_user_id",session[:user_id])%>
+  <%=hidden_field_tag("from_site","true")%>
+  <div class="col-md-6">
+      <!-- <select class="form-control" id="cable_service_provider_id" name="service_provider_id"> -->
+        <%#= options_for_select(@providers, :prompt=>"Select", :value=> @providers) %>
+      <!-- </select>  -->
+       <%= select_tag('',options_for_select(@providers,''),:class => 'form-control',:prompt => 'Select Vendor', :id=>"cable_service_provider_id", :name=>"service_provider_id") %>
+    </div>
+        <div class="col-md-6  mg_bttom20">
+    <%= number_field_tag("cable_price",price,:class=>"form-control", :placeholder=>"Enter price", :required=>true)%>
+  </div>
+  <Div class="col-md-6">
+    <p class="contract-margin-sty">Contract Date</p>
+  </div>
+  <div class="col-md-6">
+    <div class="checkbox checkbox-info no-contract-sty">
+      <%= check_box_tag "cable_is_contract", false, :class=>"form-control"%>
+      <label for="cable_is_contract"> <span>No Contract </span> </label>
+   </div>
+  </div>
+
+    <div class="col-md-6">  <%= text_field_tag("cable_start_date",start_date, :class=>"form-control", :placeholder =>"Start Date")%></div>
+    <div class="col-md-6 ">    <%= text_field_tag("cable_end_date", end_date, :class=>"form-control", :placeholder =>"End Date")%></div>
+    <div class="col-md-6 mgt20 mg_bttom20"><%= number_field_tag("cable_free_channels", free_channels, :class=>"form-control", :placeholder=>"free channels", :required=>true)%></div>
+    <div class="col-md-6 mgt20 mg_bttom20">  <%= number_field_tag("cable_premium_channels",premium_channels, :class=>"form-control", :placeholder=>"Premium channels", :required=>true)%></div>
+    <%=hidden_field_tag("plan_name","none")%>
+    <div class="col-md-12 text-center btn-group-sty">
+     <%= submit_tag("Save", :class=>"btn save-button", :onclick =>"cable_submit();return false")%>
+    <%if params[:new_user] && session[:user_type] != AppUser::RESIDENCE%>
+   <%= button_tag("Skip", :class=>"btn skip-button", :onclick=>"show_cellphone();")%>
+   <%elsif params[:new_user] && session[:user_type] == AppUser::RESIDENCE %>
+   <input type="button" class="btn skip-button" value="Skip" onclick="show_bundle();" />
+     <%end%>
+   </div>
+
+    <%end%>
+  </div>
+  <script>
+  function show_cellphone(){
+      $("#cable_pref").hide();
+      $("#cellphone_pref").show();
+      
+  }
+  function show_bundle() {
+      $("#cable_pref").hide();
+      $("#bundle_pref").show();
+  }
+  $(document).ready(function(){
+    $("#cable_start_date").datepicker();
+    $("#cable_end_date").datepicker();
+    $("#cable_is_contract").prop("checked","true");
+    $("#cable_start_date").attr("disabled",true);
+    $("#cable_end_date").attr("disabled",true);
+    $("#cable_is_contract").on("change",function(){
+      if($("#cable_is_contract").prop("checked")==true){
+        $("#cable_start_date").attr("disabled",true);
+        $("#cable_end_date").attr("disabled",true);
+      }
+      else {
+        $("#cable_start_date").attr("disabled",false);
+        $("#cable_end_date").attr("disabled",false);
+      }
+    });
+
+    <%if session[:user_id].present?%>
+      $.ajax({
+        url :"/api/v1/get_preferences?device_id=43764fb0b6599065&token=89c91edd30&app_user_id="+<%=session[:user_id]%>+"&category=3",
+        type: "GET",
+        success: function(data){
+           $("#cable_price").val(data["service_preference"]["price"]);
+          if(data["service_preference"]["is_contract"] == true) {
+            $("#cable_start_date").attr("disabled",true);
+            $("#cable_end_date").attr("disabled",true);
+            $("#cable_is_contract").prop("checked","checked");
+          }
+          $("#cable_free_channels").val(data["service_preference"]["free_channels"])
+        }
+      });
+      <%end%>
+
+    <%if service_provider_id.present?%>
+      set_service_provider("<%=service_provider_id%>")
+      function set_service_provider(id) {
+      $("#service_provider_id option[value="+id+"]").attr('selected','selected');
+    }
+    <%end%>
+  });
+  function cable_submit(){
+    if (!window.XMLHttpRequest) {
+         event.preventDefault();
+    }
+    if($("#cable_start_date").prop("disabled") == true && $("#cable_end_date").prop("disabled") == true) {
+      is_contract = false
+    }
+    else {
+      is_contract=true
+    }
+    if($("#cable_price").val()!= "") {
+      if (!window.XMLHttpRequest) {
+        event.preventDefault();
+      }
+      else {
+      $.ajax({
+        url:"/edit_or_change_service_preferences",
+        type: "POST",
+        data: {
+          service_category_id:3,
+          app_user_id:$("#app_user_id").val(),
+          free_channels:$("#cable_free_channels").val(),
+          premium_channels:$("#cable_premium_channels").val(),
+          start_date:$("#cable_start_date").val(),
+          end_date:$("#cable_end_date").val(),
+          price:$("#cable_price").val(),
+          is_contract:is_contract,
+          service_provider_id:$("#cable_service_provider_id option:selected").val()
+        },
+        success: function(data){
+          if (data["success"] == true) {
+            $("#cable_pref").hide();
+            <% if session[:user_type] != AppUser::RESIDENCE%>
+              $("#cellphone_pref").show();
+            <% elsif session[:user_type] == AppUser::RESIDENCE %>
+              $("#bundle_pref").show();
+            <% end %>
+          }
+        }
+      });
+    }
+    }
+    else
+    {
+      alert("enter price");
+    }
+
+  }
+  </script>

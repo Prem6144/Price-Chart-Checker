@@ -1,0 +1,37 @@
+<%= f.fields_for :cellphone_equipments do |b_form| %>
+  <tr>
+    <td>
+      <b>Equipments</b>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= b_form.label :model %>
+      <%= b_form.text_field :model %>
+    </td>
+    <td>
+      <%= b_form.label :make %>
+      <%= b_form.text_field :make %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= b_form.label :memory %>
+      <%= b_form.text_field :memory %>
+    </td>
+    <td>
+      <%= b_form.label :price %>
+      <%= b_form.text_field :price %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= b_form.label :installation %>
+      <%= b_form.text_field :installation %>
+    </td>
+    <td>
+      <%= b_form.label :activation %>
+      <%= b_form.text_field :activation %>
+    </td>
+  </tr>
+<% end %>

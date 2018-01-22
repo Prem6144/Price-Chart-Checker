@@ -1,0 +1,256 @@
+<div id="business-info" class="tab-pane">
+
+    <div class="col-lg-12">
+    <% business = @app_user.business_app_users.last.business %>
+    <% disable_flag = business.present? ? true : false  %>
+  <div class="col-md-6">
+
+      <label for="Name" class="control-label">User type</label>
+
+      <%= select_tag(:user_type,options_for_select(AppUser::USER_TYPES,@app_user.user_type),:class => 'form-control',:prompt => 'Select your User Type',:disabled => disable_flag) %>
+    </div>
+
+    <%
+    business_name = business.present? ? business.business_name : ''
+    manager_name = business.present? ? business.manager_name : ''
+    manager_contact = business.present? ? business.manager_contact : ''
+    business_type = business.present? ? business.business_type : ''
+    federal_number = business.present? ? business.federal_number : ''
+    ssn = business.present? ? business.ssn : ''
+    business_name=Base64.decode64(business_name) if business_name.present?
+    %>
+
+    <div class=" col-md-6" id="business_name_div">
+      <label for="Name" class="control-label"> Business Name </label>
+      <%= text_field_tag :business_name, business_name.titleize,:name => "business[business_name]",:class => 'form-control',:placeholder => 'Please enter your Business Name',:readonly => disable_flag %>
+    </div>
+
+  <div class="col-md-6" id="business_type_div">
+      <label for="Name" class="control-label">Business Type</label>
+      <% if business.present? %>
+      <%= text_field_tag :business_type,Business::BUSINESS_TYPES.key(business.business_type),:id =>'ddd',:class => 'form-control',:placeholder => 'Please enter your Business Type',:disabled => disable_flag %>
+      <%= hidden_field_tag :business_type,business_type,:name => "business[business_type]",:class => 'form-control',:placeholder => 'Please enter your Business Type',:readonly => disable_flag %>
+      <% else %>
+      <%= select_tag(:business_type,options_for_select(Business::BUSINESS_TYPES,business_type),:class => 'form-control',:prompt => 'Select your Business Type',:name => "business[business_type]") %>
+      <% end %>
+    </div>
+
+    <%if Business::BUSINESS_TYPES.key(business.business_type)=="Sole Proprietor"%>
+    <div class="col-md-6" id="ssn_div">
+      <label for="Name" class="control-label">SSN<span id="mandat">*</span></label>
+      <%if ssn.present?%>
+      <%= text_field_tag :ssn,Base64.decode64(ssn),:name => "business[ssn]",:class => 'form-control',:maxlength => 18,:placeholder => 'Please enter your SSN',:readonly => disable_flag %>
+      <%else%>
+       <%= text_field_tag :ssn,"",:name => "business[ssn]",:class => 'form-control',:maxlength => 18,:placeholder => 'Please enter your SSN' %>
+
+      <%end%>
+    </div>
+    <%elsif Business::BUSINESS_TYPES.key(business.business_type)=="Registered" %>
+  <div class="col-md-6" id="federal_number_div">
+      <label for="Name" class="control-label">Federal Number<span id="mandat">*</span></label>
+      <%if federal_number.present?%>
+      <%= text_field_tag :federal_number,Base64.decode64(federal_number),:name => "business[federal_number]",:class => 'form-control',:maxlength => 18,:placeholder => 'Please enter your Federal Number',:readonly => disable_flag %>
+      <%else%>
+       <%= text_field_tag :federal_number,"",:name => "business[federal_number]",:class => 'form-control',:onblur=>"format_federal_number_on_blur(this)",:onkeyup=>"format_federal_number(this)",:maxlength => 11,:placeholder => 'Please enter your Federal Number' %>
+
+      <%end%>
+    </div>
+    <%end%>
+
+  <div class="col-md-6">
+      <label for="Name" class="control-label">Manager Name<span id="mandat">*</span></label>
+      <%= text_field_tag('business[manager_name]',manager_name,:class=>'form-control input-md',:placeholder=>'Manager Name',:maxlength=>'30',:onblur=>"capitalise_first(this)") %>
+    </div>
+
+    <div class="col-md-6">
+      <label for="Name" class="control-label">Main Telephone Number<span id="mandat">*</span></label>
+      <%= phone_field_tag('business[manager_contact]',manager_contact,:class => 'form-control input-md',:placeholder => 'Telephone', :maxlength => 11) %>
+    </div>
+
+<div class="btn-group btnBox  mg_bottom15">
+      <div class="col-sm-12 btn-con">
+      <button class="btn cancel-btn btnPrevious" type="button">Previous</button>
+      <button class="btn save-btn" type="button" id="business_information_tab">Next</button>
+    </div>
+    </div>
+
+  </div>
+
+<!-- Button group -->
+
+</div>
+
+<!--Address input area-->
+<div id="address-info" class="tab-pane">
+
+    <div class="col-lg-12">
+      <div class="col-md-12">
+        <h3>Billing Address</h3>
+      </div>
+      <div class="col-md-6 padding15right">
+        <label for="Name" class="control-label">Address Name<span id="mandat">*</span></label>
+        <%= text_field_tag('business_addresses[address_name]',"",:class => 'form-control input-md',:placeholder => 'Address Name', :id => "billing_address_name",:onblur=>"capitalise_first(this)") %>
+      </div>
+      <div class="col-md-6 ">
+        <label for="Name" class="control-label">Address 1<span id="mandat">*</span></label>
+        <%= text_field_tag('business_addresses[address1]',"",:class => 'form-control input-md',:placeholder => 'Address1', :id => "billing_address_1",:onblur=>"capitalise_first(this)") %>
+        <%= hidden_field_tag 'business_addresses[address_type]',2,:name => "business_addresses[address_type]" %>
+      </div>
+      <div class="col-md-6 padding15right">
+        <label for="Name" class="control-label">Address 2</label>
+        <%= text_field_tag('business_addresses[address2]',"",:class => 'form-control input-md',:placeholder => 'Address2',:id => "billing_address_2",:onblur=>"capitalise_first(this)") %>
+      </div>
+      <div class="col-md-6">
+        <label for="Name" class="control-label">Town/City<span id="mandat">*</span></label>
+         <%= text_field_tag('business_addresses[city]',"",:class => 'form-control input-md',:placeholder => "Town/City",:id => "billing_city",:onblur=>"capitalise_first(this)")%>
+      </div>
+       <div class="col-md-6 padding15right">
+        <label for="Name" class="control-label">Select State<span id="mandat">*</span></label>
+        <%# cities_array = Statelist.all.pluck(:state).uniq.map { |city| city } %>
+        <%= select_tag(:state,options_for_select(AppUser::STATES,''),:class => 'form-control',:prompt => 'Please Select State',:name=>"business_addresses[state]", :id=>"billing_state") %>
+       <!--  <select class="form-control" name="billing_state" id="billing_state">
+          <%# cities_array = Statelist.all.pluck(:state).uniq.map { |city| city } %>
+          <%#= options_for_select(cities_array, :prompt=>"Select") %>
+      </select> -->
+      </div>
+      <div class="col-md-6 ">
+        <label for="Name" class="control-label">Zipcode<span id="mandat">*</span></label>
+        <%= text_field_tag('business_addresses[zip]',"",:class => 'form-control input-md',:placeholder => 'Zip', :id => "billing_zip", maxlength: 6) %>
+      </div>
+
+
+      <div id="additional_data">
+      <div class="col-md-12 address-sty">
+        <h3>Shipping Address</h3>
+        <div id="sameasbilling-1" class="checkbox checkbox-info">
+          <input id="checkbox8a" type="checkbox" onclick="SetShipping(this.checked);">
+          <label for="checkbox8a">Same as Billing Address </label>
+        </div>
+      </div>
+
+      <div id="business_service_address">
+        <div class="col-md-6 padding15right">
+        <label for="Name" class="control-label">Address Name<span id="mandat">*</span></label>
+        <%= text_field_tag('business_shipping_addresses[address_name]',"",:class => 'form-control input-md',:placeholder => 'Address Name', :id => "shipping_address_name",:onblur=>"capitalise_first(this)") %>
+      </div>
+        <div class="col-md-6">
+          <label for="Name" class="control-label">Address 1<span id="mandat">*</span></label>
+          <%= text_field_tag('business_shipping_addresses[address1]',"",:class => 'form-control input-md',:placeholder => 'Address1', :id => "shipping_address_1",:onblur=>"capitalise_first(this)") %>
+          <%= hidden_field_tag 'business_shipping_addresses[address_type]',1,:name => "business_shipping_addresses[address_type]" %>
+        </div>
+        <div class="col-md-6 padding15right">
+          <label for="Name" class="control-label">Address 2</label>
+          <%= text_field_tag('business_shipping_addresses[address2]',"",:class => 'form-control input-md',:placeholder => 'Address2', :id => "shipping_address_2",:onblur=>"capitalise_first(this)") %>
+        </div>
+        <div class="col-md-6">
+          <label for="Name" class="control-label">Town/City<span id="mandat">*</span></label>
+           <%= text_field_tag('business_shipping_addresses[city]',"",:class => 'form-control input-md',:placeholder => "Town/City",:id => "shipping_city",:onblur=>"capitalise_first(this)" )%>
+        </div>
+        <div class="col-md-6 padding15right">
+          <label for="Name" class="control-label">Select State<span id="mandat">*</span></label>
+          <%# cities_array = Statelist.all.pluck(:state).uniq.map { |city| city } %>
+          <%= select_tag(:state,options_for_select(AppUser::STATES,''),:class => 'form-control',:prompt => 'Please Select State',:name=>"business_shipping_addresses[state]", :id=>"shipping_state") %>
+        </div>
+        <div class="col-md-6">
+          <label for="Name" class="control-label">Zipcode*</label>
+          <%= text_field_tag('business_shipping_addresses[zip]',"",:class => 'form-control input-md',:placeholder => 'Zip', :id => "shipping_zip", maxlength: 6) %>
+        </div>
+        <!-- <select class="form-control" name="service_state" id="service_state">
+          <%# cities_array = Statelist.all.pluck(:state).uniq.map { |city| city } %>
+          <%#= options_for_select(cities_array, :prompt=>"Select") %>
+      </select> -->
+
+      </div>
+
+      <div class="col-md-12 address-sty">
+        <h3>Service Address</h3>
+        <div class="checkbox checkbox-info">
+          <input id="checkbox8b" type="checkbox" onclick="SetService(this.checked);">
+          <label for="checkbox8b">Same as Billing Address </label>
+        </div>
+      </div>
+      <div id="business_shipping_address" %>
+        <div class="col-md-6 padding15right">
+        <label for="Name" class="control-label">Address Name<span id="mandat">*</span></label>
+        <%= text_field_tag('business_service_addresses[address_name]',"",:class => 'form-control input-md',:placeholder => 'Address Name', :id => "service_address_name",:onblur=>"capitalise_first(this)") %>
+      </div>
+        <div class="col-md-6 ">
+          <label for="Name" class="control-label">Address 1<span id="mandat">*</span></label>
+          <%= text_field_tag('business_service_addresses[address1]',"",:class => 'form-control input-md',:placeholder => 'Address1', :id=> "service_address_1",:onblur=>"capitalise_first(this)") %>
+          <%= hidden_field_tag 'business_service_addresses[address_type]',0,:name => "business_service_addresses[address_type]" %>
+        </div>
+        <div class="col-md-6 padding15right">
+          <label for="Name" class="control-label">Address 2</label>
+          <%= text_field_tag('business_service_addresses[address2]',"",:class => 'form-control input-md',:placeholder => 'Address2', :id=> "service_address_2",:onblur=>"capitalise_first(this)") %>
+        </div>
+        <div class="col-md-6 ">
+          <label for="Name" class="control-label">Town/City<span id="mandat">*</span></label>
+           <%= text_field_tag('business_service_addresses[city]',"",:class => 'form-control input-md',:placeholder => "Town/City",:id => "service_city",:onblur=>"capitalise_first(this)") %>
+        </div>
+        <div class="col-md-6 ">
+          <label for="Name" class="control-label">Select State<span id="mandat">*</span></label>
+          <%# cities_array = Statelist.all.pluck(:state).uniq.map { |city| city } %>
+          <%= select_tag(:state,options_for_select(AppUser::STATES,''),:class => 'form-control',:prompt => 'Please Select State',:name=>"business_service_addresses[state]", :id=>"service_state") %>
+      </div>
+        <div class="col-md-6 padding15right">
+          <label for="Name" class="control-label">Zipcode<span id="mandat">*</span></label>
+          <%= text_field_tag('business_service_addresses[zip]',"",:class => 'form-control input-md',:placeholder => 'Zip', :id=> "service_zip", maxlength: 6) %>
+        </div>
+
+       <!--  <select class="form-control" name="shipping_state" id="shipping_state">
+          <%# cities_array = Statelist.all.pluck(:state).uniq.map { |city| city } %>
+          <%#= options_for_select(cities_array, :prompt=>"Select") %>
+      </select> -->
+      </div>
+    </div>
+
+    <div class="btn-group btnBox mg_bottom15">
+      <div class="col-sm-12 btn-con">
+        <button class="btn cancel-btn btnPrevious" type="button">Previous</button>
+        <button class="btn save-btn" type="button" id="business_address_information_tab">Next</button>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+<script>
+// $(document).ready(function(){
+//   $("#billing_address_1, #billing_address_2, #billing_zip").on("keyup",function(){
+//     if($("#billing_address_1").val().length>4 && $("#billing_address_2").val().length>4 && $("#billing_zip").val().length>4){
+//       $("#additional_data").removeClass("hidden");
+//   }
+//   else {
+//     // $("#additional_data").addClass("hidden")
+//   }
+// });
+// })
+  $(document).ready(function(){
+    value=$("#user_type option:selected").val();
+    rest=value.substr(1);
+    $("#user_type option:selected").text(value[0].toUpperCase()+""+rest);
+  });
+function format_federal_number(obj) {
+  if($("#"+obj.id).val().length==2){
+  $("#"+obj.id).val($("#"+obj.id).val().toUpperCase()+"-")
+  }
+  if($("#"+obj.id).val().length==6){
+  $("#"+obj.id).val($("#"+obj.id).val().toUpperCase()+"-")
+  }
+  if($("#"+obj.id).val().length>1){
+  $("#"+obj.id).val($("#"+obj.id).val().toUpperCase())
+  }
+}
+function format_federal_number_on_blur(obj) {
+val=obj.value;
+formatted_str=val.substr(0,2)+"-"+val.substr(3,3)+"-"+val.substr(7)
+$("#"+obj.id).val(formatted_str);
+}
+
+function capitalise_first(object) {
+        value=$("#"+object.id).val();
+        rest=value.substr(1);
+        object.value=value[0].toUpperCase()+""+rest
+    }
+</script>

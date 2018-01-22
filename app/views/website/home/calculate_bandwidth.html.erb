@@ -1,0 +1,290 @@
+<section class="bandwidth-banner">
+  <div class="container text-center">
+    <h3>Bandwidth Calculator</h3>
+  </div>
+</section>
+<section class="bandwidth-calc">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Network <strong>Bandwidth Calculator</strong></h4>
+        <p>Estimate your requirements and get a detailed report with upload/download usage and recommended solutions </p>
+        <div class="usage-type"> <strong>Please select your usage type:</strong>
+          <p>Select variation based upon your bandwidth consumption</p>
+          <div class="details-zip col-md-12">
+            <div class="col-xs-3 col-sm-3 col-md-2 radio_inline">
+              <label>
+                <input type="radio" name="optionsRadios" id="residence" value="low">
+                <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span> Low</span> </label>
+            </div>
+            <div class="col-xs-5 col-sm-3 col-md-2 radio_inline">
+              <label >
+                <input type="radio" name="optionsRadios" id="residence" value="medium">
+                <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span> Medium </span> </label>
+            </div>
+            <div class="col-xs-4 col-sm-3 col-md-2 radio_inline">
+              <label >
+                <input type="radio" name="optionsRadios" id="residence" value="high">
+                <i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span> High </span> </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-6 left-usage">
+          <div class="email-count">
+            <label>Email</label>
+            <p>How many emails do you send/received?</p>
+            <input id="emails" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="200" data-slider-step="1" data-slider-value="0"/>
+            <span id="emails-limitemails-limit"emails-limit>200 emails</span>
+          </div>
+          <div class="web-access">
+            <label>Web Access</label>
+            <p>How many web pages do you visit?</p>
+            <input id="web-access" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="500" data-slider-step="1" data-slider-value="0"/>
+            <span id="webpages-limit">500 pages</span>
+          </div>
+          <div class="video-calling">
+            <label>Video Calling</label>
+            <p>How many minutes do you spend on video calling?</p>
+            <input id="vc" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="90" data-slider-step="1" data-slider-value="0"/>
+            <span id="vc-limit">90 mins</span>
+          </div>
+        </div>
+
+        <div class="col-md-6 right-usage">
+          <div class="upload-downlaod">
+            <label>Upload/Download</label>
+            <p>How many photos do you upload/download?</p>
+            <input id="upload-photos" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+            <span id="photos-limit">100 photos</span>
+          </div>
+          <div class="usage-type">
+            <strong>Device(s)</strong>
+            <p>How many device(s) you are using?</p>
+            <div class="select-style">
+              <select id="devices">
+                <% (1..10).each do |i|%>
+                <option value="<%=i%>"><%=i%></option>
+                <%= %>
+                <%end%>
+                <%%>
+              </select>
+            </div>
+            <i>Calculated bandwidth will be multiplied by the number of devices you have chosen.</i> </div>
+            <div class="video-calling" style="margin-top: 13px;">
+              <label>Video Streaming</label>
+              <p>How many minutes do you spend on video streaming?</p>
+              <input id="vs" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="500" data-slider-step="1" data-slider-value="0"/>
+              <span  id="vs-limit">500 mins</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="video-calling">
+            <label>Audio Calling</label>
+            <p>How many minutes do you spend on audio calling?</p>
+            <input id="ac" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="500" data-slider-step="1" data-slider-value="0"/>
+            <span  id="ac-limit">500 mins</span>
+          </div>
+        </div>
+
+
+      <div class="col-md-12 calculate-bandwidth text-center">
+      		<button id="bandwidth-calc-result" class="btn bandwidth-btn" type="button" onclick="get_estimated_bandwidth()"> Calculate Bandwidth</button>
+      </div>
+
+      <div class="col-md-12 text-center result-bandwidth">
+						<div id="result-innertxt" class="alert alert-success">
+
+            </div>
+            <div id="dealsforyou">
+
+            </div>
+					</div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="content-sty">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+         <div class="col-md-6">
+        <h4><strong>Get an Estimation of Your Data Requirements!</strong></h4>
+        <p>Measuring the bandwidth is an effective way to estimate the amount of transmitted and received data. This technology helps in monitoring your usage and also allow you to understand your requirements. However, not all of the service providers allow this kind of services. We, at <i>Service Dealz</i>, make sure that you get a detailed report of your uploads and downloads. </p>
+        <p><i>Service Dealz</i> has accumulated all the required technology. This technology is provided to our customers, so that, they can calculate all the requirements and select a suitable package. </p>
+        <p>You can easily select the options according to the asked questions and get our solutions for your bandwidth consumption. </p>
+        <h4><strong>Usage Type</strong></h4>
+        <p>This information allows the system to create a report according to your consumption. You can select from the low, medium or high options. This will inform the system about your bandwidth habits. In return, the system provides you standard results showing suggestions related to the audio, video, email, and many other details.</p>
+         <h4><strong>Email</strong></h4>
+        <p>You need to provide the numbers of emails you receive and send. This is an important information system uses to create the report and suggestions.</p>
+ <h4><strong>Video Streaming</strong></h4>
+        <p>The time you spend streaming videos online affects your data consumption. If you need to get the right estimation of your data needs, then, put your video streaming requirements in this section.</p>
+        <h4><strong>Web Access</strong></h4>
+        <p>It is very difficult to keep a track of all the web pages you visit every day. However, even a guess can provide you a better understanding of your data needs. In this section, you provide the number of web pages you visit. The more pages you visit, the more data it consumes.</p>
+        
+      </div>
+      <div class="col-md-6">
+        <h4><strong>Video calling</strong></h4>
+        <p>Video calling has become a great trend. Almost all social media platforms are providing this feature. You can talk to your friends and families, but it takes a lot of data in using this feature. However, with bandwidth calculator, you can understand the limited amount of calls you should make to suit your data plan. On the contrary, you can check what type of data is suitable for you to make required video calls. </p>
+        <h4><strong>Photo uploads and downloads</strong></h4>
+        <p>Uploading your selfies and other pictures is the prime requirement of every person today. This affects the bandwidth consumption too. Not as much as the video calling, but it should be considered while selecting a data pack. Hence, Service Dealz lets you estimate your data consumption in this section also. </p>
+         <h4><strong>Number of devices</strong></h4>
+        <p>The number of devices attached to a data pack also affects the consumption. Hence, you need to put the numbers of devices you use. The system multiplies the calculated bandwidth with the number of devices you put in this section. So, don’t forget to mention the right numbers.</p>
+       
+         <h4><strong>Audio calling</strong></h4>
+        <p>Audio calling is another factor that is required to calculate the overall bandwidth consumption.</p>
+        <p>Once all the information is provided to the system, you get the report of your bandwidth calculation with a single click. </p>
+        <p>Calculate bandwidth consumption to choose the right data package.</p>
+  </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+<script>
+
+$(document).ready(
+  function(){
+    $("input[name=optionsRadios]").on("change",function(){
+       value=$("input[name=optionsRadios]:checked").val();
+       switch(value){
+         case "low": update_slider(value);$('#devices').prop('selectedIndex',0);break;
+         case "medium": update_slider(value);$('#devices').prop('selectedIndex',4);break;
+         case "high": update_slider(value);$('#devices').prop('selectedIndex',9);break;
+       }
+     })
+  }
+);
+function update_slider(type){
+  if(type=="low") {
+    $("#emails-limit").text("50 mails");
+    $("#webpages-limit").text("250 webpages");
+    $("#vc-limit").text("50 calls");
+    $("#ac-limit").text("500 calls");
+    $("#photos-limit").text("50 photos");
+    $("#vs-limit").text("50 videos");
+    $("#emails").slider('setAttribute', 'max', 50);
+    $("#web-access").slider('setAttribute', 'max', 250);
+    $("#vc").slider('setAttribute', 'max', 50);
+    $("#ac").slider('setAttribute', 'max', 500);
+    $("#upload-photos").slider('setAttribute', 'max', 50);
+    $("#vs").slider('setAttribute', 'max', 50);
+
+    $("#emails").slider().slider('setValue', 10)
+    $("#web-access").slider().slider('setValue', 100)
+    $("#vc").slider().slider('setValue', 10)
+    $("#ac").slider().slider('setValue', 100)
+    $("#upload-photos").slider().slider('setValue', 10)
+    $("#vs").slider().slider('setValue', 20)
+    /*Reset slider position */
+  }
+  if(type=="medium") {
+    $("#emails-limit").text("100 mails");
+    $("#webpages-limit").text("500 webpages");
+    $("#vc-limit").text("100 calls");
+    $("#ac-limit").text("100 calls");
+    $("#photos-limit").text("100 photos");
+    $("#vs-limit").text("1000 videos");
+
+    $("#emails").slider('setAttribute', 'max', 100);
+    $("#web-access").slider('setAttribute', 'max', 500);
+    $("#vc").slider('setAttribute', 'max', 100);
+    $("#ac").slider('setAttribute', 'max', 100);
+    $("#upload-photos").slider('setAttribute', 'max', 100);
+    $("#vs").slider('setAttribute', 'max', 1000);
+
+
+    $("#emails").slider().slider('setValue', 25)
+    $("#web-access").slider().slider('setValue', 150)
+    $("#vc").slider().slider('setValue', 25)
+    $("#ac").slider().slider('setValue', 25)
+    $("#upload-photos").slider().slider('setValue', 25)
+    $("#vs").slider().slider('setValue', 250)
+    /*Reset slider position */
+  }
+  if(type=="high"){
+    $("#emails-limit").text("200 mails");
+    $("#webpages-limit").text("1000 webpages");
+    $("#vc-limit").text("200 calls");
+    $("#ac-limit").text("2000 calls");
+    $("#photos-limit").text("200 photos");
+    $("#vs-limit").text("2000 videos");
+
+    $("#emails").slider('setAttribute', 'max', 200);
+    $("#web-access").slider('setAttribute', 'max', 1000);
+    $("#vc").slider('setAttribute', 'max', 200);
+    $("#ac").slider('setAttribute', 'max', 2000);
+    $("#upload-photos").slider('setAttribute', 'max', 200);
+    $("#vs").slider('setAttribute', 'max', 2000);
+
+
+    $("#emails").slider().slider('setValue', 200)
+    $("#web-access").slider().slider('setValue', 1000)
+    $("#vc").slider().slider('setValue', 200)
+    $("#ac").slider().slider('setValue', 2000)
+    $("#upload-photos").slider().slider('setValue', 200)
+    $("#vs").slider().slider('setValue', 2000)
+
+    /*Reset slider position */
+  }
+}
+
+$('#emails, #vc, #web-access, #upload-photos, #vs, #ac').slider({
+	formatter: function(value) {
+		return 'Current value: ' + value;
+	}
+});
+  $("#bandwidth-calc-result").click(function(){
+    $(".result-bandwidth").show('slide');
+});
+// function resetslider(type){
+//   if (type=="low"){
+//     $("#emails").slider().slider('setValue', 10)
+//     $("#web-access").slider().slider('setValue', 100)
+//     $("#vc").slider().slider('setValue', 10)
+//     $("#ac").slider().slider('setValue', 10)
+//     $("#upload-photos").slider().slider('setValue', 10)
+//     $("#vs").slider().slider('setValue', 0)
+//   }
+// }
+function get_estimated_bandwidth(){
+    $("#dealsforyou").html("");
+    email=$("#emails").val();
+    no_of_devices=$("#devices option:selected").val();
+    web_page=$("#web-access").val();
+    video_calling=$("#vc").val();
+    audio_calling=$("#ac").val();
+    photo_upload_download=$("#upload-photos").val();
+    video_streaming=$("#vs").val();
+$.ajax({
+  url: "/api/v1/get_estimated_bandwidth",
+  type: "POST",
+  data: {
+    no_of_devices: no_of_devices,
+    email: email,
+    web_page: web_page,
+    video_calling: video_calling,
+    audio_calling : audio_calling,
+    photo_upload_download:photo_upload_download,
+    video_streaming:video_streaming
+  },
+  success: function(data){
+    bandwidth_in_mb=data["bandwidth_in_mb"];
+    bandwidth_in_gb=data["bandwidth_in_gb"];
+    console.log(data);
+    $("#result-innertxt").html("<p> Bandwidth in MB =<b>"+bandwidth_in_mb+"</b></p><br /><p> Bandwidth in GB=<b>"+bandwidth_in_gb+"</b>");
+    $(".result-bandwidth").show('slide');
+    deals=data["matching_deal_id"];
+    if(deals.length>0) {
+        $("#dealsforyou").append("<h5><b>Some Deals For you</b></h5> <br />");
+        for(i=0;i<deals.length;i++){
+          $("#dealsforyou").append("<a class='' href='/website/home/more_deal_details?deal_id="+deals[i]+"'>"+data["deal_name"][i]+"</a>, ")
+        }
+    }
+  }
+})
+}
+</script>

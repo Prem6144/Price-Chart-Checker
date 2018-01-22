@@ -1,0 +1,43 @@
+<fieldset id="additional-offer">
+  <h4>Additional Offer</h4>
+  <table class="form-data">
+  <tr>
+    <td valign="top">
+        <%= f.label :title %>
+        <%= f.text_field :title, :id=>'additional-offer-title' %>
+    </td>
+    <td>
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+    </td>
+  </tr>
+  <tr>
+      <td valign="top">
+        <%= f.label :price %>
+        <%= f.text_field :price %>
+      </td>
+      <td>
+        <br/>
+        <div><%= f.check_box :is_nationwide,:id=>'additional-offer-nationwide', :checked=>'checked' %> Is Nationwide? </div>
+        <%= f.label 'Select Allowed Zipcodes:' %>
+        <%= f.select :zipcode_ids, Zipcode.all.map { |r| [r.code+' - '+r.city, r.id] },{},{ id: "additional-offer-zipcode",multiple: true,size: 10 } %>
+      </td>
+  </tr>
+  <tr>
+      <td>
+        <%= f.label :start_date %>
+        <%= f.text_field :start_date, :id=>'additional-offer-start-date' %>
+      </td>
+      <td>
+        <%= f.label :end_date %>
+        <%= f.text_field :end_date, :id=>'additional-offer-end-date' %>
+      </td>
+  </tr>
+  <tr>
+      <td>
+        <div><%= f.check_box :is_active %> Is Active? </div>
+      </td>
+      <td/>
+  </tr>
+  </table>
+</fieldset>

@@ -1,0 +1,79 @@
+<div class="modal fade text-left" id="zipcode-modal" role="dialog" aria-hidden="true"  >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+ <button type="button" class="close log-pop-btn" data-dismiss="modal">×</button>
+    <div class="modal-content">
+      <div class="zipcode-body">
+        <form method="get" action="<%= set_zipcode_and_usertype_website_home_index_path %>">
+          <div class="text-center"> <%= image_tag('website/map-pointer.png',:alt => 'map-pointer') %>
+            <h3>Enter Your Zip Code</h3>
+          </div>
+          <div class="details-zip">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <%
+                 if session[:user_type] == AppUser::BUSINESS
+                   checked_business = "checked=''"
+                   checked_residential = ''
+                 else
+                   checked_residential = "checked=''"
+                   checked_business = ''
+                 end
+              %>
+              <h4>User Type</h4>
+              <div class="radio col-md-5 col-sm-5 col-xs-5">
+                <label>
+                  <input type="radio" name="user_type" id="residence" value="option1" <%= checked_residential %>>
+                  Residence </label>
+              </div>
+              <div class="radio col-md-5 col-sm-5 col-xs-5">
+                <label>
+                  <input type="radio" name="user_type" id="business" value="option2" <%= checked_business %>>
+                  Business </label>
+              </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+              <div class="form-group residence-opt-off">
+                <label>Zipcode &nbsp;</label>
+                <input id="zip_modal" type="text" class="form-control" maxlength=5 name="zip_code" placeholder="Zipcode" value="<%= session[:zip_code] %>">
+              </div>
+              <!-- <div class="form-group business-opt " style="display: block;">
+                <div>
+                  <label>Business name</label>
+                  <input type="text" class="form-control" placeholder="Zipcode">
+                </div>
+                <div class="mgt20">
+                  <label>Zipcode &nbsp;</label>
+                  <input type="text" class="form-control" placeholder="Zipcode">
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-default btn-red mg20">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $( document ).ready(function() {
+        $(".business-opt").hide();
+        $(".residence-opt").show();
+    });
+
+    $("#residence").click(function(){
+        $(".residence-opt").show();
+        $(".business-opt").hide();
+    });
+
+    $("#business").click(function(){
+
+        $(".business-opt").show();
+        $(".residence-opt").hide();
+    });
+</script>

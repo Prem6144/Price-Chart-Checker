@@ -1,0 +1,474 @@
+<%= render :partial => 'website/home/internet_banner',  locals: { :category_name => @category_name.capitalize }%>
+
+<!--More Details section-->
+<section class="more-details sd-deal-detailscon">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 right-offer">
+        <div class="border-radius-bg">
+          <%if display_logo_permission(@deal.service_provider_id,@deal.deal_type)%>
+              <img src="<%= display_logo_permission(@deal.service_provider_id,@deal.deal_type) %>" alt="Service Deal Logo" class="img-responsive">
+          <%else%>
+              <img src="<%= @deal.image.url %>" alt="Service Provider Logo" class="img-responsive">
+          <% end %>
+          <ul class="sd-deal-price">
+            <li class="sd-dealprice-single"><%= get_label_name(@deal.service_provider_id,'Deal Price') %>:<span>$<%= "%.2f" % @deal.price %>/mon</span></li>
+            <% if params[:effective_price].present? %>
+            <li class="sd-effective-price-single">Effective Price:<span id='effective_price'>$<%="%.2f" %  params[:effective_price]%>/mon</span></li>
+            <% else %>
+             <li class="sd-effective-price-single">Effective Price:<span id='effective_price'>$<%="%.2f" %  @deal.effective_price if @deal.effective_price.present?%>/mon</span></li>
+            <% end %>
+            <% if @deal.contract_period == 0 %>
+                <li>Contract: <span>None</span></li>
+            <% else %>
+                <li>Contract: <span><%= @deal.contract_period %> months</span></li>
+
+            <% end %>
+
+          </ul>
+
+        </div>
+        <%#if  @current_user.present? %>
+        <%#if @current_user.email_verified%>
+        <!--   <a onclick="check_for_options()" class="order-btn" href="<%#=order_website_app_users_path(:deal_id=> @deal.id)%>" id="<%#=@deal.id%>">Order</a> -->
+        <%#else%>
+        <!-- <a class="order-btn" href="javascript:void(0)">Verify email</a> -->
+        <%#end%>
+        <%#else%>
+        <!--  <a  onclick="check_for_options()" class="order-btn" href="<%#=order_website_app_users_path(:deal_id=> @deal.id)%>" id="<%#=@deal.id%>">Order</a> -->
+        <%#end%>
+          <%if @current_user.present? && @current_user.email_verified == nil %>
+          <a class="order-btn" href="javascript:void(0)">Verify email</a>
+          
+          <% elsif @current_user.present? && @current_user.email_verified == true %>
+            <% if @deal.is_order_available != false  %>
+                <a onclick="check_for_options()" id="order-btn" class="order-btn" href="<%=order_website_app_users_path(:deal_id=> @deal.id)%>" id="<%=@deal.id%>">Order</a>
+            <% else %>
+                <a id="order-btn" class="order-btn btn_3" >Not Available</a>
+            <% end %>
+            <% elsif @current_user.blank?%>
+               <% if @deal.is_order_available != false  %>
+               <a onclick="check_for_options()" id="order-btn" class="order-btn" href="<%=order_website_app_users_path(:deal_id=> @deal.id)%>" id="<%=@deal.id%>">Order</a>
+            <% else %>
+                <a id="order-btn" class="order-btn btn_3" >Not Available</a>
+            <% end %>
+
+              
+            <% end %>
+
+        <% if  @customized_deals.present? && @category_name == "cellphone"%>
+             <a class="reset-order" href="javascript:void(0)" id="reset_order" onclick="reset_order()">RESET </a>
+            <a id="total-calculate-btn" onclick="calculate_total_price_for_cellphone()" class="order-btn" href="javascript:void(0)">Calculate Total price</a>
+        <% elsif  @customized_deals.present? && @category_name == "cable" %>
+            <a class="reset-order" href="javascript:void(0)" id="reset_order" onclick="reset_order()">RESET</a>
+            <a id="total-calculate-btn" onclick="calculate_total_price_for_cable()" class="order-btn" href="javascript:void(0)">Calculate Total price</a>
+        <%end %>
+
+        <%if @category_name == "cable" && @deal.cable_deal_attributes.present? && @deal.cable_deal_attributes.last.channel_ids.present? && @deal.is_customisable != true%>
+            <a class="chanel-list-btn" href="#" data-toggle="modal" data-target="#myModal2">Channel List</a> </td>
+        <% end %>
+
+
+        <!-- <div id="equipments_selected"  class=""> -->
+        <% if  @customized_deals.present? && @category_name == "cellphone"%>
+            <div id="equipments_selected" class="deal-equipments-added">
+              <h5>Equipments Selected</h5>
+
+            </div>
+        <% end %>
+        <!-- </div> -->
+
+
+      </div>
+
+      <div class="col-sm-8 about-offer">
+        <div class="about-offer-details sd-more-details-page">
+          <!-- <a class="shareon-fb pull-right" onclick="postLike()"><i class="fa fa-facebook">&nbsp;</i>Share on Facebook</a> -->
+          <h3><%= display_deal_name_permission(@deal.service_provider_id,@deal.deal_type,@deal.title) %></h3>
+          <h4>Details</h4>
+
+          <%#=raw(@deal.short_description)%>
+          <%=raw (@deal.detail_description)%>
+          <%if @customized_deals.present?%>
+              <%= render :partial => "#{@customized_deals["service_category_name"].downcase}_customize_deal", :locals =>{:customized_deals =>@customized_deals }  %>
+          <%else%>
+              <%= render :partial => "#{@category_name}_deal_form" %>
+          <%end%>
+          <% if @deal.try(:additional_offers).present? %>
+              <h5 class="">Offer</h5>
+              <% @deal.try(:additional_offers).each do |additional_offer| %>
+                  <table class="table table-bordered">
+                    <thead>
+                    <tr class="active">
+                      <th colspan="3"><%= additional_offer.try(:title) %></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td width="20%">$<%= (additional_offer.price.to_i )rescue nil%></td>
+                      <td width="80%" colspan="2"><%=additional_offer.try(:description) %></td>
+                    </tr>
+                    </tbody>
+                  </table>
+              <% end %>
+          <% end %>
+          <% if @deal.is_customisable != true %>
+              <div id="reviews-section" class="">
+
+                <div class="add-reviews-div" style="padding-bottom: 11px;">
+
+                  <%=form_for CommentRating.new, :url => "/api/v1/comment_ratings", :method => "post" do |f|%>
+                      <h5>Rate this deal! <span id="reviews-header" ></span></h5>
+                      <input id="comment_rating_rating_point" value="0" data-min="0" data-max="5" data-step="0.5" data-size="sm">
+                      <%=f.text_field:comment_title, :class => "form-control", :placeholder => "Add Comment title", :required => true%><br />
+                      <%=f.text_area:comment_text, :class => "form-control", :placeholder => "Add Comment", :required => true%><br />
+                      <%=f.hidden_field:deal_id, :value=>params[:deal_id]%>
+                      <%=f.hidden_field:app_user_id, :value=>session[:user_id]%>
+                      <%=f.submit("Submit", :class=>"btn submit-btn",:onclick=>"add_comments()")%>
+                  <%end%>
+                </div>
+              </div>
+
+              </div>
+              <div id="reviews-area" style="height: 750px"></div>
+
+              <div id="onwait" style="background-color: #000;height: 586px;    position: absolute;    top: 1px;    width: 587px;
+                      opacity: 0.3;">
+                <i id="wait-spinner" style="position: absolute;top: 50%;left: 43%;color: #fafafa;" class="fa fa-spinner fa-pulse fa-4x fa-fw fa-spin"></i>
+              </div>
+
+          <% end %>
+          </div>
+    </div>
+  </div>
+  <script>
+
+
+      $("#comment_rating_rating_point").rating('create',{coloron:'green',onClick:function(){ alert('rating is ' + this.attr('data-rating')); }});
+
+      function add_comments(){
+          event.preventDefault();
+          if($("#comment_rating_app_user_id").val()!="" ){
+              if($("#comment_rating_rating_point").val()!="0"){
+                  $.ajax({
+                      url:"/api/v1/comment_ratings",
+                      type:"post",
+                      data: {
+                          app_user_id:$("#comment_rating_app_user_id").val(),
+                          deal_id:$("#comment_rating_deal_id").val(),
+                          rating_point:$("#comment_rating_rating_point").val(),
+                          comment_title:$("#comment_rating_comment_title").val(),
+                          comment_text:$("#comment_rating_comment_text").val()
+                      },
+                      success: function(d){
+                          get_comments();
+                      }
+                  });
+              }
+              else{
+                  alert("Please select rating.");
+              }
+          }
+
+          else
+              alert("Please login to comment!");
+      }
+      $(document).ready(
+              function(){
+                  $("#comment_rating_rating_point").addClass("form-control");
+              }
+      )
+  </script>
+</section>
+<!--End of More Details section-->
+
+
+<div class="modal fade text-left sd-channel-popup" id="myModal2" role="dialog">
+  <div class="modal-dialog ">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body channel_popup">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <div class="scroller">
+          <table class="table table-bordered">
+            <div class="channel_heading">
+              <h4>Channel List</h4>
+            </div>
+            <div class="col-md-12" id="ajaxdata">
+            </div>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript">
+    var checkedValues,dealids;
+    $( document ).ready(function() {
+        get_comments();
+        dealids = [
+            <% if @deal_ids.present? %>
+            <%= @deal_ids.map(&:to_s).join(", ") %>
+            <%end%>
+        ];
+        for(i=0;i<dealids.length;i++){
+            $("#"+dealids[i]).addClass("btn_3");
+            $("#"+dealids[i]).text("Already Ordered");
+            $("#"+dealids[i]).prop("href","javascript:void(0)")
+        }
+        dealids=[];
+
+        <% if @category_name == "cable" && CableDealAttribute.where(:deal_id => 228).last.present? %>
+        $.ajax({
+            url:"/api/v1/get_deal_channels",
+            type: "GET",
+            data:{ deal_id: "<%=@deal.id%>"},
+            success: function(data){
+                var i,j;
+                var length = data['channels'].length;
+                for (i=0; i<length; i++){
+                    var category_name = data['channels'][i]['category_name'];
+                    var div_id="data_"+parseInt((Math.random()*100)+Date.now());
+                    $("#ajaxdata").append("<ul class='row channel-list' id='"+div_id+"'>"+"<h5>"+category_name+"</h5>"+"</ul>");
+                    for(j=0; j<data['channels'][i]['channel'].length;j++){
+                        $("#"+div_id).append("<li>"+data['channels'][i]['channel'][j]['channel_name']+"</li>");
+                    }
+                }
+            }
+        });
+        <% end %>
+
+    });
+
+
+    $(document).ready(function(){
+        $("#onwait").hide();
+        $(document).ajaxStart(function() {
+            $("#onwait").show();
+            $("#wait-spinner").show();
+        });
+        $(document).ajaxStop(function() {
+            $("#onwait").hide();
+            $("#wait-spinner").hide();
+        });
+        Array.prototype.contains = function(v) {
+            for(var i = 0; i < this.length; i++) {
+                if(this[i] === v) return true;
+            }
+            return false;
+        };
+
+        Array.prototype.unique = function() {
+            var arr = [];
+            for(var i = 0; i < this.length; i++) {
+                if(!arr.contains(this[i])) {
+                    arr.push(this[i]);
+                }
+            }
+            return arr;
+        }
+    });
+
+    function reset_order(){
+      location.reload();
+    }
+
+    function check_for_options(){
+  <% if @category_name == "cable" && CableDealAttribute.where(:deal_id => 228).last.present? %>
+        cable_deal_equipments=[];
+        $("input[name='cable_deal_equipments']:checked").each(function(){
+            value=$(this).attr("val");
+            jsonObj5 ={};
+            jsonObj5["equipment_id"]=value.split("_")[0];
+            cable_deal_equipments.push(jsonObj5)
+        });
+        localStorage["cable_deal_equipments"] = JSON.stringify(cable_deal_equipments);
+        deal_attributes=[];
+        $("input[name='deal_attributes']:checked").each(function(){
+            value=$(this).attr("val");
+            jsonObj3 ={};
+            jsonObj3["ref_id"]=value.split("_")[0];
+            jsonObj3["price"]=value.split("_")[1];
+            jsonObj3["ref_type"]=value.split("_")[2];
+            deal_attributes.push(jsonObj3);
+        })
+
+        cable_deal_attributes=[];
+        $("input[name='deal_attributes']:checked").each(function(){
+            value=$(this).attr("val");
+            jsonObj3 ={};
+            jsonObj3["ref_id"]=value.split("_")[0];
+            jsonObj3["price"]=value.split("_")[1];
+            jsonObj3["ref_type"]=value.split("_")[2];
+            cable_deal_attributes.push(jsonObj3)
+        });
+
+        $("input[name='deal_channel_packages']:checked").each(function(){
+            value=$(this).attr("val");
+            jsonObj4 ={};
+            jsonObj4["ref_id"]=value.split("_")[0];
+            jsonObj4["price"]=value.split("_")[1];
+            jsonObj4["ref_type"]=value.split("_")[2];
+            cable_deal_attributes.push(jsonObj4)
+        });
+
+        deal_channel_packages=[];
+        $("input[name='deal_channel_packages']:checked").each(function(){
+            value=$(this).attr("val");
+            jsonObj4 ={};
+            jsonObj4["ref_id"]=value.split("_")[0];
+            jsonObj4["price"]=value.split("_")[1];
+            jsonObj4["ref_type"]=value.split("_")[2];
+            deal_channel_packages.push(jsonObj4);
+        })
+
+        localStorage["deal_attributes"] = JSON.stringify(deal_attributes);
+        localStorage["deal_channel_packages"] = JSON.stringify(deal_channel_packages);
+        localStorage["cable_deal_attributes"] = JSON.stringify(cable_deal_attributes);
+
+        if($("input[type='checkbox']").is(':checked') == false)
+        {
+            effective_value = <%=@deal.effective_price%>;
+            console.log(effective_value);
+            localStorage["effective_price"] = JSON.stringify(effective_value);
+        }
+        cellphone_deal_equipments = []
+        value = color_data
+        <%if @category_name == "cellphone" %>
+        localStorage["color_data"] = JSON.stringify(color_data);
+
+        jsonObj6 = {}
+        for(var i=0; i<value.length;i++){
+            jsonObj6['equipment_id'] = value[i].split('_')[0];
+            jsonObj6['color'] = value[i].split('_')[1];
+            cellphone_deal_equipments.push(jsonObj6)
+        }
+        localStorage["deal_equipments"] = JSON.stringify(cellphone_deal_equipments);
+        <% end %>
+
+
+
+
+        deal_extra_services=[];
+        $("input[name='deal_extra_services']:checked").each(function(){
+            value=$(this).attr("val");
+            jsonObj2 ={};
+            jsonObj2["deal_extra_service_id"]=value.split("_")[0];
+            deal_extra_services.push(jsonObj2)
+        });
+
+
+
+        localStorage["deal_extra_services"] = JSON.stringify(deal_extra_services);
+        localStorage["cable_deal_equipments"] = JSON.stringify(cable_deal_equipments);
+        <%end%>
+    }
+
+    function get_comments(){
+        var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9+/=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/rn/g,"n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}}
+        $("#reviews-area").html("");
+        $.ajax({
+            url:"/api/v1/comment_ratings",
+            type:"GET",
+            data: {
+                deal_id:<%=params[:deal_id]%>,
+                request_type:"site"
+            },
+            success: function(data){
+                console.log(data);
+                s = "";
+                limit = 0;
+                if(data["success"] == true) {
+                    $("#reviews-header").html("Reviews ("+data["comment_count"]+")");
+                    for(i=0;i<data["comment_count"];i++) {
+                        s="";
+                        limit = 0;
+                        name=Base64.decode(data["comment"][i]["app_user_name"])
+                        for(j=0;j<data["comment"][i]["rating_point"];j++) {
+                            s=s+"<i style = 'color:#f0bc1d' class='fa fa-star'></i>";
+                        }
+                        limit = 5-parseInt(data["comment"][i]["rating_point"]);
+                        for(j=0;j<limit;j++) {
+                            s=s+"<i style ='color:#f0bc1d' class='fa fa-star-o'></i>";
+                        }
+                        $("#reviews-area").append("<div id='reviews-inner-area'><h5>"+name+"</h5><p>"+s+"</p><p class='title'>"+data["comment"][i]["comment_title"]+"</p><p>"+data["comment"][i]["comment_text"]+"</p></div>");
+                        console.log(name)
+                    }
+                }
+            }
+        });
+    }
+
+
+
+
+
+</script>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1667446600239604',
+            xfbml      : true,
+            version    : 'v2.7'
+        });
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function postLike(){
+        FB.ui({
+            method: 'share',
+            href: 'http://52.39.217.10/website/home/more_deal_details?deal_id=<%=@deal.id %>',
+        }, function(response) {
+            if (!response) {
+                // alert('Error occurred.');
+            } else if (response.error) {
+                document.getElementById('result').innerHTML =
+                        'Error: ' + response.error.message;
+            } else {
+                document.getElementById('result').innerHTML =
+                        '<a href=\"https://www.facebook.com/me/activity/' +
+                        response.id + '\">' +
+                        'Story created.  ID is ' +
+                        response.id + '</a>';
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function() {
+        // var effective_price = parseFloat($('#effective_price').text().split('$')[1].split('/')[0]);
+        // var chkId = 0;
+        // $('input[type=checkbox]').on('change', function() {
+        //   $(this).each ( function() {
+        //     effective_price = parseFloat($('#effective_price').text().split('$')[1].split('/')[0]);
+        //     if($(this).prop('checked') == true){
+        //       effective_price = parseFloat($('#effective_price').text().split('$')[1].split('/')[0]);
+        //       chkId =$(this).attr("val").split("_")[1];
+        //       effective_value = effective_price + parseFloat(chkId);
+        //       $('#effective_price').text('$' + effective_value.toFixed(2) + '/mo');
+        //     }
+        //     else if($(this).prop('checked') == false){
+        //       effective_price = parseFloat($('#effective_price').text().split('$')[1].split('/')[0]);
+        //       chkId =$(this).attr("val").split("_")[1];
+        //       effective_value = effective_price - parseFloat(chkId);
+        //       $('#effective_price').text('$' + effective_value.toFixed(2) + '/mo' );
+        //     }
+        //     else{
+        //       effective_price = parseFloat($('#effective_price').text().split('$')[1].split('/')[0]);
+        //       effective_value = effective_value = effective_price
+        //       $('#effective_price').text('$' + effective_value.toFixed(2) + '/mo' );
+        //     }
+        //     localStorage["effective_price"] = JSON.stringify(effective_value);
+        //   });
+        // });
+    });
+</script>

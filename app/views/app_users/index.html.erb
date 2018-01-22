@@ -1,0 +1,62 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+  <tr>
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+        <% if current_user.is_super_admin? %>
+            <%#= link_to "Create New App User", new_app_user_path%>
+        <% end %>
+      </div>
+      <div class='title'>
+        <span id='title'><%= image_tag("users_active.png")%>App Users</span>
+      </div>
+      <div id="users" class="list">
+        <table id="users_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+          <thead>
+          <tr>
+            <th><strong>ID</strong></th>
+            <th><strong>First Name</strong></th>
+            <th><strong>Last Name</strong></th>
+            <th><strong>Email</strong></th>
+            <!--<th><strong>Password</strong></th>-->
+            <th><strong>Is active ? </strong></th>
+            <th><strong>Address</strong></th>
+            <th><strong>State</strong></th>
+            <th><strong>City</strong></th>
+            <th><strong>Zip</strong></th>
+            <th><strong>DeviceFlag</strong></th>
+            <th><strong>Actions</strong></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @app_users.each do |app_user| %>
+              <% if can? :read, app_user %>
+                  <tr>
+                    <td><%= app_user.id %></td>
+                    <td><%= Base64.decode64(app_user.first_name) %></td>
+                    <td><%= Base64.decode64(app_user.last_name) %></td>
+                    <td><%= app_user.email %></td>
+                    <td><%= app_user.active %></td>
+                    <td><%= app_user.address %></td>
+                    <td><%= app_user.state %></td>
+                    <td><%= app_user.city %></td>
+                    <td><%= Base64.decode64(app_user.zip) %></td>
+                    <td><%= app_user.device_flag %></td>
+                    <td><%= (link_to 'Edit', edit_app_user_path(app_user)) if can? :manage, app_user %> | <%= (link_to "Delete", app_user, method: :delete, data: { confirm: "You sure?" }) if can? :manage, app_user %>
+                    </td>
+                  </tr>
+              <% end %>
+          <% end %>
+          <div class="digg_pagination">
+            <%= will_paginate @app_users %>
+          </div>
+          </tbody>
+        </table>
+        <p>
+          Download:
+          <%= link_to "CSV", app_users_path(format: "csv") %>
+          <%#= link_to "Excel", service_categories_path(format: "xls") %>
+        </p>
+      </div>
+    </td>
+  </tr>
+</table>

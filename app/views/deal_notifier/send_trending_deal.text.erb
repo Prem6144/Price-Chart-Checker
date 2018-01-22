@@ -1,0 +1,65 @@
+Hi Sir/Ma'am,
+Based on your saved preferences with us, here are few deals you can't afford to miss !!
+<% if @internet_t_deal.present? %>
+  <b><i>Internet Trending Deal</i></b> <br/>
+    &nbsp;Deal Title     : <%= @i_title %> <br/>
+    &nbsp;Vendor         : <%= @i_provider %> <br/>
+    &nbsp;Download Speed : <%= @d_speed %> <br/>
+    &nbsp;Price          : <%= @i_price %>
+<% end %>
+<% if @telephone_t_deal.present? %>
+  <b><i>Telephone Trending Deal</i></b> <br/>
+    &nbsp;Deal Title                   : <%= @t_title %> <br/>
+    &nbsp;Vendor                       : <%= @t_provider %> <br/>
+    <% if @d_call_mins.present? %>
+      &nbsp;Domestic Call Minutes        : <%= @d_call_mins %> <br/> 
+    <% end %>
+    <% if @i_call_mins.present? %>
+      &nbsp;International Call Minutes   : <%= @i_call_mins %> <br/>
+    <% end %>  
+    <% if @d_call_unlimit.present? %>
+      &nbsp;Domestic Call Unlimited      : <%= @d_call_unlimit %> <br/>
+    <% end %>  
+    <% if @i_call_unlimit.present? %>
+      &nbsp;International Call Unlimited : <%= @i_call_unlimit %> <br/>
+    <% end %>  
+    &nbsp;Price                        : <%= @t_price %>
+<% end %>
+<% if @cable_t_deal.present? %>
+  <b><i>Cable Trending Deal</i></b> <br/>
+    &nbsp;Deal Title       : <%= @c_title %> <br/>
+    &nbsp;Vendor           : <%= @c_provider %> <br/>
+    <% if @f_channels.present? %>
+      &nbsp;Free Channels    : <%= @f_channels %> <br/>
+    <% end %>
+    <% if @p_channels.present? %>  
+      &nbsp;Premium Channels : <%= @p_channels %> <br/>
+    <% end %>  
+    &nbsp;Price            : <%= @c_price %>
+<% end %>
+<% if @cell_t_deal.present? %>
+  <b><i>Cell Phone Trending Deal</i></b> <br/>
+    &nbsp;Deal Title       : <%= @cell_title %> <br/>
+    &nbsp;Vendor           : <%= @cell_provider %> <br/>
+    <% if @d_call_mins.present? %>
+      &nbsp;Domestic Call Minutes        : <%= @d_call_mins %> <br/> 
+    <% end %>
+    <% if @i_call_mins.present? %>
+      &nbsp;International Call Minutes   : <%= @i_call_mins %> <br/>
+    <% end %>  
+    <% if @d_call_unlimit.present? %>
+      &nbsp;Domestic Call Unlimited      : <%= @d_call_unlimit %> <br/>
+    <% end %>  
+    <% if @i_call_unlimit.present? %>
+      &nbsp;International Call Unlimited : <%= @i_call_unlimit %> <br/>
+    <% end %>  
+    <% if @data_plan.present? %>
+      &nbsp;Data(In GB)    : <%= @data_plan %> <br/>
+    <% end %>
+    <% if @data_speed.present? %>  
+      &nbsp;Speed(In Mbps) : <%= @data_speed %> <br/>
+    <% end %>  
+    &nbsp;Price            : <%= @cell_price %>
+<% end %>
+All the best, <br/>
+ServiceDeals team.

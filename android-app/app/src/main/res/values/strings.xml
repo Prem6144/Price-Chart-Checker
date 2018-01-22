@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Twitter Configurations -->
+    <string name="twitter_callback">http://www.sp-assurance.com/</string>
+    <string name="twitter_oauth_verifier">oauth_verifier</string>
+
+    <string name="app_name">  ServiceDealz</string>
+    <string name="internet">Internet</string>
+    <string name="cell_phone">CellPhone</string>
+    <string name="gas">Gas</string>
+    <string name="electricity">Electricity</string>
+    <string name="telephone">Telephone</string>
+    <string name="bundle">Bundle</string>
+    <string name="home_securuty">Home Security</string>
+    <string name="cable">Cable</string>
+    <string name="add_services"> <u>Add Service</u></string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <!-- Nav Drawer Menu Items -->
+    <string name="viemore"><u>+ show detail</u></string>
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+
+    <!--  <string-array name="state_array">
+          <item>Select</item>
+          <item>Alabama-AL</item>
+          <item>Alaska-AK</item>
+          <item> Arizona-AZ</item>
+          <item>Arkansas-AR</item>
+          <item>California-CA</item>
+          <item>Colorado-CO</item>
+          <item>Connecticut-CT</item>
+          <item>Delaware-DE</item>
+          <item>Florida-FL</item>
+          <item>Georgia-GA</item>
+          <item>Hawaii-HI</item>
+          <item>Idaho-ID</item>
+          <item>Illinois-IL</item>
+          <item>Indiana-IN</item>
+          <item>Iowa-IA</item>
+          <item>Kansas-KS</item>
+          <item>Kentucky-KY</item>
+          <item>Louisiana-LA</item>
+          <item>Maine-ME</item>
+          <item>Maryland-MD</item>
+          <item>Massachusetts-MA</item>
+          <item>Michigan-MI</item>
+          <item>Minnesota-MN</item>
+          <item>Mississippi-MS</item>
+          <item>Missouri-MO</item>
+          <item>Montana-MT</item>
+          <item>Nebraska-NE</item>
+          <item>Nevada-NV</item>
+          <item>New Hampshire-NH</item>
+          <item>New Jersey-NJ</item>
+          <item>New Mexico-NM</item>
+          <item>New York-NY</item>
+          <item>North Carolina-NC</item>
+          <item>North Dakota-ND</item>
+          <item>Ohio-OH</item>
+          <item>Oklahoma-OK</item>
+          <item>Oregon-OR</item>
+          <item>Pennsylvania-PA</item>
+          <item>Rhode Island-RI</item>
+          <item>South Carolina-SC</item>
+          <item>South Dakota-SD</item>
+          <item>Tennessee-TN</item>
+          <item>Texas-TX</item>
+          <item>Utah-UT</item>
+          <item>Vermont-VT</item>
+          <item>Virginia-VA</item>
+          <item>Washington-WA</item>
+          <item>West Virginia-WV</item>
+          <item>Wisconsin-WI</item>
+          <item>Wyoming-WY</item>
+
+      </string-array>-->
+    <string-array name="state_array">
+
+        <item>AL</item>
+        <item>AK</item>
+        <item>AZ</item>
+        <item>AR</item>
+        <item>CA</item>
+        <item>CO</item>
+        <item>CT</item>
+        <item>DE</item>
+        <item>FL</item>
+        <item>GA</item>
+        <item>HI</item>
+        <item>ID</item>
+        <item>IL</item>
+        <item>IN</item>
+        <item>IA</item>
+        <item>KS</item>
+        <item>KY</item>
+        <item>LA</item>
+        <item>ME</item>
+        <item>MD</item>
+        <item>MA</item>
+        <item>MI</item>
+        <item>MN</item>
+        <item>MS</item>
+        <item>MO</item>
+        <item>MT</item>
+        <item>NE</item>
+        <item>NV</item>
+        <item>NH</item>
+        <item>NJ</item>
+        <item>NM</item>
+        <item>NY</item>
+        <item>NC</item>
+        <item>ND</item>
+        <item>OH</item>
+        <item>OK</item>
+        <item>OR</item>
+        <item>PA</item>
+        <item>RI</item>
+        <item>SC</item>
+        <item>SD</item>
+        <item>TN</item>
+        <item>TX</item>
+        <item>UT</item>
+        <item>VT</item>
+        <item>VA</item>
+        <item>WA</item>
+        <item>WV</item>
+        <item>WI</item>
+        <item>WY</item>
+
+    </string-array>
+    <string-array name="camera_gallery">
+
+        <item>Take from Camera</item>
+        <item>Select from Gallery</item>
+
+
+    </string-array>
+    <string-array name="frequency_array">
+
+
+        <item>Bi-Weekly</item>
+        <item>Weekly</item>
+        <item>Daily</item>
+
+    </string-array>
+    <string-array name="cellphone_numberofline_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+
+    </string-array>
+    <string-array name="cellphone_device_array">
+        <item>iPhone 7</item>
+        <item>iPhone 7 Plus</item>
+        <item>iPhone 6s</item>
+        <item>iPhone 6s Plus</item>
+        <item>iPhone SE</item>
+        <item>Galaxy S7</item>
+        <item>Galaxy S7 edge</item>
+        <item>Galaxy S6</item>
+        <item>G5</item>
+
+    </string-array>
+    <string-array name="primary_id">
+
+        <item>Driving License</item>
+        <item>Passport</item>
+        <item>State ID Card</item>
+        <item>US Military Card</item>
+        <item>US Military Department ID Card</item>
+        <item>US Coast Guard Merchant Mariner Card</item>
+        <item>EAD</item>
+
+    </string-array>
+
+    <string-array name="secondary_id">
+        <item>Major Credit Card</item>
+        <item>Driving License</item>
+        <item>Passport</item>
+        <item>State ID Card</item>
+        <item>US Military Card</item>
+        <item>US Military Department ID Card</item>
+        <item>US Coast Guard Merchant Mariner Card</item>
+        <item>EAD</item>
+        <item>Birth certificate</item>
+
+    </string-array>
+
+    <string-array name="rating_array">
+        <item> * * * * *</item>
+        <item> * * * *</item>
+        <item> * * *</item>
+        <item> * *</item>
+        <item> *</item>
+
+
+    </string-array>
+
+    //=================================================ErrorMessage=================================
+    <string name="login_error">Please Enter correct Email/Password</string>
+    <string name="server_error">Please try after some time</string>
+    <string name="sign_up_error">User already exist</string>
+    <string name="first_name_error">First Name is Required</string>
+    <string name="last_name_error">Last Name is Required</string>
+    <string name="email_error">Email-id is Required</string>
+    <string name="city_name_error">City is Required</string>
+    <string name="buisness_name_error">Business Name is Required</string>
+    <string name="state_name_error">Please Select State</string>
+    <string name="zipcode_error">ZipCode is Required</string>
+    <string name="zipcode_valid_error">Invalid ZipCode</string>
+    <string name="email_valid_error">Please enter valid Email</string>
+    <string name="forget_password">Your password has been sent on your email-id</string>
+    <string name="password_empty_error">Please Enter Password</string>
+    <string name="password_valid_error">Please Enter Valid Password</string>
+    <string name="confirm_password_error">Please Enter Confirm Password</string>
+    <string name="password_match_error">Password does not match</string>
+    <string name="space_error">Please do not use space in password</string>
+    <string name="term_condition_error">Please Accept Terms &amp; Conditions of Services.</string>
+
+    <string name="select_vendor_error">Please Select Vendor</string>
+    <string name="price_error">Please fill price field</string>
+    <string name="download_error">Please fill atleast 1 as value in download</string>
+    <string name="freechannels_error">Please fill atleast 1 as value in free channels</string>
+    <string name="service_error">Please select atleast 2 services</string>
+    <string name="minutes_error">Please fill minutes field</string>
+    <string name="minute_error">Please fill atleast 1 as value in minute</string>
+    <string name="suceessfully">Successfully Saved</string>
+
+    <string name="term_condition">I accept the Terms &amp; Conditions of Services</string>
+    <string name="app_id">1709136025977941</string>
+    <string name="cable_services">Current Cable Service</string>
+    <string name="cell_phone_services">Current Cell Phone Service</string>
+    <string name="bundle_services">Current Bundle Service</string>
+    <string name="telephone_services">Current Telephone Service</string>
+    <string name="home_security">Current Home Security</string>
+    <string name="electricity_services">Current Electricity Service</string>
+    <string name="gas_services">Current Gas Service</string>
+    <string name="internet_services">Current Internet Service</string>
+    <string name="updte">Save</string>
+    <string name="sinin">SIGN IN</string>
+    <string name="sinup">Sign UP</string>
+    <string name="email_address">E-mail address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="term_conditions">I accept the Terms &amp; Conditions of Services</string>
+
+
+    <string name="internet_id">1</string>
+    <string name="telephone_id">2</string>
+    <string name="cable_id">3</string>
+    <string name="cellphone_id">4</string>
+    <string name="bundle_id">5</string>
+    <string name="gas_id">6</string>
+    <string name="electricity_id">7</string>
+    <string name="homesecurity_id">8</string>
+
+
+    <!-- Crash Report -->
+
+    //===========================================sortby============================================
+    <string name="sortbyrelevence">Sort by Relevance</string>
+    <string name="sortbyprice">Sort by price</string>
+    <string name="sortbyspeed">Sort by speed</string>
+    <string name="sortbyfreechannels">Sort by free channels</string>
+    <string name="sortbycalling">Sort by calling</string>
+    <string name="compare_deal">Compare Deals</string>
+
+    //==============================================================================================
+
+
+    //==================================================InterNetCompareActivity=========================================
+    <string name="title_activity_login1">Sign in</string>
+
+    <!-- Strings related to login -->
+
+
+    =========================================================================================================================
+</resources>

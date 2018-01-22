@@ -1,0 +1,53 @@
+<% if @deal_attribute.new_record? %>
+    <%
+       method = 'POST'
+       url = deal_attributes_path(@deal_attribute)
+    %>
+<% else %>
+    <%
+       method = 'PUT'
+       url = "#{deal_attributes_path}/#{@deal_attribute.id}"
+    %>
+<% end %>
+<%= form_tag url, method: method.to_sym do %>
+    <%= hidden_field_tag :deal_id,@deal_id,:name => 'deal_attributes[deal_id]' %>
+    <%= hidden_field_tag :category_name,@category_name %>
+
+    <div><strong>Channel Lists:<span id="mandat">*</span> </strong><br />
+      <% channel_ids = @deal_attribute.channel_ids.present? ? eval(@deal_attribute.channel_ids) : '' %>
+      <%service_provider_id=Deal.find(params[:deal_id]).service_provider_id%>
+      <%= select_tag :channel_ids,options_for_select(Channel.where(:service_provider_id=>service_provider_id).pluck(:channel_name,:id)),:class => 'chosen-select', :style=>"width: 100%;",:multiple => true,:name => 'deal_attributes[channel_ids][]' %>
+    </div>
+
+    <div><strong>Price:</strong><br />
+      <%= text_field_tag :amount,@deal_attribute.try(:amount),:placeholder => 'Input price',:name => 'deal_attributes[amount]' %>
+    </div>
+
+     <div><strong>Description:</strong><br />
+      <%= text_field_tag :description,@deal_attribute.try(:description),:placeholder => 'Input description',:name => 'deal_attributes[description]' %>
+    </div>
+
+    <div><strong>Free Channels:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :free_channels,@deal_attribute.free_channels,:placeholder => 'Input free_channels',:name => 'deal_attributes[free_channels]' %>
+    </div>
+    
+    <div><strong>Free channels list (comma separated):<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :free_channels_list,@deal_attribute.free_channels_list,:placeholder => 'Input free_channels_list',:name => 'deal_attributes[free_channels_list]' %>
+    </div>
+    <div><strong>Premium Channels:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :premium_channels,@deal_attribute.premium_channels,:placeholder => 'Input premium_channels',:name => 'deal_attributes[premium_channels]' %>
+    </div>
+    <div><strong>Premium channels list (comma separated):<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :premium_channels_list,@deal_attribute.premium_channels_list,:placeholder => 'Input premium_channels_list',:name => 'deal_attributes[premium_channels_list]' %>
+    </div>
+    <div><strong>HD Channels:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :hd_channels,@deal_attribute.hd_channels,:placeholder => 'Input hd_channels',:name => 'deal_attributes[hd_channels]' %>
+    </div>
+    <div><strong>HD Channels list (comma separated):<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :hd_channels_list,@deal_attribute.hd_channels_list,:placeholder => 'Input hd_channels_list',:name => 'deal_attributes[hd_channels_list]' %>
+    </div>
+    <%= submit_tag 'Submit' %>
+<% end %>
+<script>
+$("#chosen-select").chosen();
+</script>

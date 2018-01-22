@@ -1,0 +1,17 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+  <tr>
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+        <%= link_to "View All Packages", channel_packages_path %>
+      </div>
+      <div class='title'>
+        <span id='title'>Editing Package</span>
+      </div>
+
+      <%= render 'form' %>
+
+      <%= link_to 'Show', @channel_package %> |
+      <%= link_to 'Back', channel_packages_path %>
+    </td>
+  </tr>
+</table>

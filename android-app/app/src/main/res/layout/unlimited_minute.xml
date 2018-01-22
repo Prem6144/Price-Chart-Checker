@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_telephone"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Talk"
+            android:textColor="#4e4d4d"
+            android:textSize="@dimen/_12sdp" />
+
+        <CheckBox
+            android:id="@+id/chk_talk"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_below="@+id/text"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:button="@drawable/custem_checkbox"
+            android:text="  Unlimited"
+            android:textColor="@color/textviewcolor"
+            android:textSize="@dimen/_12sdp" />
+
+
+        <EditText
+            android:id="@+id/etx_minutes"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_below="@+id/text"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/chk_talk"
+            android:background="@drawable/edt_background"
+            android:hint="Minutes"
+            android:inputType="number"
+            android:maxLength="4"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textColor="@color/textcolor"
+            android:textSize="@dimen/_12sdp"
+
+            android:textColorHint="@color/material_grey_600"
+             />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="International"
+            android:textColor="#4e4d4d"
+            android:textSize="@dimen/_12sdp" />
+
+        <CheckBox
+            android:id="@+id/chk_text"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_below="@+id/text1"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:button="@drawable/custem_checkbox"
+            android:text="  Unlimited"
+            android:textColor="@color/textviewcolor"
+            android:textSize="@dimen/_12sdp" />
+
+        <!--   <android.support.design.widget.TextInputLayout
+               android:layout_width="match_parent"
+               android:layout_height="60dp"
+               android:layout_below="@+id/text1"
+               android:layout_marginLeft="30dp"
+               android:layout_toRightOf="@+id/chk_text"
+               android:gravity="bottom"
+               app:hintTextAppearance="@style/BlueTextInputLayout">-->
+
+        <EditText
+            android:id="@+id/etx_sms"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_below="@+id/text1"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/chk_text"
+            android:background="@drawable/edt_background"
+            android:hint="Minutes"
+            android:inputType="number"
+            android:maxLength="4"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textColor="@color/textcolor"
+            android:textSize="@dimen/_12sdp"
+            android:textColorHint="@color/material_grey_600"
+            />
+        <!-- </android.support.design.widget.TextInputLayout>-->
+    </RelativeLayout>
+</LinearLayout>

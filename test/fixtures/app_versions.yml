@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  versn_num: MyString
+  device_type: MyString
+  is_force_upgrade: MyString
+  is_normal_upgrade: MyString
+  app_url: MyString
+
+two:
+  versn_num: MyString
+  device_type: MyString
+  is_force_upgrade: MyString
+  is_normal_upgrade: MyString
+  app_url: MyString

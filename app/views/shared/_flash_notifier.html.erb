@@ -1,0 +1,18 @@
+<% if flash[:notice].present? %>
+    <div class="alert alert-success alert-dismissable fade in">
+      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+      <%= flash[:notice] %>
+    </div>
+<% end %>
+<% if flash[:warning] %>
+    <div class="alert alert-danger alert-dismissable fade in">
+      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+      <%= flash[:warning] %>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
+        $(".alert-success").alert('close');
+    });
+</script>

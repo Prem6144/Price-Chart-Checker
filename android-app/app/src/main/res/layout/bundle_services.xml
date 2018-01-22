@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000">
+    <!--  android:background="@color/backround_color_general"-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_25sdp"
+                    android:background="@color/backround_color_general"
+                    android:orientation="vertical"
+
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_12sdp"
+                        android:orientation="vertical"
+                        android:paddingTop="20dp"
+
+                        >
+
+                        <include layout="@layout/activity_service_layout" />
+
+
+                        <CheckBox
+                            android:id="@+id/chk_cable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:button="@drawable/custem_checkbox"
+                            android:text="  Cable"
+                            android:textColor="@color/button_backround_color"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold" />
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_cable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/txt_freechannels"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:singleLine="true"
+                                    android:text="Channels"
+                                    android:textColor="@color/textviewcolor"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/etx_freechannels"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@drawable/edt_background"
+                                    android:inputType="number"
+                                    android:maxLength="4"
+                                    android:paddingLeft="15dp"
+                                    android:textColor="@color/textcolor"
+                                    android:textSize="@dimen/_10sdp">
+
+                                </EditText>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:singleLine="true"
+                                    android:text="Premium Channels"
+                                    android:textColor="@color/textviewcolor"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/etx_premium_channels"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@drawable/edt_background"
+                                    android:inputType="number"
+                                    android:maxLength="3"
+                                    android:paddingLeft="15dp"
+                                    android:spinnerMode="dialog"
+                                    android:textColor="@color/textcolor"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/chk_internet"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:button="@drawable/custem_checkbox"
+                            android:text="  Internet"
+                            android:textColor="@color/button_backround_color"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold" />
+
+                        <include layout="@layout/downloadupload" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Data(GB)"
+                                android:textColor="@color/black_color"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <EditText
+                                android:id="@+id/etx_data"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/edt_background"
+                                android:inputType="number"
+                                android:paddingLeft="15dp"
+                                android:spinnerMode="dialog"
+                                android:textSize="@dimen/_12sdp">
+
+                            </EditText>
+
+
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/chk_telephone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:button="@drawable/custem_checkbox"
+                            android:text="  Telephone"
+                            android:textColor="@color/button_backround_color"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold" />
+
+                        <include layout="@layout/unlimited_minute" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            android:weightSum="2">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Data Plan(GB)"
+                                    android:textColor="@color/black_color"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/etx_dataplan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/edt_background"
+                                    android:inputType="number"
+                                    android:maxLength="10"
+                                    android:paddingLeft="15dp"
+                                    android:spinnerMode="dialog"
+                                    android:textSize="@dimen/_12sdp">
+
+                                </EditText>
+
+                                <!--<Spinner
+                                    android:id="@+id/spn_download"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/edt_background"
+                                    android:entries="@array/Array_upload_download"
+                                    android:paddingLeft="15dp"
+                                    android:spinnerMode="dialog">
+
+                                </Spinner>-->
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:singleLine="true"
+                                    android:text="Data Speeds(Mb)"
+                                    android:textColor="@color/black_color"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/etx_dataspeeds"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/edt_background"
+                                    android:inputType="number"
+                                    android:paddingLeft="15dp"
+                                    android:spinnerMode="dialog"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <!--<Spinner
+                                    android:id="@+id/spn_upload"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/edt_background"
+                                    android:entries="@array/Array_upload_download"
+                                    android:paddingLeft="15dp"
+                                    android:spinnerMode="dialog">
+
+                                </Spinner>-->
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_15sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+
+                            <Button
+                                android:id="@+id/btn_update"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/_12sdp"
+                                android:background="@drawable/btn_background"
+                                android:text="@string/updte"
+                                android:textColor="@color/white_color" />
+
+                            <Button
+                                android:id="@+id/btn_unsubscribe"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/_12sdp"
+                                android:background="@drawable/btn_background"
+                                android:text="Unsubscribe"
+                                android:textColor="@color/white_color"
+                                />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/img_close"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right|top"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/gtk_close" />
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,41 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%' >
+  <tr> 
+    <td class='main' id='main' valign='top'>
+      <div class='title_tools'>
+		<%= link_to "View All ExtraServices", extra_services_path %>
+      </div>
+      <div class='title'>
+        <span id='title'>Add a New ExtraService</span>
+      </div>
+
+			<div class="small-6 large-centered columns">
+				<%= form_for(@extra_service, :url => @extra_services) do |f| %>
+					<br/>
+					<% if @extra_service.errors.any? %>
+  					<div id="error_explanation">
+    					<div class="alert alert-danger">
+      					The form contains <%= pluralize(@extra_service.errors.count, "error") %>.
+    					</div>
+    					<ul>
+    						<% @extra_service.errors.full_messages.each do |msg| %>
+      						<li><%= msg %></li>
+    						<% end %>
+    					</ul>
+  					</div>
+					<% end %>
+				  <br/>
+						<div><span style="color:#4285F4"><strong><i>Fields marked * are mandatory</i></strong></span></div><br/>
+					<div><strong>Service Name: </strong><br />
+				  <%= f.text_field :service_name %></div>
+				  <div><strong>Select a Service Category :</strong><br />
+				  <%= f.select :service_category_id, ServiceCategory.all.map { |r| [r.name, r.id]}, {:include_blank => "Select a service category"}%>
+				</div>
+				  <div><strong>Service Description:</strong><br />
+				  <%= f.text_field :service_description %></div>
+				  <div><%= f.check_box :status %><strong>Status</strong></div>
+				  <div><%= f.submit "Create" %></div>
+				<% end %>
+			</div>
+    </td>
+	</tr>
+</table>

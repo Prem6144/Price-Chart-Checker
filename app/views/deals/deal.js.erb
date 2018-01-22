@@ -1,0 +1,3 @@
+<% if @filterProviders  %>
+    $('#service_provider_id').html(<%= escape_javascript options_from_collection_for_select(@ServiceProviders, :id, :name) %>);
+<% end %>

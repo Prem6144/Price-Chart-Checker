@@ -1,0 +1,133 @@
+<%#saved_billing_address=@app_user.app_user_addresses.where(:address_type=>2).last%>
+<%#address1=saved_billing_address.address1%>
+<%#address2=saved_billing_address.address2%>
+<%#zip=saved_billing_address.zip%>
+
+ <div id="address-info" class="tab-pane">
+
+    <div class="col-lg-12">
+      <div class="col-md-12">
+        <h3>Billing Address</h3>
+      </div>
+
+        <div class="col-md-6">
+        <label for="Name" class="control-label">Address Name<span id="mandat">*</span></label>
+        <%= text_field_tag('app_user_addresses[address_name]',"",:class => 'form-control input-md',:placeholder => 'Address Name', :id => "app_user_billing_address_name",:onblur=>"capitalise_first(this)") %>
+      </div>
+      <div class="col-md-6">
+        <label for="Name" class="control-label">Address 1<span id="mandat">*</span></label>
+        <%= text_field_tag('app_user_addresses[address1]',"",:class => 'form-control input-md',:placeholder => 'Address1',:id => "app_user_billing_address_1",:onblur=>"capitalise_first(this)") %>
+        <%= hidden_field_tag 'app_user_addresses[address_type]',2,:name => "app_user_addresses[address_type]" %>
+      </div>
+      <div class="col-md-6">
+        <label for="Name" class="control-label">Address 2</label>
+        <%= text_field_tag('app_user_addresses[address2]',"",:class => 'form-control input-md',:placeholder => 'Address2',:id => "app_user_billing_address_2",:onblur=>"capitalise_first(this)") %>
+      </div>
+      <div class="col-md-6">
+        <label for="Name" class="control-label">Town/City</label>
+        <%= text_field_tag('app_user_addresses[city]',"",:class => 'form-control input-md',placeholder: "Town/City",:id => "app_user_billing_city",:onblur=>"capitalise_first(this)") %>
+      </div>
+       <div class="col-md-6">
+        <label for="Name" class="control-label">Select State<span id="mandat">*</span></label>
+      <%= select_tag(:state,options_for_select(AppUser::STATES,@app_user.state),:class => 'form-control',:prompt => 'Please Select State',:name=>"app_user_addresses[state]", :id=>"billing_state") %>
+      </div>
+      <div class="col-md-6">
+        <label for="Name" class="control-label">Zipcode<span id="mandat">*</span></label>
+        <%= text_field_tag('app_user_addresses[zip]',"",:class => 'form-control input-md',:placeholder => 'Zip',:id => "app_user_billing_zip",maxlength: 6) %>
+      </div>
+
+  <div id="additional_data">
+      <div class="col-md-12 address-sty">
+        <h3>Shipping Address</h3>
+        <div class="checkbox checkbox-info">
+          <input id="checkbox7a" type="checkbox" onclick="SetAppUserShipping(this.checked);">
+          <label for="checkbox7a">Same as Billing Address </label>
+        </div>
+
+      </div>
+      <div id="shipping_address">
+         <div class="col-md-6">
+        <label for="Name" class="control-label">Address Name<span id="mandat">*</span></label>
+        <%= text_field_tag('shipping_addresses[address_name]',"",:class => 'form-control input-md',:placeholder => 'Address Name', :id => "app_user_shipping_address_name",:onblur=>"capitalise_first(this)") %>
+      </div>
+        <div class="col-md-6">
+          <label for="Name" class="control-label">Address 1<span id="mandat">*</span></label>
+          <%= text_field_tag('shipping_addresses[address1]',"",:class => 'form-control input-md',:placeholder => 'Address1',:id => "app_user_shipping_address_1",:onblur=>"capitalise_first(this)") %>
+        </div>
+        <div class="col-md-6">
+          <label for="Name" class="control-label">Address 2</label>
+          <%= text_field_tag('shipping_addresses[address2]',"",:class => 'form-control input-md',:placeholder => 'Address2',:id => "app_user_shipping_address_2" ,:onblur=>"capitalise_first(this)" )%>
+        </div>
+        <%= hidden_field_tag 'shipping_addresses[address_type]',1,:name => "shipping_addresses[address_type]" %>
+        <div class="col-md-6">
+          <label for="Name" class="control-label">Town/City</label>
+          <%= text_field_tag('shipping_addresses[city]',"",:class => 'form-control input-md',:placeholder => "Town/City",:id => "app_user_shipping_city",:onblur=>"capitalise_first(this)") %>
+        </div>
+        <div class="col-md-6">
+          <label for="Name" class="control-label">Select State<span id="mandat">*</span></label>
+          <%= select_tag(":state",options_for_select(AppUser::STATES,@app_user.state),:class => 'form-control',:prompt => 'Please Select State',:name=>"shipping_addresses[state]", :id=>"app_user_shipping_state") %>
+
+        </div>
+        <div class="col-md-6">
+          <label for="Name" class="control-label">Zipcode<span id="mandat">*</span></label>
+          <%= text_field_tag('shipping_addresses[zip]',"",:class => 'form-control input-md',:placeholder => 'Zip',:id => "app_user_shipping_zip",maxlength: 6 ) %>
+        </div>
+
+      </div>
+      <div class="col-md-12 address-sty">
+        <h3>Service Address</h3>
+
+        <div class="checkbox checkbox-info">
+          <input id="checkboxb" type="checkbox" onclick="SetAppUserService(this.checked);">
+          <label for="checkboxb">Same as Billing Address </label>
+        </div>
+          </div>
+        <div id="service_address">
+            <div class="col-md-6">
+        <label for="Name" class="control-label">Address Name<span id="mandat">*</span></label>
+        <%= text_field_tag('service_addresses[address_name]',"",:class => 'form-control input-md',:placeholder => 'Address Name', :id => "app_user_service_address_name",:onblur=>"capitalise_first(this)") %>
+      </div>
+          <div class="col-md-6">
+            <label for="Name" class="control-label">Address 1<span id="mandat">*</span></label>
+            <%= text_field_tag('service_addresses[address1]',"",:class => 'form-control input-md',:placeholder => 'Address1',:id => "app_user_service_address_1",:onblur=>"capitalise_first(this)") %>
+          </div>
+          <div class="col-md-6">
+            <label for="Name" class="control-label">Address 2</label>
+            <%= text_field_tag('service_addresses[address2]',"",:class => 'form-control input-md',:placeholder => 'Address2',:id => "app_user_service_address_2",:onblur=>"capitalise_first(this)") %>
+            <%= hidden_field_tag 'service_addresses[address_type]',0,:name => "service_addresses[address_type]" %>
+          </div>
+          <div class="col-md-6 ">
+            <label for="Name" class="control-label">Town/City</label>
+            <%= text_field_tag('service_addresses[city]',"",:class => 'form-control input-md',:placeholder => "Town/City",:id => "app_user_service_city",:onblur=>"capitalise_first(this)" )%>
+          </div>
+           <div class="col-md-6">
+            <label for="Name" class="control-label">Select State<span id="mandat">*</span></label>
+
+          <%= select_tag(:state,options_for_select(AppUser::STATES,@app_user.state),:class => 'form-control',:prompt => 'Please Select State',:name=>"service_addresses[state]", :id=>"app_user_service_state") %>
+          </div>
+          <div class="col-md-6">
+            <label for="Name" class="control-label">Zipcode<span id="mandat">*</span></label>
+            <%= text_field_tag('service_addresses[zip]',"",:class => 'form-control input-md',:placeholder => 'Zip',:id => "app_user_service_zip",maxlength: 6) %>
+          </div>
+
+        </div>
+        <div class="btn-group btnBox mg_bottom15 ">
+          <div class="col-sm-12 btn-con">
+          <button class="btn cancel-btn btnPrevious btnPrevious" type="button">Previous</button>
+          <button class="btn save-btn" type="button" id="residence_address_information_tab">Next</button>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <!-- Button group -->
+
+</div>
+<script>
+function capitalise_first(object) {
+        value=$("#"+object.id).val();
+        rest=value.substr(1);
+        object.value=value[0].toUpperCase()+""+rest
+    }
+
+</script>

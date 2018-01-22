@@ -1,0 +1,50 @@
+<% if @deal_attribute.new_record? %>
+    <%
+       method = 'POST'
+       url = deal_attributes_path(@deal_attribute)
+    %>
+<% else %>
+    <%
+       method = 'PUT'
+       url = "#{deal_attributes_path}/#{@deal_attribute.id}"
+    %>
+<% end %>
+<%= form_tag url, method: method.to_sym do %>
+    <%= hidden_field_tag :deal_id,@deal_id,:name => 'deal_attributes[deal_id]' %>
+    <%= hidden_field_tag :category_name,@category_name %>
+
+    <div><strong>Description:</strong><br />
+      <%= text_field_tag :description,@deal_attribute.try(:description),:placeholder => 'Input description',:name => 'deal_attributes[description]' %>
+    </div>
+
+    <div><strong>Domestic Call Mins:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :domestic_call_minutes,@deal_attribute.domestic_call_minutes,:placeholder => 'Input domestic_call_minutes',:name => 'deal_attributes[domestic_call_minutes]' %>
+    </div>
+    <div><strong>Domestic Receive Mins:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :domestic_receive_minutes,@deal_attribute.domestic_receive_minutes,:placeholder => 'Input domestic_receive_minutes',:name => 'deal_attributes[domestic_receive_minutes]' %>
+    </div>
+    <div><strong>Domestic Additional Mins:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :domestic_additional_minutes,@deal_attribute.domestic_additional_minutes,:placeholder => 'Input domestic_additional_minutes',:name => 'deal_attributes[domestic_additional_minutes]' %>
+    </div>
+    <div><strong>International Call Mins:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :international_call_minutes,@deal_attribute.international_call_minutes,:placeholder => 'Input international_call_minutes',:name => 'deal_attributes[international_call_minutes]' %>
+    </div>
+
+    <div><strong>International Landline Mins:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :international_landline_minutes,@deal_attribute.international_landline_minutes,:placeholder => 'Input international_landline_minutes',:name => 'deal_attributes[international_landline_minutes]' %>
+    </div>
+    <div><strong>International Mobile Mins:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :international_mobile_minutes,@deal_attribute.international_mobile_minutes,:placeholder => 'Input international_mobile_minutes',:name => 'deal_attributes[international_mobile_minutes]' %>
+    </div>
+    <div><strong>International Additional Mins:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :international_additional_minutes,@deal_attribute.international_additional_minutes,:placeholder => 'Input international_additional_minutes',:name => 'deal_attributes[international_additional_minutes]' %>
+    </div>
+    <div><strong>Country:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :countries,@deal_attribute.countries,:placeholder => 'Input countries',:name => 'deal_attributes[countries]' %>
+    </div>
+    <div><strong>Features:<span id="mandat">*</span> </strong><br />
+      <%= text_field_tag :features,@deal_attribute.features,:placeholder => 'Input features',:name => 'deal_attributes[features]' %>
+    </div>
+
+    <%= submit_tag 'Submit' %>
+<% end %>

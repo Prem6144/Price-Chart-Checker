@@ -1,0 +1,160 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Risky Project Location:
+-----------------------
+The tools *should* handle project locations in any directory. However,
+due to bugs, placing projects in directories containing spaces in the
+path, or characters like ", ' and &, have had issues. We're working to
+eliminate these bugs, but to save yourself headaches you may want to
+move your project to a location where this is not a problem.
+D:\Service - deals - GIt\Service-Deals-Android\Service_Deal
+          - -     - -                                      
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* NotiFication_README.txt
+* document\
+* document\allclasses-frame.html
+* document\allclasses-noframe.html
+* document\com\
+* document\com\prgguru\
+* document\com\prgguru\example\
+* document\com\prgguru\example\BuildConfig.html
+* document\com\prgguru\example\Manifest.html
+* document\com\prgguru\example\Manifest.permission.html
+* document\com\prgguru\example\R.attr.html
+* document\com\prgguru\example\R.color.html
+* document\com\prgguru\example\R.dimen.html
+* document\com\prgguru\example\R.drawable.html
+* document\com\prgguru\example\R.html
+* document\com\prgguru\example\R.id.html
+* document\com\prgguru\example\R.integer.html
+* document\com\prgguru\example\R.string.html
+* document\com\prgguru\example\R.style.html
+* document\com\prgguru\example\R.styleable.html
+* document\com\prgguru\example\class-use\
+* document\com\prgguru\example\class-use\BuildConfig.html
+* document\com\prgguru\example\class-use\Manifest.html
+* document\com\prgguru\example\class-use\Manifest.permission.html
+* document\com\prgguru\example\class-use\R.attr.html
+* document\com\prgguru\example\class-use\R.color.html
+* document\com\prgguru\example\class-use\R.dimen.html
+* document\com\prgguru\example\class-use\R.drawable.html
+* document\com\prgguru\example\class-use\R.html
+* document\com\prgguru\example\class-use\R.id.html
+* document\com\prgguru\example\class-use\R.integer.html
+* document\com\prgguru\example\class-use\R.string.html
+* document\com\prgguru\example\class-use\R.style.html
+* document\com\prgguru\example\class-use\R.styleable.html
+* document\com\prgguru\example\package-frame.html
+* document\com\prgguru\example\package-summary.html
+* document\com\prgguru\example\package-tree.html
+* document\com\prgguru\example\package-use.html
+* document\com\spa\
+* document\com\spa\notification\
+* document\com\spa\notification\ApplicationConstants.html
+* document\com\spa\notification\GCMNotificationIntentService.html
+* document\com\spa\notification\GcmBroadcastReceiver.html
+* document\com\spa\notification\MyPush.html
+* document\com\spa\notification\class-use\
+* document\com\spa\notification\class-use\ApplicationConstants.html
+* document\com\spa\notification\class-use\GCMNotificationIntentService.html
+* document\com\spa\notification\class-use\GcmBroadcastReceiver.html
+* document\com\spa\notification\class-use\MyPush.html
+* document\com\spa\notification\package-frame.html
+* document\com\spa\notification\package-summary.html
+* document\com\spa\notification\package-tree.html
+* document\com\spa\notification\package-use.html
+* document\constant-values.html
+* document\deprecated-list.html
+* document\help-doc.html
+* document\index-files\
+* document\index-files\index-1.html
+* document\index-files\index-10.html
+* document\index-files\index-11.html
+* document\index-files\index-12.html
+* document\index-files\index-13.html
+* document\index-files\index-14.html
+* document\index-files\index-15.html
+* document\index-files\index-16.html
+* document\index-files\index-17.html
+* document\index-files\index-18.html
+* document\index-files\index-19.html
+* document\index-files\index-2.html
+* document\index-files\index-20.html
+* document\index-files\index-3.html
+* document\index-files\index-4.html
+* document\index-files\index-5.html
+* document\index-files\index-6.html
+* document\index-files\index-7.html
+* document\index-files\index-8.html
+* document\index-files\index-9.html
+* document\index.html
+* document\overview-frame.html
+* document\overview-summary.html
+* document\overview-tree.html
+* document\package-list
+* document\resources\
+* document\resources\background.gif
+* document\resources\tab.gif
+* document\resources\titlebar.gif
+* document\resources\titlebar_end.gif
+* document\stylesheet.css
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:19.1.0
+gcm.jar => com.google.android.gms:play-services:+
+
+Replaced Libraries with Dependencies:
+-------------------------------------
+The importer recognized the following library projects as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the source files in your project were of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the library replacement in the import wizard and try
+again:
+
+google-play-services_lib => [com.google.android.gms:play-services:+]
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => pushnotificationlibrary\src\main\AndroidManifest.xml
+* assets\ => pushnotificationlibrary\src\main\assets\
+* libs\android-async-http-1.4.4.jar => pushnotificationlibrary\libs\android-async-http-1.4.4.jar
+* res\ => pushnotificationlibrary\src\main\res\
+* src\ => pushnotificationlibrary\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

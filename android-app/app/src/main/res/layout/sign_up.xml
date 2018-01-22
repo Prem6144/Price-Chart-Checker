@@ -1,0 +1,169 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backround_color_ServiceDealz">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bgsignin640">
+
+        <include layout="@layout/toolbar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_margin="@dimen/_15sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/linerar_bundle_edit"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+
+                <EditText
+                    android:id="@+id/etx_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_above="@+id/etx_lname"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edt_background"
+                    android:drawablePadding="10dp"
+                    android:gravity="left|center_vertical"
+                    android:hint="First Name"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/textcolor"
+                    android:textCursorDrawable="@null"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/etx_lname"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_above="@+id/etx_email"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edt_background"
+                    android:drawablePadding="10dp"
+                    android:gravity="left|center_vertical"
+                    android:hint="Last Name"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/textcolor"
+                    android:textCursorDrawable="@null"
+                    android:textSize="18sp" />
+
+                <com.spothero.emailvalidator.EmailValidationEditText
+                    android:id="@+id/etx_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_above="@+id/etx_password"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edt_background"
+                    android:drawablePadding="10dp"
+                    android:gravity="left|center_vertical"
+                    android:hint="Email Address"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/textcolor"
+                    android:textCursorDrawable="@null"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/etx_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edt_background"
+                    android:drawablePadding="10dp"
+                    android:gravity="left|center_vertical"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:maxLength="12"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/textcolor"
+                    android:textCursorDrawable="@null"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/passwordhint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linerar_bundle_edit"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:text="Enter 8 characters or longer.Atleast one number and one symbol (like @#$%*)"
+                android:textColor="#989290"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/etx_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/passwordhint"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_background"
+                android:drawablePadding="10dp"
+                android:gravity="left|center_vertical"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:maxLength="12"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="@color/textcolor"
+                android:textCursorDrawable="@null"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:id="@+id/rl_chk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etx_confirm_password"
+                android:layout_marginTop="15dp">
+
+                <CheckBox
+                    android:id="@+id/chk_term_conditions"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:button="@drawable/custem_checkbox"
+                    android:paddingBottom="@dimen/_10sdp"
+
+                    android:paddingTop="@dimen/_10sdp" />
+
+                <TextView
+                    android:id="@+id/txt_term"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/chk_term_conditions"
+                    android:text="@string/term_conditions"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="13sp" />
+
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_chk"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_background"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/sinup"
+                android:textColor="@color/white_color"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

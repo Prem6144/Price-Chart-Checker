@@ -1,0 +1,43 @@
+<table cellpadding='0' cellspacing='0' class='tabbed' height='100%' width='100%'>
+	<tr>
+		<td class='main' id='main' valign='top'>
+			<div class='title_tools'>
+				<% if current_user.is_super_admin? %>
+					<%#= link_to "Create New Service Preferences", new_service_preference_path %>
+				<% end %>
+			</div>
+
+			<div id="users" class="list">
+				<table id="users_list" class="datatable" cellpadding='0' cellspacing='0' border='1'>
+					<thead>
+						<tr>
+							<th><strong>ID</strong></th>
+							<th><strong>Service Preference Id</strong></th>
+							<th><strong>Free Channels</strong></th>
+							<th><strong>Premium Channels</strong></th>
+							<th><strong>Action</strong></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @cable_service_preferences.each do |csp| %>
+							<% if can? :read, csp %>
+								<tr>
+									<td><%= csp.id %></td>
+									<td><%= csp.service_preference_id %></td>
+									<td><%= csp.free_channels %></td>
+									<td><%= csp.premium_channels %></td>
+									<td><%= (link_to 'Edit', edit_cable_service_preference_path(csp)) if can? :manage, csp %> | <%= (link_to "Delete", csp, method: :delete, data: { confirm: "You sure?" }) if can? :manage, csp %></td>
+								</tr>
+							<% end %>
+						<% end %>
+					</tbody>
+				</table>
+				<p>
+          			Download:
+          			<%= link_to "CSV", cable_service_preferences_path(format: "csv") %>
+          			<%#= link_to "Excel", service_categories_path(format: "xls") %>
+        		</p>
+			</div>
+		</td>
+	</tr>
+</table>

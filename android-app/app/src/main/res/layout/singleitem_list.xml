@@ -1,0 +1,16 @@
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeightSmall"
+    android:checkMark="?android:attr/listChoiceIndicatorSingle"
+    android:ellipsize="marquee"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center_vertical"
+
+    android:marqueeRepeatLimit="marquee_forever"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:scrollHorizontally="true"
+    android:singleLine="true"
+    android:textAppearance="?android:attr/textAppearanceListItemSmall" />

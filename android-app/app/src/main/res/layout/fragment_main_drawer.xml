@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.codetail.widget.RevealFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backround_color_ServiceDealz">
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_zipcode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:background="#101820"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txt_usertype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="Zip:"
+                    android:textColor="#a0a0a0"
+                    android:textSize="@dimen/_11sdp" />
+
+                <TextView
+                    android:id="@+id/txt_zip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@+id/txt_zipcode"
+                    android:text="Zip:"
+                    android:textColor="@color/white_color"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/txt_zipcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_toLeftOf="@+id/txt_edit"
+                    android:text="2010101"
+                    android:textColor="#a0a0a0"
+                    android:textSize="@dimen/_11sdp" />
+
+                <TextView
+                    android:id="@+id/txt_edit"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/check"
+                    android:gravity="center"
+                    android:textColor="@color/white_color"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+
+            <ListView
+                android:id="@+id/lv_dashboard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:divider="#e7e1df"
+                android:dividerHeight="10dp"
+                android:scrollbars="none"></ListView>
+
+            <TextView
+                android:id="@android:id/empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text=""
+                android:textColor="@color/black_color"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+        </LinearLayout>
+    </FrameLayout>
+</io.codetail.widget.RevealFrameLayout>

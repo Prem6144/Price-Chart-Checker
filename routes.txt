@@ -1,0 +1,424 @@
+                                          Prefix Verb        URI Pattern                                                 Controller#Action
+                                    api_v1_login POST        /api/v1/sessions(.:format)                                  api/v1/sessions#create
+                       api_v1_service_categories GET         /api/v1/service_categories(.:format)                        api/v1/service_categories#index
+                      api_v1_service_preferences POST        /api/v1/service_preferences(.:format)                       api/v1/service_preferences#create
+api_v1_service_preferences_send_ios_notification GET         /api/v1/service_preferences/send_ios_notification(.:format) api/v1/service_preferences#send_ios_notification
+                            api_v1_notifications POST        /api/v1/notifications(.:format)                             api/v1/notifications#create
+                         api_v1_get_notification GET         /api/v1/get_notification(.:format)                          api/v1/notifications#fetch_notification
+                                api_v1_app_users POST        /api/v1/app_users(.:format)                                 api/v1/app_users#create
+                              api_v1_update_user POST        /api/v1/update_user(.:format)                               api/v1/app_users#update_app_user
+                        api_v1_service_providers GET         /api/v1/service_providers(.:format)                         api/v1/service_providers#get_service_providers
+                           api_v1_device_details POST        /api/v1/device_details(.:format)                            api/v1/device_tracker#add_devise_details
+                          api_v1_destroy_session POST        /api/v1/destroy_session(.:format)                           api/v1/device_tracker#destroy_session
+                          api_v1_get_preferences GET         /api/v1/get_preferences(.:format)                           api/v1/service_preferences#fetch_service_preferences
+                       api_v1_deselect_prference DELETE|POST /api/v1/deselect_prference(.:format)                        api/v1/service_preferences#deselect_service_preference
+                               api_v1_get_states GET         /api/v1/get_states(.:format)                                api/v1/orders#get_states
+                               api_v1_get_cities GET         /api/v1/get_cities(.:format)                                api/v1/orders#get_cities
+                      api_v1_primary_information GET         /api/v1/primary_information(.:format)                       api/v1/app_users#primary_information
+                     api_v1_cellphone_equipments GET         /api/v1/cellphone_equipments(.:format)                      api/v1/deals#cellphone_equipments
+                       api_v1_customisable_deals GET         /api/v1/customisable_deals(.:format)                        api/v1/deals#customisable_deals
+                api_v1_customisable_deal_deatail GET         /api/v1/customisable_deal_deatail(.:format)                 api/v1/deals#customisable_deal_deatail
+               api_v1_channel_customisable_deals GET         /api/v1/channel_customisable_deals(.:format)                api/v1/deals#channel_customisable_deals
+                        api_v1_cellphone_details GET         /api/v1/cellphone_details(.:format)                         api/v1/deals#cellphone_details
+                      api_v1_service_deal_config GET         /api/v1/service_deal_config(.:format)                       api/v1/deals#service_deal_config
+                     api_v1_dashboard_dashboards POST        /api/v1/dashboards/:dashboard_id/dashboards(.:format)       api/v1/dashboards#index
+                               api_v1_dashboards GET         /api/v1/dashboards(.:format)                                api/v1/dashboards#index
+                                                 POST        /api/v1/dashboards(.:format)                                api/v1/dashboards#create
+                            new_api_v1_dashboard GET         /api/v1/dashboards/new(.:format)                            api/v1/dashboards#new
+                           edit_api_v1_dashboard GET         /api/v1/dashboards/:id/edit(.:format)                       api/v1/dashboards#edit
+                                api_v1_dashboard GET         /api/v1/dashboards/:id(.:format)                            api/v1/dashboards#show
+                                                 PATCH       /api/v1/dashboards/:id(.:format)                            api/v1/dashboards#update
+                                                 PUT         /api/v1/dashboards/:id(.:format)                            api/v1/dashboards#update
+                                                 DELETE      /api/v1/dashboards/:id(.:format)                            api/v1/dashboards#destroy
+                               api_v1_deal_deals GET         /api/v1/deals/:deal_id/deals(.:format)                      api/v1/deals#index
+                                    api_v1_deals GET         /api/v1/deals(.:format)                                     api/v1/deals#index
+                                                 POST        /api/v1/deals(.:format)                                     api/v1/deals#create
+                                 new_api_v1_deal GET         /api/v1/deals/new(.:format)                                 api/v1/deals#new
+                                edit_api_v1_deal GET         /api/v1/deals/:id/edit(.:format)                            api/v1/deals#edit
+                                     api_v1_deal GET         /api/v1/deals/:id(.:format)                                 api/v1/deals#show
+                                                 PATCH       /api/v1/deals/:id(.:format)                                 api/v1/deals#update
+                                                 PUT         /api/v1/deals/:id(.:format)                                 api/v1/deals#update
+                                                 DELETE      /api/v1/deals/:id(.:format)                                 api/v1/deals#destroy
+                                 api_v1_app_user GET         /api/v1/app_user(.:format)                                  api/v1/app_users#get_app_user
+                                 api_v1_you_save GET         /api/v1/you_save(.:format)                                  api/v1/app_users#you_save
+                                                 GET         /api/v1/service_preferences(.:format)                       api/v1/service_preferences#get_service_preferences
+                          api_v1_forget_password POST        /api/v1/forget_password(.:format)                           api/v1/app_users#recover_password
+                          api_v1_comment_ratings POST        /api/v1/comment_ratings(.:format)                           api/v1/comment_ratings#create
+                                                 GET         /api/v1/comment_ratings(.:format)                           api/v1/comment_ratings#index
+                        api_v1_referral_tracking POST        /api/v1/referral_tracking(.:format)                         api/v1/referral_infos#create
+                       api_v1_get_category_deals GET         /api/v1/get_category_deals(.:format)                        api/v1/dashboards#category_deals
+                         api_v1_subscribed_deals POST        /api/v1/subscribed_deals(.:format)                          api/v1/subscribe_deals#subscription_info
+                                   api_v1_orders POST        /api/v1/orders(.:format)                                    api/v1/orders#create
+                               api_v1_get_orders GET         /api/v1/get_orders(.:format)                                api/v1/orders#get_orders
+                                api_v1_my_orders GET         /api/v1/my_orders(.:format)                                 api/v1/orders#my_orders
+                        api_v1_get_order_address GET         /api/v1/get_order_address(.:format)                         api/v1/orders#get_order_address
+                                api_v1_get_gifts GET         /api/v1/get_gifts(.:format)                                 api/v1/gifts#get_gifts
+                        api_v1_account_referrals POST        /api/v1/account_referrals(.:format)                         api/v1/account_referrals#create
+                            api_v1_referral_code GET         /api/v1/referral_code(.:format)                             api/v1/app_users#my_referral_code
+                              api_v1_my_earnings GET         /api/v1/my_earnings(.:format)                               api/v1/app_users#referrals_and_gifts
+                                  api_v1_cashout POST        /api/v1/cashout(.:format)                                   api/v1/cashout_infos#create
+                            api_v1_refer_contact POST        /api/v1/refer_contact(.:format)                             api/v1/app_users#refer_contact
+                   api_v1_validate_business_name POST        /api/v1/validate_business_name(.:format)                    api/v1/dashboards#validate_business_name
+                        api_v1_get_deal_channels GET         /api/v1/get_deal_channels(.:format)                         api/v1/deals#get_deal_channels
+                      api_v1_get_channel_details GET         /api/v1/get_channel_details(.:format)                       api/v1/deals#get_channel_details
+                  api_v1_get_estimated_bandwidth POST        /api/v1/get_estimated_bandwidth(.:format)                   api/v1/deals#get_estimated_bandwidth
+                              api_v1_verify_user GET         /api/v1/verify_user(.:format)                               api/v1/app_users#verify_user
+                             api_v1_deal_details GET         /api/v1/deal_details(.:format)                              api/v1/deals#fetch_deal_details
+       api_v1_dynamic_label_for_service_provider GET         /api/v1/dynamic_label_for_service_provider(.:format)        api/v1/dashboards#dynamic_label_for_service_provider
+       fetch_user_and_deal_details_api_v1_orders POST        /api/v1/orders/fetch_user_and_deal_details(.:format)        api/v1/orders#fetch_user_and_deal_details
+                  my_order_details_api_v1_orders POST        /api/v1/orders/my_order_details(.:format)                   api/v1/orders#my_order_details
+            validate_business_name_api_v1_orders POST        /api/v1/orders/validate_business_name(.:format)             api/v1/orders#validate_business_name
+                                                 GET         /api/v1/orders(.:format)                                    api/v1/orders#index
+                                                 POST        /api/v1/orders(.:format)                                    api/v1/orders#create
+                                new_api_v1_order GET         /api/v1/orders/new(.:format)                                api/v1/orders#new
+                               edit_api_v1_order GET         /api/v1/orders/:id/edit(.:format)                           api/v1/orders#edit
+                                    api_v1_order GET         /api/v1/orders/:id(.:format)                                api/v1/orders#show
+                                                 PATCH       /api/v1/orders/:id(.:format)                                api/v1/orders#update
+                                                 PUT         /api/v1/orders/:id(.:format)                                api/v1/orders#update
+                                                 DELETE      /api/v1/orders/:id(.:format)                                api/v1/orders#destroy
+                                    proxy_verify GET         /proxy_verify(.:format)                                     website/app_users#proxy_verify
+                                  edit_addresses POST        /edit_addresses(.:format)                                   website/app_users#edit_addresses
+                             set_default_address POST        /set_default_address(.:format)                              website/app_users#set_default_address
+                                  delete_address POST        /delete_address(.:format)                                   website/app_users#delete_address
+              edit_or_change_service_preferences POST        /edit_or_change_service_preferences(.:format)               api/v1/service_preferences#create
+                                             tnc GET         /tnc(.:format)                                              website/home#tnc
+                                      contact_us GET         /contact_us(.:format)                                       website/home#contact_us
+                                        about_us GET         /about_us(.:format)                                         website/home#about_us
+                                  privacy_policy GET         /privacy_policy(.:format)                                   website/home#privacy_policy
+                                            root GET         /                                                           website/home#index
+                                new_user_session GET         /users/sign_in(.:format)                                    devise/sessions#new
+                                    user_session POST        /users/sign_in(.:format)                                    devise/sessions#create
+                            destroy_user_session DELETE      /users/sign_out(.:format)                                   devise/sessions#destroy
+                                   user_password POST        /users/password(.:format)                                   devise/passwords#create
+                               new_user_password GET         /users/password/new(.:format)                               devise/passwords#new
+                              edit_user_password GET         /users/password/edit(.:format)                              devise/passwords#edit
+                                                 PATCH       /users/password(.:format)                                   devise/passwords#update
+                                                 PUT         /users/password(.:format)                                   devise/passwords#update
+                              edit_password_user GET         /users/:id/edit_password(.:format)                          users#edit_password
+                                     unlock_user GET         /users/:id/unlock(.:format)                                 users#unlock
+                            update_password_user PUT         /users/:id/update_password(.:format)                        users#update_password
+                            reset_password_users GET         /users/reset_password(.:format)                             users#reset_password
+                        set_reset_password_users POST        /users/set_reset_password(.:format)                         users#set_reset_password
+                                           users GET         /users(.:format)                                            users#index
+                                                 POST        /users(.:format)                                            users#create
+                                        new_user GET         /users/new(.:format)                                        users#new
+                                       edit_user GET         /users/:id/edit(.:format)                                   users#edit
+                                            user GET         /users/:id(.:format)                                        users#show
+                                                 PATCH       /users/:id(.:format)                                        users#update
+                                                 PUT         /users/:id(.:format)                                        users#update
+                                                 DELETE      /users/:id(.:format)                                        users#destroy
+                             calculate_bandwidth GET         /calculate_bandwidth(.:format)                              website/home#calculate_bandwidth
+                       get_deals_from_first_page GET         /get_deals_from_first_page(.:format)                        website/home#get_deals_from_first_page
+                              get_user_addresses GET         /get_user_addresses(.:format)                               website/app_users#user_addresses
+                     get_business_user_addresses GET         /get_business_user_addresses(.:format)                      website/app_users#business_user_addresses
+                              extra_service_deal GET         /extra_service_deal(.:format)                               extra_services#extra_service_deal
+                     deals_get_service_providers GET         /deals/get_service_providers(.:format)                      deals#get_service_providers
+                                       searchzip GET         /searchzip(.:format)                                        deals#searchzip
+                                    verify_email GET         /verify_email(.:format)                                     website/app_users#verify_email
+                                    import_deals POST        /deals/import(.:format)                                     deals#import
+                                           deals GET         /deals(.:format)                                            deals#index
+                                                 POST        /deals(.:format)                                            deals#create
+                                        new_deal GET         /deals/new(.:format)                                        deals#new
+                                       edit_deal GET         /deals/:id/edit(.:format)                                   deals#edit
+                                            deal GET         /deals/:id(.:format)                                        deals#show
+                                                 PATCH       /deals/:id(.:format)                                        deals#update
+                                                 PUT         /deals/:id(.:format)                                        deals#update
+                                                 DELETE      /deals/:id(.:format)                                        deals#destroy
+                       import_service_categories POST        /service_categories/import(.:format)                        service_categories#import
+                              service_categories GET         /service_categories(.:format)                               service_categories#index
+                                                 POST        /service_categories(.:format)                               service_categories#create
+                            new_service_category GET         /service_categories/new(.:format)                           service_categories#new
+                           edit_service_category GET         /service_categories/:id/edit(.:format)                      service_categories#edit
+                                service_category GET         /service_categories/:id(.:format)                           service_categories#show
+                                                 PATCH       /service_categories/:id(.:format)                           service_categories#update
+                                                 PUT         /service_categories/:id(.:format)                           service_categories#update
+                                                 DELETE      /service_categories/:id(.:format)                           service_categories#destroy
+                                       app_users GET         /app_users(.:format)                                        app_users#index
+                                                 POST        /app_users(.:format)                                        app_users#create
+                                    new_app_user GET         /app_users/new(.:format)                                    app_users#new
+                                   edit_app_user GET         /app_users/:id/edit(.:format)                               app_users#edit
+                                        app_user GET         /app_users/:id(.:format)                                    app_users#show
+                                                 PATCH       /app_users/:id(.:format)                                    app_users#update
+                                                 PUT         /app_users/:id(.:format)                                    app_users#update
+                                                 DELETE      /app_users/:id(.:format)                                    app_users#destroy
+                             service_preferences GET         /service_preferences(.:format)                              service_preferences#index
+                                                 POST        /service_preferences(.:format)                              service_preferences#create
+                          new_service_preference GET         /service_preferences/new(.:format)                          service_preferences#new
+                         edit_service_preference GET         /service_preferences/:id/edit(.:format)                     service_preferences#edit
+                              service_preference GET         /service_preferences/:id(.:format)                          service_preferences#show
+                                                 PATCH       /service_preferences/:id(.:format)                          service_preferences#update
+                                                 PUT         /service_preferences/:id(.:format)                          service_preferences#update
+                                                 DELETE      /service_preferences/:id(.:format)                          service_preferences#destroy
+                                   notifications GET         /notifications(.:format)                                    notifications#index
+                                                 POST        /notifications(.:format)                                    notifications#create
+                                new_notification GET         /notifications/new(.:format)                                notifications#new
+                               edit_notification GET         /notifications/:id/edit(.:format)                           notifications#edit
+                                    notification GET         /notifications/:id(.:format)                                notifications#show
+                                                 PATCH       /notifications/:id(.:format)                                notifications#update
+                                                 PUT         /notifications/:id(.:format)                                notifications#update
+                                                 DELETE      /notifications/:id(.:format)                                notifications#destroy
+                        import_service_providers POST        /service_providers/import(.:format)                         service_providers#import
+                               service_providers GET         /service_providers(.:format)                                service_providers#index
+                                                 POST        /service_providers(.:format)                                service_providers#create
+                            new_service_provider GET         /service_providers/new(.:format)                            service_providers#new
+                           edit_service_provider GET         /service_providers/:id/edit(.:format)                       service_providers#edit
+                                service_provider GET         /service_providers/:id(.:format)                            service_providers#show
+                                                 PATCH       /service_providers/:id(.:format)                            service_providers#update
+                                                 PUT         /service_providers/:id(.:format)                            service_providers#update
+                                                 DELETE      /service_providers/:id(.:format)                            service_providers#destroy
+                                  advertisements GET         /advertisements(.:format)                                   advertisements#index
+                                                 POST        /advertisements(.:format)                                   advertisements#create
+                               new_advertisement GET         /advertisements/new(.:format)                               advertisements#new
+                              edit_advertisement GET         /advertisements/:id/edit(.:format)                          advertisements#edit
+                                   advertisement GET         /advertisements/:id(.:format)                               advertisements#show
+                                                 PATCH       /advertisements/:id(.:format)                               advertisements#update
+                                                 PUT         /advertisements/:id(.:format)                               advertisements#update
+                                                 DELETE      /advertisements/:id(.:format)                               advertisements#destroy
+                              bulk_notifications GET         /bulk_notifications(.:format)                               bulk_notifications#index
+                                                 POST        /bulk_notifications(.:format)                               bulk_notifications#create
+                           new_bulk_notification GET         /bulk_notifications/new(.:format)                           bulk_notifications#new
+                          edit_bulk_notification GET         /bulk_notifications/:id/edit(.:format)                      bulk_notifications#edit
+                               bulk_notification GET         /bulk_notifications/:id(.:format)                           bulk_notifications#show
+                                                 PATCH       /bulk_notifications/:id(.:format)                           bulk_notifications#update
+                                                 PUT         /bulk_notifications/:id(.:format)                           bulk_notifications#update
+                                                 DELETE      /bulk_notifications/:id(.:format)                           bulk_notifications#destroy
+                                 comment_ratings GET         /comment_ratings(.:format)                                  comment_ratings#index
+                                                 POST        /comment_ratings(.:format)                                  comment_ratings#create
+                              new_comment_rating GET         /comment_ratings/new(.:format)                              comment_ratings#new
+                             edit_comment_rating GET         /comment_ratings/:id/edit(.:format)                         comment_ratings#edit
+                                  comment_rating GET         /comment_ratings/:id(.:format)                              comment_ratings#show
+                                                 PATCH       /comment_ratings/:id(.:format)                              comment_ratings#update
+                                                 PUT         /comment_ratings/:id(.:format)                              comment_ratings#update
+                                                 DELETE      /comment_ratings/:id(.:format)                              comment_ratings#destroy
+                                  referral_infos GET         /referral_infos(.:format)                                   referral_infos#index
+                                                 POST        /referral_infos(.:format)                                   referral_infos#create
+                               new_referral_info GET         /referral_infos/new(.:format)                               referral_infos#new
+                              edit_referral_info GET         /referral_infos/:id/edit(.:format)                          referral_infos#edit
+                                   referral_info GET         /referral_infos/:id(.:format)                               referral_infos#show
+                                                 PATCH       /referral_infos/:id(.:format)                               referral_infos#update
+                                                 PUT         /referral_infos/:id(.:format)                               referral_infos#update
+                                                 DELETE      /referral_infos/:id(.:format)                               referral_infos#destroy
+                    internet_service_preferences GET         /internet_service_preferences(.:format)                     internet_service_preferences#index
+                                                 POST        /internet_service_preferences(.:format)                     internet_service_preferences#create
+                 new_internet_service_preference GET         /internet_service_preferences/new(.:format)                 internet_service_preferences#new
+                edit_internet_service_preference GET         /internet_service_preferences/:id/edit(.:format)            internet_service_preferences#edit
+                     internet_service_preference GET         /internet_service_preferences/:id(.:format)                 internet_service_preferences#show
+                                                 PATCH       /internet_service_preferences/:id(.:format)                 internet_service_preferences#update
+                                                 PUT         /internet_service_preferences/:id(.:format)                 internet_service_preferences#update
+                                                 DELETE      /internet_service_preferences/:id(.:format)                 internet_service_preferences#destroy
+                       cable_service_preferences GET         /cable_service_preferences(.:format)                        cable_service_preferences#index
+                                                 POST        /cable_service_preferences(.:format)                        cable_service_preferences#create
+                    new_cable_service_preference GET         /cable_service_preferences/new(.:format)                    cable_service_preferences#new
+                   edit_cable_service_preference GET         /cable_service_preferences/:id/edit(.:format)               cable_service_preferences#edit
+                        cable_service_preference GET         /cable_service_preferences/:id(.:format)                    cable_service_preferences#show
+                                                 PATCH       /cable_service_preferences/:id(.:format)                    cable_service_preferences#update
+                                                 PUT         /cable_service_preferences/:id(.:format)                    cable_service_preferences#update
+                                                 DELETE      /cable_service_preferences/:id(.:format)                    cable_service_preferences#destroy
+                   telephone_service_preferences GET         /telephone_service_preferences(.:format)                    telephone_service_preferences#index
+                                                 POST        /telephone_service_preferences(.:format)                    telephone_service_preferences#create
+                new_telephone_service_preference GET         /telephone_service_preferences/new(.:format)                telephone_service_preferences#new
+               edit_telephone_service_preference GET         /telephone_service_preferences/:id/edit(.:format)           telephone_service_preferences#edit
+                    telephone_service_preference GET         /telephone_service_preferences/:id(.:format)                telephone_service_preferences#show
+                                                 PATCH       /telephone_service_preferences/:id(.:format)                telephone_service_preferences#update
+                                                 PUT         /telephone_service_preferences/:id(.:format)                telephone_service_preferences#update
+                                                 DELETE      /telephone_service_preferences/:id(.:format)                telephone_service_preferences#destroy
+                   cellphone_service_preferences GET         /cellphone_service_preferences(.:format)                    cellphone_service_preferences#index
+                                                 POST        /cellphone_service_preferences(.:format)                    cellphone_service_preferences#create
+                new_cellphone_service_preference GET         /cellphone_service_preferences/new(.:format)                cellphone_service_preferences#new
+               edit_cellphone_service_preference GET         /cellphone_service_preferences/:id/edit(.:format)           cellphone_service_preferences#edit
+                    cellphone_service_preference GET         /cellphone_service_preferences/:id(.:format)                cellphone_service_preferences#show
+                                                 PATCH       /cellphone_service_preferences/:id(.:format)                cellphone_service_preferences#update
+                                                 PUT         /cellphone_service_preferences/:id(.:format)                cellphone_service_preferences#update
+                                                 DELETE      /cellphone_service_preferences/:id(.:format)                cellphone_service_preferences#destroy
+                      bundle_service_preferences GET         /bundle_service_preferences(.:format)                       bundle_service_preferences#index
+                                                 POST        /bundle_service_preferences(.:format)                       bundle_service_preferences#create
+                   new_bundle_service_preference GET         /bundle_service_preferences/new(.:format)                   bundle_service_preferences#new
+                  edit_bundle_service_preference GET         /bundle_service_preferences/:id/edit(.:format)              bundle_service_preferences#edit
+                       bundle_service_preference GET         /bundle_service_preferences/:id(.:format)                   bundle_service_preferences#show
+                                                 PATCH       /bundle_service_preferences/:id(.:format)                   bundle_service_preferences#update
+                                                 PUT         /bundle_service_preferences/:id(.:format)                   bundle_service_preferences#update
+                                                 DELETE      /bundle_service_preferences/:id(.:format)                   bundle_service_preferences#destroy
+                                 subscribe_deals GET         /subscribe_deals(.:format)                                  subscribe_deals#index
+                                                 POST        /subscribe_deals(.:format)                                  subscribe_deals#create
+                              new_subscribe_deal GET         /subscribe_deals/new(.:format)                              subscribe_deals#new
+                             edit_subscribe_deal GET         /subscribe_deals/:id/edit(.:format)                         subscribe_deals#edit
+                                  subscribe_deal GET         /subscribe_deals/:id(.:format)                              subscribe_deals#show
+                                                 PATCH       /subscribe_deals/:id(.:format)                              subscribe_deals#update
+                                                 PUT         /subscribe_deals/:id(.:format)                              subscribe_deals#update
+                                                 DELETE      /subscribe_deals/:id(.:format)                              subscribe_deals#destroy
+                                  trending_deals GET         /trending_deals(.:format)                                   trending_deals#index
+                                                 POST        /trending_deals(.:format)                                   trending_deals#create
+                               new_trending_deal GET         /trending_deals/new(.:format)                               trending_deals#new
+                              edit_trending_deal GET         /trending_deals/:id/edit(.:format)                          trending_deals#edit
+                                   trending_deal GET         /trending_deals/:id(.:format)                               trending_deals#show
+                                                 PATCH       /trending_deals/:id(.:format)                               trending_deals#update
+                                                 PUT         /trending_deals/:id(.:format)                               trending_deals#update
+                                                 DELETE      /trending_deals/:id(.:format)                               trending_deals#destroy
+                                 import_zipcodes POST        /zipcodes/import(.:format)                                  zipcodes#import
+                                        zipcodes GET         /zipcodes(.:format)                                         zipcodes#index
+                                                 POST        /zipcodes(.:format)                                         zipcodes#create
+                                     new_zipcode GET         /zipcodes/new(.:format)                                     zipcodes#new
+                                    edit_zipcode GET         /zipcodes/:id/edit(.:format)                                zipcodes#edit
+                                         zipcode GET         /zipcodes/:id(.:format)                                     zipcodes#show
+                                                 PATCH       /zipcodes/:id(.:format)                                     zipcodes#update
+                                                 PUT         /zipcodes/:id(.:format)                                     zipcodes#update
+                                                 DELETE      /zipcodes/:id(.:format)                                     zipcodes#destroy
+                                          orders GET         /orders(.:format)                                           orders#index
+                                                 POST        /orders(.:format)                                           orders#create
+                                       new_order GET         /orders/new(.:format)                                       orders#new
+                                      edit_order GET         /orders/:id/edit(.:format)                                  orders#edit
+                                           order GET         /orders/:id(.:format)                                       orders#show
+                                                 PATCH       /orders/:id(.:format)                                       orders#update
+                                                 PUT         /orders/:id(.:format)                                       orders#update
+                                                 DELETE      /orders/:id(.:format)                                       orders#destroy
+                                           gifts GET         /gifts(.:format)                                            gifts#index
+                                                 POST        /gifts(.:format)                                            gifts#create
+                                        new_gift GET         /gifts/new(.:format)                                        gifts#new
+                                       edit_gift GET         /gifts/:id/edit(.:format)                                   gifts#edit
+                                            gift GET         /gifts/:id(.:format)                                        gifts#show
+                                                 PATCH       /gifts/:id(.:format)                                        gifts#update
+                                                 PUT         /gifts/:id(.:format)                                        gifts#update
+                                                 DELETE      /gifts/:id(.:format)                                        gifts#destroy
+                                      user_gifts GET         /user_gifts(.:format)                                       user_gifts#index
+                                                 POST        /user_gifts(.:format)                                       user_gifts#create
+                                   new_user_gift GET         /user_gifts/new(.:format)                                   user_gifts#new
+                                  edit_user_gift GET         /user_gifts/:id/edit(.:format)                              user_gifts#edit
+                                       user_gift GET         /user_gifts/:id(.:format)                                   user_gifts#show
+                                                 PATCH       /user_gifts/:id(.:format)                                   user_gifts#update
+                                                 PUT         /user_gifts/:id(.:format)                                   user_gifts#update
+                                                 DELETE      /user_gifts/:id(.:format)                                   user_gifts#destroy
+                                        channels GET         /channels(.:format)                                         channels#index
+                                                 POST        /channels(.:format)                                         channels#create
+                                     new_channel GET         /channels/new(.:format)                                     channels#new
+                                    edit_channel GET         /channels/:id/edit(.:format)                                channels#edit
+                                         channel GET         /channels/:id(.:format)                                     channels#show
+                                                 PATCH       /channels/:id(.:format)                                     channels#update
+                                                 PUT         /channels/:id(.:format)                                     channels#update
+                                                 DELETE      /channels/:id(.:format)                                     channels#destroy
+                                channel_packages GET         /channel_packages(.:format)                                 channel_packages#index
+                                                 POST        /channel_packages(.:format)                                 channel_packages#create
+                             new_channel_package GET         /channel_packages/new(.:format)                             channel_packages#new
+                            edit_channel_package GET         /channel_packages/:id/edit(.:format)                        channel_packages#edit
+                                 channel_package GET         /channel_packages/:id(.:format)                             channel_packages#show
+                                                 PATCH       /channel_packages/:id(.:format)                             channel_packages#update
+                                                 PUT         /channel_packages/:id(.:format)                             channel_packages#update
+                                                 DELETE      /channel_packages/:id(.:format)                             channel_packages#destroy
+                                   service_dealz GET         /service_dealz(.:format)                                    website/home#index
+                                   service_deals GET         /service_deals(.:format)                                    website/home#index
+                                         website GET         /website(.:format)                                          website/home#index
+                        deals_website_home_index GET         /website/home/deals(.:format)                               website/home#deals
+                compare_deals_website_home_index GET         /website/home/compare_deals(.:format)                       website/home#compare_deals
+                 deal_details_website_home_index GET         /website/home/deal_details(.:format)                        website/home#deal_details
+            more_deal_details_website_home_index GET         /website/home/more_deal_details(.:format)                   website/home#more_deal_details
+     set_zipcode_and_usertype_website_home_index GET         /website/home/set_zipcode_and_usertype(.:format)            website/home#set_zipcode_and_usertype
+                   contact_us_website_home_index GET         /website/home/contact_us(.:format)                          website/home#contact_us
+                     about_us_website_home_index GET         /website/home/about_us(.:format)                            website/home#about_us
+                our_providers_website_home_index GET         /website/home/our_providers(.:format)                       website/home#our_providers
+                  coming_soon_website_home_index GET         /website/home/coming_soon(.:format)                         website/home#coming_soon
+                          tnc_website_home_index GET         /website/home/tnc(.:format)                                 website/home#tnc
+                              website_home_index GET         /website/home(.:format)                                     website/home#index
+                                                 POST        /website/home(.:format)                                     website/home#create
+                                new_website_home GET         /website/home/new(.:format)                                 website/home#new
+                               edit_website_home GET         /website/home/:id/edit(.:format)                            website/home#edit
+                                    website_home GET         /website/home/:id(.:format)                                 website/home#show
+                                                 PATCH       /website/home/:id(.:format)                                 website/home#update
+                                                 PUT         /website/home/:id(.:format)                                 website/home#update
+                                                 DELETE      /website/home/:id(.:format)                                 website/home#destroy
+         check_user_email_ajax_website_app_users GET         /website/app_users/check_user_email_ajax(.:format)          website/app_users#check_user_email_ajax
+         check_user_credential_website_app_users GET         /website/app_users/check_user_credential(.:format)          website/app_users#check_user_credential
+                       signout_website_app_users GET         /website/app_users/signout(.:format)                        website/app_users#signout
+                        signin_website_app_users POST        /website/app_users/signin(.:format)                         website/app_users#signin
+                      checkout_website_app_users GET         /website/app_users/checkout(.:format)                       website/app_users#checkout
+                       profile_website_app_users GET         /website/app_users/profile(.:format)                        website/app_users#profile
+                 order_history_website_app_users GET         /website/app_users/order_history(.:format)                  website/app_users#order_history
+                   preferences_website_app_users POST        /website/app_users/preferences(.:format)                    website/app_users#preferences
+                         order_website_app_users GET         /website/app_users/order(.:format)                          website/app_users#order
+                  order_detail_website_app_users GET         /website/app_users/order_detail(.:format)                   website/app_users#order_detail
+                  create_order_website_app_users POST        /website/app_users/create_order(.:format)                   website/app_users#create_order
+                    contact_us_website_app_users POST        /website/app_users/contact_us(.:format)                     website/app_users#contact_us
+               forget_password_website_app_users GET         /website/app_users/forget_password(.:format)                website/app_users#forget_password
+              order_attributes_website_app_users GET         /website/app_users/order_attributes(.:format)               website/app_users#order_attributes
+          order_extra_services_website_app_users GET         /website/app_users/order_extra_services(.:format)           website/app_users#order_extra_services
+          order_equipment_data_website_app_users GET         /website/app_users/order_equipment_data(.:format)           website/app_users#order_equipment_data
+        order_channel_packages_website_app_users GET         /website/app_users/order_channel_packages(.:format)         website/app_users#order_channel_packages
+        order_cable_equipments_website_app_users GET         /website/app_users/order_cable_equipments(.:format)         website/app_users#order_cable_equipments
+                               website_app_users GET         /website/app_users(.:format)                                website/app_users#index
+                                                 POST        /website/app_users(.:format)                                website/app_users#create
+                            new_website_app_user GET         /website/app_users/new(.:format)                            website/app_users#new
+                           edit_website_app_user GET         /website/app_users/:id/edit(.:format)                       website/app_users#edit
+                                website_app_user GET         /website/app_users/:id(.:format)                            website/app_users#show
+                                                 PATCH       /website/app_users/:id(.:format)                            website/app_users#update
+                                                 PUT         /website/app_users/:id(.:format)                            website/app_users#update
+                                                 DELETE      /website/app_users/:id(.:format)                            website/app_users#destroy
+                           referral_gift_amounts GET         /referral_gift_amounts(.:format)                            referral_gift_amounts#index
+                                                 POST        /referral_gift_amounts(.:format)                            referral_gift_amounts#create
+                        new_referral_gift_amount GET         /referral_gift_amounts/new(.:format)                        referral_gift_amounts#new
+                       edit_referral_gift_amount GET         /referral_gift_amounts/:id/edit(.:format)                   referral_gift_amounts#edit
+                            referral_gift_amount GET         /referral_gift_amounts/:id(.:format)                        referral_gift_amounts#show
+                                                 PATCH       /referral_gift_amounts/:id(.:format)                        referral_gift_amounts#update
+                                                 PUT         /referral_gift_amounts/:id(.:format)                        referral_gift_amounts#update
+                                                 DELETE      /referral_gift_amounts/:id(.:format)                        referral_gift_amounts#destroy
+              import_service_provider_checklists POST        /service_provider_checklists/import(.:format)               service_provider_checklists#import
+                     service_provider_checklists GET         /service_provider_checklists(.:format)                      service_provider_checklists#index
+                                                 POST        /service_provider_checklists(.:format)                      service_provider_checklists#create
+                  new_service_provider_checklist GET         /service_provider_checklists/new(.:format)                  service_provider_checklists#new
+                 edit_service_provider_checklist GET         /service_provider_checklists/:id/edit(.:format)             service_provider_checklists#edit
+                      service_provider_checklist GET         /service_provider_checklists/:id(.:format)                  service_provider_checklists#show
+                                                 PATCH       /service_provider_checklists/:id(.:format)                  service_provider_checklists#update
+                                                 PUT         /service_provider_checklists/:id(.:format)                  service_provider_checklists#update
+                                                 DELETE      /service_provider_checklists/:id(.:format)                  service_provider_checklists#destroy
+                                 deal_equipments GET         /deal_equipments(.:format)                                  deal_equipments#index
+                                                 POST        /deal_equipments(.:format)                                  deal_equipments#create
+                              new_deal_equipment GET         /deal_equipments/new(.:format)                              deal_equipments#new
+                             edit_deal_equipment GET         /deal_equipments/:id/edit(.:format)                         deal_equipments#edit
+                                  deal_equipment GET         /deal_equipments/:id(.:format)                              deal_equipments#show
+                                                 PATCH       /deal_equipments/:id(.:format)                              deal_equipments#update
+                                                 PUT         /deal_equipments/:id(.:format)                              deal_equipments#update
+                                                 DELETE      /deal_equipments/:id(.:format)                              deal_equipments#destroy
+                                 deal_attributes GET         /deal_attributes(.:format)                                  deal_attributes#index
+                                                 POST        /deal_attributes(.:format)                                  deal_attributes#create
+                              new_deal_attribute GET         /deal_attributes/new(.:format)                              deal_attributes#new
+                             edit_deal_attribute GET         /deal_attributes/:id/edit(.:format)                         deal_attributes#edit
+                                  deal_attribute GET         /deal_attributes/:id(.:format)                              deal_attributes#show
+                                                 PATCH       /deal_attributes/:id(.:format)                              deal_attributes#update
+                                                 PUT         /deal_attributes/:id(.:format)                              deal_attributes#update
+                                                 DELETE      /deal_attributes/:id(.:format)                              deal_attributes#destroy
+                             deal_extra_services GET         /deal_extra_services(.:format)                              deal_extra_services#index
+                                                 POST        /deal_extra_services(.:format)                              deal_extra_services#create
+                          new_deal_extra_service GET         /deal_extra_services/new(.:format)                          deal_extra_services#new
+                         edit_deal_extra_service GET         /deal_extra_services/:id/edit(.:format)                     deal_extra_services#edit
+                              deal_extra_service GET         /deal_extra_services/:id(.:format)                          deal_extra_services#show
+                                                 PATCH       /deal_extra_services/:id(.:format)                          deal_extra_services#update
+                                                 PUT         /deal_extra_services/:id(.:format)                          deal_extra_services#update
+                                                 DELETE      /deal_extra_services/:id(.:format)                          deal_extra_services#destroy
+                                equipment_colors GET         /equipment_colors(.:format)                                 equipment_colors#index
+                                                 POST        /equipment_colors(.:format)                                 equipment_colors#create
+                             new_equipment_color GET         /equipment_colors/new(.:format)                             equipment_colors#new
+                            edit_equipment_color GET         /equipment_colors/:id/edit(.:format)                        equipment_colors#edit
+                                 equipment_color GET         /equipment_colors/:id(.:format)                             equipment_colors#show
+                                                 PATCH       /equipment_colors/:id(.:format)                             equipment_colors#update
+                                                 PUT         /equipment_colors/:id(.:format)                             equipment_colors#update
+                                                 DELETE      /equipment_colors/:id(.:format)                             equipment_colors#destroy
+                               cellphone_details GET         /cellphone_details(.:format)                                cellphone_details#index
+                                                 POST        /cellphone_details(.:format)                                cellphone_details#create
+                            new_cellphone_detail GET         /cellphone_details/new(.:format)                            cellphone_details#new
+                           edit_cellphone_detail GET         /cellphone_details/:id/edit(.:format)                       cellphone_details#edit
+                                cellphone_detail GET         /cellphone_details/:id(.:format)                            cellphone_details#show
+                                                 PATCH       /cellphone_details/:id(.:format)                            cellphone_details#update
+                                                 PUT         /cellphone_details/:id(.:format)                            cellphone_details#update
+                                                 DELETE      /cellphone_details/:id(.:format)                            cellphone_details#destroy
+                                  extra_services GET         /extra_services(.:format)                                   extra_services#index
+                                                 POST        /extra_services(.:format)                                   extra_services#create
+                               new_extra_service GET         /extra_services/new(.:format)                               extra_services#new
+                              edit_extra_service GET         /extra_services/:id/edit(.:format)                          extra_services#edit
+                                   extra_service GET         /extra_services/:id(.:format)                               extra_services#show
+                                                 PATCH       /extra_services/:id(.:format)                               extra_services#update
+                                                 PUT         /extra_services/:id(.:format)                               extra_services#update
+                                                 DELETE      /extra_services/:id(.:format)                               extra_services#destroy
+                              admin_configurable POST        /admin/configurable(.:format)                               admin/configurables#create
+                          new_admin_configurable GET         /admin/configurable/new(.:format)                           admin/configurables#new
+                         edit_admin_configurable GET         /admin/configurable/edit(.:format)                          admin/configurables#edit
+                                                 GET         /admin/configurable(.:format)                               admin/configurables#show
+                                                 PATCH       /admin/configurable(.:format)                               admin/configurables#update
+                                                 PUT         /admin/configurable(.:format)                               admin/configurables#update
+                                                 DELETE      /admin/configurable(.:format)                               admin/configurables#destroy
