@@ -1,6 +1,6 @@
-== README
+### README
 
-# Price-Chart-Checker
+# Price-Chart-Checker || Service Comparator
 
 * Ruby version - 2.2.2
 
@@ -15,6 +15,6 @@
 
  * Task
   
-   - This product is Price-Chart-Checker for online Data.
+   - This product is Price-Chart-Checker for online Service Comparator.
    - Front-end and Back- development with fully working project.
    - Register yourself as a user and use the app/ for administrator login credential see databse admins table.
